@@ -1,4 +1,4 @@
--- loc1993 edit hear
+-- loc1993 edit here
 -- phpMyAdmin SQL Dump
 -- version 4.1.6
 -- http://www.phpmyadmin.net
