@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+-- loc1993 edit hear
+=======
 -- loc1993 edit here
+>>>>>>> 0a2b1641dd3c8b921e3d54f6e21319867e63d456
 -- phpMyAdmin SQL Dump
 -- version 4.1.6
 -- http://www.phpmyadmin.net
