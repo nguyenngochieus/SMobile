@@ -29,7 +29,11 @@
 }
 
 .jcarousel-skin-tango .jcarousel-item {
+<<<<<<< HEAD
+    width: 170px;
+=======
     width: 221px;
+>>>>>>> 533d37706c7139e45a5f0266f17377665565d84f
 }
 
 .jcarousel-skin-tango .jcarousel-item-horizontal {
