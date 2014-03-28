@@ -2,19 +2,15 @@
     
     <div class="headerbar">
       
-      <a class="menutoggle"><i class="fa fa-bars"></i></a>
-      
-      <form class="searchform" action="#" method="post">
-        <input type="text" class="form-control" name="keyword" placeholder="Tìm kiếm..." />
-      </form>
+      <a class="menutoggle"><i class="fa fa-bars"></i></a>            
       
       <div class="header-right">
         <ul class="headermenu">          
           <li>
             <div class="btn-group">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <img src="<?=base_url()?>images/photos/loggeduser.png" alt="" />
-                John Doe
+                <img src="<?=base_url()?>upload/files/snowstorm-sivir-skin.jpg" alt="" />
+                Kelvin Lee
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-usermenu pull-right">

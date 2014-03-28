@@ -1,8 +1,9 @@
-</section>
+﻿</section>
 
 
 <script src="<?=base_url()?>static/admin/js/jquery-1.10.2.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="<?=base_url()?>static/admin/js/jquery-ui-1.10.3.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/bootstrap.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/modernizr.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/jquery.sparkline.min.js"></script>
@@ -10,21 +11,22 @@
 <script src="<?=base_url()?>static/admin/js/retina.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/jquery.cookies.js"></script>
 <script src="<?=base_url()?>static/admin/js/jquery.alerts.js"></script>
-
-<!--form -->
 <script src="<?=base_url()?>static/admin/js/jquery.validate.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/bootstrap-fileupload.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/ckfinder/ckfinder_v1.js"></script>
 <script src="<?=base_url()?>static/admin/js/wysihtml5-0.3.0.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/bootstrap-wysihtml5.js"></script>
-
 <script src="<?=base_url()?>static/admin/js/jquery.datatables.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/chosen.jquery.min.js"></script>
-
 <script src="<?=base_url()?>static/admin/js/custom.js"></script>
-
-
 <script src="<?=base_url()?>static/admin/js/admin.custom.js"></script>
+
+
+<script src="<?=base_url()?>static/admin/js/jquery.autogrow-textarea.js"></script>
+<script src="<?=base_url()?>static/admin/js/bootstrap-timepicker.min.js"></script>
+<script src="<?=base_url()?>static/admin/js/jquery.maskedinput.min.js"></script>
+<script src="<?=base_url()?>static/admin/js/chosen.jquery.min.js"></script>
+
 <script>
   jQuery(document).ready(function() {    
 
@@ -68,7 +70,7 @@
                 minlenght:9,
             },
             gender: "required",
-            trangthai: "required",
+            trangthai: "required", //bợn có sửa trong này ko ??
             namsinh: "required",
             quyen: "required",
             soluong: {
@@ -114,7 +116,8 @@
         jQuery(element).closest('.form-group').removeClass('has-error');
       }
     });   
-  
+    
+    jQuery('#datepicker').datepicker();
 
   
     });
