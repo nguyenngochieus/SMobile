@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 Class Hoadon_model extends CI_Model{
 
-	var $table = 'dathang';
+	var $table = 'donhang';
 
 	function __construct(){
 		parent:: __construct();

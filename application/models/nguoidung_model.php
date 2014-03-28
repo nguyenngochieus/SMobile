@@ -19,41 +19,41 @@ Class Nguoidung_model extends CI_Model{
 		return $query->result_array();
 	}
 
-	function insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Ngaysinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $Hinh)
-	{
+	function insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien)
+	{		
 		$Matkhau = do_hash($Matkhau, 'md5');
 		$data = array(
 			"Tennguoidung" => $Tennguoidung,
 			"Tendangnhap" => $Tendangnhap,
 			"Matkhau"	=>	$Matkhau,
 			"Email" => $Email,
-			"Ngaysinh" => $Ngaysinh,
+			"Ngaysinh" => $Namsinh,
 			"Gioitinh" => $Gioitinh,
 			"CMND" => $CMND,
 			"SDT" => $SDT,
 			"Quyen"	=>	$Quyen,
 			"Trangthai" => $Trangthai,
-			"Hinh" => $Hinh
+			"HinhAnh" => $HinhDaiDien
 		);
 		$this->db->insert($this->table, $data);
 		if($this->db->insert_id() > 0) return TRUE;
 		return FALSE;
 	}
 
-	function update($Id, $Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Ngaysinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $Hinh)
+	function update($Id, $Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien)
 	{
 		$data = array(
 			"Tennguoidung" => $Tennguoidung,
 			"Tendangnhap" => $Tendangnhap,
 			"Matkhau"	=>	$Matkhau,
 			"Email" => $Email,
-			"Ngaysinh" => $Ngaysinh,
+			"Ngaysinh" => $Namsinh,
 			"Gioitinh" => $Gioitinh,
 			"CMND" => $CMND,
 			"SDT" => $SDT,
 			"Quyen"	=>	$Quyen,
 			"Trangthai" => $Trangthai,
-			"Hinh" => $Hinh
+			"HinhAnh" => $HinhDaiDien
 		);
 		$this->db->where("Id", $Id);
 		$query = $this->db->update($this->table, $data);

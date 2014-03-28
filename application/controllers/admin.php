@@ -12,8 +12,9 @@ Class admin extends CI_Controller{
 
 	function index(){
 		$this->data['title'] = 'Trang chủ';
-		$this->load->view('admin/include/header');
-		$this->load->view('admin/include/leftpanel');
+		$this->data['page'] = 'trangchu';
+		$this->load->view('admin/include/header',$this->data);
+		$this->load->view('admin/include/leftpanel',$this->data);
 		$this->load->view('admin/include/headerbar');
 		$this->load->view('admin/include/breadcrumb',$this->data);
 		$this->load->view('admin/index');
@@ -21,8 +22,8 @@ Class admin extends CI_Controller{
 		$this->load->view('admin/include/footer');
 	}
 
-	function nguoidung($chucnang = "view"){		
-		$this->data['title'] = 'Trang người dùng';
+	function nguoidung($chucnang = "view"){
+		$this->data['title'] = 'Người dùng';
 		$this->data['page'] = 'nguoidung';
 		$this->load->model('nguoidung_model');		
 		$this->load->helper(array('form', 'url')); 
@@ -31,8 +32,8 @@ Class admin extends CI_Controller{
 		if($chucnang == "view")
 		{
 			$this->data['result'] = $this->nguoidung_model->get_nguoidung();
-			$this->load->view('admin/include/header');
-			$this->load->view('admin/include/leftpanel');
+			$this->load->view('admin/include/header',$this->data);
+			$this->load->view('admin/include/leftpanel',$this->data);
 			$this->load->view('admin/include/headerbar');
 			$this->load->view('admin/include/breadcrumb',$this->data);
 			$this->load->view('admin/nguoidung/index',$this->data);
@@ -43,16 +44,18 @@ Class admin extends CI_Controller{
 			$Tennguoidung = $this->input->post('hoten',TRUE);
 			$Tendangnhap = $this->input->post('username',TRUE);
 			$Matkhau = $this->input->post('password',TRUE);
-			$Email = $this->input->post('email',TRUE);
-			$Ngaysinh = $this->input->post('ngaysinh',TRUE);
+			$Email = $this->input->post('email',TRUE);						
+			$Namsinh = $this->input->post('namsinh',TRUE);
+			$Namsinh = date('Y-m-d', strtotime($Namsinh));
 			$Gioitinh = $this->input->post('gender',TRUE);
 			$CMND = $this->input->post('CMND',TRUE);
 			$SDT = $this->input->post('SDT',TRUE);
 			$Quyen = $this->input->post('quyen',TRUE);
 			$Trangthai = $this->input->post('trangthai',TRUE);
-			$Hinh = $this->input->post('HinhDaiDien',TRUE);
+			$HinhDaiDien = $this->input->post('HinhDaiDien',TRUE);
+			$HinhDaiDien =  substr($HinhDaiDien,22);
 
-			$tmp = $this->nguoidung_model->insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Ngaysinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $Hinh);
+			$tmp = $this->nguoidung_model->insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
 			if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
 			else echo redirect(base_url('admin/error/insert.html'));
 		}
@@ -69,8 +72,8 @@ Class admin extends CI_Controller{
 				else
 				{
 					$this->data['result'] = $this->nguoidung_model->edit($id);
-					$this->load->view('admin/include/header');
-					$this->load->view('admin/include/leftpanel');
+					$this->load->view('admin/include/header',$this->data);
+					$this->load->view('admin/include/leftpanel',$this->data);
 					$this->load->view('admin/include/headerbar');
 					$this->load->view('admin/include/breadcrumb',$this->data);
 					$this->load->view('admin/nguoidung/edit',$this->data);
@@ -83,22 +86,24 @@ Class admin extends CI_Controller{
 				$Tennguoidung = $this->input->post('hoten',TRUE);
 				$Tendangnhap = $this->input->post('username',TRUE);
 				$Matkhau = $this->input->post('password',TRUE);
-				$Email = $this->input->post('email',TRUE);
-				$Ngaysinh = $this->input->post('ngaysinh',TRUE);
+				$Email = $this->input->post('email',TRUE);						
+				$Namsinh = $this->input->post('namsinh',TRUE);
+				$Namsinh = date('Y-m-d', strtotime($Namsinh));
 				$Gioitinh = $this->input->post('gender',TRUE);
 				$CMND = $this->input->post('CMND',TRUE);
 				$SDT = $this->input->post('SDT',TRUE);
 				$Quyen = $this->input->post('quyen',TRUE);
 				$Trangthai = $this->input->post('trangthai',TRUE);
-				$Hinh = $this->input->post('HinhDaiDien',TRUE);
-				$tmp = $this->nguoidung_model->update($id, $Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Ngaysinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $Hinh);
+				$HinhDaiDien = $this->input->post('HinhDaiDien',TRUE);
+				$HinhDaiDien =  substr($HinhDaiDien,22);
+				$tmp = $this->nguoidung_model->update($id, $Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
 				if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
 				else echo redirect(base_url('admin/error/edit.html'));
 			}						
 		}
 		elseif ($chucnang == 'delete') {
 				$id = $this->input->post('id',TRUE);
-				$a = $this->nhanvien_model->delete($id);
+				$a = $this->nguoidung_model->delete($id);
 				if($a)
 					echo 1;
 				else
@@ -106,19 +111,18 @@ Class admin extends CI_Controller{
 			}	
 	}
 
-	function hoadon($chucnang = "view"){		
-
+	function hoadon($chucnang = "view"){
+		$this->data['title'] = 'Hóa đơn';
 		$this->data['page'] = 'hoadon';
 		$this->load->model('hoadon_model');		
 		$this->load->helper(array('form', 'url')); 
 		$this->load->library('form_validation');
 		
 		if($chucnang == "view")
-		{
-			$this->data['title'] = 'Hóa đơn';
+		{			
 			$this->data['result'] = $this->hoadon_model->get_hoadon();
-			$this->load->view('admin/include/header');
-			$this->load->view('admin/include/leftpanel');
+			$this->load->view('admin/include/header',$this->data);
+			$this->load->view('admin/include/leftpanel',$this->data);
 			$this->load->view('admin/include/headerbar');
 			$this->load->view('admin/include/breadcrumb',$this->data);
 			$this->load->view('admin/hoadon/index',$this->data);
@@ -136,8 +140,7 @@ Class admin extends CI_Controller{
 		}
 	}
 
-	public function ktradulieu($chucnang)
-	{
+	public function ktradulieu($chucnang){
 		if(!empty($chucnang))
 		{			
 			$id = $this->input->post("id",TRUE);
@@ -151,11 +154,9 @@ Class admin extends CI_Controller{
 					break;
 			}
 		}
-
 	}
 
-	 public function sanpham($chucnang="view")
-	  {
+	public function sanpham($chucnang="view"){
 	  		$this->load->library('form_validation');
 	  		$this->data['title'] = 'Sản phẩm'; 				
 			$this->data['page'] = 'sanpham';
@@ -165,8 +166,8 @@ Class admin extends CI_Controller{
 			if($chucnang=="view")
 			{				 
 				$this->data['result'] = $this->sanpham_model->get_sanpham();
-				$this->load->view('admin/include/header');
-				$this->load->view('admin/include/leftpanel');
+				$this->load->view('admin/include/header',$this->data);
+				$this->load->view('admin/include/leftpanel',$this->data);
 				$this->load->view('admin/include/headerbar');
 				$this->load->view('admin/include/breadcrumb',$this->data);
 				$this->load->view('admin/sanpham/index',$this->data); //
@@ -179,8 +180,8 @@ Class admin extends CI_Controller{
 				if ($this->form_validation->run() == FALSE)
 				{
 					$this->data['result'] = $this->sanpham_model->get_sanpham(); //
-					$this->load->view('admin/include/header');
-					$this->load->view('admin/include/leftpanel');
+					$this->load->view('admin/include/header',$this->data);
+					$this->load->view('admin/include/leftpanel',$this->data);
 					$this->load->view('admin/include/headerbar');
 					$this->load->view('admin/include/breadcrumb',$this->data);
 					$this->load->view('admin/sanpham/index',$this->data); //
@@ -215,8 +216,8 @@ Class admin extends CI_Controller{
 					else
 					{
 						$this->data['result'] = $this->sanpham_model->edit($id); //
-						$this->load->view('admin/include/header');
-						$this->load->view('admin/include/leftpanel');
+						$this->load->view('admin/include/header',$this->data);
+						$this->load->view('admin/include/leftpanel',$this->data);
 						$this->load->view('admin/include/headerbar');
 						$this->load->view('admin/include/breadcrumb',$this->data);
 						$this->load->view('admin/sanpham/edit',$this->data); //
@@ -258,10 +259,10 @@ Class admin extends CI_Controller{
 				}
 				echo 1;
 			} 
-	  }
+	}
 
-	 function tintuc($chucnang = "view"){		
-
+	function tintuc($chucnang = "view"){
+		$this->data['title'] = 'Tin tức';
 		$this->data['page'] = 'tintuc';
 		$this->load->model('tintuc_model');		
 		$this->load->helper(array('form', 'url')); 
@@ -269,11 +270,10 @@ Class admin extends CI_Controller{
 		$this->load->helper('date');
 		
 		if($chucnang == "view")
-		{
-			$this->data['title'] = 'Tin tức';
+		{			
 			$this->data['result'] = $this->tintuc_model->get_tintuc();
-			$this->load->view('admin/include/header');
-			$this->load->view('admin/include/leftpanel');
+			$this->load->view('admin/include/header',$this->data);
+			$this->load->view('admin/include/leftpanel',$this->data);
 			$this->load->view('admin/include/headerbar');
 			$this->load->view('admin/include/breadcrumb',$this->data);
 			$this->load->view('admin/tintuc/index',$this->data);
@@ -309,8 +309,8 @@ Class admin extends CI_Controller{
 				else
 				{
 					$this->data['result'] = $this->tintuc_model->edit($id);
-					$this->load->view('admin/include/header');
-					$this->load->view('admin/include/leftpanel');
+					$this->load->view('admin/include/header',$this->data);
+					$this->load->view('admin/include/leftpanel',$this->data);
 					$this->load->view('admin/include/headerbar');
 					$this->load->view('admin/include/breadcrumb');
 					$this->load->view('admin/tintuc/edit',$this->data);
@@ -343,8 +343,9 @@ Class admin extends CI_Controller{
 			}	
 	}
 
-	function binhluan($chucnang = "view"){		
+	function binhluan($chucnang = "view"){
 
+		$this->data['title'] = 'Bình luận';
 		$this->data['page'] = 'binhluan';
 		$this->load->model('binhluan_model');		
 		$this->load->helper(array('form', 'url')); 
@@ -353,11 +354,10 @@ Class admin extends CI_Controller{
 
 		
 		if($chucnang == "view")
-		{
-			$this->data['title'] = 'Bình luận';
+		{			
 			$this->data['result'] = $this->binhluan_model->get_binhluan();
-			$this->load->view('admin/include/header');
-			$this->load->view('admin/include/leftpanel');
+			$this->load->view('admin/include/header',$this->data);
+			$this->load->view('admin/include/leftpanel',$this->data);
 			$this->load->view('admin/include/headerbar');
 			$this->load->view('admin/include/breadcrumb',$this->data);
 			$this->load->view('admin/binhluan/index',$this->data);
@@ -390,8 +390,8 @@ Class admin extends CI_Controller{
 				else
 				{
 					$this->data['result'] = $this->binhluan_model->edit($id);
-					$this->load->view('admin/include/header');
-					$this->load->view('admin/include/leftpanel');
+					$this->load->view('admin/include/header',$this->data);
+					$this->load->view('admin/include/leftpanel',$this->data);
 					$this->load->view('admin/include/headerbar');
 					$this->load->view('admin/include/breadcrumb');
 					$this->load->view('admin/binhluan/edit',$this->data);
@@ -421,8 +421,8 @@ Class admin extends CI_Controller{
 			}	
 	}
 
-	function danhgia($chucnang = "view"){		
-
+	function danhgia($chucnang = "view"){
+		$this->data['title'] = 'Đánh giá';
 		$this->data['page'] = 'danhgia';
 		$this->load->model('danhgia_model');		
 		$this->load->helper(array('form', 'url')); 
@@ -431,8 +431,8 @@ Class admin extends CI_Controller{
 		if($chucnang == "view")
 		{
 			$this->data['result'] = $this->danhgia_model->get_danhgia();
-			$this->load->view('admin/include/header');
-			$this->load->view('admin/include/leftpanel');
+			$this->load->view('admin/include/header',$this->data);
+			$this->load->view('admin/include/leftpanel',$this->data);
 			$this->load->view('admin/include/headerbar');
 			$this->load->view('admin/include/breadcrumb');
 			$this->load->view('admin/danhgia/index',$this->data);
@@ -466,8 +466,8 @@ Class admin extends CI_Controller{
 				else
 				{
 					$this->data['result'] = $this->danhgia_model->edit($id);
-					$this->load->view('admin/include/header');
-					$this->load->view('admin/include/leftpanel');
+					$this->load->view('admin/include/header',$this->data);
+					$this->load->view('admin/include/leftpanel',$this->data);
 					$this->load->view('admin/include/headerbar');
 					$this->load->view('admin/include/breadcrumb');
 					$this->load->view('admin/danhgia/edit',$this->data);
@@ -497,92 +497,5 @@ Class admin extends CI_Controller{
 				else
 					echo 0;
 			}	
-	}
-
-	function khachhang($chucnang = "view"){		
-
-		$this->data['page'] = 'khachhang';
-		$this->load->model('khachhang_model');		
-		$this->load->helper(array('form', 'url')); 
-		$this->load->library('form_validation');
-		
-		if($chucnang == "view")
-		{
-			$this->data['title'] = 'Khách hàng';
-			$this->data['result'] = $this->khachhang_model->get_khachhang();
-			$this->load->view('admin/include/header');
-			$this->load->view('admin/include/leftpanel');
-			$this->load->view('admin/include/headerbar');
-			$this->load->view('admin/include/breadcrumb',$this->data);
-			$this->load->view('admin/khachhang/index',$this->data);
-			$this->load->view('admin/include/rightpanel');
-			$this->load->view('admin/include/footer');
-		}
-		elseif ($chucnang == "insert") {
-			$Tennhanvien = $this->input->post('hoten',TRUE);
-			$Tendangnhap = $this->input->post('username',TRUE);
-			$Matkhau = $this->input->post('password',TRUE);
-			$Email = $this->input->post('email',TRUE);
-			$Namsinh = $this->input->post('namsinh',TRUE);
-			$Gioitinh = $this->input->post('gender',TRUE);
-			$CMND = $this->input->post('CMND',TRUE);
-			$SDT = $this->input->post('SDT',TRUE);
-			$Quyen = $this->input->post('quyen',TRUE);
-			$Hinh = $this->input->post('hinh',TRUE);
-
-			$tmp = $this->khachhang_model->insert($Tenkhachhang, $Tendangnhap, $Matkhau, $Email, $Gioitinh, $Ngaysinh, $CMND, $SDT, $Diachi, $Hinh);
-			if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
-			else echo redirect(base_url('admin/error/insert.html'));
-		}
-		elseif ($chucnang == "edit") {
-
-			$this->form_validation->set_rules('username','','trim|required|max_length[255]|xss_clean');
-			$this->form_validation->set_rules('hoten','','trim|alpha_numeric|xss_clean');
-			$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
-			if ($this->form_validation->run() == FALSE)
-			{
-				$id = 0;
-				$Idg = $this->input->get("id");
-				if(is_numeric($Idg)) $id = $Idg;
-				echo $id;
-				if($id < 0) echo redirect(base_url('admin/'.$this->data['page']));
-				else
-				{
-					$this->data['result'] = $this->khachhang_model->edit($id);
-					$this->load->view('admin/include/header');
-					$this->load->view('admin/include/leftpanel');
-					$this->load->view('admin/include/headerbar');
-					$this->load->view('admin/include/breadcrumb');
-					$this->load->view('admin/khachhang/edit',$this->data);
-					$this->load->view('admin/include/rightpanel');
-					$this->load->view('admin/include/footer');
-				}
-			}
-			else
-			{
-				$Tennhanvien = $this->input->post('hoten',TRUE);
-				$Tendangnhap = $this->input->post('username',TRUE);
-				$Matkhau = $this->input->post('password',TRUE);
-				$Email = $this->input->post('email',TRUE);
-				$Namsinh = $this->input->post('namsinh',TRUE);
-				$Gioitinh = $this->input->post('gender',TRUE);
-				$CMND = $this->input->post('CMND',TRUE);
-				$SDT = $this->input->post('SDT',TRUE);
-				$Quyen = $this->input->post('quyen',TRUE);
-				$Hinh = $this->input->post('hinh',TRUE);
-
-				$tmp = $this->khachhang_model->update($id, $Tenkhachhang, $Tendangnhap, $Matkhau, $Email, $Gioitinh, $Ngaysinh, $CMND, $SDT, $Diachi, $Hinh);
-				if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
-				else echo redirect(base_url('admin/error/edit.html'));
-			}						
-		}
-		elseif ($chucnang == 'delete') {
-				$id = $this->input->post('id',TRUE);
-				$a = $this->khachhang_model->delete($id);
-				if($a)
-					echo 1;
-				else
-					echo 0;
-			}	
-	}
+	}	
 }
