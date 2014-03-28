@@ -7,10 +7,10 @@
   <meta name="author" content="Kelvin Lee & Cupid">
   <link rel="shortcut icon" href="<?=base_url()?>static/admin/images/favicon.png" type="image/png">
 
-  <title>SMobile - Quản trị</title>
+  <title><?php echo $title; ?> - SMobile</title>
 
-  <link href="<?=base_url()?>static/admin/css/style.default.css" rel="stylesheet">
-  <link href="<?=base_url()?>static/admin/css/jquery.datatables.css" rel="stylesheet">
+  <link rel="stylesheet" href="<?=base_url()?>static/admin/css/style.default.css" />
+  <link rel="stylesheet" href="<?=base_url()?>static/admin/css/jquery.datatables.css" />
   <link rel="stylesheet" href="<?=base_url()?>static/admin/css/bootstrap-fileupload.min.css" />
   <link rel="stylesheet" href="<?=base_url()?>static/admin/css/bootstrap-wysihtml5.css" />
 

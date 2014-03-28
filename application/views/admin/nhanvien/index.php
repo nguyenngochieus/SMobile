@@ -156,7 +156,7 @@
 
                 <div class="form-group">
               <label class="col-sm-2 control-label">Hình đại diện</label>
-              <div class="col-sm-3">
+              <div class="col-sm-6">
                 <span class="field"><img src="" id="ViewHinh" alt="" width="140px" height="181px" /><br />
                 <input type="text" name="HinhDaiDien" class="form-control" id="HinhAnh" onchange="ChangeImage()"  value="<?=set_value('HinhDaiDien')?>" />
                 <a class="btn btn-default" href="javascript:BrowseServer(HinhAnh)" > <span>Chọn hình</span></a> </span><small style="font-size:14px;" class="desc">Click vào nút chọn hình để up hình hoặc dán link hình vào ô trống. Up hình với tỉ lệ width x height: 210x210; 300x300</small> </p>

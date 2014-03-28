@@ -76,36 +76,36 @@
               <div class="panel-body">
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Họ và tên <span class="asterisk">*</span></label>
-                  <div class="col-sm-10">
+                  <div class="col-sm-6">
                     <input type="text" name="hoten" class="form-control" id="hoten" placeholder="Điền tên..." required />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Tên đăng nhập <span class="asterisk">*</span></label>
-                  <div class="col-sm-10">
+                  <div class="col-sm-6">
                     <input type="text" name="username" class="form-control" id="username" placeholder="Điền tên đăng nhập..." required />
                   </div>
                 </div>      
 
                  <div class="form-group">
                   <label class="col-sm-2 control-label">Mật khẩu <span class="asterisk">*</span></label>
-                  <div class="col-sm-10">
+                  <div class="col-sm-6">
                     <input type="password" name="password" class="form-control" id="password" placeholder="Điền mật khẩu..." required />
                   </div>
                 </div>    
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Email <span class="asterisk">*</span></label>
-                  <div class="col-sm-10">
+                  <div class="col-sm-6">
                     <input type="email" name="email" id="email" class="form-control" placeholder="Điền email..." required />
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Ngày sinh<span class="asterisk">*</span></label>
-                  <div class="col-sm-6">
+                  <div class="col-sm-4">
                      <div class="input-group">
-                      <input name="ngaysinh" type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
+                      <input name="namsinh" type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker" required>
                       <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                   </div>
@@ -113,9 +113,9 @@
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Giới tính<span class="asterisk">*</span></label>
-                  <div class="col-sm-9">
+                  <div class="col-sm-6">
                     <div class="rdio rdio-primary">
-                      <input type="radio" id="male" value="1" name="gender" required="" checked>
+                      <input type="radio" id="male" value="1" name="gender" required >
                       <label for="male">Nam</label>
                     </div><!-- rdio -->
                     <div class="rdio rdio-primary">
@@ -128,14 +128,14 @@
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">CMND <span class="asterisk">*</span></label>
-                  <div class="col-sm-10">
+                  <div class="col-sm-6">
                     <input name="CMND" class="form-control" id="CMND" placeholder="Điền CMND ..." required></input>
                   </div>
                 </div>          
 
                   <div class="form-group">
                   <label class="col-sm-2 control-label">Số điện thoại <span class="asterisk">*</span></label>
-                  <div class="col-sm-10">
+                  <div class="col-sm-6">
                     <input name="SDT" class="form-control" id="SDT" placeholder="Điền số điện thoại ..." required></input>
                   </div>
                 </div>        
@@ -154,8 +154,8 @@
 
                  <div class="form-group">
                   <label class="col-sm-2 control-label">Chọn trạng thái<span class="asterisk">*</span></label>
-                  <div class="col-sm-9">
-                    <div class="col-sm-4">
+                  <div class="col-sm-6">
+                    <div class="col-sm-6">
                       <div class="rdio rdio-primary">
                         <input type="radio" id="on" value="1" name="trangthai" required="" checked>
                         <label for="on">Đang hoạt động</label>
@@ -173,12 +173,12 @@
 
                 <div class="form-group">
               <label class="col-sm-2 control-label">Hình đại diện</label>
-              <div class="col-sm-10">
+              <div class="col-sm-6">
                 <span class="field">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                   <img src="" id="ViewHinh" alt="" width="150px" height="auto" />
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                 <input type="text" name="HinhDaiDien" class="form-control" id="HinhAnh" onchange="ChangeImage()"  value="<?=set_value('HinhDaiDien')?>" />
                 <a class="btn btn-default" href="javascript:BrowseServer(HinhAnh)" > <span>Chọn hình</span></a> </span><br />
                 <small style="font-size:14px;" class="desc">Click vào nút chọn hình để up hình hoặc dán link hình vào ô trống. Up hình với tỉ lệ width x height: 210x210; 300x300</small> </p>
