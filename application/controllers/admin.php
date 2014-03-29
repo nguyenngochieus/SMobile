@@ -11,13 +11,17 @@ Class admin extends CI_Controller{
 	}
 
 	function index(){
+		$this->load->view('admin/index');
+	}
+
+	function home(){
 		$this->data['title'] = 'Trang chủ';
 		$this->data['page'] = 'trangchu';
 		$this->load->view('admin/include/header',$this->data);
 		$this->load->view('admin/include/leftpanel',$this->data);
 		$this->load->view('admin/include/headerbar');
 		$this->load->view('admin/include/breadcrumb',$this->data);
-		$this->load->view('admin/index');
+		$this->load->view('admin/home');
 		$this->load->view('admin/include/rightpanel');
 		$this->load->view('admin/include/footer');
 	}
