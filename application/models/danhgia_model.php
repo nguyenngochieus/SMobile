@@ -8,7 +8,7 @@ Class Danhgia_model extends CI_Model{
 	}
 
 	function get_danhgia(){		
-		$query = $this->db->get($this->table);
+		$query = $this->db->query("SELECT A.TENSANPHAM, B.LUOTXEM, B.LUOTMUA, B.LUOTDANHGIA, B.TONGDIEM, B.DIEMDANHGIA FROM SANPHAM A, danhgia B WHERE A.ID = B.MASANPHAM");
 		return $query->result_array();
 	}
 

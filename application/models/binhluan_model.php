@@ -8,7 +8,7 @@ Class Binhluan_model extends CI_Model{
 	}
 
 	function get_binhluan(){		
-		$query = $this->db->get($this->table);
+		$query = $this->db->query("SELECT B.ID, S.TENSANPHAM, N.TENNGUOIDUNG, B.NOIDUNG, B.THOIGIAN FROM sanpham S, nguoidung N, binhluan B WHERE S.ID = B.MASANPHAM AND N.ID = B.MAKHACHHANG");
 		return $query->result_array();
 	}
 
