@@ -1,3 +1,4 @@
+//Test commit by Hi?u
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 Class Binhluan_model extends CI_Model{
 
