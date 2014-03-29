@@ -3,8 +3,8 @@
       <div class="row">
 
       <ul class="nav nav-tabs">
-          <li class="active"><a href="#home" data-toggle="tab"><strong>Danh sách nhân viên</strong></a></li>
-          <li><a href="#profile" data-toggle="tab"><strong>Thêm nhân viên</strong></a></li>
+          <li class="active"><a href="#home" data-toggle="tab"><strong>Danh sách người dùng</strong></a></li>
+          <li><a href="#profile" data-toggle="tab"><strong>Thêm người dùng</strong></a></li>
       </ul>
 
         <div class="tab-content mb30">
@@ -12,7 +12,7 @@
             <div class="row">
             
                <div class="clearfix mb30"></div>
-          <h5 class="subtitle mb5">Danh sách nhân viên</h5>
+          <h5 class="subtitle mb5">Danh sách người dùng</h5>
            <div class="alert alert-danger msgalert" style=" display:none;">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <strong>Có lỗi!</strong> Dữ liệu đang được sử dụng!
@@ -146,7 +146,7 @@
                     <select id="fruits" name="quyen" class="form-control " required="">
                       <option value="">Chọn quyền</option>   
                       <option value="1">Quản lý</option> 
-                      <option value="2">Nhân viên</option>
+                      <option value="2">người dùng</option>
                       <option value="3">Khách hàng</option>                     
                     </select>
                   </div>
