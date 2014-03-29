@@ -371,9 +371,9 @@ Class admin extends CI_Controller{
 			$now = date("Y-m-d H:i:s");			
 			$Thoigian = $now;
 
-			$tmp = $this->binhluan_model->insert($Masanpham, $Makhachhang, $Noidung, $Thoigian);
-			if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
-			else echo redirect(base_url('admin/error/insert.html'));
+			$tmp = $this->binhluan_model->insert($Masanpham, $Makhachhang, $Noidung, $Thoigian);			
+			
+			
 		}
 		elseif ($chucnang == "edit") {
 

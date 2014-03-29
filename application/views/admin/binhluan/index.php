@@ -31,8 +31,8 @@
           <table class="table table-hover" id="table2">
               <thead>
                  <tr>
-                    <th>Mã sản phẩm</th>
-                    <th>Mã khách hàng</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Tên khách hàng</th>
                     <th>Nội dung</th>
                     <th>Thời gian</th> 
                     <th>Thao tác</th>                   
@@ -41,8 +41,8 @@
               <tbody>
               <?php foreach ($result as $item) { ?>              	              
                  <tr id="cate_<?=$item['ID'] ?>" class="odd gradeX">
-                    <td><?php echo $item['MASANPHAM'] ?></td>
-                    <td><?php echo $item['MAKHACHHANG'] ?></td>
+                    <td><?php echo $item['TENSANPHAM'] ?></td>
+                    <td><?php echo $item['TENNGUOIDUNG'] ?></td>
                     <td><?php echo $item['NOIDUNG'] ?></td>
                     <td><?php echo $item['THOIGIAN'] ?></td>
                     <td class="table-action">
