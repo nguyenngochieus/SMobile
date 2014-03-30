@@ -1,6 +1,5 @@
 ﻿</section>
 
-
 <script src="<?=base_url()?>static/admin/js/jquery-1.10.2.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/jquery-ui-1.10.3.min.js"></script>

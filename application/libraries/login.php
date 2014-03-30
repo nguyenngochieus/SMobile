@@ -512,7 +512,7 @@ class Login{
 			if($this->checkCookie())
 			{
 				$arr['username'] = $this->CI->input->cookie('un',TRUE);
-				$query = $this->CI->db->query('SELECT TENDANGNHAP FROM '.$this->admin.' WHERE TENDANGNHAP ='.$arr['username'].' AND TRANGTHAI = 1');
+				$query = $this->CI->db->query('SELECT TENDANGNHAP FROM '.$this->admin.' WHERE TENDANGNHAP = ? AND TRANGTHAI = 1',$arr['username']);
 				if($query->num_rows()>0)
 				{
 					return 2;
