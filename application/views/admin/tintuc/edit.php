@@ -10,121 +10,63 @@
                   <a href="#" class="panel-close">&times;</a>
                   <a href="#" class="minimize">&minus;</a>
                 </div>
-                <h4 class="panel-title">Thêm nhân viên</h4>
-                <p>Xin hãy nhập đúng các thông tin sau đây.</p> 
+                <h4 class="panel-title">Chỉnh sửa tin tức</h4>                
               </div>
               <div class="panel-body">
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Họ và tên <span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Tiêu đề </label>
                   <div class="col-sm-10">
-                    <input type="text" name="hoten" class="form-control" id="hoten" value="<?php echo $item['TENNHANVIEN']?>" placehoder="Điền tên..." required />
+                    <input type="text" name="Tieude" id="Tieude" value="<?=$item['TIEUDE']?>" title="Điền tiêu đề bài viết!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" required />
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Tên đăng nhập <span class="asterisk">*</span></label>
-                  <div class="col-sm-10">
-                    <input type="text" name="username" class="form-control" id="username" value="<?php echo $item['TENDANGNHAP']?>" placeholder="Điền tên đăng nhập..." required />
-                  </div>
-                </div>      
-
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Email <span class="asterisk">*</span></label>
-                  <div class="col-sm-10">
-                    <input type="email" name="email" id="email" class="form-control" value="<?=$item['EMAIL'] ?>" placeholder="Điền email..." required />
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Năm sinh<span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Loại tin </label>
                   <div class="col-sm-3">
-                    <select id="fruits" name="namsinh" class="form-control " required="">
-                      <option value="">Chọn năm sinh</option>
-                      <?php
-                        $now = getdate();
-                       for($i = $now["year"] - 10; $i >= 1970; $i--){
-                       		if($i == $item['NAMSINH'])
-                       			echo '<option selected = "selected" value="'.$i.'">'.$i.'</option>';
-                       		else
-                         		echo '<option value="'.$i.'">'.$i.'</option>';
-                        }    
-                        ?>
+                    <select id="fruits" name="Loaitin" class="form-control " required="">
+                      <option value="1" <?php if ($item['LOAITIN'] == 1) {
+                              echo 'selected';
+                      } ?>>Tin khuyến mãi </option>
+                      <option value="2" <?php if ($item['LOAITIN'] == 1) {
+                              echo 'selected';
+                      } ?>>Tin công nghệ </option>
                     </select>
                   </div>
-                </div>
-
+                </div>                
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Giới tính<span class="asterisk">*</span></label>
-                  <div class="col-sm-9">
-                    <div class="rdio rdio-primary">
-                      <input type="radio" id="male" value="Nam" name="gender" required="" <?php if ($item['GIOITINH'] == "Nam"): echo "checked"; ?>
-                      <?php endif ?>>
-                      <label for="male">Nam</label>
-                    </div><!-- rdio -->
-                    <div class="rdio rdio-primary">
-                      <input type="radio" value="Nữ" id="female" name="gender" <?php if ($item['GIOITINH'] == "Nữ"): echo "checked"; ?>
-                      <?php endif ?>>
-                      <label for="female">Nữ</label>
-                    </div><!-- rdio -->
-                    <label class="error" for="gender"></label>
+                  <label class="col-sm-2 control-label">Mô tả ngắn </label>
+                  <div class="col-sm-10">                    
+                    <textarea name="Mota" id="mota" placeholder="Thêm mô tả..." class="ckeditor" rows="5"><?= $item['MOTA']?></textarea> 
                   </div>
-                  </div>
-
+                </div> 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">CMND <span class="asterisk">*</span></label>
-                  <div class="col-sm-10">
-                    <input name="CMND" class="form-control" id="CMND" value="<?php echo $item['CMND'] ?>" placeholder="Điền CMND ..." required></input>
+                  <label class="col-sm-2 control-label">Nội dung </label>
+                  <div class="col-sm-10">                    
+                    <textarea class="ckeditor" required rows="20" name="Noidung" id="Noidung"><?=$item['NOIDUNG']?></textarea>     
                   </div>
-                </div>          
-
-                  <div class="form-group">
-                  <label class="col-sm-2 control-label">Số điện thoại <span class="asterisk">*</span></label>
-                  <div class="col-sm-10">
-                    <input name="SDT" class="form-control" id="SDT" value="<?php echo $item['SDT'] ?>" placeholder="Điền số điện thoại ..." required></input>
-                  </div>
-                </div>        
+                </div> 
                 
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Quyền<span class="asterisk">*</span></label>
-                  <div class="col-sm-3">
-                    <select id="fruits" name="quyen" class="form-control " required="">
-                      <option value="">Chọn quyền</option>   
-                      <?php if($item['QUYEN'] == 1){
-                      			echo "<option selected='selected' value='1'>Quản lý</option>";
-                      		}                       			
-                      		elseif ($item['QUYEN'] == 1) {
-                      			echo "<option selected='selected' value='2'>Nhân viên</option>";
-                      		}                      			
-                      ?>                 
-                    </select>
-                  </div>
-                </div>
-
                 <div class="form-group">
               <label class="col-sm-2 control-label">Hình đại diện</label>
               <div class="col-sm-10">
-                <div class="fileupload fileupload-new" data-provides="fileupload">
-                  <div class="input-append">
-                    <div class="uneditable-input">
-                      <i class="glyphicon glyphicon-file fileupload-exists"></i>
-                      <span class="fileupload-preview"></span>
-                    </div>
-                    <span class="btn btn-default btn-file">
-                      <span class="fileupload-new">Chọn hình</span>
-                      <span class="fileupload-exists">Đổi</span>
-                      <input type="file">
-                    </span>
-                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Xóa</a>
+                <span class="field">
+                <div class="col-sm-4">
+                  <img src="<?=base_url()?>upload/files/<?php echo $item['HINH'];?>" id="ViewHinh" alt="" width="150px" height="auto" />
+                </div>
+                <div class="col-sm-8">
+                <input type="text" name="HinhDaiDien" class="form-control" id="HinhAnh" onchange="ChangeImage()"  value="<?php echo $item['HINH'];?>" />
+                <a class="btn btn-default" href="javascript:BrowseServer(HinhAnh)" > <span>Chọn hình</span></a> </span><br />
+                <small style="font-size:14px;" class="desc">Click vào nút chọn hình để up hình hoặc dán link hình vào ô trống. Up hình với tỉ lệ width x height: 210x210; 300x300</small> </p>
+                 </div>
                   </div>
                 </div>
               </div>
             </div>
 
-              </div><!-- panel-body -->
+              </div>
               <div class="panel-footer">
                 <div class="row">
                   <div class="col-sm-5 col-sm-offset-4">
-                    <button class="btn btn-primary">Thêm mới</button>
-                    <button type="reset" class="btn btn-default">Làm lại</button>
+                    <button class="btn btn-primary">Thêm mới</button>                    
                   </div>
                 </div>
               </div>

@@ -8,13 +8,7 @@ Class Danhgia_model extends CI_Model{
 	}
 
 	function get_danhgia(){		
-		$query = $this->db->query("SELECT A.TENSANPHAM, B.LUOTXEM, B.LUOTMUA, B.LUOTDANHGIA, B.TONGDIEM, B.DIEMDANHGIA FROM SANPHAM A, danhgia B WHERE A.ID = B.MASANPHAM");
-		return $query->result_array();
-	}
-
-	function edit($id){
-		echo $id;
-		$query = $this->db->get_where($this->table,array('ID'=>$id));
+		$query = $this->db->query("SELECT B.MASANPHAM, A.TENSANPHAM, B.LUOTXEM, B.LUOTMUA, B.LUOTDANHGIA, B.TONGDIEM, B.DIEMDANHGIA FROM SANPHAM A, danhgia B WHERE A.ID = B.MASANPHAM");
 		return $query->result_array();
 	}
 
@@ -34,27 +28,27 @@ Class Danhgia_model extends CI_Model{
 		return FALSE;
 	}
 
-	function update($Id, $Masanpham, $Luotxem, $Luotmua, $Luotdanhgia, $Tongdiem, $Diemdanhgia)
+
+	function edit($id){
+		echo $id;
+		$query = $this->db->query("SELECT B.MASANPHAM, A.TENSANPHAM, B.LUOTXEM, B.LUOTMUA, B.LUOTDANHGIA, B.TONGDIEM, B.DIEMDANHGIA FROM SANPHAM A, danhgia B WHERE A.ID = B.MASANPHAM AND B.MASANPHAM = ".$id);
+		return $query->result_array();		
+	}
+
+	function update($Masanpham, $Luotxem, $Luotmua, $Luotdanhgia, $Tongdiem, $Diemdanhgia)
 	{
 		$data = array(
-			"Id" => $Id,
 			"Masanpham" => $Masanpham,
 			"Luotxem" => $Luotxem,
 			"Luotmua"	=>	$Luotmua,
 			"Luotdanhgia" => $Luotdanhgia,
 			"Tongdiem" => $Tongdiem,
-			"Diemdanhgia" => $Diemdanhgia
+			"Diemdanhgia" => $Diemdanhgia,			
 		);
-		$this->db->where("Id", $Id);
+		$this->db->where("MASANPHAM", $Masanpham);
 		$query = $this->db->update($this->table, $data);
 		if($this->db->affected_rows() > 0) return TRUE;
 		return FALSE;
 	}
 
-	function delete($id)
-	{
-		$this->db->delete($this->table,array('id'=>$id));
-		if($this->db->affected_rows() > 0 ) return TRUE;
-		return FALSE;
-	}
 }

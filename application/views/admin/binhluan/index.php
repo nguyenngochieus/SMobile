@@ -3,8 +3,7 @@
       <div class="row">
 
       <ul class="nav nav-tabs">
-          <li class="active"><a href="#home" data-toggle="tab"><strong>Danh sách bình luận</strong></a></li>
-          <li><a href="#profile" data-toggle="tab"><strong>Thêm bình luận</strong></a></li>
+          <li class="active"><a href="#home" data-toggle="tab"><strong>Danh sách bình luận</strong></a></li>        
       </ul>
 
         <div class="tab-content mb30">
@@ -57,51 +56,7 @@
 
             </div>
           </div>
-          <div class="tab-pane" id="profile">
-            <div class="row">
-                 <form id="basicForm" action="<?=base_url()?>admin/binhluan/insert" method="post" class="form-horizontal">
-          <div class="panel panel-default">
-              <div class="panel-heading">
-                <div class="panel-btns">
-                  <a href="#" class="panel-close">&times;</a>
-                  <a href="#" class="minimize">&minus;</a>
-                </div>
-                <h4 class="panel-title">Thêm bình luận</h4>
-                <p>Xin hãy nhập đúng các thông tin sau đây.</p>
-              </div>
-              <div class="panel-body">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Mã sản phẩm <span class="asterisk">*</span></label>
-                  <div class="col-sm-10">
-                    <input type="text" name="Masanpham" class="form-control" id="Masanpham" placeholder="Điền mã sản phẩm..." required />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Mã khách hàng <span class="asterisk">*</span></label>
-                  <div class="col-sm-10">
-                    <input type="text" name="Makhachhang" class="form-control" id="Makhachhang" placeholder="Điền mã khách hàng..." required />
-                  </div>
-                </div>      
-
-                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Nội dung <span class="asterisk">*</span></label>
-                  <div class="col-sm-10">
-                    <textarea class="form-control" required="" placeholder="Nội dung bình luận..." rows="5" name="Noidung" id="Noidung"></textarea>                         
-                  </div>
-                  <!--<textarea class="form-control" required="" placeholder="Type your comment..." rows="5">Type your comment...</textarea>-->
-                </div>    
-                
-
-              </div> <!--panel-body -->
-              <div class="panel-footer">
-                <div class="row">
-                  <div class="col-sm-5 col-sm-offset-4">
-                    <button class="btn btn-primary">Thêm mới</button>
-                    <button type="reset" class="btn btn-default">Làm lại</button>
-                  </div>
-                </div>
-              </div>
-            
+           <!--panel-body -->              
           </div><!-- panel -->
           </form>
             </div>

@@ -62,9 +62,12 @@ function ChangeImage()
 }
 //---------------CK Finder-----------------
 
+
 //---------------wysihtml5-----------------
-jQuery('#mota').wysihtml5({color: true,html:true});
+//jQuery('#mota').wysihtml5({color: true,html:true});
 jQuery('#mota_en').wysihtml5({color: true,html:true});
 
 //---------------Datepicker----------------
 jQuery('#datepicker').datepicker();
+
+
