@@ -13,8 +13,8 @@
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
-  <script src="<?=base_url()?>static/admin/jshtml5shiv.js"></script>
-  <script src="<?=base_url()?>static/admin/jsrespond.min.js"></script>
+  <script src="<?=base_url()?>static/admin/js/html5shiv.js"></script>
+  <script src="<?=base_url()?>static/admin/js/respond.min.js"></script>
   <![endif]-->
 </head>
 
@@ -74,13 +74,13 @@
 </section>
 
 
-<script src="<?=base_url()?>static/admin/jsjquery-1.10.2.min.js"></script>
-<script src="<?=base_url()?>static/admin/jsjquery-migrate-1.2.1.min.js"></script>
-<script src="<?=base_url()?>static/admin/jsbootstrap.min.js"></script>
-<script src="<?=base_url()?>static/admin/jsmodernizr.min.js"></script>
-<script src="<?=base_url()?>static/admin/jsretina.min.js"></script>
+<script src="<?=base_url()?>static/admin/js/jquery-1.10.2.min.js"></script>
+<script src="<?=base_url()?>static/admin/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="<?=base_url()?>static/admin/js/bootstrap.min.js"></script>
+<script src="<?=base_url()?>static/admin/js/modernizr.min.js"></script>
+<script src="<?=base_url()?>static/admin/js/retina.min.js"></script>
 
-<script src="<?=base_url()?>static/admin/jscustom.js"></script>
+<script src="<?=base_url()?>static/admin/js/custom.js"></script>
 
 </body>
 </html>

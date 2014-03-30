@@ -140,7 +140,7 @@
                 <div class="row">
                   <div class="col-sm-5 col-sm-offset-4">
                     <button class="btn btn-primary">Cập nhật</button>
-                    <button href="<?=base_url()?>admin/<?=$page?>" class="btn btn-default">Hủy</button>
+                    <button type="cancel"  class="btn btn-default" value="cancel">Hủy</button>
                   </div>
                 </div>
               </div>
