@@ -41,10 +41,10 @@
               <tbody>
               <?php foreach ($result as $item) { ?>              	              
                  <tr id="cate_<?=$item['ID'] ?>" class="odd gradeX">
-                    <td width="350"><?php echo $item['TIEUDE'] ?></td>
-                    <td width="100" class="center"><?php echo $item['LOAITIN'] ?></td>                    
+                    <td width="500"><?php echo $item['TIEUDE'] ?></td>
+                    <td><?php echo $item['LOAITINTUC'] ?></td>                    
                     <td><?php echo $item['NGAYDANG'] ?></td>                    
-                    <td><?php echo $item['TACGIA'] ?></td>                    
+                    <td><?php echo $item['TENNGUOIDUNG'] ?></td>                    
                     <td class="table-action">
 	                  <a href="<?=base_url()?>admin/tintuc/edit.html?id=<?php echo $item['ID'] ?>"><i class="fa fa-pencil"></i></a>
 	                  <a href="#" onclick="DeleteCate(<?=$item['ID']?>,'<?=$page?>')" class="delete-row"><i class="fa fa-trash-o"></i></a>
@@ -73,7 +73,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Tiêu đề <span class="asterisk">*</span></label>
                   <div class="col-sm-10">
-                    <input type="text" name="Tieude" class="form-control" id="Tieude" placeholder="Điền tiêu đề..." required />
+                    <input type="text" name="Tieude" id="Tieude" title="Điền tiêu đề bài viết!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" required />
                   </div>
                 </div>
                 <div class="form-group">
@@ -84,42 +84,34 @@
                       <option value="2">Tin công nghệ </option>
                     </select>
                   </div>
-                </div>
-
+                </div>                
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Mô tả ngắn <span class="asterisk">*</span></label>
                   <div class="col-sm-10">
-                    <input type="text" name="Mota" class="form-control" id="Mota" placeholder="Điền mô tả..." required />
+                    <input type="text" name="Mota" class="form-control" id="mota" placeholder="Điền mô tả ngắn về sản phẩm..." required />
                   </div>
                 </div> 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Nội dung <span class="asterisk">*</span></label>
                   <div class="col-sm-10">                    
-                    <textarea class="form-control" required="" placeholder="Nội dung bài viết..." rows="5" name="Noidung" id="Noidung"></textarea>     
+                    <textarea class="ckeditor" required rows="5" name="Noidung" id="Noidung"></textarea>     
                   </div>
                 </div> 
                 
-
-                <!--
                 <div class="form-group">
               <label class="col-sm-2 control-label">Hình đại diện</label>
               <div class="col-sm-10">
-                <div class="fileupload fileupload-new" data-provides="fileupload">
-                  <div class="input-append">
-                    <div class="uneditable-input">
-                      <i class="glyphicon glyphicon-file fileupload-exists"></i>
-                      <span class="fileupload-preview"></span>
-                    </div>
-                    <span class="btn btn-default btn-file">
-                      <span class="fileupload-new">Chọn hình</span>
-                      <span class="fileupload-exists">Đổi</span>
-                      <input type="file">
-                    </span>
-                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Xóa</a>
+                <span class="field">
+                <div class="col-sm-4">
+                  <img src="" id="ViewHinh" alt="" width="150px" height="auto" />
+                </div>
+                <div class="col-sm-8">
+                <input type="text" name="HinhDaiDienSanPham" class="form-control" id="HinhAnh" onchange="ChangeImage()"  value="" />
+                <a class="btn btn-default" href="javascript:BrowseServer(HinhAnh)" > <span>Chọn hình</span></a> </span><br />
+                <small style="font-size:14px;" class="desc">Click vào nút chọn hình để up hình hoặc dán link hình vào ô trống. Up hình với tỉ lệ width x height: 210x210; 300x300</small> </p>
+                 </div>
                   </div>
                 </div>
-              </div>
-            </div> -->
 
               </div><!-- panel-body -->
               <div class="panel-footer">

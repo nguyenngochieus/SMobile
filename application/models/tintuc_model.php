@@ -8,13 +8,13 @@ Class Tintuc_model extends CI_Model{
 	}
 
 	function get_tintuc(){		
-		$query = $this->db->get($this->table);
+		$query = $this->db->query("SELECT T.ID, T.TIEUDE, T.LOAITIN, T.MOTA, T.NOIDUNG, T.NGAYDANG, T.HINH, T.TACGIA, N.TENNGUOIDUNG, L.LOAITINTUC FROM tintuc T,nguoidung N, loaitintuc L WHERE T.TACGIA = N.ID AND T.LOAITIN = L.ID ORDER BY T.NGAYDANG DESC");
 		return $query->result_array();
 	}
 
 	function edit($id){
 		echo $id;
-		$query = $this->db->get_where($this->table,array('ID'=>$id));
+		$query = $this->db->query("SELECT T.ID, T.TIEUDE, T.LOAITIN, T.MOTA, T.NOIDUNG, T.NGAYDANG, T.HINH, T.TACGIA, N.TENNGUOIDUNG, L.LOAITINTUC FROM tintuc T,nguoidung N, loaitintuc L WHERE T.TACGIA = N.ID AND T.LOAITIN = L.ID AND T.ID = ".$id);
 		return $query->result_array();
 	}
 

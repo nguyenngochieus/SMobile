@@ -35,7 +35,8 @@
                     <th>Lượt mua</th>
                     <th>Lượt đánh giá</th>
                     <th>Tổng điểm</th>
-                    <th>Điểm đánh giá</th>                    
+                    <th>Điểm đánh giá</th>
+                    <th>Thao tác</th>                    
                  </tr>
               </thead>
               <tbody>
@@ -46,7 +47,9 @@
                     <td><?php echo $item['LUOTMUA'] ?></td>
                     <td><?php echo $item['LUOTDANHGIA'] ?></td>
                     <td><?php echo $item['TONGDIEM'] ?></td>
-                    <td><?php echo $item['DIEMDANHGIA'] ?></td>                    
+                    <td><?php echo $item['DIEMDANHGIA'] ?></td>
+                    <td class="table-action">
+                    <a href="<?=base_url()?>admin/danhgia/edit?id=<?php echo $item['MASANPHAM'] ?>"><i class="fa fa-pencil"></i></a>                    
 	                </td>
                  </tr>     
                 <?php } ?>           

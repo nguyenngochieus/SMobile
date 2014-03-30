@@ -11,8 +11,16 @@ Class admin extends CI_Controller{
 	}
 
 	function index(){
+		$this->data['title'] = 'Đăng nhập';
+		$this->data['page'] = 'dangnhap';
 		$this->load->view('admin/index');
 	}
+
+	function dangky(){
+		$this->data['title'] = 'Đăng ký';
+		$this->data['page'] = 'dangky';
+		$this->load->view('admin/index');
+	}	
 
 	function home(){
 		$this->data['title'] = 'Trang chủ';
@@ -21,7 +29,7 @@ Class admin extends CI_Controller{
 		$this->load->view('admin/include/leftpanel',$this->data);
 		$this->load->view('admin/include/headerbar');
 		$this->load->view('admin/include/breadcrumb',$this->data);
-		$this->load->view('admin/home');
+		$this->load->view('admin/home/index');
 		$this->load->view('admin/include/rightpanel');
 		$this->load->view('admin/include/footer');
 	}
@@ -291,8 +299,10 @@ Class admin extends CI_Controller{
 			$Noidung = $this->input->post('Noidung',TRUE);
 			$now = date("Y-m-d H:i:s");
 			$Ngaydang = $now;
-			$Hinh = $this->input->post('Hinh',TRUE);
-			$Tacgia = $this->input->post('Tacgia',TRUE);			
+			$Hinh = $this->input->post('HinhDaiDienSanPham',TRUE);
+			$Hinh = substr($Hinh,22);
+			//$Tacgia = $this->input->post('Tacgia',TRUE);			
+			$Tacgia = 1;
 
 			$tmp = $this->tintuc_model->insert($Tieude, $Loaitin, $Mota, $Noidung, $Ngaydang, $Hinh, $Tacgia);
 			if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
@@ -300,15 +310,14 @@ Class admin extends CI_Controller{
 		}
 		elseif ($chucnang == "edit") {
 
-			$this->form_validation->set_rules('username','','trim|required|max_length[255]|xss_clean');
-			$this->form_validation->set_rules('hoten','','trim|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('Tieude','','trim|required|max_length[255]|xss_clean');			
 			$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
+			$id = 0;
+			$Idg = $this->input->get("id");
+			if(is_numeric($Idg)) $id = $Idg;			
 			if ($this->form_validation->run() == FALSE)
 			{
-				$id = 0;
-				$Idg = $this->input->get("id");
-				if(is_numeric($Idg)) $id = $Idg;
-				echo $id;
+
 				if($id < 0) echo redirect(base_url('admin/'.$this->data['page']));
 				else
 				{
@@ -367,29 +376,16 @@ Class admin extends CI_Controller{
 			$this->load->view('admin/binhluan/index',$this->data);
 			$this->load->view('admin/include/rightpanel');
 			$this->load->view('admin/include/footer');
-		}
-		elseif ($chucnang == "insert") {
-			$Masanpham = $this->input->post('Masanpham',TRUE);
-			$Makhachhang = $this->input->post('Makhachhang',TRUE);
-			$Noidung = $this->input->post('Noidung',TRUE);
-			$now = date("Y-m-d H:i:s");			
-			$Thoigian = $now;
-
-			$tmp = $this->binhluan_model->insert($Masanpham, $Makhachhang, $Noidung, $Thoigian);			
-			
-			
-		}
+		}		
 		elseif ($chucnang == "edit") {
 
-			$this->form_validation->set_rules('username','','trim|required|max_length[255]|xss_clean');
-			$this->form_validation->set_rules('hoten','','trim|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('Tensanpham','','trim|required|max_length[255]|xss_clean');			
 			$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
+			$id = 0;
+			$Idg = $this->input->get("id");
+			if(is_numeric($Idg)) $id = $Idg;
 			if ($this->form_validation->run() == FALSE)
-			{
-				$id = 0;
-				$Idg = $this->input->get("id");
-				if(is_numeric($Idg)) $id = $Idg;
-				echo $id;
+			{							
 				if($id < 0) echo redirect(base_url('admin/'.$this->data['page']));
 				else
 				{
@@ -404,13 +400,10 @@ Class admin extends CI_Controller{
 				}
 			}
 			else
-			{
-				$Masanpham = $this->input->post('masanpham',TRUE);
-				$Makhachhang = $this->input->post('makhachhang',TRUE);
-				$Noidung = $this->input->post('noidung',TRUE);
-				$Thoigian = $this->input->post('thoigian',TRUE);				
-
-				$tmp = $this->binhluan_model->update($id, $Masanpham, $Makhachhang, $Noidung, $Thoigian);
+			{				
+				$Noidung = $this->input->post('Noidungbinhluan',TRUE);								
+				
+				$tmp = $this->binhluan_model->update($id, $Noidung);				
 				if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
 				else echo redirect(base_url('admin/error/edit.html'));
 			}						
@@ -443,29 +436,15 @@ Class admin extends CI_Controller{
 			$this->load->view('admin/include/rightpanel');
 			$this->load->view('admin/include/footer');
 		}
-		elseif ($chucnang == "insert") {
-			$Masanpham = $this->input->post('Masanpham',TRUE);
-			$Luotxem = $this->input->post('Luotxem',TRUE);
-			$Luotmua = $this->input->post('Luotmua',TRUE);
-			$Luotdanhgia = $this->input->post('Luotdanhgia',TRUE);
-			$Tongdiem = $this->input->post('Tongdiem',TRUE);
-			$Diemdanhgia = $this->input->post('Diemdanhgia',TRUE);		
-
-			$tmp = $this->danhgia_model->insert($Masanpham, $Luotxem, $Luotmua, $Luotdanhgia, $Tongdiem, $Diemdanhgia);
-			if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
-			else echo redirect(base_url('admin/error/insert.html'));
-		}
 		elseif ($chucnang == "edit") {
 
-			$this->form_validation->set_rules('username','','trim|required|max_length[255]|xss_clean');
-			$this->form_validation->set_rules('hoten','','trim|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('tensanpham','','trim|required|max_length[255]|xss_clean');
 			$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
+			$id = 0;
+			$Idg = $this->input->get("id");
+			if(is_numeric($Idg)) $id = $Idg;
 			if ($this->form_validation->run() == FALSE)
-			{
-				$id = 0;
-				$Idg = $this->input->get("id");
-				if(is_numeric($Idg)) $id = $Idg;
-				echo $id;
+			{								
 				if($id < 0) echo redirect(base_url('admin/'.$this->data['page']));
 				else
 				{
@@ -480,26 +459,19 @@ Class admin extends CI_Controller{
 				}
 			}
 			else
-			{
-				$Masanpham = $this->input->post('Masanpham',TRUE);
+			{												
 				$Luotxem = $this->input->post('Luotxem',TRUE);
 				$Luotmua = $this->input->post('Luotmua',TRUE);
 				$Luotdanhgia = $this->input->post('Luotdanhgia',TRUE);
 				$Tongdiem = $this->input->post('Tongdiem',TRUE);
-				$Diemdanhgia = $this->input->post('Diemdanhgia',TRUE);
+				$tmp_Diemdanhgia = round(($Tongdiem/$Luotdanhgia),2);
+				$Diemdanhgia = $tmp_Diemdanhgia;
 
-				$tmp = $this->danhgia_model->update($id, $Masanpham, $Luotxem, $Luotmua, $Luotdanhgia, $Tongdiem, $Diemdanhgia);
+				$tmp = $this->danhgia_model->update($id, $Luotxem, $Luotmua, $Luotdanhgia, $Tongdiem, $Diemdanhgia);
+				
 				if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
-				else echo redirect(base_url('admin/error/edit.html'));
+				else echo redirect(base_url('admin/error/edit'));
 			}						
 		}
-		elseif ($chucnang == 'delete') {
-				$id = $this->input->post('id',TRUE);
-				$a = $this->danhgia_model->delete($id);
-				if($a)
-					echo 1;
-				else
-					echo 0;
-			}	
 	}	
 }

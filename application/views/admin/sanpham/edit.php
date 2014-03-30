@@ -14,13 +14,13 @@
               </div>
               <div class="panel-body">
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Tên sản phẩm <span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Tên sản phẩm </label>
                   <div class="col-sm-10">
                     <input type="text" name="tensanpham" class="form-control" id="tensanpham" value="<?= $item['TENSANPHAM']?>" placeholder="Điền tên sản phẩm..." required />
                   </div>
                 </div>
                <div class="form-group">
-                  <label class="col-sm-2 control-label">Loại sản phẩm <span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Loại sản phẩm </label>
                   <div class="col-sm-3">
                     <select id="fruits" name="loai" class="form-control " required="">
                       <option value="" >Chọn loại sản phẩm</option>
@@ -37,7 +37,7 @@
                 </div>      
 
                  <div class="form-group">
-                  <label class="col-sm-2 control-label">Nhà cung cấp <span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Nhà cung cấp </label>
                    <div class="col-sm-3">
                    <select id="fruits" name="nhacungcap" class="form-control " required="">
                       <option value="">Chọn nhà cung cấp</option>
@@ -54,28 +54,28 @@
                 </div>    
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Số lượng<span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Số lượng</label>
                   <div class="col-sm-10">
                     <input type="number" name="soluong" id="soluong" class="form-control" value="<?= $item['SOLUONG']?>" placeholder="Nhập số lượng..." required />
                   </div>
                 </div>                
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Đơn giá<span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Đơn giá</label>
                   <div class="col-sm-10">
                     <input type="number" name="dongia" id="dongia" class="form-control" value="<?= $item['DONGIA']?>" placeholder="Nhập giá..." required />
                   </div>
                 </div>  
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Mô tả<span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Mô tả</label>
                   <div class="col-sm-10">
-                    <textarea name="mota" id="mota" placeholder="Thêm mô tả..." class="form-control" rows="10"><?= $item['MOTA']?></textarea>
+                    <textarea name="mota" id="mota" placeholder="Thêm mô tả..." class="ckeditor" rows="10"><?= $item['MOTA']?></textarea>                    
                   </div>
                 </div>  
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Mô tả tiếng anh<span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Mô tả tiếng anh</label>
                   <div class="col-sm-10">
                     <textarea name="mota_en" id="mota_en" placeholder="Thêm mô tả..." class="form-control" rows="10"><?= $item['MOTA_EN']?></textarea>
                   </div>
