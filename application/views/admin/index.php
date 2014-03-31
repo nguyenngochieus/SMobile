@@ -16,7 +16,11 @@
   <script src="<?=base_url()?>static/admin/js/html5shiv.js"></script>
   <script src="<?=base_url()?>static/admin/js/respond.min.js"></script>
   <![endif]-->
+<style type="text/css">    
+    .nousername,.nopassword { display: none; }
+</style>
 </head>
+
 
 <body class="signin">
 
@@ -43,21 +47,31 @@
                     <h5><strong>Chào mừng bạn đến với SMobile!</strong></h5>
                     
                     <div class="mb20"></div>
-                    <strong>Chưa có tài khoản? <a href="signup.html">Đăng ký ngay...</a></strong>
+                    <strong>Chưa có tài khoản? <a href="<?=base_url()?>admin/dangky">Đăng ký ngay...</a></strong>
                 </div><!-- signin0-info -->
             
             </div><!-- col-sm-7 -->
             
             <div class="col-md-5">
                 
-                <form method="post" action="">
-                    <h4 class="nomargin">Đăng nhập</h4>                  
+                <form id="login" method="post" action="">
+                    <h4 class="nomargin">Đăng nhập</h4>
+
+                    <div class="alert alert-danger nousername">
+                      <div class="loginmsg">Bạn chưa nhập username</div>
+                    </div><!--nousername-->
+                        
+                    <div class="alert alert-danger nopassword" <?=($loi=='')?'':'style="display:block;"'?>>
+                      <div class="loginmsg"  ><?=$loi?></div>
+                    </div><!--nopassword-->                  
                 
-                    <input type="text" class="form-control uname" placeholder="Tài khoản" />
-                    <input type="password" class="form-control pword" placeholder="Mật khẩu" />
-                    <a href="#"><small>Quên mật khẩu?</small></a>
+                    <input id="username" name="username" type="text" class="form-control uname" placeholder="Tài khoản" />
+                    <input id="password" name="password" type="password" class="form-control pword" placeholder="Mật khẩu" />
+                    <div class="mb20"></div>
+                    <div style="float:left"><input type="checkbox" name="remember" value="1" />   Lưu tài khoản</div>
+                    <div class="mb10"></div>
                     <button class="btn btn-success btn-block">Đăng nhập</button>
-                    
+                    <a style="float:center" href="#"><small>Quên mật khẩu?</small></a>                    
                 </form>
             </div><!-- col-sm-5 -->
             
@@ -72,7 +86,21 @@
     </div><!-- signin -->
   
 </section>
+<script type="text/javascript">
+  jQuery(document).ready(function(){     
+    
+  ///// LOGIN FORM SUBMIT /////
+    jQuery('#login').submit(function(){
+    
+      if(jQuery('#username').val() == '' && jQuery('#password').val() == '') {
+        jQuery('.nousername').fadeIn();
+        jQuery('.nopassword').hide();
+        return false; 
+      }
+    });
 
+  });
+</script>
 
 <script src="<?=base_url()?>static/admin/js/jquery-1.10.2.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/jquery-migrate-1.2.1.min.js"></script>
@@ -84,3 +112,4 @@
 
 </body>
 </html>
+

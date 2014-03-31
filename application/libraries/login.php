@@ -1,16 +1,12 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
-class admin{
+class Login{
 	
-	var $CI;
-	
+	var $CI;	
 	//Table: Username,
-	var $admin = 'tbl_admin';
-	
-	//Table: Username, 
-	var $role = 'tbl_adminrole';
-	
-	//checkCookie(): un, bm, lg, rl
+	var $admin = 'NguoiDung';
+
+	//checkCookie(): un, bm: key CKFINDER, lg: language
 	function checkCookie()
 	{
 		$this->CI=&get_instance();
@@ -18,16 +14,16 @@ class admin{
 		{
 			if($this->CI->input->cookie('un',TRUE)!=$this->CI->input->cookie('un'))
 			{
-				delete_cookie("un");delete_cookie("bm");delete_cookie("lg");delete_cookie("rl");
+				delete_cookie("un");delete_cookie("bm");delete_cookie("lg");
 				return FALSE;
 			}
 		}
 		
 		if(isset($_COOKIE['bm'])&&($_COOKIE['bm']!=""))
 		{
-			if($this->CI->input->cookie('bm',TRUE)!='lOcPhUsOlUtIoNs')
+			if($this->CI->input->cookie('bm',TRUE)!='SMobileShop')
 			{
-				delete_cookie("un");delete_cookie("bm");delete_cookie("lg");delete_cookie("rl");
+				delete_cookie("un");delete_cookie("bm");delete_cookie("lg");
 				return FALSE;
 			}
 		}
@@ -36,18 +32,7 @@ class admin{
 		{
 			if($this->CI->input->cookie('lg',TRUE)!=TRUE)
 			{
-				delete_cookie("un");delete_cookie("bm");delete_cookie("lg");delete_cookie("rl");
-				return FALSE;
-			}
-		}
-		
-		if(isset($_COOKIE['rl'])&&($_COOKIE['rl']!=""))
-		{
-			$str = $this->CI->input->cookie('rl',TRUE);
-			settype($str,'int');
-			if(($str!=77)&&($str!=99)&&($str!=88))
-			{
-				delete_cookie("un");delete_cookie("bm");delete_cookie("lg");delete_cookie("rl");
+				delete_cookie("un");delete_cookie("bm");delete_cookie("lg");
 				return FALSE;
 			}
 		}
@@ -55,7 +40,7 @@ class admin{
 		return TRUE;
 	}
 	
-	//checkSession(): un, bm, lg, rl
+	//checkSession(): un, bm, lg
 	function checkSession()
 	{
 		$this->CI=&get_instance();
@@ -73,7 +58,7 @@ class admin{
 		if(isset($arr['bm']))
 		{
 			$str = $this->CI->security->xss_clean($arr['bm']);
-			if($str!='lOcPhUsOlUtIoNs')
+			if($str!='SMobileShop')
 			{
 				$this->CI->session->sess_destroy();
 				return FALSE;
@@ -89,18 +74,7 @@ class admin{
 				return FALSE;
 			}
 		}
-		
-		if(isset($arr['rl']))
-		{
-			$str = $this->CI->security->xss_clean($arr['rl']);
-			settype($str,'int');
-			if(($str!=77)&&($str!=99)&&($str!=88))
-			{
-				$this->CI->session->sess_destroy();
-				return FALSE;
-			}
-		}
-		
+
 		return TRUE;
 	}
 	
@@ -146,28 +120,6 @@ class admin{
 				$str = $this->CI->security->xss_clean($arr['Store']);
 				if($str!=$arr['Store']) return FALSE;
 			}			
-			if(isset($arr['Platform']))
-			{
-				$str = $this->CI->security->xss_clean($arr['Platform']);
-				if($str!=$arr['Platform']) return FALSE;
-			}			
-			if(isset($arr['Game']))
-			{
-				$str = $this->CI->security->xss_clean($arr['Game']);
-				if($str!=$arr['Game']) return FALSE;
-			}
-			
-			if(isset($arr['SanPham']))
-			{
-				$str = $this->CI->security->xss_clean($arr['SanPham']);
-				if($str!=$arr['SanPham']) return FALSE;
-			}			
-			if(isset($arr['Setting']))
-			{
-				$str = $this->CI->security->xss_clean($arr['Setting']);
-				if($str!=$arr['Setting']) return FALSE;
-			}
-			
 			if(isset($arr['Blog']))
 			{
 				$str = $this->CI->security->xss_clean($arr['Blog']);
@@ -207,12 +159,6 @@ class admin{
 				if($str!=$arr['Library']) return FALSE;
 			}			
 			return TRUE;
-			if(isset($arr['VietBlog']))
-			{
-				$str = $this->CI->security->xss_clean($arr['VietBlog']);
-				if($str!=$arr['VietBlog']) return FALSE;
-			}			
-			return TRUE;
 			if(isset($arr['NguoiDung']))
 			{
 				$str = $this->CI->security->xss_clean($arr['NguoiDung']);
@@ -232,12 +178,10 @@ class admin{
 		{
 			if(isset($arr['username'])&&($arr['username']!=NULL))
 			{
-				$query = $this->CI->db->query('	SELECT a.Status 
+				$query = $this->CI->db->query('	SELECT a.ID
 												FROM '.$this->admin.' a
-												LEFT JOIN '.$this->role.' b
-												ON a.Username = b.Username
-												WHERE a.Username = ?',
-												array($arr['username']));
+												WHERE a.TENDANGNHAP = ?',
+												$arr['username']);
 				if($query->num_rows() > 0)
 				{
 					return TRUE;
@@ -247,7 +191,7 @@ class admin{
 		return FALSE;
 	}
 	
-	//checkStatus($arr): 2 = Đã kích hoạt; 0 = Khóa; -3 = Chưa tạo; -2 = XSS
+	//checkStatus($arr): 1 = Còn hoạt động; 0 = Không hoạt động; -3 = Chưa tạo; -2 = XSS
 	function checkStatus($arr)
 	{
 		$this->CI=&get_instance();
@@ -255,13 +199,13 @@ class admin{
 		{
 			if($this->checkUsername($arr))
 			{
-				$query = $this->CI->db->query('	SELECT Status 
+				$query = $this->CI->db->query('	SELECT TRANGTHAI 
 												FROM '.$this->admin.' 
-												WHERE Username = ?',
-												array($arr['username']));
+												WHERE TENDANGNHAP = ?',
+												$arr['username']);
 				if($query->num_rows() > 0)
 				{
-					return $query->row()->Status;
+					return $query->row()->TRANGTHAI;
 				}
 				else return 0;
 			}
@@ -270,59 +214,7 @@ class admin{
 		else return -2;
 	}
 	
-	//create($arr, $type = 'admin' || $type = 'master'): 1 = Thành công; -1 = Type không đúng; -2 = XSS; -3 = Username đã tồn tại; -4 = Dữ liệu đưa vào không đủ; -5 = Lỗi insert database
-	function create($arr, $type = 99)
-	{
-		$this->CI=&get_instance();
-		if($this->checkInput($arr))
-		{
-			if(!$this->checkUsername($arr))
-			{
-				if((isset($arr['username'])) && ($arr['username'] != NULL) && (isset($arr['password'])) && ($arr['password'] != NULL))
-				{
-					if($type==99)
-					{
-							$this->CI->db->query("	INSERT INTO ".$this->admin."(Username, Password, Type, FullName, NgayTao, Status) 
-													VALUES (?, ?, ?, ?, ?, ?)",array($arr['username'], md5($arr['password']), 99,
-													 $arr['fullname'], date('Y-m-d H:i:s'), 2));
-							$this->CI->db->query("	INSERT INTO ".$this->role."(Username, LoaiGame, Store, Platform, Game, SanPham,
-							Setting, Blog, Support, PromotionCode, FreeStuff, Image, Email, Library, VietBlog, NguoiDung)
-													VALUES (?, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)",
-													array($arr['username']));
-							return 1;
-					}
-					elseif($type==88)
-					{
-							$this->CI->db->query("	INSERT INTO ".$this->admin."(Username, Password, Type, FullName, NgayTao, Status) 
-													VALUES (?, ?, ?, ?, ?, ?)",array($arr['username'], md5($arr['password']), 88,
-													 $arr['fullname'], date('Y-m-d H:i:s'), 2));
-							$this->CI->db->query("	INSERT INTO ".$this->role."(Username, LoaiGame, Store, Platform, Game, SanPham,
-							Setting, Blog, Support, PromotionCode, FreeStuff, Image, Email, Library, VietBlog, NguoiDung)
-													VALUES (?, 1, 1, 1, 1, 1, 1, 7, 1, 1, 1, 1, 1, 1, 1, 1)",
-													array($arr['username']));
-							return 1;
-					}
 
-					elseif($type==77)
-					{
-							$this->CI->db->query("	INSERT INTO ".$this->admin."(Username, Password, Type, FullName, NgayTao, Status) 
-													VALUES (?, ?, ?, ?, ?, ?)",array($arr['username'], md5($arr['password']), 77, 
-													$arr['fullname'], date('Y-m-d H:i:s'), 2));
-							$this->CI->db->query("	INSERT INTO ".$this->role."(Username, LoaiGame, Store, Platform, Game, SanPham,
-							Setting, Blog, Support, PromotionCode, FreeStuff, Image, Email, Library, VietBlog, NguoiDung)
-													VALUES (?, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7)",
-													array($arr['username']));
-							return 1;
-					}
-					else return -1;
-				}
-				else return -4;
-			}
-			else return -3;
-		}
-		else return -2;
-	}
-	
 	//updatePassword($arr): 1 = Thành công; -2 = XSS; -3 = Username không tồn tại; -4 = Dữ liệu đưa vào không đủ; -5 = Lỗi update database; -6 = Không đúng mật khẩu
 	function updatePassword($arr)
 	{
@@ -363,37 +255,7 @@ class admin{
 		else return -2;
 	}
 	
-	function updateInfo($arr)
-	{
-		$this->CI=&get_instance();
-		if($this->checkInput($arr))
-		{
-			if($this->checkUsername($arr))
-			{
-				if((isset($arr['username'])) && ($arr['username'] != NULL) && (isset($arr['link'])) && ($arr['link'] != NULL) 
-				&& (isset($arr['fullname'])) && ($arr['fullname'] != NULL))
-				{
-						$this->CI->db->query("	UPDATE ".$this->admin." 
-												SET FullName = ?, Link = ?
-												WHERE Username = ?",
-												array($arr['fullname'],$arr['link'], $arr['username']));
-						$query = $this->CI->db->query(" SELECT Status 
-														FROM ".$this->admin." 
-														WHERE Username = ? AND FullName = ? AND Link = ?",
-														array($arr['username'], $arr['fullname'],$arr['link']));
-						if($query->num_rows()>0)
-						{
-							return 1;
-						}
-						else return -5;
-				}
-				else return -4;
-			}
-			else return -3;
-		}
-		else return -2;
-	}
-	
+
 	//resetPassword($arr): 1 = Thành công; -2 = XSS; -3 = Username không tồn tại; -4 = Dữ liệu đưa vào không đủ; -5 = Lỗi update database;
 	function resetPassword($arr)
 	{
@@ -412,63 +274,6 @@ class admin{
 													FROM ".$this->admin." 
 													WHERE Username = ? AND Password = ?",
 													array($arr['username'], md5($arr['password'])));
-					if($query->num_rows()>0)
-					{
-						return 1;
-					}
-					else return -5;
-				}
-				else return -4;
-			}
-			else return -3;
-		}
-		else return -2;
-	}
-	
-	//resetPassword($arr): 1 = Thành công; -2 = XSS; -3 = Username không tồn tại; -4 = Dữ liệu đưa vào không đủ; -5 = Lỗi update database;
-	function updateRole($arr)
-	{
-		$this->CI=&get_instance();
-		if($this->checkInput($arr))
-		{
-			if($this->checkUsername($arr))
-			{
-				if((isset($arr['username'])) && ($arr['username'] != NULL) && (isset($arr['LoaiGame'])) && (isset($arr['Store'])) 
-				&& (isset($arr['Platform'])) && (isset($arr['Game'])) && (isset($arr['SanPham'])) && (isset($arr['Setting'])) 
-				&& (isset($arr['Blog'])) && (isset($arr['Support'])) && (isset($arr['PromotionCode'])) && (isset($arr['FreeStuff'])) 
-				&& (isset($arr['Image'])) && (isset($arr['Email'])) && (isset($arr['Library'])) && (isset($arr['VietBlog'])) 
-				&& (isset($arr['NguoiDung'])))
-				{
-					$LoaiGame	=	$arr['LoaiGame'];	settype($LoaiGame, "int");
-					$Store	=	$arr['Store'];	settype($Store, "int");
-					$Platform	=	$arr['Platform'];	settype($Platform, "int");
-					$Game		=	$arr['Game'];		settype($Game, "int");
-					$SanPham	=	$arr['SanPham'];	settype($SanPham, "int");
-					$Setting	=	$arr['Setting'];	settype($Setting, "int");
-					$Blog	=	$arr['Blog'];	settype($Blog, "int");
-					$Support	=	$arr['Support'];	settype($Support, "int");
-					$PromotionCode		=	$arr['PromotionCode'];		settype($PromotionCode, "int");
-					$FreeStuff	=	$arr['FreeStuff'];	settype($FreeStuff, "int");
-					$Image	=	$arr['Image'];	settype($Image, "int");
-					$Email	=	$arr['Email'];	settype($Email, "int");
-					$Library	=	$arr['Library'];	settype($Library, "int");
-					$VietBlog	=	$arr['VietBlog'];	settype($VietBlog, "int");
-					$NguoiDung	=	$arr['NguoiDung'];	settype($NguoiDung, "int");
-					$this->CI->db->query("	UPDATE ".$this->role." 
-											SET LoaiGame = ?, Store = ?, Platform = ?, Game = ?, SanPham = ?, 
-											Setting = ?, Blog = ?, Support = ?, PromotionCode = ?, FreeStuff = ?, Image = ?, Email = ?,
-											Library = ?, VietBlog = ?, NguoiDung = ?
-											WHERE Username = ?",
-											array($LoaiGame, $Store, $Platform, $Game, $SanPham,$Setting, $Blog, $Support,
-											 $PromotionCode, $FreeStuff, $Image, $Email, $Library, $VietBlog, $NguoiDung, $arr['username']));											
-					$query = $this->CI->db->query(" SELECT Username 
-													FROM ".$this->role." 
-													WHERE Username = ? AND LoaiGame = ? AND Store = ? AND Platform = ? AND Game = ? 
-													AND SanPham = ? AND Setting = ? AND Blog = ? AND Support = ? 
-													AND PromotionCode = ? AND FreeStuff = ? AND Image = ? AND Email = ? AND Library = ?
-													AND VietBlog = ? AND NguoiDung = ?",
-													array($arr['username'], $LoaiGame, $Store, $Platform, $Game, $SanPham,$Setting, $Blog,
-													$Support,$PromotionCode, $FreeStuff, $Image, $Email, $Library, $VietBlog, $NguoiDung));
 					if($query->num_rows()>0)
 					{
 						return 1;
@@ -540,29 +345,8 @@ class admin{
 		return $query->result();
 	}
 	
-	//getRole($arr)
-	function getRole($arr)
-	{
-		$this->CI=&get_instance();
-		if($this->checkInput($arr))
-		{
-			if($this->checkUsername($arr))
-			{
-				if((isset($arr['username'])) && ($arr['username'] != NULL))
-				{
-					$query = $this->CI->db->query(" SELECT * 
-													FROM ".$this->role." 
-													WHERE Username = ?",
-													array($arr['username']));
-					return $query->result();
-				}
-			}
-		}
-		return NULL;
-	}
-	
-	//login($arr, $remember = FALSE, $baomat = 'lOcPhUsOlUtIoNs'): 1 = Thành công; -2 = XSS; -3 = Username không tồn tại; -4 = Password ko đúng; -6 = Type ko tồn tại; -7 = Tình trạng tài khoản không được hoạt động;
-	public function login($arr, $remember = FALSE, $baomat = 'lOcPhUsOlUtIoNs')
+	//login($arr, $remember = FALSE, $baomat = 'SMobileShop'): 1 = Thành công; -2 = XSS; -3 = Username không tồn tại; -4 = Password ko đúng; -6 = Type ko tồn tại; -7 = Tình trạng tài khoản không được hoạt động;
+	public function dangnhap($arr, $remember = FALSE, $baomat = 'SMobileShop')
 	{
 		$this->CI=&get_instance();
 		if($this->checkInput($arr))
@@ -572,18 +356,18 @@ class admin{
 				if(isset($arr['username'])&&($arr['username']!=NULL)&&isset($arr['password'])&&($arr['password']!=NULL))
 				{
 					$status = $this->checkStatus($arr);
-					if($status == 2)
+					if($status == 1)
 					{
-						$query = $this->CI->db->query("	SELECT Type 
+						$query = $this->CI->db->query(" SELECT QUYEN 
 														FROM ".$this->admin." 
-														WHERE Username = ? AND Status = 2 AND Password = ?",
+														WHERE TENDANGNHAP = ? AND TRANGTHAI = 1 AND MATKHAU = ?",
 														array($arr['username'], md5($arr['password'])));
 						if($query->num_rows()>0)
 						{
-							$role = $query->row()->Type;
-							if(($role == 77)||($role == 99)||($role == 88))
+							$quyen = $query->row()->QUYEN;
+							if(($quyen == 1)||($quyen == 2)||($quyen == 3))
 							{
-								$arrUser = array('un' => $arr['username'], 'bm' => $baomat, 'lg' => TRUE, 'rl' => $role);
+								$arrUser = array('un' => $arr['username'], 'bm' => $baomat, 'lg' => TRUE);
 								if($remember)
 								{
 									$un = array(
@@ -603,13 +387,7 @@ class admin{
 										'value'  => $arrUser['lg'],
 										'expire' => '1296000'
 									);
-									$this->CI->input->set_cookie($lg);
-									$rl = array(
-										'name'   => 'rl',
-										'value'  => $arrUser['rl'],
-										'expire' => '1296000'
-									);
-									$this->CI->input->set_cookie($rl);
+									$this->CI->input->set_cookie($lg);									
 									return 1;
 								}
 								$this->CI->session->set_userdata($arrUser);
@@ -617,9 +395,9 @@ class admin{
 								{ 
 									session_start(); 
 								} 
-								$_SESSION['bm'] = "lOcPhUsOlUtIoNs";
+								$_SESSION['bm'] = "SMobileShop";
 								$_SESSION['TenDangNhap'] = $arr['username'];
-								$_SESSION['VaiTro'] = $role;
+								$_SESSION['quyen'] = $quyen;
 								return 1;
 							}
 							else return -4;
@@ -729,13 +507,12 @@ class admin{
 	{
 		$this->CI=&get_instance();
 		$arr = array();
-		if(isset($_COOKIE['un']) && isset($_COOKIE['lg']) && isset($_COOKIE['bm']) && isset($_COOKIE['rl']))
+		if(isset($_COOKIE['un']) && isset($_COOKIE['lg']) && isset($_COOKIE['bm']))
 		{
 			if($this->checkCookie())
 			{
 				$arr['username'] = $this->CI->input->cookie('un',TRUE);
-				$arr['role'] = $this->CI->input->cookie('rl',TRUE);
-				$query = $this->CI->db->query('SELECT Username FROM '.$this->admin.' WHERE Username = ? AND Status = 2 AND Type = ?',array($arr['username'],$arr['role']));
+				$query = $this->CI->db->query('SELECT TENDANGNHAP FROM '.$this->admin.' WHERE TENDANGNHAP = ? AND TRANGTHAI = 1',$arr['username']);
 				if($query->num_rows()>0)
 				{
 					return 2;
@@ -749,13 +526,12 @@ class admin{
 			}
 		}
 		elseif(($this->CI->session->userdata('un') != NULL) && ($this->CI->session->userdata('lg') != NULL) 
-		&& ($this->CI->session->userdata('bm') != NULL) && ($this->CI->session->userdata('rl') != NULL))
+		&& ($this->CI->session->userdata('bm') != NULL))
 		{
 			if($this->checkSession())
 			{
 				$arr['username'] = $this->CI->session->userdata('un',TRUE);
-				$arr['role'] = $this->CI->session->userdata('rl',TRUE);
-				$query = $this->CI->db->query('SELECT Username FROM '.$this->admin.' WHERE Username = ? AND Status = 2 AND Type = ?',array($arr['username'],$arr['role']));
+				$query = $this->CI->db->query('SELECT TENDANGNHAP FROM '.$this->admin.' WHERE TENDANGNHAP = ? AND TRANGTHAI = 1',$arr['username']);
 				if($query->num_rows()>0)
 				{
 					return 1;
@@ -775,7 +551,7 @@ class admin{
 	function logout()
 	{
 		$this->CI=&get_instance();
-		delete_cookie("un");delete_cookie("bm");delete_cookie("lg");delete_cookie("rl");
+		delete_cookie("un");delete_cookie("bm");delete_cookie("lg");
 		$this->CI->session->sess_destroy();
 	}
 	

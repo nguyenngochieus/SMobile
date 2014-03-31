@@ -9,12 +9,12 @@
 
   <title>Đăng ký</title>
 
-  <link href="css/style.default.css" rel="stylesheet">
+  <link href="<?=base_url()?>static/admin/css/style.default.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
-  <script src="js/html5shiv.js"></script>
-  <script src="js/respond.min.js"></script>
+  <script src="<?= base_url()?>static/admin/js/html5shiv.js"></script>
+  <script src="<?= base_url()?>static/admin/js/respond.min.js"></script>
   <![endif]-->
 </head>
 
@@ -74,7 +74,7 @@
                 <form method="post" action="">
                     
                     <h3 class="nomargin">Đăng ký</h3>
-                    <p class="mt5 mb20">Đã có tài khoản? <a href="signin.html"><strong>Đăng nhập ngay...</strong></a></p>
+                    <p class="mt5 mb20">Đã có tài khoản? <a href="<?=base_url()?>admin"><strong>Đăng nhập ngay...</strong></a></p>
                 
                     <label class="control-label">Họ tên</label>
                     <div class="row mb10">
@@ -410,15 +410,15 @@
 </section>
 
 
-<script src="js/jquery-1.10.2.min.js"></script>
-<script src="js/jquery-migrate-1.2.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/modernizr.min.js"></script>
-<script src="js/retina.min.js"></script>
+<script src="<?= base_url()?>static/admin/js/jquery-1.10.2.min.js"></script>
+<script src="<?= base_url()?>static/admin/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="<?= base_url()?>static/admin/js/bootstrap.min.js"></script>
+<script src="<?= base_url()?>static/admin/js/modernizr.min.js"></script>
+<script src="<?= base_url()?>static/admin/js/retina.min.js"></script>
 
-<script src="js/chosen.jquery.min.js"></script>
+<script src="<?= base_url()?>static/admin/js/chosen.jquery.min.js"></script>
 
-<script src="js/custom.js"></script>
+<script src="<?= base_url()?>static/admin/js/custom.js"></script>
 <script>
     jQuery(document).ready(function(){
         
