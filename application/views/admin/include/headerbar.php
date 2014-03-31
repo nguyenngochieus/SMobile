@@ -17,7 +17,7 @@
                 <li><a href="profile.html"><i class="glyphicon glyphicon-user"></i> Hồ sơ</a></li>
                 <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Tùy chỉnh</a></li>
                 <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Hỗ trợ</a></li>
-                <li><a href="signin.html"><i class="glyphicon glyphicon-log-out"></i> Đăng xuất</a></li>
+                <li><a href="<?=base_url()?>admin/logout"><i class="glyphicon glyphicon-log-out"></i> Đăng xuất</a></li>
               </ul>
             </div>
           </li>          
