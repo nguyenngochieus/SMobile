@@ -410,7 +410,7 @@ class Login{
 		{
 			$query = $this->CI->db->query('	SELECT * 
 											FROM '.$this->admin.' 
-											WHERE Username = ?',
+											WHERE TENDANGNHAP = ?',
 											array($username));
 			if($query->num_rows()>0)
 			{
@@ -441,16 +441,15 @@ class Login{
 	function getLoginUsername(){
 		$this->CI=&get_instance();
 		$arr = array();
-		if(isset($_COOKIE['un']) && isset($_COOKIE['lg']) && isset($_COOKIE['bm']) && isset($_COOKIE['rl']))
+		if(isset($_COOKIE['un']) && isset($_COOKIE['lg']) && isset($_COOKIE['bm']))
 		{
 			if($this->checkCookie())
 			{
 				$arr['username'] = $this->CI->input->cookie('un',TRUE);
-				$arr['role'] = $this->CI->input->cookie('rl',TRUE);
-				$query = $this->CI->db->query('	SELECT Type 
+				$query = $this->CI->db->query('	SELECT TENDANGNHAP 
 												FROM '.$this->admin.' 
-												WHERE Username = ? AND Status = 2 AND Type = ?',
-												array($arr['username'],$arr['role']));
+												WHERE TENDANGNHAP = ? AND TRANGTHAI = 1',
+												$arr['username']);
 				if($query->num_rows() > 0)
 				{
 					return $arr['username'];
@@ -464,16 +463,15 @@ class Login{
 			}
 		}
 		elseif(($this->CI->session->userdata('un') != NULL) && ($this->CI->session->userdata('lg') != NULL) 
-		&& ($this->CI->session->userdata('bm') != NULL) && ($this->CI->session->userdata('rl') != NULL))
+		&& ($this->CI->session->userdata('bm') != NULL))
 		{
 			if($this->checkSession())
 			{
 				$arr['username'] = $this->CI->session->userdata('un',TRUE);
-				$arr['role'] = $this->CI->session->userdata('rl',TRUE);
-				$query = $this->CI->db->query('	SELECT Type 
+				$query = $this->CI->db->query('	SELECT TENDANGNHAP 
 												FROM '.$this->admin.' 
-												WHERE Username = ? AND Status = 2 AND Type = ?',
-												array($arr['username'], $arr['role']));
+												WHERE TENDANGNHAP = ? AND TRANGTHAI = 1',
+												$arr['username']);
 				if($query->num_rows()>0)
 				{
 					return $arr['username'];
@@ -749,8 +747,8 @@ class Login{
 		$temp = $this->getLoginUsername();
 		if(!empty($temp))
 		{
-			$query = $this->CI->db->get_where($this->admin,array("Username" => $temp));
-			$Name = $query->row()->FullName;
+			$query = $this->CI->db->get_where($this->admin,array("TENDANGNHAP" => $temp));
+			$Name = $query->row()->TENNGUOIDUNG;
 			if(!empty($Name))
 			{
 				return $Name;
@@ -767,8 +765,8 @@ class Login{
 		$this->CI=&get_instance();
 		if(!empty($temp))
 		{
-			$query = $this->CI->db->get_where($this->admin,array("Username" => $temp));
-			$Name = $query->row()->FullName;
+			$query = $this->CI->db->get_where($this->admin,array("TENDANGNHAP" => $temp));
+			$Name = $query->row()->TENNGUOIDUNG;
 			if(!empty($Name))
 			{
 				return $Name;
