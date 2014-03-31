@@ -10,6 +10,7 @@
   <title>Đăng ký</title>
 
   <link href="<?=base_url()?>static/admin/css/style.default.css" rel="stylesheet">
+  <link href="<?=base_url()?>static/admin/css/bootstrap-combined.min.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -77,7 +78,7 @@
                                     
                     <div class="mb10"> 
                         <label class="control-label">Họ tên</label>                       
-                        <input type="text" id="hoten" name="hoten" title="Điền họ tên của bạn!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" maxlength="20" value="<?php echo set_value('hoten'); ?>" /> 
+                        <input type="text" id="hoten" name="hoten" title="Điền họ tên của bạn!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" maxlength="20" minlength="4" value="<?php echo set_value('hoten'); ?>" /> 
                         <?php echo form_error('hoten'); ?>
                     </div>
                     
@@ -90,6 +91,8 @@
                     <div class="mb10">
                         <label class="control-label">Mật khẩu</label>
                         <input type="password" id="matkhau" name="matkhau" title="Điền mật khẩu!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" value="<?php echo set_value('matkhau'); ?>"/>
+                        <p></p>                                              
+                                          
                         <?php echo form_error('matkhau'); ?>    
                     </div>
                     
@@ -112,20 +115,7 @@
                           <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>                          
                         </div>
                         <?php echo form_error('namsinh'); ?>
-                    </div>  
-
-                    <div class="mb10">
-                        <label class="control-label">Giới tính</label>                                    
-                          <div class="rdio rdio-primary">
-                            <input type="radio" id="male" value="1" name="gioitinh" checked>                      
-                            <label for="male">Nam</label>
-                          </div>
-                          <div class="rdio rdio-primary">
-                            <input type="radio" value="0" id="female" name="gioitinh">
-                            <label for="female">Nữ</label>
-                          </div>                   
-                    </div>
-
+                    </div>                      
                                                                           
                     <br/>
                     <button class="btn btn-success btn-block">Đăng ký</button>     
@@ -162,6 +152,7 @@
 <script src="<?=base_url()?>static/admin/js/chosen.jquery.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/custom.js"></script>
 <script src="<?=base_url()?>static/admin/js/admin.custom.js"></script>
+<script src="<?=base_url()?>static/admin/js/progressbar.js"></script>
 
 
 

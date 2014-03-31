@@ -51,16 +51,12 @@ Class admin extends CI_Controller{
 
 	public function logout(){
 		$this->login->logout();
-		return redirect(base_url('admin'));
+		return redirect(base_url());
 	}
 
 	function dangky(){
-		$this->data['title'] = 'Đăng ký';
-		$this->data['page'] = 'dangky';
-		$this->load->model('nguoidung_model');
-		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');		
 		
+<<<<<<< HEAD
 		$config = array(
                array(
                      'field'   => 'hoten', 
@@ -100,30 +96,87 @@ Class admin extends CI_Controller{
 		$this->form_validation->set_message('max_length', 'Mật khẩu không quá 20 ký tự');
 		$this->form_validation->set_message('valid_email', 'Địa chỉ email không hợp lệ');				
 		$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
+=======
+		$check = $this->login->checkLogin();
+		if($check == 1 || $check == 2 )
+			return redirect(base_url('admin'));
+		else
+		{
+			$this->data['title'] = 'Đăng ký';
+			$this->data['page'] = 'dangky';
+			$this->load->model('nguoidung_model');
+			$this->load->helper(array('form', 'url'));
+			$this->load->library('form_validation');		
+			
+			$config = array(
+	               array(
+	                     'field'   => 'hoten', 
+	                     'label'   => 'Họ tên', 
+	                     'rules'   => 'trim|required|xss_clean|min_length[6]'               
+	                  ),
+	               array(
+	                     'field'   => 'tendangnhap', 
+	                     'label'   => 'Tên đăng nhập', 
+	                     'rules'   => 'trim|required|xss_clean|min_length[6]|alpha_numeric'
+	                  ),
+	               array(
+	                     'field'   => 'matkhau', 
+	                     'label'   => 'Mật khẩu', 
+	                     'rules'   => 'required|max_length[20]|min_length[6]'
+	                  ),
+	               array(
+	                     'field'   => 'rematkhau', 
+	                     'label'   => 'Nhập lại mật khẩu', 
+	                     'rules'   => 'required|matches[matkhau]'                 
+	                  ),   
+	               array(
+	                     'field'   => 'email', 
+	                     'label'   => 'Email', 
+	                     'rules'   => 'trim|required|valid_email'
+	                  ),
+	               array(
+	                     'field'   => 'namsinh', 
+	                     'label'   => 'Ngày sinh', 
+	                     'rules'   => 'trim|required|callback_ktnamsinh'
+	                  )
+	            );
+>>>>>>> 18a8fa51be7b6fcff330ea9bb293c96abbbe4387
 
+			$this->form_validation->set_rules($config);
+			$this->form_validation->set_message('required', 'Không thể bỏ trống trường này');
+			$this->form_validation->set_message('matches', 'Nhập lại mật khẩu chưa đúng');
+			$this->form_validation->set_message('max_length', 'Mật khẩu không quá 20 ký tự');
+			$this->form_validation->set_message('min_length', 'Vui lòng nhập ít nhất 4 ký tự');
+			$this->form_validation->set_message('valid_email', 'Địa chỉ email không hợp lệ');	
+			$this->form_validation->set_message('alpha_numeric', 'Tên đăng nhập không hợp lệ');					
+			$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
 
-		if ($this->form_validation->run() == FALSE){
-			$this->load->view('admin/nguoidung/signup');
-		}			
-		else{
-			//$Matkhau = do_hash($this->input->post('matkhau',TRUE), 'md5');
-			$Tennguoidung = $this->input->post('hoten',TRUE);
-			$Tendangnhap = $this->input->post('tendangnhap',TRUE);
-			$Matkhau = $this->input->post('matkhau',TRUE);
-			$Email = $this->input->post('email',TRUE);						
-			$Namsinh = $this->input->post('namsinh',TRUE);
-			$Namsinh = date('Y-m-d', strtotime($Namsinh));
-			$Gioitinh = $this->input->post('gioitinh',TRUE);
-			$CMND = ""; 
-			$SDT = "";
-			$Quyen = "3"; 
-			$Trangthai = "1"; 
-			$HinhDaiDien = "";
+			if ($this->form_validation->run() == FALSE){
+				$this->load->view('admin/nguoidung/signup');
+			}			
+			else{
+				//$Matkhau = do_hash($this->input->post('matkhau',TRUE), 'md5');
+				$Tennguoidung = $this->input->post('hoten',TRUE);
+				$Tendangnhap = $this->input->post('tendangnhap',TRUE);
+				$Matkhau = $this->input->post('matkhau',TRUE);
+				$Email = $this->input->post('email',TRUE);						
+				$Namsinh = $this->input->post('namsinh',TRUE);
+				$Namsinh = date('Y-m-d', strtotime($Namsinh));
+				$Gioitinh = "1";
+				$CMND = ""; 
+				$SDT = "";
+				$Quyen = "3"; 
+				$Trangthai = "1"; 
+				$HinhDaiDien = "";
 
-			$tmp = $this->nguoidung_model->insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
-			if($tmp) echo redirect(base_url('admin'));
-			else echo redirect(base_url('admin/error/insert'));			
-		}
+				$tmp = $this->nguoidung_model->insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
+				if($tmp){								
+					echo '<script language="javascript">alert("Đăng ký thành công!")</script>';										
+					echo redirect(base_url('admin'));
+				} 
+				else echo redirect(base_url('admin/error/insert'));			
+			}
+		}		
 	}
 
 	public function ktnamsinh($input){    	
