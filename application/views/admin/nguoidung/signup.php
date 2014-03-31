@@ -168,14 +168,17 @@
 <script>
     jQuery(document).ready(function(){
         
-        // Chosen Select
-        jQuery(".chosen-select").chosen({
-            'width':'100%',
-            'white-space':'nowrap',
-            disable_search_threshold: 10
-        });
-        
+      highlight: function(element) {
+        jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+      },
+      success: function(element) {
+        jQuery(element).closest('.form-group').removeClass('has-error');
+      }
+    });   
+
     });
+
+
 
 </script>
 

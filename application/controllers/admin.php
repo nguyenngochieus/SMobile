@@ -99,7 +99,7 @@ Class admin extends CI_Controller{
 		$this->form_validation->set_message('matches', 'Nhập lại mật khẩu chưa đúng');
 		$this->form_validation->set_message('max_length', 'Mật khẩu không quá 20 ký tự');
 		$this->form_validation->set_message('valid_email', 'Địa chỉ email không hợp lệ');				
-		$this->form_validation->set_error_delimiters('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>');
+		$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
 
 
 		if ($this->form_validation->run() == FALSE){
