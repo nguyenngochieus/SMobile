@@ -16,7 +16,7 @@
                     <ul class="category price">
                         <li class="header"><?=lang('menu_gia') ?></li>
                         <li><a href="#">0 - 1.000.000</a></li>
-                        <li><a href="#">1.000.000 - 5.000.000</a></li>
+                        <li><a href="#">1.000.000 - 5.000.000 </a></li>
                         <li><a href="#">Trên 5.000.000</a></li>
                     </ul>
                 </div>
@@ -82,9 +82,6 @@
                             <option>NAME</option>
                         </select>
                     </div>
-                    <div class="viewby">
-                        <label>View as :</label>
-                        <a class="list" href="#"></a> <a class="grid" href="#"></a> </div>
                     <div class="show_no">
                         <label>Show :</label>
                         <select>
