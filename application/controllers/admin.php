@@ -117,7 +117,7 @@ Class admin extends CI_Controller{
 			$CMND = ""; 
 			$SDT = "";
 			$Quyen = "3"; 
-			$Trangthai = "0"; 
+			$Trangthai = "1"; 
 			$HinhDaiDien = "";
 
 			$tmp = $this->nguoidung_model->insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
