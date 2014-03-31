@@ -18,7 +18,7 @@ Class admin extends CI_Controller{
 		$chk = $this->login->checkLogin();		
 		if($chk==1||$chk==2)
 		{
-				return redirect(base_url('admin/home.html'));
+				return redirect(base_url('admin/home'));
 		}
 		if(isset($_POST['username'])&&($_POST['username']!=NULL)&&isset($_POST['password'])&&($_POST['password']!=NULL))
 		{
@@ -28,7 +28,7 @@ Class admin extends CI_Controller{
 			$tmp = $this->login->dangnhap($arr, $remember);
 			if($tmp==1)
 			{
-					return redirect(base_url('admin/home.html')); 
+					return redirect(base_url('admin/home')); 
 			}
 			else
 			{
@@ -47,10 +47,9 @@ Class admin extends CI_Controller{
 		else $this->load->view("admin/index",$this->data);
 	}
 
-	public function logout()
-	{
+	public function logout(){
 		$this->login->logout();
-		return redirect(base_url('admin/index.html'));
+		return redirect(base_url('admin'));
 	}
 
 	function dangky(){
@@ -115,7 +114,7 @@ Class admin extends CI_Controller{
 
 				$tmp = $this->nguoidung_model->insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
 				if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
-				else echo redirect(base_url('admin/error/insert.html'));
+				else echo redirect(base_url('admin/error/insert'));
 			}
 			elseif ($chucnang == "edit") {
 				
@@ -156,7 +155,7 @@ Class admin extends CI_Controller{
 					$HinhDaiDien =  substr($HinhDaiDien,22);
 					$tmp = $this->nguoidung_model->update($id, $Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
 					if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
-					else echo redirect(base_url('admin/error/edit.html'));
+					else echo redirect(base_url('admin/error/edit'));
 				}						
 			}
 			elseif ($chucnang == 'delete') {
@@ -200,7 +199,7 @@ Class admin extends CI_Controller{
 
 				$tmp = $this->hoadon_model->insert($Madathang, $Masanpham, $Soluong);			
 				if(!$tmp) echo redirect(base_url('admin/'.$this->data['page']));
-				else echo redirect(base_url('admin/error/insert.html'));
+				else echo redirect(base_url('admin/error/insert'));
 			}
 		}
 		else
@@ -271,7 +270,7 @@ Class admin extends CI_Controller{
 					$Hinh =  substr($Hinh_str,22); //
 					$tmp = $this->sanpham_model->insert($Tensanpham, $Loai, $Nhacungcap, $Soluong, $Hinh, $Mota, $Mota_en, $Dongia); //
 					if($tmp) echo redirect(base_url('admin/'.$this->data['page']));					
-					else echo redirect(base_url('admin/error/insert.html')); 
+					else echo redirect(base_url('admin/error/insert')); 
 				}
 			}
 			elseif($chucnang=="edit")
@@ -308,7 +307,7 @@ Class admin extends CI_Controller{
 					$Hinh =  substr($Hinh_str,22);
 					$tmp = $this->sanpham_model->update($id ,$Tensanpham, $Loai, $Nhacungcap, $Soluong, $Hinh, $Mota, $Mota_en, $Dongia);
 					if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
-					else echo redirect(base_url('admin/error/update.html'));
+					else echo redirect(base_url('admin/error/update'));
 				}
 			}			
 			elseif($chucnang=="delete")
@@ -370,7 +369,7 @@ Class admin extends CI_Controller{
 
 				$tmp = $this->tintuc_model->insert($Tieude, $Loaitin, $Mota, $Noidung, $Ngaydang, $Hinh, $Tacgia);
 				if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
-				else echo redirect(base_url('admin/error/insert.html'));
+				else echo redirect(base_url('admin/error/insert'));
 			}
 			elseif ($chucnang == "edit") {
 
@@ -407,7 +406,7 @@ Class admin extends CI_Controller{
 
 					$tmp = $this->tintuc_model->update($id, $Tieude, $Loaitin, $Mota, $Noidung, $Ngaydang, $Hinh, $Tacgia);
 					if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
-					else echo redirect(base_url('admin/error/edit.html'));
+					else echo redirect(base_url('admin/error/edit'));
 				}
 			}						
 			elseif ($chucnang == 'delete') {
@@ -474,7 +473,7 @@ Class admin extends CI_Controller{
 					
 					$tmp = $this->binhluan_model->update($id, $Noidung);				
 					if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
-					else echo redirect(base_url('admin/error/edit.html'));
+					else echo redirect(base_url('admin/error/edit'));
 				}						
 			}
 			elseif ($chucnang == 'delete') {
