@@ -7,8 +7,7 @@ class Login{
 	var $admin = 'NguoiDung';
 
 	//checkCookie(): un, bm: key CKFINDER, lg: language
-	function checkCookie()
-	{
+	function checkCookie(){
 		$this->CI=&get_instance();
 		if(isset($_COOKIE['un'])&&($_COOKIE['un']!=""))
 		{
@@ -41,8 +40,7 @@ class Login{
 	}
 	
 	//checkSession(): un, bm, lg
-	function checkSession()
-	{
+	function checkSession(){
 		$this->CI=&get_instance();
 		$arr = $this->CI->session->all_userdata();
 		if(isset($arr['un']))
@@ -79,8 +77,7 @@ class Login{
 	}
 	
 	//checkInput($arr): username, password, newpassword, type, status, gioithieu, huongdan, quydinh, lienhe, quocgia, tinhthanh, quanhuyen, theloai, diadiem, tukhoa, nganluong, tinnhan, taikhoan
-	function checkInput($arr)
-	{
+	function checkInput($arr){
 		$this->CI=&get_instance();
 		if(is_array($arr))
 		{
@@ -171,8 +168,7 @@ class Login{
 	}
 	
 	//checkUsetname($arr): exist = TRUE
-	function checkUsername($arr)
-	{
+	function checkUsername($arr){
 		$this->CI=&get_instance();
 		if($this->checkInput($arr))
 		{
@@ -192,8 +188,7 @@ class Login{
 	}
 	
 	//checkStatus($arr): 1 = Còn hoạt động; 0 = Không hoạt động; -3 = Chưa tạo; -2 = XSS
-	function checkStatus($arr)
-	{
+	function checkStatus($arr){
 		$this->CI=&get_instance();
 		if($this->checkInput($arr))
 		{
@@ -216,8 +211,7 @@ class Login{
 	
 
 	//updatePassword($arr): 1 = Thành công; -2 = XSS; -3 = Username không tồn tại; -4 = Dữ liệu đưa vào không đủ; -5 = Lỗi update database; -6 = Không đúng mật khẩu
-	function updatePassword($arr)
-	{
+	function updatePassword($arr){
 		$this->CI=&get_instance();
 		if($this->checkInput($arr))
 		{
@@ -257,8 +251,7 @@ class Login{
 	
 
 	//resetPassword($arr): 1 = Thành công; -2 = XSS; -3 = Username không tồn tại; -4 = Dữ liệu đưa vào không đủ; -5 = Lỗi update database;
-	function resetPassword($arr)
-	{
+	function resetPassword($arr){
 		$this->CI=&get_instance();
 		if($this->checkInput($arr))
 		{
@@ -288,8 +281,7 @@ class Login{
 	}
 	
 	//changeStatus($arr): 1 = Thành công; -2 = XSS; -3 = Username không tồn tại; -4 = Dữ liệu đưa vào không đủ; -5 = Lỗi update database;
-	function changeStatus($arr)
-	{
+	function changeStatus($arr){
 		$this->CI=&get_instance();
 		if($this->checkInput($arr))
 		{
@@ -336,8 +328,7 @@ class Login{
 	}
 	
 	//getAdminGrid()
-	function getAdminGrid()
-	{
+	function getAdminGrid(){
 		$this->CI=&get_instance();
 		$query = $this->CI->db->query(" SELECT * 
 										FROM ".$this->admin." 
@@ -346,8 +337,7 @@ class Login{
 	}
 	
 	//login($arr, $remember = FALSE, $baomat = 'SMobileShop'): 1 = Thành công; -2 = XSS; -3 = Username không tồn tại; -4 = Password ko đúng; -6 = Type ko tồn tại; -7 = Tình trạng tài khoản không được hoạt động;
-	public function dangnhap($arr, $remember = FALSE, $baomat = 'SMobileShop')
-	{
+	public function dangnhap($arr, $remember = FALSE, $baomat = 'SMobileShop'){
 		$this->CI=&get_instance();
 		if($this->checkInput($arr))
 		{
@@ -414,8 +404,7 @@ class Login{
 	}
 	
 	//getAdmin($username): Null OR tbl_admin
-	function getAdmin($username)
-	{
+	function getAdmin($username){
 		$this->CI=&get_instance();
 		if($username!=NULL)
 		{
@@ -432,8 +421,7 @@ class Login{
 	}
 	
 	//getLoginRole($username): 0 = error, 99 = admin, 77 = master
-	function getLoginRole($username)
-	{
+	function getLoginRole($username){
 		$this->CI=&get_instance();
 		if($username!=NULL)
 		{
@@ -450,8 +438,7 @@ class Login{
 	}
 	
 	//getLoginUsername(): Null OR Username
-	function getLoginUsername()
-	{
+	function getLoginUsername(){
 		$this->CI=&get_instance();
 		$arr = array();
 		if(isset($_COOKIE['un']) && isset($_COOKIE['lg']) && isset($_COOKIE['bm']))
@@ -501,8 +488,7 @@ class Login{
 	}
 	
 	//checkLogin(): 1 = Session; 2 = Cookie; 0 = Không tồn tại Session && Cookie; -1 = XSS; -2 = Role không đúng
-	function checkLogin()
-	{
+	function checkLogin(){
 		$this->CI=&get_instance();
 		$arr = array();
 		if(isset($_COOKIE['un']) && isset($_COOKIE['lg']) && isset($_COOKIE['bm']))
@@ -546,16 +532,14 @@ class Login{
 	}
 	
 	//logout()
-	function logout()
-	{
+	function logout(){
 		$this->CI=&get_instance();
 		delete_cookie("un");delete_cookie("bm");delete_cookie("lg");
 		$this->CI->session->sess_destroy();
 	}
 	
 	//checkPage($arr, $page): 1 = Có Quyền; 0 = Không có quyền; -2 = XSS; -1 = Username không tồn tại
-	function checkPage($arr, $page)
-	{
+	function checkPage($arr, $page){
 		$this->CI=&get_instance();
 		if($this->checkInput($arr))
 		{
@@ -744,8 +728,7 @@ class Login{
 		}
 		else return -2;
 	}
-	public function deleteuser($user)
-	{
+	public function deleteuser($user){
 		$this->CI=&get_instance();
 		$query=$this->CI->db->query('DELETE a.*, b.* FROM tbl_admin as a, tbl_adminrole as b WHERE a.Username = b.Username AND a.Username = ?',array($user));
 		$chk=$this->CI->db->query('Select a.Username,b.Username FROM tbl_admin as a, tbl_adminrole as b where a.Username = b.Username AND a.Username = ?',array($user));
@@ -759,8 +742,7 @@ class Login{
 		}
 	}
 	//Get Name theo dang nhap
-	function GetName()
-	{
+	function GetName(){
 		$this->CI=&get_instance();
 		$temp = $this->getLoginUsername();
 		if(!empty($temp))
@@ -779,8 +761,7 @@ class Login{
 		return "";
 	}
 	// Get name theo username
-	function GetNameUser($temp)
-	{
+	function GetNameUser($temp){
 		$this->CI=&get_instance();
 		if(!empty($temp))
 		{
@@ -798,8 +779,7 @@ class Login{
 		return "";
 	}
 	//Get link theo username
-	function GetLink($temp)
-	{
+	function GetLink($temp){
 		$this->CI=&get_instance();
 		if(!empty($temp))
 		{
@@ -816,8 +796,7 @@ class Login{
 		}
 		return "";
 	}
-	public function edit($un)
-	{
+	public function edit($un){
 		$query = $this->CI->db->query('SELECT * FROM '.$this->role.' WHERE Username = ?',array($un));
 		return $query->result();
 	}
