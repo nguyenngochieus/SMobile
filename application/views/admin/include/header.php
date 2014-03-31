@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="<?=base_url()?>static/admin/css/style.default.css" />
   <link rel="stylesheet" href="<?=base_url()?>static/admin/css/jquery.datatables.css" />
   <link rel="stylesheet" href="<?=base_url()?>static/admin/css/bootstrap-fileupload.min.css" />
-  <link rel="stylesheet" href="<?=base_url()?>static/admin/css/bootstrap-wysihtml5.css" />
+  <link rel="stylesheet" href="<?=base_url()?>static/admin/css/bootstrap-wysihtml5.css" />  
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
