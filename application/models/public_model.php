@@ -35,6 +35,12 @@ class public_model extends CI_Model {
 		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM ORDER BY ID DESC LIMIT 0 , 7');
 		return $query->result();
 	}
+	
+	public function GetSanPhamBanChay($lang = "")
+	{
+		$query =  $this->db->query('SELECT B1.ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM B1, DONHANG B2 WHERE B1.ID = B2.MASANPHAM GROUP BY B1.ID ORDER BY COUNT(*) DESC LIMIT 0,7');
+		return $query->result();
+	}
 
 	public function GetChiTietSP($id, $lang = "")
 	{
@@ -46,6 +52,6 @@ class public_model extends CI_Model {
 	{
 		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM  WHERE LOAI = '.$idloai.' AND Id <> '.$id.' order by ID ');
 		return $query->result();
-	}
+	}	
 
 }
