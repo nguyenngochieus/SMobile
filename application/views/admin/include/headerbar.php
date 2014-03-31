@@ -10,9 +10,9 @@
             <div class="btn-group">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 <img src="<?=base_url()?>upload/files/snowstorm-sivir-skin.jpg" alt="" />
-                Kelvin Lee
+                <?=($Name=="")?$Username:$Name?>
                 <span class="caret"></span>
-              </button>
+              </button> 
               <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                 <li><a href="profile.html"><i class="glyphicon glyphicon-user"></i> Hồ sơ</a></li>
                 <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Tùy chỉnh</a></li>

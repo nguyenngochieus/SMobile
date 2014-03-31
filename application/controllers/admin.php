@@ -10,6 +10,8 @@ Class admin extends CI_Controller{
 		$this->data['page'] = '';	
 		$this->data['loi'] = "";
 		$this->load->library('login');
+		$this->data['Username'] = $this->login->getLoginUsername();  
+		$this->data['Name'] = $this->login->GetName();
 	}
 
 	function index(){
@@ -67,7 +69,7 @@ Class admin extends CI_Controller{
 			$this->data['page'] = 'trangchu';
 			$this->load->view('admin/include/header',$this->data);
 			$this->load->view('admin/include/leftpanel',$this->data);
-			$this->load->view('admin/include/headerbar');
+			$this->load->view('admin/include/headerbar',$this->data);
 			$this->load->view('admin/include/breadcrumb',$this->data);
 			$this->load->view('admin/home/index');
 			$this->load->view('admin/include/rightpanel');
