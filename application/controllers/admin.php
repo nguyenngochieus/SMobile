@@ -57,7 +57,83 @@ Class admin extends CI_Controller{
 	function dangky(){
 		$this->data['title'] = 'Đăng ký';
 		$this->data['page'] = 'dangky';
-		$this->load->view('admin/nguoidung/signup');
+		$this->load->model('nguoidung_model');
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');		
+		
+		$config = array(
+               array(
+                     'field'   => 'hoten', 
+                     'label'   => 'Họ tên', 
+                     'rules'   => 'trim|required|xss_clean'               
+                  ),
+               array(
+                     'field'   => 'tendangnhap', 
+                     'label'   => 'Tên đăng nhập', 
+                     'rules'   => 'trim|required|xss_clean'
+                  ),
+               array(
+                     'field'   => 'matkhau', 
+                     'label'   => 'Mật khẩu', 
+                     'rules'   => 'required|max_length[20]|'
+                  ),
+               array(
+                     'field'   => 'rematkhau', 
+                     'label'   => 'Nhập lại mật khẩu', 
+                     'rules'   => 'required|matches[matkhau]'                 
+                  ),   
+               array(
+                     'field'   => 'email', 
+                     'label'   => 'Email', 
+                     'rules'   => 'trim|required|valid_email'
+                  ),
+               array(
+                     'field'   => 'namsinh', 
+                     'label'   => 'Ngày sinh', 
+                     'rules'   => 'trim|required|callback_ktnamsinh'
+                  )
+            );
+
+		$this->form_validation->set_rules($config);
+		$this->form_validation->set_message('required', 'Không thể bỏ trống trường này');
+		$this->form_validation->set_message('matches', 'Nhập lại mật khẩu chưa đúng');
+		$this->form_validation->set_message('max_length', 'Mật khẩu không quá 20 ký tự');
+		$this->form_validation->set_message('valid_email', 'Địa chỉ email không hợp lệ');				
+		$this->form_validation->set_error_delimiters('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>');
+
+
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('admin/nguoidung/signup');
+		}			
+		else{
+			//$Matkhau = do_hash($this->input->post('matkhau',TRUE), 'md5');
+			$Tennguoidung = $this->input->post('hoten',TRUE);
+			$Tendangnhap = $this->input->post('tendangnhap',TRUE);
+			$Matkhau = $this->input->post('matkhau',TRUE);
+			$Email = $this->input->post('email',TRUE);						
+			$Namsinh = $this->input->post('namsinh',TRUE);
+			$Namsinh = date('Y-m-d', strtotime($Namsinh));
+			$Gioitinh = $this->input->post('gioitinh',TRUE);
+			$CMND = ""; 
+			$SDT = "";
+			$Quyen = "3"; 
+			$Trangthai = "0"; 
+			$HinhDaiDien = "";
+
+			$tmp = $this->nguoidung_model->insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
+			if($tmp) echo redirect(base_url('admin'));
+			else echo redirect(base_url('admin/error/insert'));			
+		}
+	}
+
+	public function ktnamsinh($input){    	
+		list($thang,$ngay,$nam)=explode("/",$input);		
+    	if (checkdate($thang,$ngay,$nam)) return TRUE;
+    	else 
+    	{
+			$this->form_validation->set_message('ktnamsinh', 'Ngày sinh không hợp lệ');
+    		return FALSE;
+    	}
 	}	
 
 	function home(){

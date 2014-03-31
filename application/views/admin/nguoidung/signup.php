@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Đăng ký thành viên SMobile">
+  <meta name="author" content="Kelvin Lee & Cupid">
   <link rel="shortcut icon" href="images/favicon.png" type="image/png">
 
   <title>Đăng ký</title>
@@ -68,46 +68,64 @@
                 </div><!-- signup-info -->
             
             </div><!-- col-sm-6 -->
-            
+
             <div class="col-md-6">                
-                <form method="post" action="">
+                <form id="basicForm" action="" method="post" class="form-horizontal">
                     
                     <h3 class="nomargin">Đăng ký</h3>
                     <p class="mt5 mb20">Đã có tài khoản? <a href="<?=base_url()?>admin"><strong>Đăng nhập ngay...</strong></a></p>
                                     
                     <div class="mb10"> 
                         <label class="control-label">Họ tên</label>                       
-                        <input type="text" id="hoten" name="hoten" title="Điền họ tên của bạn!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" required maxlength="20" /> 
+                        <input type="text" id="hoten" name="hoten" title="Điền họ tên của bạn!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" maxlength="20" value="<?php echo set_value('hoten'); ?>" /> 
+                        <?php echo form_error('hoten'); ?>
                     </div>
                     
                     <div class="mb10">
                         <label class="control-label">Tên đăng nhập</label>
-                        <input type="text" id="tendangnhap" name="tendangnhap" title="Điền tên đăng nhập!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" required maxlength="20" />                        
+                        <input type="text" id="tendangnhap" name="tendangnhap" title="Điền tên đăng nhập!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" maxlength="20" value="<?php echo set_value('tendangnhap'); ?>"/>                        
+                        <?php echo form_error('tendangnhap'); ?>
                     </div>
                     
                     <div class="mb10">
                         <label class="control-label">Mật khẩu</label>
-                        <input type="password" id="matkhau" name="matkhau" title="Điền mật khẩu!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" required maxlength="20"  />
+                        <input type="password" id="matkhau" name="matkhau" title="Điền mật khẩu!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" value="<?php echo set_value('matkhau'); ?>"/>
+                        <?php echo form_error('matkhau'); ?>    
                     </div>
                     
                     <div class="mb10">
                         <label class="control-label">Nhập lại mật khẩu</label>
                         <input type="password" id="rematkhau" name="rematkhau" title="Nhập lại mật khẩu!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" />
+                        <?php echo form_error('rematkhau'); ?>
                     </div>
                     
                     <div class="mb10">
                         <label class="control-label">Email</label>
-                        <input type="email" id="email" name="email" title="Nhập địa chỉ email" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" />
+                        <input type="text" id="email" name="email" title="Nhập địa chỉ email" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" value="<?php echo set_value('email'); ?>"/>
+                        <?php echo form_error('email'); ?>
                     </div>  
                     
                     <div class="mb10">
                         <label class="control-label">Ngày sinh</label>
                         <div class="input-group">
-                          <input name="namsinh" type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
-                          <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                          <input name="namsinh" type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker" value="<?php echo set_value('namsinh'); ?>">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>                          
                         </div>
+                        <?php echo form_error('namsinh'); ?>
+                    </div>  
+
+                    <div class="mb10">
+                        <label class="control-label">Giới tính</label>                                    
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="male" value="1" name="gioitinh" checked>                      
+                            <label for="male">Nam</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="0" id="female" name="gioitinh">
+                            <label for="female">Nữ</label>
+                          </div>                   
                     </div>
-                    
+
                                                                           
                     <br/>
                     <button class="btn btn-success btn-block">Đăng ký</button>     
