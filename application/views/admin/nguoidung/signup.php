@@ -64,8 +64,7 @@
                         <i class="fa fa-truck"></i>
                         <h4 class="text-success">Giao hàng tận nơi</h4>                        
                     </div>                                    
-                                        
-                
+                                       
                 </div><!-- signup-info -->
             
             </div><!-- col-sm-6 -->
@@ -74,17 +73,17 @@
                 <form id="basicForm" action="" method="post" class="form-horizontal">
                     
                     <h3 class="nomargin">Đăng ký</h3>
-                    <p class="mt5 mb20">Đã có tài khoản? <a href="<?=base_url()?>admin"><strong>Đăng nhập ngay...</strong></a></p>
+                    <p class="mt5 mb20">Đã có tài khoản? <a href="<?=base_url()?>admin/dangnhap"><strong>Đăng nhập ngay...</strong></a></p>
                                     
                     <div class="mb10"> 
                         <label class="control-label">Họ tên</label>                       
-                        <input type="text" id="hoten" name="hoten" title="Điền họ tên của bạn!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" maxlength="20" minlength="4" value="<?php echo set_value('hoten'); ?>" /> 
+                        <input type="text" id="hoten" name="hoten" title="Điền họ tên của bạn!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" value="<?php echo set_value('hoten'); ?>" /> 
                         <?php echo form_error('hoten'); ?>
                     </div>
                     
                     <div class="mb10">
                         <label class="control-label">Tên đăng nhập</label>
-                        <input type="text" id="tendangnhap" name="tendangnhap" title="Điền tên đăng nhập!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" maxlength="20" value="<?php echo set_value('tendangnhap'); ?>"/>                        
+                        <input type="text" id="tendangnhap" name="tendangnhap" title="Điền tên đăng nhập!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" value="<?php echo set_value('tendangnhap'); ?>"/>                        
                         <?php echo form_error('tendangnhap'); ?>
                     </div>
                     
@@ -116,9 +115,10 @@
                         </div>
                         <?php echo form_error('namsinh'); ?>
                     </div>                      
-                                                                          
+                                                                        
                     <br/>
-                    <button class="btn btn-success btn-block">Đăng ký</button>     
+                    <button class="btn btn-success btn-block">Đăng ký</button><br/>
+                    <span class="glyphicon glyphicon-circle-arrow-left"></span> <a href="<?=base_url()?>">Quay lại SMobile</a>   
                 </form>
             </div><!-- col-sm-6 -->
             

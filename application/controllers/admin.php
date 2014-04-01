@@ -12,9 +12,10 @@ Class admin extends CI_Controller{
 		$this->load->library('login');
 		$this->data['Username'] = $this->login->getLoginUsername();  
 		$this->data['Name'] = $this->login->GetName();
-	}
-
-	function index(){
+	}	
+	function dangnhap($reg = ""){
+		if(isset($reg) && $reg != "")
+		$this->data['success'] = "Đăng ký thành công! Mời bạn đăng nhập...";
 		$this->data['title'] = 'Đăng nhập';
 		$this->data['page'] = 'dangnhap';
 		$chk = $this->login->checkLogin();		
@@ -58,25 +59,25 @@ Class admin extends CI_Controller{
 
 		$check = $this->login->checkLogin();
 		if($check == 1 || $check == 2 )
-			return redirect(base_url('admin'));
+			return redirect(base_url('admin/home'));
 		else
 		{
 			$this->data['title'] = 'Đăng ký';
 			$this->data['page'] = 'dangky';
 			$this->load->model('nguoidung_model');
 			$this->load->helper(array('form', 'url'));
-			$this->load->library('form_validation');		
+			$this->load->library('form_validation');					
 			
 			$config = array(
 	               array(
 	                     'field'   => 'hoten', 
 	                     'label'   => 'Họ tên', 
-	                     'rules'   => 'trim|required|xss_clean|min_length[6]'               
+	                     'rules'   => 'trim|required|xss_clean|min_length[6]|max_length[20]'               
 	                  ),
 	               array(
 	                     'field'   => 'tendangnhap', 
 	                     'label'   => 'Tên đăng nhập', 
-	                     'rules'   => 'trim|required|xss_clean|min_length[6]|alpha_numeric'
+	                     'rules'   => 'trim|required|xss_clean|min_length[6]|alpha_numeric|is_unique[nguoidung.TENDANGNHAP]|max_length[20]'
 	                  ),
 	               array(
 	                     'field'   => 'matkhau', 
@@ -91,7 +92,7 @@ Class admin extends CI_Controller{
 	               array(
 	                     'field'   => 'email', 
 	                     'label'   => 'Email', 
-	                     'rules'   => 'trim|required|valid_email'
+	                     'rules'   => 'trim|required|valid_email|is_unique[nguoidung.EMAIL]'
 	                  ),
 	               array(
 	                     'field'   => 'namsinh', 
@@ -101,12 +102,14 @@ Class admin extends CI_Controller{
 	            );
 
 			$this->form_validation->set_rules($config);
-			$this->form_validation->set_message('required', 'Không thể bỏ trống trường này');
+			$this->form_validation->set_message('required', '%s không được bỏ trống');
 			$this->form_validation->set_message('matches', 'Nhập lại mật khẩu chưa đúng');
-			$this->form_validation->set_message('max_length', 'Mật khẩu không quá 20 ký tự');
-			$this->form_validation->set_message('min_length', 'Vui lòng nhập ít nhất 4 ký tự');
+			$this->form_validation->set_message('max_length', '%s không quá 20 ký tự');
+			$this->form_validation->set_message('min_length', '%s không thể ít hơn 6 ký tự');
 			$this->form_validation->set_message('valid_email', 'Địa chỉ email không hợp lệ');	
-			$this->form_validation->set_message('alpha_numeric', 'Tên đăng nhập không hợp lệ');					
+			$this->form_validation->set_message('alpha_numeric', 'Tên đăng nhập không hợp lệ');
+			$this->form_validation->set_message('is_unique', '%s đã được sử dụng');	
+
 			$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
 
 			if ($this->form_validation->run() == FALSE){
@@ -128,9 +131,9 @@ Class admin extends CI_Controller{
 				$HinhDaiDien = "";
 
 				$tmp = $this->nguoidung_model->insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
-				if($tmp){								
-					echo '<script language="javascript">alert("Đăng ký thành công!")</script>';										
-					echo redirect(base_url('admin'));
+				if($tmp){
+					$this->data['ck_success'] = "1";
+					echo redirect(base_url('admin/dangnhap/success'));
 				} 
 				else echo redirect(base_url('admin/error/insert'));			
 			}
@@ -162,7 +165,7 @@ Class admin extends CI_Controller{
 			$this->load->view('admin/include/footer');
 		}
 		else
-			return redirect(base_url('admin'));
+			return redirect(base_url('admin/dangnhap'));
 	}
 
 	function nguoidung($chucnang = "view"){
@@ -257,7 +260,7 @@ Class admin extends CI_Controller{
 				}	
 		}
 		else
-			return redirect(base_url('admin'));
+			return redirect(base_url('admin/dangnhap'));
 	}
 
 	function hoadon($chucnang = "view"){
@@ -292,7 +295,7 @@ Class admin extends CI_Controller{
 			}
 		}
 		else
-			return redirect(base_url('admin'));
+			return redirect(base_url('admin/dangnhap'));
 		}
 
 	function ktradulieu($chucnang){
@@ -419,7 +422,7 @@ Class admin extends CI_Controller{
 			} 
 		}
 		else
-			return redirect(base_url('admin'));
+			return redirect(base_url('admin/dangnhap'));
 	}
 
 	function tintuc($chucnang = "view"){
@@ -508,7 +511,7 @@ Class admin extends CI_Controller{
 				}
 			}
 		else
-			return redirect(base_url('admin'));
+			return redirect(base_url('admin/dangnhap'));
 	}
 
 	function binhluan($chucnang = "view"){
@@ -575,7 +578,7 @@ Class admin extends CI_Controller{
 				}	
 			}
 		else
-			return redirect(base_url('admin'));
+			return redirect(base_url('admin/dangnhap'));
 	}
 
 	function danhgia($chucnang = "view"){
@@ -638,6 +641,6 @@ Class admin extends CI_Controller{
 			}
 		}	
 		else
-			return redirect(base_url('admin'));
+			return redirect(base_url('admin/dangnhap'));
 	}
 }
