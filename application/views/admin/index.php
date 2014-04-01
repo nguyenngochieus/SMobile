@@ -46,8 +46,24 @@
                 
                     <h5><strong>Chào mừng bạn đến với SMobile!</strong></h5>
                     
-                    <div class="mb20"></div>
-                    <strong>Chưa có tài khoản? <a href="<?=base_url()?>admin/dangky">Đăng ký ngay...</a></strong>
+                    <div class="mb20"></div>                    
+                      <?php if(isset($success) && $success !="")
+                      {
+                        ?>
+                             <div class="alert alert-success">
+                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                              <?=$success?>
+                             </div>
+                         <?php 
+                         }
+                        else
+                        {
+                          ?> 
+                          <strong>Chưa có tài khoản? <a href="<?=base_url()?>admin/dangky">Đăng ký ngay...</a></strong>
+                          <?php 
+                        }                          
+                            ?>   
+
                 </div><!-- signin0-info -->
             
             </div><!-- col-sm-7 -->
@@ -71,7 +87,9 @@
                     <div style="float:left"><input type="checkbox" name="remember" value="1" />   Lưu tài khoản</div>
                     <div class="mb10"></div>
                     <button class="btn btn-success btn-block">Đăng nhập</button>
-                    <a style="float:center" href="#"><small>Quên mật khẩu?</small></a>                    
+                    <a style="float:center" href="#"><small>Quên mật khẩu?</small></a>  
+                    <br/><br/>
+                    <span class="glyphicon glyphicon-circle-arrow-left"></span> <a href="<?=base_url()?>">Quay lại SMobile</a>
                 </form>
             </div><!-- col-sm-5 -->
             
