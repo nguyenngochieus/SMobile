@@ -9,12 +9,8 @@ Class admin extends CI_Controller{
 		$this->data['page'] = '';				
 		$this->data['Username'] = $this->login->getLoginUsername();  
 		$this->data['Name'] = $this->login->GetName();
-	}		
-
-	public function logout(){
-		$this->login->logout();
-		return redirect(base_url());
-	}
+		$this->data['UserID'] = $this->login->GetUserID();
+	}	
 
 	function index(){
 		$check = $this->login->checkLogin();
@@ -111,6 +107,7 @@ Class admin extends CI_Controller{
 					$Trangthai = $this->input->post('trangthai',TRUE);
 					$HinhDaiDien = $this->input->post('HinhDaiDien',TRUE);
 					$HinhDaiDien =  substr($HinhDaiDien,22);
+					
 					$tmp = $this->nguoidung_model->update($id, $Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
 					if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
 					else echo redirect(base_url('admin/error/edit'));
