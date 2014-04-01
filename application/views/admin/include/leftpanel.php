@@ -11,17 +11,16 @@
             <div class="media userlogged">
                 <img alt="" src="<?=base_url()?>static/admin/images/photos/loggeduser.png" class="media-object">
                 <div class="media-body">
-                    <h4>Kelvin Lee</h4>
-                    <span>"Dòng cảm nghĩ..."</span>
+                    <h4><?=($Name=="")?$Username:$Name?></h4>                    
                 </div>
             </div>
           
             <h5 class="sidebartitle actitle">Tài khoản</h5>
             <ul class="nav nav-pills nav-stacked nav-bracket mb30">
-              <li><a href="profile.html"><i class="fa fa-user"></i> <span>Hồ sơ</span></a></li>
-              <li><a href="#"><i class="fa fa-cog"></i> <span>Tùy chỉnh</span></a></li>
-              <li><a href="#"><i class="fa fa-question-circle"></i> <span>Hỗ trợ</span></a></li>
-              <li><a href="<?=base_url()?>admin/logout"><i class="fa fa-sign-out"></i> <span>Đăng xuất</span></a></li>
+              <li><a href="<?=base_url()?>admin/nguoidung/edit?id=<?=($UserID)?>"><i class="fa fa-user"></i> <span>Hồ sơ</span></a></li>
+            <!--  <li><a href="#"><i class="fa fa-cog"></i> <span>Tùy chỉnh</span></a></li>
+              <li><a href="#"><i class="fa fa-question-circle"></i> <span>Hỗ trợ</span></a></li> -->
+              <li><a href="<?=base_url()?>admin/dangxuat"><i class="fa fa-sign-out"></i> <span>Đăng xuất</span></a></li>
             </ul>
         </div>
       <!-- Dòng này chỉ hiển thị trên thiết bị hoặc màn hình nhỏ -->
