@@ -1,15 +1,16 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-Class error404 extends CI_Controller{
+Class dangxuat extends CI_Controller{
 
 	public $data;
 
 	function __construct(){
 		parent:: __construct();
+		$this->data['loi'] = "";
 	}
 
-	function index(){
-		$this->load->view('error404');
+	public function index(){
+		$this->login->logout();
+		return redirect(base_url());
 	}
-
 }

@@ -73,7 +73,7 @@
                 <form id="basicForm" action="" method="post" class="form-horizontal">
                     
                     <h3 class="nomargin">Đăng ký</h3>
-                    <p class="mt5 mb20">Đã có tài khoản? <a href="<?=base_url()?>admin/dangnhap"><strong>Đăng nhập ngay...</strong></a></p>
+                    <p class="mt5 mb20">Đã có tài khoản? <a href="<?=base_url()?>dangnhap.html"><strong>Đăng nhập ngay...</strong></a></p>
                                     
                     <div class="mb10"> 
                         <label class="control-label">Họ tên</label>                       

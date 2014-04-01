@@ -51,15 +51,14 @@
                       {
                         ?>
                              <div class="alert alert-success">
-                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                              <?=$success?>
+                              <h4 style="font-family:Lucida Sans Unicode"><?=$success?></h4>
                              </div>
                          <?php 
                          }
                         else
                         {
                           ?> 
-                          <strong>Chưa có tài khoản? <a href="<?=base_url()?>admin/dangky">Đăng ký ngay...</a></strong>
+                          <strong>Chưa có tài khoản? <a href="<?=base_url()?>dangky.html">Đăng ký ngay...</a></strong>
                           <?php 
                         }                          
                             ?>   

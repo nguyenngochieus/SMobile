@@ -5,152 +5,18 @@ Class admin extends CI_Controller{
 	public $data;
 
 	function __construct(){
-		parent:: __construct();
-		$this->load->helper('url');			
-		$this->data['page'] = '';	
-		$this->data['loi'] = "";
-		$this->load->library('login');
+		parent:: __construct();		
+		$this->data['page'] = '';				
 		$this->data['Username'] = $this->login->getLoginUsername();  
 		$this->data['Name'] = $this->login->GetName();
-	}	
-	function dangnhap($reg = ""){
-		if(isset($reg) && $reg != "")
-		$this->data['success'] = "Đăng ký thành công! Mời bạn đăng nhập...";
-		$this->data['title'] = 'Đăng nhập';
-		$this->data['page'] = 'dangnhap';
-		$chk = $this->login->checkLogin();		
-		if($chk==1||$chk==2)
-		{
-				return redirect(base_url('admin/home'));
-		}
-		if(isset($_POST['username'])&&($_POST['username']!=NULL)&&isset($_POST['password'])&&($_POST['password']!=NULL))
-		{
-			$remember = FALSE;
-			if(isset($_POST['remember'])&&($_POST['remember']==1)) $remember = TRUE;			
-			$arr = array('username'=>$this->input->post('username'),'password'=>$this->input->post('password'));
-			$tmp = $this->login->dangnhap($arr, $remember);
-			if($tmp==1)
-			{
-					return redirect(base_url('admin/home')); 
-			}
-			else
-			{
-				switch($tmp)
-				{
-					case -3 : $loi = 'Username hoặc Password không đúng! Vui lòng thử lại'; break;
-					case -7 : $loi = 'Tình trạng tài khoản không hoạt động'; break;
-					case -4 : $loi = 'Bạn không có quyền truy cập vào trang này'; break;
-					case -6 : $loi = 'Username hoặc Password không đúng! Vui lòng thử lại'; break;
-					default: $loi = ''; break;
-				}
-				$this->data['loi'] = 	$loi;
-				$this->load->view('admin/index',$this->data);
-			}
-		}
-		else $this->load->view("admin/index",$this->data);
-	}
+	}		
 
 	public function logout(){
 		$this->login->logout();
 		return redirect(base_url());
 	}
 
-	function dangky(){
-
-		$check = $this->login->checkLogin();
-		if($check == 1 || $check == 2 )
-			return redirect(base_url('admin/home'));
-		else
-		{
-			$this->data['title'] = 'Đăng ký';
-			$this->data['page'] = 'dangky';
-			$this->load->model('nguoidung_model');
-			$this->load->helper(array('form', 'url'));
-			$this->load->library('form_validation');					
-			
-			$config = array(
-	               array(
-	                     'field'   => 'hoten', 
-	                     'label'   => 'Họ tên', 
-	                     'rules'   => 'trim|required|xss_clean|min_length[6]|max_length[20]'               
-	                  ),
-	               array(
-	                     'field'   => 'tendangnhap', 
-	                     'label'   => 'Tên đăng nhập', 
-	                     'rules'   => 'trim|required|xss_clean|min_length[6]|alpha_numeric|is_unique[nguoidung.TENDANGNHAP]|max_length[20]'
-	                  ),
-	               array(
-	                     'field'   => 'matkhau', 
-	                     'label'   => 'Mật khẩu', 
-	                     'rules'   => 'required|max_length[20]|min_length[6]'
-	                  ),
-	               array(
-	                     'field'   => 'rematkhau', 
-	                     'label'   => 'Nhập lại mật khẩu', 
-	                     'rules'   => 'required|matches[matkhau]'                 
-	                  ),   
-	               array(
-	                     'field'   => 'email', 
-	                     'label'   => 'Email', 
-	                     'rules'   => 'trim|required|valid_email|is_unique[nguoidung.EMAIL]'
-	                  ),
-	               array(
-	                     'field'   => 'namsinh', 
-	                     'label'   => 'Ngày sinh', 
-	                     'rules'   => 'trim|required|callback_ktnamsinh'
-	                  )
-	            );
-
-			$this->form_validation->set_rules($config);
-			$this->form_validation->set_message('required', '%s không được bỏ trống');
-			$this->form_validation->set_message('matches', 'Nhập lại mật khẩu chưa đúng');
-			$this->form_validation->set_message('max_length', '%s không quá 20 ký tự');
-			$this->form_validation->set_message('min_length', '%s không thể ít hơn 6 ký tự');
-			$this->form_validation->set_message('valid_email', 'Địa chỉ email không hợp lệ');	
-			$this->form_validation->set_message('alpha_numeric', 'Tên đăng nhập không hợp lệ');
-			$this->form_validation->set_message('is_unique', '%s đã được sử dụng');	
-
-			$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
-
-			if ($this->form_validation->run() == FALSE){
-				$this->load->view('admin/nguoidung/signup');
-			}			
-			else{
-				//$Matkhau = do_hash($this->input->post('matkhau',TRUE), 'md5');
-				$Tennguoidung = $this->input->post('hoten',TRUE);
-				$Tendangnhap = $this->input->post('tendangnhap',TRUE);
-				$Matkhau = $this->input->post('matkhau',TRUE);
-				$Email = $this->input->post('email',TRUE);						
-				$Namsinh = $this->input->post('namsinh',TRUE);
-				$Namsinh = date('Y-m-d', strtotime($Namsinh));
-				$Gioitinh = "1";
-				$CMND = ""; 
-				$SDT = "";
-				$Quyen = "3"; 
-				$Trangthai = "1"; 
-				$HinhDaiDien = "";
-
-				$tmp = $this->nguoidung_model->insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
-				if($tmp){
-					$this->data['ck_success'] = "1";
-					echo redirect(base_url('admin/dangnhap/success'));
-				} 
-				else echo redirect(base_url('admin/error/insert'));			
-			}
-		}		
-	}
-
-	public function ktnamsinh($input){    	
-		list($thang,$ngay,$nam)=explode("/",$input);		
-    	if (checkdate($thang,$ngay,$nam)) return TRUE;
-    	else 
-    	{
-			$this->form_validation->set_message('ktnamsinh', 'Ngày sinh không hợp lệ');
-    		return FALSE;
-    	}
-	}	
-
-	function home(){
+	function index(){
 		$check = $this->login->checkLogin();
 		if($check == 1 || $check == 2 )
 		{
@@ -165,7 +31,7 @@ Class admin extends CI_Controller{
 			$this->load->view('admin/include/footer');
 		}
 		else
-			return redirect(base_url('admin/dangnhap'));
+			return redirect(base_url('dangnhap.html'));
 	}
 
 	function nguoidung($chucnang = "view"){
