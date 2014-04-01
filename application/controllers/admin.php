@@ -56,6 +56,50 @@ Class admin extends CI_Controller{
 
 	function dangky(){
 		
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		$config = array(
+               array(
+                     'field'   => 'hoten', 
+                     'label'   => 'Họ tên', 
+                     'rules'   => 'trim|required|xss_clean'               
+                  ),
+               array(
+                     'field'   => 'tendangnhap', 
+                     'label'   => 'Tên đăng nhập', 
+                     'rules'   => 'trim|required|xss_clean'
+                  ),
+               array(
+                     'field'   => 'matkhau', 
+                     'label'   => 'Mật khẩu', 
+                     'rules'   => 'required|max_length[20]|'
+                  ),
+               array(
+                     'field'   => 'rematkhau', 
+                     'label'   => 'Nhập lại mật khẩu', 
+                     'rules'   => 'required|matches[matkhau]'                 
+                  ),   
+               array(
+                     'field'   => 'email', 
+                     'label'   => 'Email', 
+                     'rules'   => 'trim|required|valid_email'
+                  ),
+               array(
+                     'field'   => 'namsinh', 
+                     'label'   => 'Ngày sinh', 
+                     'rules'   => 'trim|required|callback_ktnamsinh'
+                  )
+            );
+
+		$this->form_validation->set_rules($config);
+		$this->form_validation->set_message('required', 'Không thể bỏ trống trường này');
+		$this->form_validation->set_message('matches', 'Nhập lại mật khẩu chưa đúng');
+		$this->form_validation->set_message('max_length', 'Mật khẩu không quá 20 ký tự');
+		$this->form_validation->set_message('valid_email', 'Địa chỉ email không hợp lệ');				
+		$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
+=======
+>>>>>>> d32e6795a6bf55d494858bdfaec2ac76eb6c36bf
 		$check = $this->login->checkLogin();
 		if($check == 1 || $check == 2 )
 			return redirect(base_url('admin'));
@@ -99,6 +143,10 @@ Class admin extends CI_Controller{
 	                     'rules'   => 'trim|required|callback_ktnamsinh'
 	                  )
 	            );
+<<<<<<< HEAD
+=======
+>>>>>>> 18a8fa51be7b6fcff330ea9bb293c96abbbe4387
+>>>>>>> d32e6795a6bf55d494858bdfaec2ac76eb6c36bf
 
 			$this->form_validation->set_rules($config);
 			$this->form_validation->set_message('required', 'Không thể bỏ trống trường này');

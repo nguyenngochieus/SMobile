@@ -4,6 +4,8 @@ $lang['sp_moi'] = "SẢN PHẨM MỚI";
 $lang['sp_banchay'] = "SẢN PHẨM BÁN CHẠY";
 $lang['addcart'] = "Thêm vào giỏ";
 $lang['nhacungcap'] = "Nhà cung cấp";
+$lang['loaisanpham'] = "Loại sản phẩm";
+$lang['cungncc'] = "Sản phẩm cùng nhà cung cấp";
 $lang['menu_gia'] = "Giá tiền";
 $lang['SPCungLoai'] = "Sản phẩm cùng loại";
 ?>
