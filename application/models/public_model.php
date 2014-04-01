@@ -18,21 +18,54 @@ class public_model extends CI_Model {
 		return $query->row();
 	}
 
+	public function GetTenNhaCungCap($id, $lang = "") 
+	{
+		$query =  $this->db->query('SELECT TENNCC'.$lang.' AS TEN FROM NHACUNGCAP WHERE ID ='.$id);
+		return $query->row();
+	}
+
 	public function GetSanPhamTheoLoai($id,$lang = "")
 	{
-		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE LOAI = '.$id.' ORDER BY ID ');
+		if(isset($id[1]) && $id[1] != '')
+			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE LOAI = '.$id[0].' AND NHACUNGCAP = '.$id[1].' ORDER BY ID ');
+		else
+			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE LOAI = '.$id[0].' ORDER BY ID ');
 		return $query->result();
 	}
 
 	public function GetNhaCungCapTheoLoai($id)
 	{
-		$query =  $this->db->query('SELECT B2.ID, B2.TENNCC FROM SANPHAM B1, NHACUNGCAP B2 WHERE B1.LOAI = '.$id.' AND B1.NHACUNGCAP = B2.ID GROUP BY B2.ID, B2.TENNCC ');
+		if(isset($id[1]) && $id[1] != '')
+			$query =  $this->db->query('SELECT B2.ID, B2.TENNCC FROM SANPHAM B1, NHACUNGCAP B2 WHERE B1.LOAI = '.$id[0].' AND B1.NHACUNGCAP = B2.ID AND B1.NHACUNGCAP <> '.$id[1].' GROUP BY B2.TENNCC ');
+		else
+			$query =  $this->db->query('SELECT B2.ID, B2.TENNCC FROM SANPHAM B1, NHACUNGCAP B2 WHERE B1.LOAI = '.$id[0].' AND B1.NHACUNGCAP = B2.ID GROUP BY B2.TENNCC ');
+		return $query->result();
+	}
+
+	public function GetLoaiTheoNhaCungCap($id, $lang = "")
+	{
+		$query =  $this->db->query('SELECT B2.ID, B2.TENLOAI'.$lang.' AS TENLOAI FROM SANPHAM B1, LOAISANPHAM B2 WHERE B1.NHACUNGCAP = '.$id.' AND B1.LOAI = B2.ID GROUP BY B2.TENLOAI ');
+		return $query->result();
+	}
+
+	public function GetSanPhamTheoNhaCungCap($id,$lang = "")
+	{
+		if(isset($id[1]) && $id[1] != '')
+			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE NHACUNGCAP = '.$id[0].' AND LOAI = '.$id[1].' ORDER BY ID ');
+		else
+			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE NHACUNGCAP = '.$id[0].' ORDER BY ID ');
 		return $query->result();
 	}
 
 	public function GetSanPhamMoi($lang = "") 
 	{
 		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM ORDER BY ID DESC LIMIT 0 , 7');
+		return $query->result();
+	}
+
+	public function GetSanPhamBanChay($lang = "") 
+	{
+		$query =  $this->db->query('SELECT B1.ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM B1, DONHANG B2 WHERE B1.ID = B2.MASANPHAM GROUP BY MASANPHAM ORDER BY COUNT(*) DESC LIMIT 0 , 7');
 		return $query->result();
 	}
 
