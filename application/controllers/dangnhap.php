@@ -40,10 +40,10 @@ Class dangnhap extends CI_Controller{
 					default: $loi = ''; break;
 				}
 				$this->data['loi'] = 	$loi;
-				$this->load->view('admin.html',$this->data);
+				$this->load->view('admin/index',$this->data);
 			}
 		}
-		else $this->load->view('admin.html',$this->data);
+		else $this->load->view('admin/index',$this->data);
 	}
 
 }
