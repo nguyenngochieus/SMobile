@@ -66,7 +66,7 @@
               <div class="panel-footer">
                 <div class="row">
                   <div class="col-sm-5 col-sm-offset-4">
-                    <button class="btn btn-primary">Thêm mới</button>                    
+                    <button class="btn btn-primary">Cập nhật</button>                    
                   </div>
                 </div>
               </div>

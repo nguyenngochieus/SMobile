@@ -44,11 +44,16 @@ Class Danhgia_model extends CI_Model{
 			"Luotdanhgia" => $Luotdanhgia,
 			"Tongdiem" => $Tongdiem,
 			"Diemdanhgia" => $Diemdanhgia,			
-		);
+		);		
+
+		$this->db->trans_start();
 		$this->db->where("MASANPHAM", $Masanpham);
-		$query = $this->db->update($this->table, $data);
-		if($this->db->affected_rows() > 0) return TRUE;
-		return FALSE;
+		$query = $this->db->update($this->table, $data);							
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status() === FALSE)
+			return FALSE;
+		else return TRUE;
 	}
 
 }

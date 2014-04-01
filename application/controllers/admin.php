@@ -53,12 +53,12 @@ Class admin extends CI_Controller{
 			}
 			elseif ($chucnang == "insert") {
 				$Tennguoidung = $this->input->post('hoten',TRUE);
-				$Tendangnhap = $this->input->post('username',TRUE);
-				$Matkhau = $this->input->post('password',TRUE);
+				$Tendangnhap = $this->input->post('tendangnhap',TRUE);
+				$Matkhau = $this->input->post('matkhau',TRUE);
 				$Email = $this->input->post('email',TRUE);						
 				$Namsinh = $this->input->post('namsinh',TRUE);
 				$Namsinh = date('Y-m-d', strtotime($Namsinh));
-				$Gioitinh = $this->input->post('gender',TRUE);
+				$Gioitinh = $this->input->post('gioitinh',TRUE);
 				$CMND = $this->input->post('CMND',TRUE);
 				$SDT = $this->input->post('SDT',TRUE);
 				$Quyen = $this->input->post('quyen',TRUE);
@@ -95,12 +95,12 @@ Class admin extends CI_Controller{
 				else
 				{
 					$Tennguoidung = $this->input->post('hoten',TRUE);
-					$Tendangnhap = $this->input->post('username',TRUE);
-					$Matkhau = $this->input->post('password',TRUE);
+					$Tendangnhap = $this->input->post('tendangnhap',TRUE);
+					$Matkhau = $this->input->post('matkhau',TRUE);
 					$Email = $this->input->post('email',TRUE);						
 					$Namsinh = $this->input->post('namsinh',TRUE);
 					$Namsinh = date('Y-m-d', strtotime($Namsinh));
-					$Gioitinh = $this->input->post('gender',TRUE);
+					$Gioitinh = $this->input->post('gioitinh',TRUE);
 					$CMND = $this->input->post('CMND',TRUE);
 					$SDT = $this->input->post('SDT',TRUE);
 					$Quyen = $this->input->post('quyen',TRUE);
@@ -159,8 +159,9 @@ Class admin extends CI_Controller{
 		}
 		else
 			return redirect(base_url('admin/dangnhap'));
-		}
+	}
 
+	// Hoàn thành
 	function ktradulieu($chucnang){
 		if(!empty($chucnang))
 		{			
@@ -176,8 +177,8 @@ Class admin extends CI_Controller{
 			}
 		}
 	}
-
-	function sanpham($chucnang="view"){
+	// Hoàn thành (cần Validate lại mốt số trường, đặc biệt là đơn giá)
+	function sanpham($chucnang = "view"){
 		$check = $this->login->checkLogin();
 		if($check == 1 || $check == 2 )
 		{
@@ -317,10 +318,9 @@ Class admin extends CI_Controller{
 				$Noidung = $this->input->post('Noidung',TRUE);
 				$now = date("Y-m-d H:i:s");
 				$Ngaydang = $now;
-				$Hinh = $this->input->post('HinhDaiDienSanPham',TRUE);
-				$Hinh = substr($Hinh,22);
-				//$Tacgia = $this->input->post('Tacgia',TRUE);			
-				$Tacgia = 1;
+				$Hinh = $this->input->post('HinhDaiDienTinTuc',TRUE);
+				$Hinh = substr($Hinh,22);				
+				$Tacgia = $this->login->GetUserID();
 
 				$tmp = $this->tintuc_model->insert($Tieude, $Loaitin, $Mota, $Noidung, $Ngaydang, $Hinh, $Tacgia);
 				if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
@@ -351,14 +351,20 @@ Class admin extends CI_Controller{
 				}
 				else
 				{
-					$Tieude = $this->input->post('Tieude',TRUE);
-					$Loaitin = $this->input->post('Loaitin',TRUE);
-					$Mota = $this->input->post('Mota',TRUE);
-					$Noidung = $this->input->post('Noidung',TRUE);
-					$Ngaydang = $this->input->post('Ngaydang',TRUE);
-					$Hinh = $this->input->post('Hinh',TRUE);
-					$Tacgia = $this->input->post('Tacgia',TRUE);
-
+						$Tieude = $this->input->post('Tieude',TRUE);
+						$Loaitin = $this->input->post('Loaitin',TRUE);
+						$Mota = $this->input->post('Mota',TRUE);
+						$Noidung = $this->input->post('Noidung',TRUE);
+						$now = date("Y-m-d H:i:s");
+						$Ngaydang = $now;
+						$Hinh = $this->input->post('HinhDaiDienTinTuc',TRUE);
+						$Hinh = substr($Hinh,22);				
+						//$Tacgia = chỗ này muốn lấy giá trị của cái bên kia bợn tạo 1 cái input bên view là tác giả nữa
+						//gán giá trị tác giả cho nó rồi lấy lại như bình thường thôi :D 
+						// ừa nãy cũng có nghĩ :/
+						 //Chứ thấy cách kia cũng dc mà mất công :D 
+						// nãy h mềnh xem cái validate của jquery, hơi căng nha, trong trang admin ko dùng cái validate của
+						// CI đc
 					$tmp = $this->tintuc_model->update($id, $Tieude, $Loaitin, $Mota, $Noidung, $Ngaydang, $Hinh, $Tacgia);
 					if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
 					else echo redirect(base_url('admin/error/edit'));
@@ -376,7 +382,7 @@ Class admin extends CI_Controller{
 		else
 			return redirect(base_url('admin/dangnhap'));
 	}
-
+	// Hoàn thành
 	function binhluan($chucnang = "view"){
 		$check = $this->login->checkLogin();
 		if($check == 1 || $check == 2 )
@@ -443,7 +449,7 @@ Class admin extends CI_Controller{
 		else
 			return redirect(base_url('admin/dangnhap'));
 	}
-
+	// Hoàn thành
 	function danhgia($chucnang = "view"){
 		$check = $this->login->checkLogin();
 		if($check == 1 || $check == 2 )

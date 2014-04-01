@@ -68,8 +68,7 @@ Class dangky extends CI_Controller{
 			if ($this->form_validation->run() == FALSE){
 				$this->load->view('admin/nguoidung/signup');
 			}			
-			else{
-				//$Matkhau = do_hash($this->input->post('matkhau',TRUE), 'md5');
+			else{				
 				$Tennguoidung = $this->input->post('hoten',TRUE);
 				$Tendangnhap = $this->input->post('tendangnhap',TRUE);
 				$Matkhau = $this->input->post('matkhau',TRUE);

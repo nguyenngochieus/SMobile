@@ -23,10 +23,15 @@ Class Binhluan_model extends CI_Model{
 		$data = array(
 			"Id" => $Id,
 			"Noidung"	=>	$Noidung,			
-		);		
-		$query = $this->db->query("UPDATE binhluan SET NOIDUNG = '".$Noidung."' WHERE ID = ".$Id);		
-		if($this->db->affected_rows() > 0) return TRUE;
-		return FALSE;
+		);					
+
+		$this->db->trans_start();
+		$query = $this->db->query("UPDATE binhluan SET NOIDUNG = '".$Noidung."' WHERE ID = ".$Id);							
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status() === FALSE)
+			return FALSE;
+		else return TRUE;
 	}
 
 	function delete($id)

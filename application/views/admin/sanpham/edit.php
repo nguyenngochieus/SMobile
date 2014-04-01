@@ -84,8 +84,8 @@
              <div class="form-group">
               <label class="col-sm-2 control-label">Hình đại diện</label>
                 <div class="col-sm-4">
-                  <span class="field"><img src="" id="ViewHinh" alt="" width="140px" height="181px" /><br />
-                  <input type="text" name="HinhDaiDien" class="form-control" id="HinhAnh" onchange="ChangeImage()"  value="<?= $item['HINH']?>" />
+                  <span class="field"><img src="<?=base_url()?>upload/files/<?php echo $item['HINH'];?>" id="ViewHinh" alt="" width="140px" height="181px" /><br />
+                  <input type="text" name="HinhDaiDien" class="form-control" id="HinhAnh" onchange="ChangeImage()"  value="/SMobile/upload/files/<?php echo $item['HINH'];?>" />
                  </div>
                   <div class="col-sm-6">
                      <a class="btn btn-default" href="javascript:BrowseServer(HinhAnh)" > <span>Chọn hình</span></a> </span><br /><small style="font-size:14px;" class="desc">Click vào nút chọn hình để up hình hoặc dán link hình vào ô trống. Up hình với tỉ lệ width x height: 210x210; 300x300</small> </p>
@@ -96,8 +96,7 @@
               <div class="panel-footer">
                 <div class="row">
                   <div class="col-sm-5 col-sm-offset-4">
-                    <button class="btn btn-primary">Cập nhật</button>
-                    <button type="reset" class="btn btn-default">Làm lại</button>
+                    <button class="btn btn-primary">Cập nhật</button>                    
                   </div>
                 </div>
               </div>

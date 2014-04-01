@@ -75,29 +75,29 @@
               </div>
               <div class="panel-body">
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Họ và tên <span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Họ tên <span class="asterisk">*</span></label>
                   <div class="col-sm-6">                    
-                    <input type="text" name="hoten" id="hoten" title="Điền họ tên đầu đủ!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" required/>
+                    <input type="text" name="hoten" id="hoten" title="Điền họ tên đầu đủ!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Tên đăng nhập <span class="asterisk">*</span></label>
                   <div class="col-sm-6">
-                    <input type="text" name="username" title="Điền tên đăng nhập!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" id="username" required />
+                    <input type="text" name="tendangnhap" id="tendangnhap" title="Điền tên đăng nhập!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" />
                   </div>
                 </div>      
 
                  <div class="form-group">
                   <label class="col-sm-2 control-label">Mật khẩu <span class="asterisk">*</span></label>
                   <div class="col-sm-6">
-                    <input type="password" name="password" title="Điền mật khẩu!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" id="password" required />
+                    <input type="password" name="matkhau" id="matkhau" title="Điền mật khẩu!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" />
                   </div>
                 </div>    
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Email <span class="asterisk">*</span></label>
                   <div class="col-sm-6">
-                    <input type="email" name="email" id="email" title="Điền địa chỉ email!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" required />
+                    <input type="email" name="email" id="email" title="Điền địa chỉ email!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" />
                   </div>
                 </div>
 
@@ -105,7 +105,7 @@
                   <label class="col-sm-2 control-label">Ngày sinh<span class="asterisk">*</span></label>
                   <div class="col-sm-4">
                      <div class="input-group">
-                      <input name="namsinh" type="text" title="Chọn ngày sinh!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" placeholder="mm/dd/yyyy" id="datepicker" required>
+                      <input name="namsinh" type="text" title="Chọn ngày sinh!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" placeholder="mm/dd/yyyy" id="datepicker">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                   </div>
@@ -115,39 +115,38 @@
                   <label class="col-sm-2 control-label">Giới tính<span class="asterisk">*</span></label>
                   <div class="col-sm-6">
                     <div class="rdio rdio-primary">
-                      <input type="radio" id="male" value="1" name="gender" required >
+                      <input type="radio" id="male" value="1" name="gioitinh" checked>
                       <label for="male">Nam</label>
                     </div><!-- rdio -->
                     <div class="rdio rdio-primary">
-                      <input type="radio" value="0" id="female" name="gender">
+                      <input type="radio" value="0" id="female" name="gioitinh">
                       <label for="female">Nữ</label>
                     </div><!-- rdio -->
-                    <label class="error" for="gender"></label>
+                    <label class="error" for="gioitinh"></label>
                   </div>
                   </div>
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">CMND <span class="asterisk">*</span></label>
                   <div class="col-sm-6">
-                    <input name="CMND" title="Điền số chứng minh nhân dân!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" id="CMND" required></input>
+                    <input name="CMND" title="Điền số chứng minh nhân dân!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" id="CMND"></input>
                   </div>
                 </div>          
 
                   <div class="form-group">
                   <label class="col-sm-2 control-label">Số điện thoại <span class="asterisk">*</span></label>
                   <div class="col-sm-6">
-                    <input name="SDT" title="Điền số điện thoại!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" id="SDT" required></input>
+                    <input name="SDT" title="Điền số điện thoại!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" id="SDT"></input>
                   </div>
                 </div>        
                 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Quyền<span class="asterisk">*</span></label>
                   <div class="col-sm-3">
-                    <select id="fruits" name="quyen" class="form-control " required="">
-                      <option value="">Chọn quyền</option>   
+                    <select id="fruits" name="quyen" class="form-control ">                        
                       <option value="1">Quản lý</option> 
                       <option value="2">người dùng</option>
-                      <option value="3">Khách hàng</option>                     
+                      <option value="3" selected>Khách hàng</option>                     
                     </select>
                   </div>
                 </div>
@@ -157,7 +156,7 @@
                   <div class="col-sm-6">
                     <div class="col-sm-6">
                       <div class="rdio rdio-primary">
-                        <input type="radio" id="on" value="1" name="trangthai" required="" checked>
+                        <input type="radio" id="on" value="1" name="trangthai" checked>
                         <label for="on">Đang hoạt động</label>
                       </div><!-- rdio -->
                     </div>
@@ -192,8 +191,7 @@
               <div class="panel-footer">
                 <div class="row">
                   <div class="col-sm-5 col-sm-offset-4">
-                    <button class="btn btn-primary">Thêm mới</button>
-                    <button type="reset" class="btn btn-default">Làm lại</button>
+                    <button class="btn btn-primary">Thêm mới</button>                    
                   </div>
                 </div>
               </div>

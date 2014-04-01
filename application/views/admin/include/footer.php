@@ -19,14 +19,13 @@
 <script src="<?=base_url()?>static/admin/js/chosen.jquery.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/custom.js"></script>
 <script src="<?=base_url()?>static/admin/js/admin.custom.js"></script>
-
-
 <script src="<?=base_url()?>static/admin/js/jquery.autogrow-textarea.js"></script>
 <script src="<?=base_url()?>static/admin/js/bootstrap-timepicker.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/jquery.maskedinput.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/chosen.jquery.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/ckeditor/ckeditor.js"></script>
-<script>
+
+<script>    
   jQuery(document).ready(function() {    
 
     var spinner = jQuery('#Luotxem').spinner();
@@ -50,68 +49,112 @@
       jQuery(this).find('.table-action-hide a').animate({opacity: 1});
     },function(){
       jQuery(this).find('.table-action-hide a').animate({opacity: 0});
-    });
-    
-      // Basic Form
-    jQuery("#basicForm").validate({
+    });           
 
+    jQuery.validator.addMethod(
+        "ktngaysinh",
+        function(value, element) {
+            var check = false;
+            var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+            if( re.test(value)){
+                var adata = value.split('/');
+                var mm = parseInt(adata[0],10);
+                var dd = parseInt(adata[1],10);
+                var yyyy = parseInt(adata[2],10);
+                var xdata = new Date(yyyy,mm-1,dd);
+                if ( ( xdata.getFullYear() == yyyy ) && ( xdata.getMonth () == mm - 1 ) && ( xdata.getDate() == dd ) )
+                    check = true;
+                else
+                    check = false;
+            } else
+                check = false;
+            return this.optional(element) || check;
+        },
+        "Vui lòng chọn ngày sinh hợp lệ theo định dạng mm/dd/yyyy"
+    );
+
+    jQuery.validator.addMethod(
+        "kttendangnhap",
+        function(value, element) {
+            var check = false;
+            var re = /^([a-zA-Z0-9]+)$/;
+            if( re.test(value))                 
+                    check = true;
+            else
+                    check = false;            
+            return this.optional(element) || check;
+        },
+        "Vui lòng chỉ nhập chữ cái và chữ số"
+    );
+
+    $('#basicForm').validate({
         rules: { 
-            hoten: "required",
-            username: "required", 
-            password: "password",
-            email: { 
-                required: true, 
+            hoten: {
+                required: true,
+                rangelength: [6, 20]
+
+            },
+            tendangnhap: {
+                required: true,
+                rangelength: [6, 20],
+                kttendangnhap: true
+            },
+            matkhau: {
+                required: true,
+                rangelength: [6, 20]
+
+            },
+            email: {
+                required: true,
                 email: true
+
+            },
+            namsinh: {
+                required: true,
+                date: true,
+                ktngaysinh: true               
             },
             CMND: {
                 required: true,
                 number: true,
-                minlenght:9,
+                rangelength: [9, 9]
+
             },
             SDT: {
                 required: true,
-                number: true,
-                minlenght:9,
-            },
-            gender: "required",
-            trangthai: "required", //bợn có sửa trong này ko ??
-            namsinh: "required",
-            quyen: "required",
-            soluong: {
-                required: true,
-                number: true,
-                maxlenght:4,
-            },
+                rangelength: [10, 11]
+            },  
         }, 
         messages: { 
-            hoten: "Hãy điền họ tên",
-            username: "Hãy điền tên đăng nhập", 
-            password: "Hãy điền mật khẩu",
-            email: { 
-                required: "Hãy nhập một địa chỉ email hợp lệ", 
-                email:"Địa chỉ email không hợp lệ"
+            hoten: {
+                required: "Vui lòng điền họ tên",
+                rangelength: "Vui lòng nhập từ 6 đến 20 ký tự"
+            },
+            tendangnhap: {
+                required: "Vui lòng điền tên đăng nhập",
+                rangelength: "Vui lòng nhập từ 6 đến 20 ký tự",                
+            },
+            matkhau: {
+                required: "Vui lòng điền mật khẩu",
+                rangelength: "Vui lòng nhập từ 6 đến 20 ký tự"
+            },
+            email: {
+                required: "Vui lòng điền email",
+                email: "Vui lòng nhập một địa chỉ email hợp lệ"
+            },
+            namsinh: {
+                required: "Vui lòng chọn ngày sinh"                
             },
             CMND: {
-                required: "Hãy nhập số CMND",
-                number: "Hãy nhập đúng số CMND",
-                minlenght: "Hãy nhập đúng số CMND"
+                required: "Vui lòng điền số CMND",
+                number: "Vui lòng chỉ nhập chữ số. Ví dụ: 123456789",
+                rangelength: "Vui lòng chỉ nhập 9 chữ số. Ví dụ: 123456789"
             },
             SDT: {
-                required: "Hãy nhập số điện thoại",
-                number: "Hãy nhập đúng số điện thoại",
-                minlenght: "Hãy nhập đúng số điện thoại"
-            },
-            gender: "Xin chọn giới tính",
-            trangthai: "Xin chọn trạng thái",
-            namsinh: "Xin chọn năm sinh",
-            quyen: "Xin chọn quyền",
-            soluong: {
-                required: "Hãy nhập số lượng",
-                number: "Hãy nhập đúng số lượng",
-                maxlenght: "Số lượng quá lớn"
+                required: "Vui lòng điền số điện thoại",
+                rangelength: "Vui lòng nhập 10 hoặc 11 chữ số"
             },
         }, 
-
        
       highlight: function(element) {
         jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
@@ -120,8 +163,7 @@
         jQuery(element).closest('.form-group').removeClass('has-error');
       }
     });   
-
-
+    
 
     });
 </script>

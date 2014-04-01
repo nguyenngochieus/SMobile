@@ -45,11 +45,16 @@ Class Tintuc_model extends CI_Model{
 			"Ngaydang" => $Ngaydang,
 			"Hinh" => $Hinh,
 			"Tacgia" => $Tacgia	
-		);
+		);		
+
+		$this->db->trans_start();
 		$this->db->where("Id", $Id);
 		$query = $this->db->update($this->table, $data);
-		if($this->db->affected_rows() > 0) return TRUE;
-		return FALSE;
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status() === FALSE)
+			return FALSE;
+		else return TRUE;
 	}
 
 	function delete($id)
