@@ -57,6 +57,7 @@ Class Nguoidung_model extends CI_Model{
 		);
 		$this->db->where("Id", $Id);
 		$query = $this->db->update($this->table, $data);
+		var_dump($query); exit();
 		if($this->db->affected_rows() > 0) return TRUE;
 		return FALSE;
 	}

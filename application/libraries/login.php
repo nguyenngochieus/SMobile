@@ -760,6 +760,27 @@ class Login{
 		}
 		return "";
 	}
+
+	//Get ID theo dang nhap
+	function GetUserID(){
+		$this->CI=&get_instance();
+		$temp = $this->getLoginUsername();
+		if(!empty($temp))
+		{
+			$query = $this->CI->db->get_where($this->admin,array("TENDANGNHAP" => $temp));
+			$UserID = $query->row()->ID;
+			if(!empty($UserID))
+			{
+				return $UserID;
+			}
+			else
+			{
+				return "";
+			}
+		}
+		return "";
+	}
+
 	// Get name theo username
 	function GetNameUser($temp){
 		$this->CI=&get_instance();

@@ -126,7 +126,7 @@
                   <img src="<?=base_url()?>upload/files/<?php echo $item['HINHANH'];?>" id="ViewHinh" alt="" width="150px" height="auto" />
                 </div>
                 <div class="col-sm-8">
-                <input type="text" name="HinhDaiDien" class="form-control" id="HinhAnh" onchange="ChangeImage()"  value="<?php echo $item['HINHANH'];?>" />
+                <input type="text" name="HinhDaiDien" class="form-control" id="HinhAnh" onchange="ChangeImage()"  value="/SMobile/upload/files/<?php echo $item['HINHANH'];?>" />
                 <a class="btn btn-default" href="javascript:BrowseServer(HinhAnh)" > <span>Chọn hình</span></a> </span><br />
                 <small style="font-size:14px;" class="desc">Click vào nút chọn hình để up hình hoặc dán link hình vào ô trống. Up hình với tỉ lệ width x height: 210x210; 300x300</small> </p>
                  </div>

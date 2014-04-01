@@ -12,7 +12,21 @@ Class admin extends CI_Controller{
 		$this->load->library('login');
 		$this->data['Username'] = $this->login->getLoginUsername();  
 		$this->data['Name'] = $this->login->GetName();
+		$this->data['UserID'] = $this->login->GetUserID();
+
 	}	
+
+	function index(){
+		if($chk==1||$chk==2)
+		{
+			return redirect(base_url('admin/home'));
+		}
+		else
+		{
+			return redirect(base_url('admin/dangnhap'));
+		}
+	}
+
 	function dangnhap($reg = ""){
 		if(isset($reg) && $reg != "")
 		$this->data['success'] = "Đăng ký thành công! Mời bạn đăng nhập...";
@@ -50,10 +64,12 @@ Class admin extends CI_Controller{
 		else $this->load->view("admin/index",$this->data);
 	}
 
-	public function logout(){
+	public function dangxuat(){
 		$this->login->logout();
 		return redirect(base_url());
 	}
+
+
 
 	function dangky(){
 
@@ -131,8 +147,7 @@ Class admin extends CI_Controller{
 				$HinhDaiDien = "";
 
 				$tmp = $this->nguoidung_model->insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
-				if($tmp){
-					$this->data['ck_success'] = "1";
+				if($tmp){					
 					echo redirect(base_url('admin/dangnhap/success'));
 				} 
 				else echo redirect(base_url('admin/error/insert'));			
@@ -245,6 +260,7 @@ Class admin extends CI_Controller{
 					$Trangthai = $this->input->post('trangthai',TRUE);
 					$HinhDaiDien = $this->input->post('HinhDaiDien',TRUE);
 					$HinhDaiDien =  substr($HinhDaiDien,22);
+					
 					$tmp = $this->nguoidung_model->update($id, $Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
 					if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
 					else echo redirect(base_url('admin/error/edit'));
