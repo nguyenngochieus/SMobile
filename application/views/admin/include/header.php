@@ -7,7 +7,7 @@
   <meta name="author" content="Kelvin Lee & Cupid">
   <link rel="shortcut icon" href="<?=base_url()?>static/admin/images/favicon.png" type="image/png">
 
-  <title><?php echo $title; ?> - SMobile</title>
+  <title><?php echo $title; ?> - Trang quản trị SMobile</title>
 
   <link rel="stylesheet" href="<?=base_url()?>static/admin/css/style.default.css" />
   <link rel="stylesheet" href="<?=base_url()?>static/admin/css/jquery.datatables.css" />

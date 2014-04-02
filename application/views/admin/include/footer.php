@@ -24,7 +24,6 @@
 <script src="<?=base_url()?>static/admin/js/jquery.maskedinput.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/chosen.jquery.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/ckeditor/ckeditor.js"></script>
-
 <script>    
   jQuery(document).ready(function() {    
 
@@ -87,8 +86,25 @@
         "Vui lòng chỉ nhập chữ cái và chữ số"
     );
 
-    $('#basicForm').validate({
+        jQuery.validator.addMethod(
+        "ktmatkhau",
+        function(value, element) {
+            var check = false;
+            var re = /^[0-9A-Za-z!@#$%]+$/;
+            if( re.test(value))                 
+                    check = true;
+            else
+                    check = false;            
+            return this.optional(element) || check;
+        },
+        "Mật khẩu không hợp lệ"
+    );
+
+    $('#basicForm').validate({        
         rules: { 
+
+            // Người dùng
+
             hoten: {
                 required: true,
                 rangelength: [6, 20]
@@ -101,7 +117,8 @@
             },
             matkhau: {
                 required: true,
-                rangelength: [6, 20]
+                rangelength: [6, 20],
+                ktmatkhau: true
 
             },
             email: {
@@ -123,49 +140,132 @@
             SDT: {
                 required: true,
                 rangelength: [10, 11]
-            },  
+            }, 
+
+            // Đánh giá
+
+            Luotxem: {
+                required: true,
+                number: true
+            },
+            Luotmua: {
+                required: true,
+                number: true
+            },
+            Luotdanhgia: {
+                required: true,
+                number: true
+            },
+            Tongdiem: {
+                required: true,
+                number: true
+            },    
+
+            // Tin tức
+
+            Tieude: "required",
+            
+            // Sản phẩm 
+
+            tensanpham: "required",
+            loai: "required",
+            nhacungcap: "required",
+            soluong: {
+                required: true,
+                number: true,
+                maxlength: 9
+            },
+            dongia: {
+                required: true,
+                number: true,
+                maxlength: 18
+            },
         }, 
         messages: { 
+
+            // Người dùng
+
             hoten: {
-                required: "Vui lòng điền họ tên",
+                required: "Chưa nhập họ tên",
                 rangelength: "Vui lòng nhập từ 6 đến 20 ký tự"
             },
             tendangnhap: {
-                required: "Vui lòng điền tên đăng nhập",
-                rangelength: "Vui lòng nhập từ 6 đến 20 ký tự",                
+                required: "Chưa nhập tên đăng nhập",
+                rangelength: "Vui lòng nhập từ 6 đến 20 ký tự"
             },
             matkhau: {
-                required: "Vui lòng điền mật khẩu",
+                required: "Chưa nhập mật khẩu",
                 rangelength: "Vui lòng nhập từ 6 đến 20 ký tự"
             },
             email: {
-                required: "Vui lòng điền email",
+                required: "Chưa nhập email",
                 email: "Vui lòng nhập một địa chỉ email hợp lệ"
             },
             namsinh: {
-                required: "Vui lòng chọn ngày sinh"                
+                required: "Chưa chọn ngày sinh", 
+                date: "Vui lòng chọn một ngày sinh hợp lệ"            
             },
             CMND: {
-                required: "Vui lòng điền số CMND",
+                required: "Chưa nhập số CMND",
                 number: "Vui lòng chỉ nhập chữ số. Ví dụ: 123456789",
                 rangelength: "Vui lòng chỉ nhập 9 chữ số. Ví dụ: 123456789"
             },
             SDT: {
-                required: "Vui lòng điền số điện thoại",
+                required: "Chưa nhập số điện thoại",
                 rangelength: "Vui lòng nhập 10 hoặc 11 chữ số"
             },
+
+            // Đánh giá
+
+            Luotxem: {
+                required: "Chưa nhập lượt xem",
+                number: "Vui lòng chỉ nhập số"
+            },
+            Luotmua: {
+                required: "Chưa nhập lượt xem",
+                number: "Vui lòng chỉ nhập số"
+            },
+            Luotdanhgia: {
+                required: "Chưa nhập lượt xem",
+                number: "Vui lòng chỉ nhập số"
+            },
+            Tongdiem: {
+                required: "Chưa nhập lượt xem",
+                number: "Vui lòng chỉ nhập số"
+            },
+
+            // Tin tức
+
+            Tieude: "Chưa nhập tiêu đề",
+            
+            // Sản phẩm
+
+            tensanpham: "Chưa nhập tên sản phẩm",
+            loai: "Chưa chọn loại sản phẩm",
+            nhacungcap: "Chưa chọn nhà cung cấp",
+            soluong: {
+                required: "Chưa nhập số lượng",
+                number: "Vui lòng chỉ nhập số",
+                maxlength: "Số lượng quá lớn"
+            },
+            dongia: {
+                required: "Chưa nhập đơn giá",
+                number: "Vui lòng chỉ nhập số",
+                maxlength: "Đơn giá quá lớn"
+            },                   
         }, 
        
-      highlight: function(element) {
-        jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-      },
-      success: function(element) {
-        jQuery(element).closest('.form-group').removeClass('has-error');
-      }
-    });   
-    
+        highlight: function(element) {
+            jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+        },
+        success: function(element) {
+            jQuery(element).closest('.form-group').removeClass('has-error');
+        }    
+    }); 
 
-    });
+
+}); 
+   
 </script>
 <script>
     //---------------Edit code htmlv4--------

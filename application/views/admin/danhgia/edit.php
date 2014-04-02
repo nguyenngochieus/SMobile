@@ -16,42 +16,42 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Tên sản phẩm </label>
                   <div class="col-sm-10">
-                    <input type="text" name="tensanpham" class="form-control" id="tensanpham" value="<?php echo $item['TENSANPHAM']?>" required readonly/>
+                    <input type="text" name="tensanpham" class="form-control" id="tensanpham" value="<?php echo $item['TENSANPHAM']?>" readonly/>
                   </div>
                 </div>   
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Lượt xem </label>
                   <div class="col-sm-10">
-                    <input type="text" id="Luotxem" name="Luotxem" class="form-control" value="<?php echo $item['LUOTXEM']?>" required />                    
+                    <input type="text" id="Luotxem" name="Luotxem" class="form-control" value="<?php echo $item['LUOTXEM']?>"/>                    
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Lượt mua </label>
                   <div class="col-sm-10">
-                    <input type="text" id="Luotmua" name="Luotmua" class="form-control" value="<?php echo $item['LUOTMUA']?>" required />                    
+                    <input type="text" id="Luotmua" name="Luotmua" class="form-control" value="<?php echo $item['LUOTMUA']?>" />                    
                   </div>
                 </div>  
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Lượt đánh giá </label>
                   <div class="col-sm-10">
-                    <input type="text" id="Luotdanhgia" name="Luotdanhgia" class="form-control" value="<?php echo $item['LUOTDANHGIA']?>" required />                    
+                    <input type="text" id="Luotdanhgia" name="Luotdanhgia" class="form-control" value="<?php echo $item['LUOTDANHGIA']?>" />                    
                   </div>
                 </div>  
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Tổng điểm</label>
                   <div class="col-sm-10">
-                    <input type="text" id="Tongdiem" name="Tongdiem" class="form-control" value="<?php echo $item['TONGDIEM']?>" required />                    
+                    <input type="text" id="Tongdiem" name="Tongdiem" class="form-control" value="<?php echo $item['TONGDIEM']?>" />                    
                   </div>
                 </div> 
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Điểm đánh giá </label>
                   <div class="col-sm-2">
-                    <input type="text" name="Diemdanhgia" class="form-control" id="Diemdanhgia" value="<?php echo $item['DIEMDANHGIA']?>" required readonly/>
+                    <input type="text" name="Diemdanhgia" class="form-control" id="Diemdanhgia" value="<?php echo $item['DIEMDANHGIA']?>" readonly/>
                   </div>
                 </div>                               
 

@@ -30,12 +30,12 @@ Class dangky extends CI_Controller{
 	               array(
 	                     'field'   => 'tendangnhap', 
 	                     'label'   => 'Tên đăng nhập', 
-	                     'rules'   => 'trim|required|xss_clean|min_length[6]|alpha_numeric|is_unique[nguoidung.TENDANGNHAP]|max_length[20]'
+	                     'rules'   => 'trim|required|xss_clean|min_length[6]|alpha_dash|is_unique[nguoidung.TENDANGNHAP]|max_length[20]'
 	                  ),
 	               array(
 	                     'field'   => 'matkhau', 
 	                     'label'   => 'Mật khẩu', 
-	                     'rules'   => 'required|max_length[20]|min_length[6]'
+	                     'rules'   => 'required|max_length[20]|min_length[6]|callback_ktmatkhau'
 	                  ),
 	               array(
 	                     'field'   => 'rematkhau', 
@@ -60,7 +60,7 @@ Class dangky extends CI_Controller{
 			$this->form_validation->set_message('max_length', '%s không quá 20 ký tự');
 			$this->form_validation->set_message('min_length', '%s không thể ít hơn 6 ký tự');
 			$this->form_validation->set_message('valid_email', 'Địa chỉ email không hợp lệ');	
-			$this->form_validation->set_message('alpha_numeric', 'Tên đăng nhập không hợp lệ');
+			$this->form_validation->set_message('alpha_dash', 'Tên đăng nhập không hợp lệ');
 			$this->form_validation->set_message('is_unique', '%s đã được sử dụng');	
 
 			$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
@@ -102,4 +102,13 @@ Class dangky extends CI_Controller{
     	}
 	}	
 
+	public function ktmatkhau($matkhau)
+	{	    
+	    if (preg_match("/^[0-9A-Za-z!@#$%]+$/", $matkhau)) return TRUE;
+    	else 
+    	{
+			$this->form_validation->set_message('ktmatkhau', 'Mật khẩu không hợp lệ');
+    		return FALSE;
+    	}
+	} 
 }
