@@ -8,4 +8,14 @@ $lang['loaisanpham'] = "Loại sản phẩm";
 $lang['cungncc'] = "Sản phẩm cùng nhà cung cấp";
 $lang['menu_gia'] = "Giá tiền";
 $lang['SPCungLoai'] = "Sản phẩm cùng loại";
+$lang['giohang'] = "Giỏ hàng";
+$lang['tieptucmuahang'] = "Tiếp tục mua hàng";
+$lang['thanhtoan'] = "Thanh toán";
+$lang['sanpham'] = "Tên sản phẩm";
+$lang['giatien'] = "Giá";
+$Lang['soluong'] = "Số lượng";
+$lang['thanhtien'] = "Thành tiền";
+$lang['phivanchuyen'] = "Phí vận chuyển";
+$lang['tongcong'] = "Tổng cộng";
+$lang['no_product'] = "Bạn chưa chọn sản phẩm"
 ?>

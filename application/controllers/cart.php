@@ -1,6 +1,6 @@
 <?php
  
-class Cart extends CI_Controller { // Our Cart class extends the Controller class
+class Cart extends Public_Controller { 
      
     public function __construct()
 	{
@@ -15,23 +15,58 @@ class Cart extends CI_Controller { // Our Cart class extends the Controller clas
 	    $this->load->view('home', $data); // Display the page with the above defined content 
 	} 
 
+	public function giohang()
+	{
+		if($this->cart->contents())
+		{
+			$this->load->view('include/header',$this->data);
+		    $this->load->view('cart/giohang.php');
+		    $this->load->view('include/footer');
+		}
+		else
+		{
+			redirect(base_url().'home');
+		}
+		
+	}
+
 	function add_cart_item(){
      
-    if($this->cart_model->validate_add_cart_item() == TRUE){
-         
+    if($this->cart_model->validate_add_cart_item() == TRUE){         
         // Check if user has javascript enabled
         if($this->input->post('ajax') != '1'){
-            redirect('home'); // If javascript is not enabled, reload the page with new data
+            redirect(base_url().'home'); // If javascript is not enabled, reload the page with new data
         }
         else{
-            echo 'fafa'; // If javascript is enabled, return true, so the cart gets updated
+            echo 'true'; // If javascript is enabled, return true, so the cart gets updated
 	        }
 	    }     
 	} 
 
+	function remove_cart_item(){
+    $id = $this->input->get('id',TRUE);    
+    if($this->cart_model->validate_remove_cart_item($id) == TRUE){         
+        // Check if user has javascript enabled
+        //if($this->input->post('ajax') != '1'){
+        redirect(base_url().'cart/giohang'); // If javascript is not enabled, reload the page with new data
+        }
+        else{
+            echo 'true'; // If javascript is enabled, return true, so the cart gets updated
+	        }
+	      
+	} 
+
 	function show_cart(){
-    $this->load->view('cart');
+    	$this->load->view('minicart');
+	}
+
+	function empty_cart(){
+	    $this->cart->destroy(); // Destroy all cart data
+	    redirect(base_url().'home'); // Refresh the page
+	}
+
+	function update_cart(){
+	    $this->cart_model->validate_update_cart();
+	    redirect(base_url().'cart/giohang');
 	}
 }
-/* End of file cart.php */
-/* Location: ./application/controllers/cart.php */

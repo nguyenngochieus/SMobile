@@ -32,10 +32,9 @@
                 <!--Language Switcher Ends-->
                 <!--Top Links Starts-->
                 <ul class="top_links">
-                    <li><a href="#">My Account</a></li>
-                    <li><a href="#">Wishlist</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li class="highlight"><a href="#">Sign Up</a></li>
+                    <li><a href="">My Account</a></li>
+                    <li><a href="<?=base_url()?>dangnhap">Login</a></li>
+                    <li class="<?=base_url()?>dangky"><a href="#">Sign Up</a></li>
                 </ul>
                 <!--Top Links Ends-->
             </div>
@@ -62,16 +61,12 @@
                     echo '<li><a href="'.base_url().'sanpham/loaisanpham/'.$item->ID.'">'.$item->TEN.'</a></li>';
                 } ?>
             </ul>
-            <div class="minicart"> <a href="#" class="minicart_link" > <span class="item"><b>2</b> ITEM /</span> <span class="price"><b>$69.20</b></span> </a>
+            <div class="minicart" id="cart_content"> 
+            <a href="#" class="minicart_link" >
+                <span class="item"><b><?=$this->cart->total_items()?></b> ITEM /</span> <span class="price"><b><?=$this->cart->format_number($this->cart->total())?></b></span> </a>
                 <div class="cart_drop"> <span class="darw"></span>
-                    <ul>
-                        <li><img src="<?= base_url()?>static/images/mini_c_item1.png"><a href="#">Clogs Beach/Garden Clog</a> <span class="price">$49.90</span></li>
-                        <li><img src="<?= base_url()?>static/images/mini_c_item2.png"><a href="#">Faded chambray shorts</a> <span class="price">$12.90</span></li>
-                        <div class="cart_bottom">
-                            <div class="subtotal_menu"><small>Subtotal:</small><big>$69.20</big></div>
-                            <a href="leisure_cart.html">Checkout</a></div>
-                    </ul>
-                </div>
+                 <?php echo $this->view('minicart.php'); ?>
+                 </div>
             </div>
         </nav>
         <!--Navigation Ends-->

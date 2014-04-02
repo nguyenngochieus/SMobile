@@ -29,7 +29,7 @@
                 <ul class="breadcrumb">
                     <li><a href="<?=base_url()?>">Home</a></li> 
                     <li><a href="<?=base_url()?>sanpham/loaisanpham/<?=$idLoai?>"><?=$TenLoai->TEN?></a></li>                
-                    <li class="active"><a href="#"><?=$TenNhaCungCap->TEN?></a></li>
+                    <li class="active"><a href="#"><?=$TenNhaCungCap?></a></li> 
                 </ul>
                 <!--Toolbar-->
                 <div class="toolbar">

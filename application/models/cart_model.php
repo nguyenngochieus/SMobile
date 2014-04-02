@@ -29,12 +29,12 @@
                     // Create an array with product information
                     $data = array(
                         'id'      => $id,
-                        'qty'     => $cty
+                        'qty'     => $cty,
+                        'price'   => $row->DONGIA,
+                        'name'    => $row->TENSANPHAM
                     );
-                    var_dump($data);
                     // Add the data to the cart using the insert function that is available because we loaded the cart library
                     $this->cart->insert($data); 
-                    var_dump($this->cart->contents());
                     return TRUE; // Finally return TRUE
                 }
              
@@ -42,8 +42,42 @@
                 // Nothing found! Return FALSE! 
                 return FALSE;
             }
-        }       
-    }
+        }    
+
+        function validate_remove_cart_item($id){            
+            $data = array(
+               'rowid' => '$id',
+               'qty'   => 0
+            );
+
+            $this->cart->update($data); 
+            return TRUE;     
+        }    
+
+        function validate_update_cart(){
+     
+        // Get the total number of items in cart
+        $total = $this->cart->total_items();
+         
+        // Retrieve the posted information
+        $item = $this->input->post('rowid');
+        $qty = $this->input->post('qty'); 
+        // Cycle true all items and update them
+        for($i=0;$i < $total;$i++)
+        {
+            // Create an array with the products rowid's and quantities. 
+            $data = array(
+               'rowid' => $item[$i],
+               'qty'   => $qty[$i]
+            );
+             
+            // Update the cart with the new information
+            $this->cart->update($data);
+        }
+ 
+    }   
+}
+
      
 /* End of file cart_model.php */
-/* Location: ./application/models/cart_model.php */
+/* Location:d ./application/models/cart_model.php */
