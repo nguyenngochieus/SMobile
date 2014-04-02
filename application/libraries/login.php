@@ -335,7 +335,6 @@ class Login{
 										WHERE Type = 99 || Type = 88");
 		return $query->result();
 	}
-	
 	//login($arr, $remember = FALSE, $baomat = 'SMobileShop'): 1 = Thành công; -2 = XSS; -3 = Username không tồn tại; -4 = Password ko đúng; -6 = Type ko tồn tại; -7 = Tình trạng tài khoản không được hoạt động;
 	public function dangnhap($arr, $remember = FALSE, $baomat = 'SMobileShop'){
 		$this->CI=&get_instance();
@@ -401,8 +400,7 @@ class Login{
 			else return -3;
 		}
 		else return -2;
-	}
-	
+	}	
 	//getAdmin($username): Null OR tbl_admin
 	function getAdmin($username){
 		$this->CI=&get_instance();
@@ -418,8 +416,7 @@ class Login{
 			}
 		}
 		return NULL;
-	}
-	
+	}	
 	//getLoginRole($username): 0 = error, 99 = admin, 77 = master
 	function getLoginRole($username){
 		$this->CI=&get_instance();
@@ -435,8 +432,7 @@ class Login{
 			}
 		}
 		return 0;
-	}
-	
+	}	
 	//getLoginUsername(): Null OR Username
 	function getLoginUsername(){
 		$this->CI=&get_instance();
@@ -531,13 +527,12 @@ class Login{
 		else return 0;
 	}
 	
-	//logout()
+	// Đăng xuất
 	function logout(){
 		$this->CI=&get_instance();
 		delete_cookie("un");delete_cookie("bm");delete_cookie("lg");
 		$this->CI->session->sess_destroy();
 	}
-	
 	//checkPage($arr, $page): 1 = Có Quyền; 0 = Không có quyền; -2 = XSS; -1 = Username không tồn tại
 	function checkPage($arr, $page){
 		$this->CI=&get_instance();
@@ -741,7 +736,7 @@ class Login{
 			return FALSE;
 		}
 	}
-	//Get Name theo dang nhap
+	// Get Name theo dang nhap
 	function GetName(){
 		$this->CI=&get_instance();
 		$temp = $this->getLoginUsername();
@@ -760,8 +755,7 @@ class Login{
 		}
 		return "";
 	}
-
-	//Get ID theo dang nhap
+	// Get ID theo dang nhap
 	function GetUserID(){
 		$this->CI=&get_instance();
 		$temp = $this->getLoginUsername();
@@ -780,7 +774,6 @@ class Login{
 		}
 		return "";
 	}
-
 	// Get name theo username
 	function GetNameUser($temp){
 		$this->CI=&get_instance();
@@ -798,6 +791,19 @@ class Login{
 			}
 		}
 		return "";
+	}
+	// Get QUYEN theo username
+	function GetUserRole(){
+		$this->CI=&get_instance();
+		$username = $this->getLoginUsername();
+		if(!empty($username))
+		{
+
+			$query = $this->CI->db->get_where($this->admin,array("TENDANGNHAP" => $username));
+			$QUYEN = 0;
+			$QUYEN = $query->row()->QUYEN;
+		}
+		return $QUYEN;
 	}
 	//Get link theo username
 	function GetLink($temp){

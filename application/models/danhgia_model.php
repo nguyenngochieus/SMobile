@@ -10,7 +10,7 @@ Class Danhgia_model extends CI_Model{
 	function get_danhgia(){		
 		$query = $this->db->query("SELECT B.MASANPHAM, A.TENSANPHAM, B.LUOTXEM, B.LUOTMUA, B.LUOTDANHGIA, B.TONGDIEM, B.DIEMDANHGIA FROM SANPHAM A, danhgia B WHERE A.ID = B.MASANPHAM");
 		return $query->result_array();
-	}
+	}	
 
 	function insert($Masanpham, $Luotxem, $Luotmua, $Luotdanhgia, $Tongdiem, $Diemdanhgia)
 	{
@@ -44,11 +44,16 @@ Class Danhgia_model extends CI_Model{
 			"Luotdanhgia" => $Luotdanhgia,
 			"Tongdiem" => $Tongdiem,
 			"Diemdanhgia" => $Diemdanhgia,			
-		);
+		);		
+
+		$this->db->trans_start();
 		$this->db->where("MASANPHAM", $Masanpham);
-		$query = $this->db->update($this->table, $data);
-		if($this->db->affected_rows() > 0) return TRUE;
-		return FALSE;
+		$query = $this->db->update($this->table, $data);							
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status() === FALSE)
+			return FALSE;
+		else return TRUE;
 	}
 
 }

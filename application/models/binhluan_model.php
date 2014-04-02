@@ -12,6 +12,12 @@ Class Binhluan_model extends CI_Model{
 		return $query->result_array();
 	}
 
+	function get_binhluan_user($uid){
+				
+		$query = $this->db->query("SELECT B.ID, S.TENSANPHAM, N.TENNGUOIDUNG, B.NOIDUNG, B.THOIGIAN FROM sanpham S, nguoidung N, binhluan B WHERE S.ID = B.MASANPHAM AND N.ID = B.MAKHACHHANG AND B.MAKHACHHANG = '".$uid."' ORDER BY B.THOIGIAN DESC");		
+		return $query->result_array();
+	}
+
 	function edit($id){
 		echo $id;
 		$query = $this->db->query("SELECT B.ID, B.MASANPHAM, B.MAKHACHHANG, S.TENSANPHAM, N.TENNGUOIDUNG, B.NOIDUNG, B.THOIGIAN FROM sanpham S, nguoidung N, binhluan B WHERE S.ID = B.MASANPHAM AND N.ID = B.MAKHACHHANG AND B.ID = ".$id);
@@ -23,10 +29,15 @@ Class Binhluan_model extends CI_Model{
 		$data = array(
 			"Id" => $Id,
 			"Noidung"	=>	$Noidung,			
-		);		
-		$query = $this->db->query("UPDATE binhluan SET NOIDUNG = '".$Noidung."' WHERE ID = ".$Id);		
-		if($this->db->affected_rows() > 0) return TRUE;
-		return FALSE;
+		);					
+
+		$this->db->trans_start();
+		$query = $this->db->query("UPDATE binhluan SET NOIDUNG = '".$Noidung."' WHERE ID = ".$Id);							
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status() === FALSE)
+			return FALSE;
+		else return TRUE;
 	}
 
 	function delete($id)
