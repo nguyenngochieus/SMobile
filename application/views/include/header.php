@@ -40,7 +40,7 @@
                     } 
                     else{ 
                         ?>
-                        <li><a href="<?=base_url()?>taikhoan">Tài khoản</a></li>
+                        <li><a href="<?=base_url()?>user/taikhoan">Tài khoản</a></li>
                         <li><a href="<?=base_url()?>dangxuat">Đăng xuất</a></li>
                         <?php
                     } ?>

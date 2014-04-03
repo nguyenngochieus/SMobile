@@ -30,12 +30,14 @@ Class user extends Public_Controller{
 	function taikhoan(){
 			$this->load->view('include/header',$this->data);
 			$this->load->view('user/taikhoan');
+			$this->load->view('user/usermenu',$this->data);
 			$this->load->view('include/footer',$this->data);
 	}
 
 	function doimatkhau(){
 			$this->load->view('include/header',$this->data);
 			$this->load->view('user/doimatkhau');
+			$this->load->view('user/usermenu',$this->data);
 			$this->load->view('include/footer',$this->data);
 	}
 	
