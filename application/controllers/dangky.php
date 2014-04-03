@@ -12,7 +12,12 @@ Class dangky extends CI_Controller{
 
 		$check = $this->login->checkLogin();
 		if($check == 1 || $check == 2 )
-			return redirect(base_url('admin.html'));
+		{
+			$role = $this->login->GetUserRole();
+			if ($role == 3)
+				return redirect(base_url());
+			else return redirect(base_url('admin'));
+		}
 		else
 		{
 			$this->data['title'] = 'Đăng ký';
@@ -85,7 +90,7 @@ Class dangky extends CI_Controller{
 				$tmp = $this->nguoidung_model->insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
 				if($tmp){
 					$this->data['ck_success'] = "1";
-					echo redirect(base_url('dangnhap/index/success.html'));
+					echo redirect(base_url('dangnhap/index/success'));
 				} 
 				else echo redirect(base_url('admin/error/insert'));			
 			}

@@ -1,10 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class home extends Public_Controller {
-	
-	public function __construct()
-	{
-		parent::__construct();
+
+	public function __construct(){
+		parent:: __construct();		
+		$this->data['page'] = 'trangchu';				
+		$this->data['Username'] = $this->login->getLoginUsername();  
+		$this->data['Name'] = $this->login->GetName();
+		$this->data['UserID'] = $this->login->GetUserID();
+		$this->data['Quyen'] = $this->login->GetUserRole();
 	}
 
 	public function index()
