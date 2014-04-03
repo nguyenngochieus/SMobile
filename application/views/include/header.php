@@ -32,9 +32,18 @@
                 <!--Language Switcher Ends-->
                 <!--Top Links Starts-->
                 <ul class="top_links">
-                    <li><a href="">My Account</a></li>
-                    <li><a href="<?=base_url()?>dangnhap">Login</a></li>
-                    <li class="<?=base_url()?>dangky"><a href="#">Sign Up</a></li>
+                <?php if ($Quyen == 0)
+                    { ?>
+                        <li><a href="<?=base_url()?>dangnhap">Đăng nhập</a></li>
+                        <li><a href="<?=base_url()?>dangky">Đăng ký</a></li>
+                        <?php                                                
+                    } 
+                    else{ 
+                        ?>
+                        <li><a href="<?=base_url()?>taikhoan">Tài khoản</a></li>
+                        <li><a href="<?=base_url()?>dangxuat">Đăng xuất</a></li>
+                        <?php
+                    } ?>
                 </ul>
                 <!--Top Links Ends-->
             </div>
@@ -44,8 +53,8 @@
             <!--Search Starts-->
             <form class="header_search">
                 <div class="form-search">
-                    <input id="search" type="text" name="q" value="" class="input-text" autocomplete="off" placeholder="Search">
-                    <button type="submit" title="Search"></button>
+                    <input id="search" type="text" name="q" value="" class="input-text" autocomplete="off" placeholder="Tìm kiếm...">
+                    <button type="submit" title="Tìm kiếm"></button>
                 </div>
             </form>
             <!--Search Ends-->
@@ -56,14 +65,47 @@
         <!--Navigation Starts-->
         <nav>
             <ul class="primary_nav">
-                <li class="active"><a href="<?=base_url()?>">Home</a></li>
-                <?php foreach ($menu as $item) {
-                    echo '<li><a href="'.base_url().'sanpham/loaisanpham/'.$item->ID.'">'.$item->TEN.'</a></li>';
-                } ?>
+                <li<?php if ($page=='trangchu') echo ' class="active"'; ?>><a href="<?=base_url()?>">Trang chủ</a></li>
+                <li<?php if ($page=='sanpham1') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/1">Điện thoại</a>
+                    <ul class="sub_menu">
+                        <li> <a href="#">Nhà cung cấp</a>
+                            <ul>
+                                <li><a href="<?=base_url()?>sanpham/nhacungcap/4-1">Apple</a></li>
+                                <li><a href="<?=base_url()?>sanpham/nhacungcap/2-1">LG</a></li>
+                                <li><a href="<?=base_url()?>sanpham/nhacungcap/1-1">NOKIA</a></li>
+                                <li><a href="<?=base_url()?>sanpham/nhacungcap/3-1">SAMSUNG</a></li>                                
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li<?php if ($page=='sanpham2') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/2">Máy tính xách tay</a>
+                    <ul class="sub_menu">
+                        <li> <a href="#">Nhà cung cấp</a>
+                            <ul>
+                                <li><a href="<?=base_url()?>sanpham/nhacungcap/4-2">Apple</a></li>
+                                <li><a href="<?=base_url()?>sanpham/nhacungcap/5-2">DELL</a></li>
+                                <li><a href="<?=base_url()?>sanpham/nhacungcap/6-2">SONY</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li<?php if ($page=='sanpham3') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/3">Máy tính bảng</a>
+                    <ul class="sub_menu">
+                        <li> <a href="#">Nhà cung cấp</a>
+                            <ul>
+                                <li><a href="<?=base_url()?>sanpham/nhacungcap/7-3">ACER</a></li>
+                                <li><a href="<?=base_url()?>sanpham/nhacungcap/4-3">APPLE</a></li>
+                                <li><a href="<?=base_url()?>sanpham/nhacungcap/1-3">NOKIA</a></li>
+                                <li><a href="<?=base_url()?>sanpham/nhacungcap/3-3">SAMSUNG</a></li>                                
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li<?php if ($page=='sanpham4') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/4">Phụ kiện</a></li>                    
             </ul>
             <div class="minicart" id="cart_content"> 
             <a href="#" class="minicart_link" >
-                <span class="item"><b><?=$this->cart->total_items()?></b> ITEM /</span> <span class="price"><b><?=$this->cart->format_number($this->cart->total())?></b></span> </a>
+                <span class="item"><b><?=$this->cart->total_items()?></b> SẢN PHẨM /</span> <span class="price"><b><?=$this->cart->format_number($this->cart->total())?></b></span> </a>
                 <div class="cart_drop"> <span class="darw"></span>
                  <?php echo $this->view('minicart.php'); ?>
                  </div>

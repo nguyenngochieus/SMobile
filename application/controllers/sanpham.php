@@ -1,10 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class sanpham extends Public_Controller {
-	public function __construct()
-	{
-		parent::__construct();
-		$this->data['title'] = 'Home';        
-	}
+
+	public function __construct(){
+		parent:: __construct();		
+		$this->data['page'] = 'sanpham';
+		$this->data['Username'] = $this->login->getLoginUsername();  
+		$this->data['Name'] = $this->login->GetName();
+		$this->data['UserID'] = $this->login->GetUserID();
+		$this->data['Quyen'] = $this->login->GetUserRole();
+	}	
 
 	public function loaisanpham($url)
 	{	
@@ -18,6 +22,7 @@ class sanpham extends Public_Controller {
 		$this->data['TenLoai'] = $this->public_model->GetTenLoai($ma,$this->data['lang_db']);
 		$this->data['result'] = $this->public_model->GetSanPhamTheoLoai($arr,$this->data['lang_db']);
 		$this->data['NhaCungCap'] = $this->public_model->GetNhaCungCapTheoLoai($arr);
+		$this->data['page'] = 'sanpham'.$this->data['idLoai'];
 		$this->load->view('include/header',$this->data);
 		$this->load->view('product/loaisanpham',$this->data);
 		$this->load->view('include/footer',$this->data);
@@ -38,6 +43,7 @@ class sanpham extends Public_Controller {
 		$this->data['TenNhaCungCap'] = $this->public_model->GetTenNhaCungCap($ma,$this->data['lang_db']);
 		$this->data['result'] = $this->public_model->GetSanPhamTheoNhaCungCap($arr,$this->data['lang_db']);
 		$this->data['Loai'] = $this->public_model->GetLoaiTheoNhaCungCap($ma,$this->data['lang_db']);
+		$this->data['page'] = 'sanpham'.$this->data['idLoai'];
 		$this->load->view('include/header',$this->data);
 		$this->load->view('product/nhacungcap',$this->data);
 		$this->load->view('include/footer',$this->data);
@@ -49,6 +55,7 @@ class sanpham extends Public_Controller {
 		$this->data['result'] = $this->public_model->GetChiTietSP($ma,$this->data['lang_db']);
 		if(count($this->data['result']) == 0 ) echo redirect(base_url());
 		$this->data['SPCungLoai'] = $this->public_model->GetSanPhamCungLoai($ma,$this->data['result'][0]->LOAI,$this->data['lang_db']);
+		$this->data['page'] = 'sanpham'.$this->data['idLoai'];
 		$this->load->view('include/header',$this->data);
 		$this->load->view('product/chitiet',$this->data);
 		$this->load->view('include/footer',$this->data);

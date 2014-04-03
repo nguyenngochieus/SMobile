@@ -207,8 +207,7 @@ class Login{
 			else return -3;
 		}
 		else return -2;
-	}
-	
+	}	
 
 	//updatePassword($arr): 1 = Thành công; -2 = XSS; -3 = Username không tồn tại; -4 = Dữ liệu đưa vào không đủ; -5 = Lỗi update database; -6 = Không đúng mật khẩu
 	function updatePassword($arr){
@@ -249,7 +248,6 @@ class Login{
 		else return -2;
 	}
 	
-
 	//resetPassword($arr): 1 = Thành công; -2 = XSS; -3 = Username không tồn tại; -4 = Dữ liệu đưa vào không đủ; -5 = Lỗi update database;
 	function resetPassword($arr){
 		$this->CI=&get_instance();
@@ -533,6 +531,7 @@ class Login{
 		delete_cookie("un");delete_cookie("bm");delete_cookie("lg");
 		$this->CI->session->sess_destroy();
 	}
+
 	//checkPage($arr, $page): 1 = Có Quyền; 0 = Không có quyền; -2 = XSS; -1 = Username không tồn tại
 	function checkPage($arr, $page){
 		$this->CI=&get_instance();
@@ -736,6 +735,7 @@ class Login{
 			return FALSE;
 		}
 	}
+
 	// Get Name theo dang nhap
 	function GetName(){
 		$this->CI=&get_instance();
@@ -755,6 +755,7 @@ class Login{
 		}
 		return "";
 	}
+
 	// Get ID theo dang nhap
 	function GetUserID(){
 		$this->CI=&get_instance();
@@ -774,6 +775,7 @@ class Login{
 		}
 		return "";
 	}
+
 	// Get name theo username
 	function GetNameUser($temp){
 		$this->CI=&get_instance();
@@ -792,19 +794,20 @@ class Login{
 		}
 		return "";
 	}
+
 	// Get QUYEN theo username
 	function GetUserRole(){
 		$this->CI=&get_instance();
 		$username = $this->getLoginUsername();
+		$QUYEN = 0;
 		if(!empty($username))
 		{
-
-			$query = $this->CI->db->get_where($this->admin,array("TENDANGNHAP" => $username));
-			$QUYEN = 0;
+			$query = $this->CI->db->get_where($this->admin,array("TENDANGNHAP" => $username));			
 			$QUYEN = $query->row()->QUYEN;
 		}
 		return $QUYEN;
 	}
+
 	//Get link theo username
 	function GetLink($temp){
 		$this->CI=&get_instance();
@@ -823,6 +826,7 @@ class Login{
 		}
 		return "";
 	}
+
 	public function edit($un){
 		$query = $this->CI->db->query('SELECT * FROM '.$this->role.' WHERE Username = ?',array($un));
 		return $query->result();

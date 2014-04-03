@@ -17,7 +17,10 @@ Class dangnhap extends CI_Controller{
 		$chk = $this->login->checkLogin();		
 		if($chk==1||$chk==2)
 		{
-				return redirect(base_url('admin'));
+			$role = $this->login->GetUserRole();
+			if ($role == 3)
+				return redirect(base_url());
+			else return redirect(base_url('admin'));
 		}
 		if(isset($_POST['username'])&&($_POST['username']!=NULL)&&isset($_POST['password'])&&($_POST['password']!=NULL))
 		{
@@ -27,7 +30,10 @@ Class dangnhap extends CI_Controller{
 			$tmp = $this->login->dangnhap($arr, $remember);
 			if($tmp==1)
 			{
-					return redirect(base_url('admin.html')); 
+				$role = $this->login->GetUserRole();
+				if ($role == 3)
+					return redirect(base_url());
+				else return redirect(base_url('admin'));
 			}
 			else
 			{

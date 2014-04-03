@@ -19,7 +19,7 @@ Class admin extends CI_Controller{
 		if($check == 1 || $check == 2 )
 		{
 			if($role == 3)
-				return redirect(base_url('user'));
+				return redirect(base_url());
 			else{
 				$this->data['title'] = 'Trang chủ';
 				$this->data['page'] = 'trangchu';
@@ -42,7 +42,7 @@ Class admin extends CI_Controller{
 		if($check == 1 || $check == 2 )
 		{
 			if($role == 3)
-				return redirect(base_url('user'));
+				return redirect(base_url());
 			else{
 				$this->data['title'] = 'Người dùng';
 				$this->data['page'] = 'nguoidung';
@@ -171,7 +171,7 @@ Class admin extends CI_Controller{
 		if($check == 1 || $check == 2 )
 		{
 			if($role == 3)
-				return redirect(base_url('user/hoadon'));
+				return redirect(base_url());
 			else{
 				$this->data['title'] = 'Hóa đơn';
 				$this->data['page'] = 'hoadon';
@@ -211,7 +211,7 @@ Class admin extends CI_Controller{
 		if($check == 1 || $check == 2 )
 		{
 			if($role == 3)
-				return redirect(base_url('user'));
+				return redirect(base_url());
 			else{
 		  		$this->load->library('form_validation');
 		  		$this->data['title'] = 'Sản phẩm'; 				
@@ -328,7 +328,7 @@ Class admin extends CI_Controller{
 		if($check == 1 || $check == 2 )
 		{
 			if($role == 3)
-				return redirect(base_url('user/tintuc'));
+				return redirect(base_url());
 			else{
 				$this->data['title'] = 'Tin tức';
 				$this->data['page'] = 'tintuc';
@@ -423,7 +423,7 @@ Class admin extends CI_Controller{
 		if($check == 1 || $check == 2 )
 		{
 			if($role == 3)
-				return redirect(base_url('user/binhluan'));
+				return redirect(base_url());
 			else{
 				$this->data['title'] = 'Bình luận';
 				$this->data['page'] = 'binhluan';
@@ -495,7 +495,7 @@ Class admin extends CI_Controller{
 		if($check == 1 || $check == 2 )
 		{
 			if($role == 3)
-				return redirect(base_url('user'));
+				return redirect(base_url());
 			else{
 			$this->data['title'] = 'Đánh giá';
 			$this->data['page'] = 'danhgia';
