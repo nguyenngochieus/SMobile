@@ -41,8 +41,7 @@ Class Nguoidung_model extends CI_Model{
 	}
 
 	function update($Id, $Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien)
-	{
-		$Matkhau = do_hash($Matkhau, 'md5');
+	{		
 		$data = array(
 			"Tennguoidung" => $Tennguoidung,
 			"Tendangnhap" => $Tendangnhap,
@@ -64,6 +63,16 @@ Class Nguoidung_model extends CI_Model{
 		if ($this->db->trans_status() === FALSE)
 			return FALSE;
 		else return TRUE;		
+	}
+
+	function doimatkhau($Id, $Matkhaumoi){
+		$this->db->trans_start();		
+		$query = $this->db->query("UPDATE nguoidung SET MATKHAU = '".$Matkhaumoi."' WHERE ID = ".$Id);							
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status() === FALSE)
+			return FALSE;
+		else return TRUE;			
 	}
 
 	function delete($id){

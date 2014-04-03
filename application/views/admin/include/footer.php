@@ -100,7 +100,7 @@
         "Mật khẩu không hợp lệ"
     );
 
-    $('#basicForm').validate({        
+    $('#basicForm').validate({
         rules: { 
 
             // Người dùng
@@ -119,8 +119,11 @@
                 required: true,
                 rangelength: [6, 20],
                 ktmatkhau: true
-
             },
+            matkhaumoi: {
+                rangelength: [6, 20],
+                ktmatkhau: true
+            },             
             email: {
                 required: true,
                 email: true
@@ -196,6 +199,10 @@
             matkhau: {
                 required: "Chưa nhập mật khẩu",
                 rangelength: "Vui lòng nhập từ 6 đến 20 ký tự"
+            },
+            matkhaumoi: "Vui lòng nhập từ 6 đến 20 ký tự",            
+            rematkhau: {
+                equalTo: "Nhập lại mật khẩu chưa đúng"
             },
             email: {
                 required: "Chưa nhập email",

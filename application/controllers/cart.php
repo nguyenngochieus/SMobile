@@ -6,10 +6,6 @@ class Cart extends Public_Controller {
 	{
 		parent::__construct();
 		$this->load->model('cart_model');
-		$this->data['Username'] = $this->login->getLoginUsername();  
-		$this->data['Name'] = $this->login->GetName();
-		$this->data['UserID'] = $this->login->GetUserID();
-		$this->data['Quyen'] = $this->login->GetUserRole();
 	}
 
     public function index()
