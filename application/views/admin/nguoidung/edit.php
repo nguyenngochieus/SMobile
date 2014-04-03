@@ -26,12 +26,13 @@
                   </div>
                 </div>      
 
-                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Mật khẩu</label>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Mật khẩu mới</label>
                   <div class="col-sm-10">
-                    <input type="password" name="matkhau" class="form-control" id="matkhau" value="<?=$item['MATKHAU']?>" placeholder="Điền mật khẩu..." />
-                  </div>
-                </div>    
+                    <input type="password" name="matkhaumoi" title="Thay đổi mật khẩu mới cho người dùng hoặc bỏ trống" value="" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" id="matkhau"/>
+                    <input type="hidden" name="matkhaucu" class="form-control" id="matkhau" value="<?=$item['MATKHAU']?>" placeholder="Điền mật khẩu..." />
+                </div>
+                </div>
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Email</label>
@@ -41,7 +42,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Ngày sinh<span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Ngày sinh</label>
                   <div class="col-sm-6">
                      <div class="input-group">
                       <input name="namsinh" type="text" class="form-control" value="<?php $mysql_date = date('m/d/Y', strtotime($item['NGAYSINH'])); echo $mysql_date; ?>" placeholder="mm/dd/yyyy" id="datepicker">
@@ -51,7 +52,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Giới tính<span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Giới tính</label>
                   <div class="col-sm-9">
                     <div class="rdio rdio-primary">
                       <input type="radio" id="male" value="1" name="gioitinh"
@@ -83,7 +84,7 @@
                 </div>        
                 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Quyền<span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Quyền</label>
                   <div class="col-sm-3">
                     <select id="fruits" name="quyen" class="form-control ">                        
                       <option value="1" <?php if ($item['QUYEN'] == 1) { echo 'selected="selected"';} ?>>Quản lý</option> 
@@ -94,7 +95,7 @@
                 </div>
 
                  <div class="form-group">
-                  <label class="col-sm-2 control-label">Chọn trạng thái<span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Chọn trạng thái</label>
                   <div class="col-sm-9">
                     <div class="col-sm-4">
                       <div class="rdio rdio-primary">

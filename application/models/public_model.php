@@ -12,6 +12,24 @@ class public_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function FMenu1($lang = "") 
+	{
+		$query =  $this->db->query('SELECT S.LOAI, S.NHACUNGCAP, N.TENNCC AS TENNCC FROM SANPHAM S, NHACUNGCAP N WHERE LOAI = 1 AND N.ID = S.NHACUNGCAP GROUP BY S.NHACUNGCAP ORDER BY TENNCC ASC');
+		return $query->result();
+	}
+
+	public function FMenu2($lang = "") 
+	{
+		$query =  $this->db->query('SELECT S.LOAI, S.NHACUNGCAP, N.TENNCC AS TENNCC FROM SANPHAM S, NHACUNGCAP N WHERE LOAI = 2 AND N.ID = S.NHACUNGCAP GROUP BY S.NHACUNGCAP ORDER BY TENNCC ASC');
+		return $query->result();
+	}
+
+	public function FMenu3($lang = "") 
+	{
+		$query =  $this->db->query('SELECT S.LOAI, S.NHACUNGCAP, N.TENNCC AS TENNCC FROM SANPHAM S, NHACUNGCAP N WHERE LOAI = 3 AND N.ID = S.NHACUNGCAP GROUP BY S.NHACUNGCAP ORDER BY TENNCC ASC');
+		return $query->result();
+	}
+
 	public function GetTenLoai($id, $lang = "") 
 	{
 		$query =  $this->db->query('SELECT TENLOAI'.$lang.' AS TEN FROM LOAISANPHAM WHERE ID ='.$id);

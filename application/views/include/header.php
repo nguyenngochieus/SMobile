@@ -70,10 +70,9 @@
                     <ul class="sub_menu">
                         <li> <a href="#">Nhà cung cấp</a>
                             <ul>
-                                <li><a href="<?=base_url()?>sanpham/nhacungcap/4-1">Apple</a></li>
-                                <li><a href="<?=base_url()?>sanpham/nhacungcap/2-1">LG</a></li>
-                                <li><a href="<?=base_url()?>sanpham/nhacungcap/1-1">NOKIA</a></li>
-                                <li><a href="<?=base_url()?>sanpham/nhacungcap/3-1">SAMSUNG</a></li>                                
+                                <?php foreach ($FMenu1 as $item) {
+                                    echo '<li><a href="'.base_url().'sanpham/nhacungcap/'.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
+                                } ?>                                 
                             </ul>
                         </li>
                     </ul>
@@ -82,9 +81,9 @@
                     <ul class="sub_menu">
                         <li> <a href="#">Nhà cung cấp</a>
                             <ul>
-                                <li><a href="<?=base_url()?>sanpham/nhacungcap/4-2">Apple</a></li>
-                                <li><a href="<?=base_url()?>sanpham/nhacungcap/5-2">DELL</a></li>
-                                <li><a href="<?=base_url()?>sanpham/nhacungcap/6-2">SONY</a></li>
+                                <?php foreach ($FMenu2 as $item) {
+                                    echo '<li><a href="'.base_url().'sanpham/nhacungcap/'.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
+                                } ?>  
                             </ul>
                         </li>
                     </ul>
@@ -93,10 +92,9 @@
                     <ul class="sub_menu">
                         <li> <a href="#">Nhà cung cấp</a>
                             <ul>
-                                <li><a href="<?=base_url()?>sanpham/nhacungcap/7-3">ACER</a></li>
-                                <li><a href="<?=base_url()?>sanpham/nhacungcap/4-3">APPLE</a></li>
-                                <li><a href="<?=base_url()?>sanpham/nhacungcap/1-3">NOKIA</a></li>
-                                <li><a href="<?=base_url()?>sanpham/nhacungcap/3-3">SAMSUNG</a></li>                                
+                                <?php foreach ($FMenu3 as $item) {
+                                    echo '<li><a href="'.base_url().'sanpham/nhacungcap/'.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
+                                } ?>                                 
                             </ul>
                         </li>
                     </ul>
