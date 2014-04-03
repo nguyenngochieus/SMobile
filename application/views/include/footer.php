@@ -2,42 +2,30 @@
         <!--Footer Starts-->
         <footer>
             <ul class="footer_links">
-                <li> <span>New Arrivals</span>
+                <li> <span>ĐIỆN THOẠI</span>
                     <ul>
-                        <li><a href="#">Clothing</a></li>
-                        <li><a href="#">Shoes</a></li>
-                        <li><a href="#">Bags</a></li>
-                        <li><a href="#">Accessories</a></li>
-                        <li><a href="#">Zimmermann</a></li>
-                        <li><a href="#">Acne</a></li>
-                        <li><a href="#">Bassike</a></li>
-                        <li><a href="#">Camilla and Marc</a></li>
+                        <li><a href="<?=base_url()?>sanpham/nhacungcap/4-1">Apple</a></li>
+                        <li><a href="<?=base_url()?>sanpham/nhacungcap/2-1">LG</a></li>
+                        <li><a href="<?=base_url()?>sanpham/nhacungcap/1-1">NOKIA</a></li>
+                        <li><a href="<?=base_url()?>sanpham/nhacungcap/3-1">SAMSUNG</a></li>   
                     </ul>
                 </li>
-                <li  class="seperator"> <span>Brands we sell</span>
+                <li  class="seperator"> <span>MÁY TÍNH XÁC TAY</span>
                     <ul>
-                        <li><a href="#">Elle</a></li>
-                        <li><a href="#">Reallxe</a></li>
-                        <li><a href="#">Fabric</a></li>
-                        <li><a href="#">Mayflower</a></li>
-                        <li><a href="#">Levis Strauss</a></li>
-                        <li><a href="#">Anzonica</a></li>
-                        <li><a href="#">Reallxe</a></li>
-                        <li><a href="#">Fabric</a></li>
+                        <li><a href="<?=base_url()?>sanpham/nhacungcap/4-2">Apple</a></li>
+                        <li><a href="<?=base_url()?>sanpham/nhacungcap/5-2">DELL</a></li>
+                        <li><a href="<?=base_url()?>sanpham/nhacungcap/6-2">SONY</a></li>
                     </ul>
                 </li>
-                <li> <span>Customer Service</span>
+                <li> <span>MÁY TÍNH BẢNG</span>
                     <ul>
-                        <li><a href="#">Help</a></li>
-                        <li><a href="#">Shipping</a></li>
-                        <li><a href="#">Returns & Exchanges</a></li>
-                        <li><a href="#">Payment Options</a></li>
-                        <li><a href="#">Order Status & Tracking</a></li>
-                        <li><a href="#">Gift Wrap Options</a></li>
-                        <li><a href="#">International Orderse</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="<?=base_url()?>sanpham/nhacungcap/7-3">ACER</a></li>
+                        <li><a href="<?=base_url()?>sanpham/nhacungcap/4-3">APPLE</a></li>
+                        <li><a href="<?=base_url()?>sanpham/nhacungcap/1-3">NOKIA</a></li>
+                        <li><a href="<?=base_url()?>sanpham/nhacungcap/3-3">SAMSUNG</a></li>   
                     </ul>
                 </li>
+                <!--
                 <li> <span>My Account</span>
                     <ul>
                         <li><a href="#">My Account Information</a></li>
@@ -47,16 +35,21 @@
                         <li><a href="#">My Address Book</a></li>
                         <li><a href="#">My Updates & Alerts</a></li>
                     </ul>
-                </li>
+                </li> -->
             </ul>
             <div class="footer_customblock">
-                <div class="shipping_info"> <span>introducing </span><br>
-                    <big>FREE SHIPPING</big><br>
-                    <small>for purchases above $200</small> </div>
-                <div class="contact_info"> <big>1.800. (1.800.260.7890)</big> </div>
+                <div class="shipping_info"> <span>GIAO HÀNG TẬN NƠI</span><br>
+                    <big>MIỄN PHÍ</big><br>
+                    <small>VẬN CHUYỂN NỘI THÀNH</small><br> 
+                </div>                   
+                <div class="contact_info"> 
+                    <big>TƯ VẤN MUA HÀNG</big><br/><br/>
+                    <big>0169 466 2923</big> <br/>
+                    <big>0167 623 9742</big> 
+                </div>                
             </div>
             <address>
-            Copyright © 2012 Leisure. All Rights Reserved. <img src="images/payment_info.jpg"/>
+            Copyright © 2014 SMobile. All Rights Reserved.  <img src="static/images/payment_info.jpg"/> <br/> Design by <a target="_blank" href="https://www.facebook.com/KelvinLee93">Kelvin Lee</a> and <a target="_blank" href="https://www.facebook.com/nguyenngochieu93">Mr.Cupid</a>. SMobile on <a target="_blank" href="https://github.com/mrcupid12/SMobile">GitHub</a>
             </address>
         </footer>
         <!--Footer Ends-->
