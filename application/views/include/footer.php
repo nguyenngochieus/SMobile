@@ -49,7 +49,7 @@
                 </div>                
             </div>
             <address>
-            Copyright © 2014 SMobile. All Rights Reserved.  <img src="static/images/payment_info.jpg"/> <br/> Design by <a target="_blank" href="https://www.facebook.com/KelvinLee93">Kelvin Lee</a> and <a target="_blank" href="https://www.facebook.com/nguyenngochieu93">Mr.Cupid</a>. SMobile on <a target="_blank" href="https://github.com/mrcupid12/SMobile">GitHub</a>
+            Copyright © 2014 SMobile. All Rights Reserved.  <img src="<?=base_url()?>static/images/payment_info.jpg"/> <br/> Designed by <a target="_blank" href="https://www.facebook.com/KelvinLee93">Kelvin Lee</a> and <a target="_blank" href="https://www.facebook.com/nguyenngochieu93">Mr.Cupid</a>. SMobile on <a target="_blank" href="https://github.com/mrcupid12/SMobile">GitHub</a>
             </address>
         </footer>
         <!--Footer Ends-->
