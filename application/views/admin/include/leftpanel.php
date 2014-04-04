@@ -17,7 +17,7 @@
           
             <h5 class="sidebartitle actitle">Tài khoản</h5>
             <ul class="nav nav-pills nav-stacked nav-bracket mb30">
-              <li><a href="<?=base_url()?>admin/nguoidung/edit?id=<?=($UserID)?>"><i class="fa fa-user"></i> <span>Hồ sơ</span></a></li>
+              <!-- <li><a href="<?=base_url()?>admin/nguoidung/edit?id=<?=($UserID)?>"><i class="fa fa-user"></i> <span>Hồ sơ</span></a></li> -->
             <!--  <li><a href="#"><i class="fa fa-cog"></i> <span>Tùy chỉnh</span></a></li>
               <li><a href="#"><i class="fa fa-question-circle"></i> <span>Hỗ trợ</span></a></li> -->
               <li><a href="<?=base_url()?>admin/dangxuat"><i class="fa fa-sign-out"></i> <span>Đăng xuất</span></a></li>

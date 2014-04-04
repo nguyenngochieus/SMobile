@@ -5,10 +5,6 @@ class sanpham extends Public_Controller {
 		parent:: __construct();		
 		$this->data['link'] = '';
 		$this->data['page'] = 'sanpham';
-		$this->data['Username'] = $this->login->getLoginUsername();  
-		$this->data['Name'] = $this->login->GetName();
-		$this->data['UserID'] = $this->login->GetUserID();
-		$this->data['Quyen'] = $this->login->GetUserRole();
 	}	
 
 	public function loaisanpham($url)
