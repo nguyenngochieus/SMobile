@@ -14,8 +14,8 @@
               Xử lý thành công!
             </div>
         <div class="action_buttonbar">
-          <button type="button" title="" class="continue"><?=lang('tieptucmuahang')?></button>
-          <button type="button" onClick="parent.location='leisure_checkout.html'" title="" class="checkout"><?=lang('thanhtoan')?></button>
+          <button type="button" onClick="parent.location='<?=base_url()?>'" title="" class="continue"><?=lang('tieptucmuahang')?></button>
+          <button type="button" onClick="parent.location='<?=base_url()?>thanhtoan'" title="" class="checkout"><?=lang('thanhtoan')?></button>
         </div>
         <div class="cart_table">
         <?php echo form_open(base_url().'cart/update_cart'); ?>

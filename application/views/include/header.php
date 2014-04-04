@@ -71,7 +71,7 @@
         <nav>
             <ul class="primary_nav">
                 <li<?php if ($page=='trangchu') echo ' class="active"'; ?>><a href="<?=base_url()?>">Trang chủ</a></li>
-                <li<?php if ($page=='sanpham1') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/1">Điện thoại</a>
+                <li<?php if ($page=='loaisanpham1') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/1">Điện thoại</a>
                     <ul class="sub_menu">
                         <li> <a href="#">Nhà cung cấp</a>
                             <ul>
@@ -82,7 +82,7 @@
                         </li>
                     </ul>
                 </li>
-                <li<?php if ($page=='sanpham2') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/2">Máy tính xách tay</a>
+                <li<?php if ($page=='loaisanpham2') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/2">Máy tính xách tay</a>
                     <ul class="sub_menu">
                         <li> <a href="#">Nhà cung cấp</a>
                             <ul>
@@ -93,7 +93,7 @@
                         </li>
                     </ul>
                 </li>
-                <li<?php if ($page=='sanpham3') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/3">Máy tính bảng</a>
+                <li<?php if ($page=='loaisanpham3') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/3">Máy tính bảng</a>
                     <ul class="sub_menu">
                         <li> <a href="#">Nhà cung cấp</a>
                             <ul>
@@ -104,7 +104,7 @@
                         </li>
                     </ul>
                 </li>
-                <li<?php if ($page=='sanpham4') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/4">Phụ kiện</a></li>                    
+                <li<?php if ($page=='loaisanpham4') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/4">Phụ kiện</a></li>                    
             </ul>
             <div class="minicart" id="cart_content"> 
             <a href="#" class="minicart_link" >

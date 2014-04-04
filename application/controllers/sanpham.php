@@ -26,7 +26,7 @@ class sanpham extends Public_Controller {
 		$this->data['TenLoai'] = $this->public_model->GetTenLoai($ma,$this->data['lang_db']);
 		$this->data['result'] = $this->public_model->GetSanPhamTheoLoai($arr,$this->data['lang_db'],$sort,$item);
 		$this->data['NhaCungCap'] = $this->public_model->GetNhaCungCapTheoLoai($arr);
-		$this->data['page'] = 'loaisanpham';
+		$this->data['page'] = 'loaisanpham'.$ma; // dùng cho main menu		
 		$this->load->view('include/header',$this->data);
 		$this->load->view('product/loaisanpham',$this->data);
 		$this->load->view('include/footer',$this->data);
@@ -43,6 +43,7 @@ class sanpham extends Public_Controller {
 		{
 			$this->data['idLoai'] = $arr[1];
 			$this->data['TenLoai'] = $this->public_model->GetTenloai($arr[1],$this->data['lang_db'])->TEN;
+			$this->data['page'] = 'loaisanpham'.$this->data['idLoai']; // dùng cho main menu			
 		}		
 		else
 			$this->data['TenLoai'] = "";
@@ -53,8 +54,7 @@ class sanpham extends Public_Controller {
 		$this->data['idNhaCungCap'] = $ma;	
 		$this->data['TenNhaCungCap'] = $this->public_model->GetTenNhaCungCap($ma,$this->data['lang_db']);
 		$this->data['result'] = $this->public_model->GetSanPhamTheoNhaCungCap($arr,$this->data['lang_db'],$sort,$item);
-		$this->data['Loai'] = $this->public_model->GetLoaiTheoNhaCungCap($ma,$this->data['lang_db']);
-		$this->data['page'] = 'nhacungcap';
+		$this->data['Loai'] = $this->public_model->GetLoaiTheoNhaCungCap($ma,$this->data['lang_db']);		
 		$this->load->view('include/header',$this->data);
 		$this->load->view('product/nhacungcap',$this->data);
 		$this->load->view('include/footer',$this->data);
@@ -85,7 +85,7 @@ class sanpham extends Public_Controller {
 		$this->data['result'] = $this->public_model->GetChiTietSP($ma,$this->data['lang_db']);
 		if(count($this->data['result']) == 0 ) echo redirect(base_url());
 		$this->data['SPCungLoai'] = $this->public_model->GetSanPhamCungLoai($ma,$this->data['result'][0]->LOAI,$this->data['lang_db']);
-		$this->data['page'] = 'sanpham'.$this->data['idLoai'];
+		$this->data['page'] = 'loaisanpham'.$this->data['idLoai'];
 		$this->load->view('include/header',$this->data);
 		$this->load->view('product/chitiet',$this->data);
 		$this->load->view('include/footer',$this->data);
