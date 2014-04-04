@@ -82,7 +82,7 @@
              <div class="form-group">
               <label class="col-sm-2 control-label">Hình đại diện</label>
                 <div class="col-sm-4">
-                  <span class="field"><img src="<?=base_url()?>upload/files/<?php echo $item['HINH'];?>" id="ViewHinh" alt="" width="140px" height="181px" /><br />
+                  <span class="field"><img src="<?=base_url()?>upload/files/<?php echo $item['HINH'];?>" id="ViewHinh" alt="" width="140px"  /><br />
                   <input type="text" name="HinhDaiDien" class="form-control" id="HinhAnh" onchange="ChangeImage()"  value="/SMobile/upload/files/<?php echo $item['HINH'];?>" />
                  </div>
                   <div class="col-sm-6">

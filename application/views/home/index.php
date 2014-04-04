@@ -35,7 +35,7 @@
                     <li> <a class="product_image"><img src="<?= base_url()?>upload/images/<?=$item->HINH?>"/></a>
                         <div class="product_info">
                             <h3><a href="<?=base_url()?>sanpham/chitiet/<?=$item->ID?>"><?=$item->TENSANPHAM?></a></h3>
-                            <small><?=substr($item->MOTA, 0 ,100)?>...</small> </div>                        
+                            <small><?=$this->public_model->cut($item->MOTA,100)?></small> </div>                        
                         <div class="price_info">                                                
                             <button class="price_add" title="" type="button" >
                                 <span class="pr_price">
@@ -60,7 +60,7 @@
                     <li> <a class="product_image"><img src="<?= base_url()?>upload/images/<?=$item->HINH?>"/></a>
                         <div class="product_info">
                             <h3><a href="<?=base_url()?>sanpham/chitiet/<?=$item->ID?>"><?=$item->TENSANPHAM?></a></h3>
-                            <small><?=substr($item->MOTA, 0 ,100)?>...</small> </div>
+                            <small><?=$this->public_model->cut($item->MOTA,100)?></small> </div>
                         <div class="price_info">
                             <button class="price_add" title="" type="button"><span class="pr_price"><?=number_format($item->DONGIA,"0",",",".")?></span><span class="pr_add" onclick="Submit_Form(<?=$item->ID?>,1)" ><?=lang('addcart')?></span></button>
                         </div>

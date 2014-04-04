@@ -4,6 +4,7 @@ $(document).ready(function() {
     $(".empty").live("click", function(){
     $.get(link + "cart/empty_cart", function(){
         $.get(link + "cart/show_cart", function(cart){
+            alert("Product does not exist");
             $("#cart_content").html(cart);
             });
         });

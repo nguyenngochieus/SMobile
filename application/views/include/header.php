@@ -32,20 +32,20 @@
         <header>
             <div class="top_bar clear">
                 <!--Language Switcher Starts-->
-                <div class="language_switch"> <a href="?lang=english" title="ENGLISH">EN</a> <a  class="active" href="?lang=vietnamese" title="VIETNAMESE">VI</a> </div>
+                <div class="language_switch"> <a href="?lang=english" title="ENGLISH">EN</a> <a class="active" href="?lang=vietnamese" title="VIETNAMESE">VI</a> </div>
                 <!--Language Switcher Ends-->
                 <!--Top Links Starts-->
                 <ul class="top_links">
                 <?php if ($Quyen == 0)
                     { ?>
-                        <li><a href="<?=base_url()?>dangnhap">Đăng nhập</a></li>
-                        <li><a href="<?=base_url()?>dangky">Đăng ký</a></li>
+                        <li><a href="<?=base_url()?>dangnhap"><?=lang('dang_nhap')?></a></li>
+                        <li><a href="<?=base_url()?>dangky"><?=lang('dang_ky')?></a></li>
                         <?php                                                
                     } 
                     else{ 
                         ?>
-                        <li><a href="<?=base_url()?>user/taikhoan">Tài khoản</a></li>
-                        <li><a href="<?=base_url()?>dangxuat">Đăng xuất</a></li>
+                        <li><a href="<?=base_url()?>user/taikhoan"><?=lang('tai_khoan')?></a></li>
+                        <li><a href="<?=base_url()?>dangxuat"><?=lang('dang_xuat')?></a></li>
                         <?php
                     } ?>
                 </ul>
@@ -57,7 +57,7 @@
             <!--Search Starts-->
             <form class="header_search" action="<?=base_url()?>sanpham/timkiem">
                 <div class="form-search">
-                    <input id="search" type="text" name="q" class="input-text" autocomplete="on" placeholder="Tìm kiếm...">
+                    <input id="search" type="text" name="q" class="input-text" autocomplete="on" placeholder="<?=lang('search')?>...">
                     <button type="submit" title="Tìm kiếm"></button>
                 </div>
             </form>
@@ -108,7 +108,7 @@
             </ul>
             <div class="minicart" id="cart_content"> 
             <a href="#" class="minicart_link" >
-                <span class="item"><b><?=$this->cart->total_items()?></b> SẢN PHẨM /</span> <span class="price"><b><?=$this->cart->format_number($this->cart->total())?></b></span> </a>
+                <span class="item"><b><?=$this->cart->total_items()?></b> <?=lang('item')?> /</span> <span class="price"><b><?=$this->cart->format_number($this->cart->total())?></b></span> </a>
                 <div class="cart_drop"> <span class="darw"></span>
                  <?php echo $this->load->view('minicart'); ?>
                  </div>

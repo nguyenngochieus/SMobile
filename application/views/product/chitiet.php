@@ -23,7 +23,7 @@
         <div class="pr_price"> <big><?=number_format($item->DONGIA,"0",",",".")?></big> <small><?php echo number_format($giab = $item->DONGIA + $item->DONGIA * 20 /100,"0",",",".");?></small> </div>
 
            <div class="add_to_buttons">
-          <button onClick="parent.location='leisure_cart.html'" class="add_cart"><?=lang('addcart')?></button>
+          <button onclick="Submit_Form(<?=$item->ID?>,1)" class="add_cart"><?=lang('addcart')?></button>
         </div>
         <div class="product_overview">
           <h4>Quick Overview</h4>
