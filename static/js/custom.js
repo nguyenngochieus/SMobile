@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
 	//FLEXISLIDER
 	jQuery('.flexslider').flexslider({
 		animation: "slide",
@@ -21,5 +22,7 @@ $(document).ready(function(){
 	
 	//FORM ELEMENTS
 	jQuery("select").uniform(); 
+
+
 
 });

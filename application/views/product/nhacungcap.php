@@ -36,19 +36,16 @@
                 <div class="toolbar">
                     <div class="sortby">
                         <label>Sort by :</label>
-                        <select>
-                            <option>PRICE</option>
-                            <option>NAME</option>
+                        <select name="sort" onchange="change_sort('<?=$link?>')">
+                            <option value="price" <?=(isset($_GET['sort']) && $_GET['sort']=='price')?"selected":''?>>PRICE</option>
+                            <option value="name" <?=(isset($_GET['sort']) && $_GET['sort']=='name')?"selected":''?>>NAME</option>
                         </select>
                     </div>
-                    <div class="viewby">
-                        <label>View as :</label>
-                        <a class="list" href="#"></a> <a class="grid" href="#"></a> </div>
                     <div class="show_no">
                         <label>Show :</label>
-                        <select>
-                            <option>12 ITEMS</option>
-                            <option>24 ITEMS</option>
+                        <select name="item" onchange="change_item('<?=$link?>')">
+                            <option value="12" <?=(isset($_GET['item']) && $_GET['item']=='12')?"selected":''?>>12 ITEMS</option>
+                            <option value="24" <?=(isset($_GET['item']) && $_GET['item']=='24')?"selected":''?>>24 ITEMS</option>
                         </select>
                     </div>
                 </div>
@@ -77,16 +74,16 @@
                 <div class="toolbar">
                     <div class="sortby">
                         <label>Sort by :</label>
-                        <select>
-                            <option>PRICE</option>
-                            <option>NAME</option>
+                        <select name="sort" onchange="change_sort('<?=$link?>')">
+                            <option value="price" <?=(isset($_GET['sort']) && $_GET['sort']=='price')?"selected":''?>>PRICE</option>
+                            <option value="name" <?=(isset($_GET['sort']) && $_GET['sort']=='name')?"selected":''?>>NAME</option>
                         </select>
                     </div>
                     <div class="show_no">
                         <label>Show :</label>
-                        <select>
-                            <option>12 ITEMS</option>
-                            <option>24 ITEMS</option>
+                        <select name="item" onchange="change_item('<?=$link?>')">
+                            <option value="12" <?=(isset($_GET['item']) && $_GET['item']=='12')?"selected":''?>>12 ITEMS</option>
+                            <option value="24" <?=(isset($_GET['item']) && $_GET['item']=='24')?"selected":''?>>24 ITEMS</option>
                         </select>
                     </div>
                 </div>
@@ -96,3 +93,15 @@
         </section>
         <!--Mid Section Ends-->
     </div>
+     <script type="text/javascript">
+     var url = "http://localhost/SMobile/";
+        function change_sort(link)        
+        {
+            window.location.href = url + 'sanpham/nhacungcap/'+ link+'.html?sort=' + jQuery('select[name=sort]').val();
+        }
+
+        function change_item(link)
+        {
+            window.location.href = url + 'sanpham/nhacungcap/'+ link+'.html?sort=' + jQuery('select[name=item]').val();
+        }
+    </script>

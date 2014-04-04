@@ -4,17 +4,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title><?=lang('title')?></title>
 <!--CSS-->
-<link rel="stylesheet" href="<?= base_url()?>static/css/styles.css">
+<link rel="stylesheet" href="<?=base_url()?>static/css/styles.css">
+<link type="text/css" rel="stylesheet" href="<?=base_url()?>static/css/jquery.stepy.css" />
 <!--Google Webfont -->
 <link href='http://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'>
 <!--Javascript-->
+
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery-1.7.2.min.js" ></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.flexslider.js" ></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.easing.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.jcarousel.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/form_elements.js" ></script>
+<script type="text/javascript" src="<?= base_url()?>static/js/jquery.stepy.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/custom.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/core.js"></script>
+
 <!--[if lt IE 9]>
     <script src="<?= base_url()?>static/js/html5.js"></script>
 <![endif]-->
@@ -51,13 +55,14 @@
             <h1 class="logo"> <a href="<?= base_url()?>"><img src="<?= base_url()?>static/images/logo.png" /></a> </h1>
             <!--Logo Ends-->
             <!--Search Starts-->
-            <form class="header_search">
+            <form class="header_search" action="<?=base_url()?>sanpham/timkiem">
                 <div class="form-search">
-                    <input id="search" type="text" name="q" value="" class="input-text" autocomplete="off" placeholder="Tìm kiếm...">
+                    <input id="search" type="text" name="q" class="input-text" autocomplete="on" placeholder="Tìm kiếm...">
                     <button type="submit" title="Tìm kiếm"></button>
                 </div>
             </form>
             <!--Search Ends-->
+
         </header>
         <!--Header Ends-->
     </div>
@@ -105,7 +110,7 @@
             <a href="#" class="minicart_link" >
                 <span class="item"><b><?=$this->cart->total_items()?></b> SẢN PHẨM /</span> <span class="price"><b><?=$this->cart->format_number($this->cart->total())?></b></span> </a>
                 <div class="cart_drop"> <span class="darw"></span>
-                 <?php echo $this->view('minicart.php'); ?>
+                 <?php echo $this->load->view('minicart'); ?>
                  </div>
             </div>
         </nav>

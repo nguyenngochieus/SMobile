@@ -42,12 +42,27 @@ class public_model extends CI_Model {
 		return $query->row();
 	}
 
-	public function GetSanPhamTheoLoai($id,$lang = "")
+	public function GetSanPhamTheoLoai($id,$lang = "",$sort='',$item='')
 	{
+		switch ($sort) {
+			case 'price':
+				$sort = "DONGIA";
+				break;
+			case 'name':
+				$sort = "TENSANPHAM";
+				break;
+			
+			default: $sort = "ID";break;
+		}
+
+		if($item != '')
+			$item = 24;
+		else $item = 12;
+		
 		if(isset($id[1]) && $id[1] != '')
-			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE LOAI = '.$id[0].' AND NHACUNGCAP = '.$id[1].' ORDER BY ID ');
+			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE LOAI = '.$id[0].' AND NHACUNGCAP = '.$id[1].' ORDER BY '.$sort.' LIMIT 0 , '.$item);
 		else
-			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE LOAI = '.$id[0].' ORDER BY ID ');
+			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE LOAI = '.$id[0].' ORDER BY '.$sort.' LIMIT 0 , '.$item);
 		return $query->result();
 	}
 
@@ -66,12 +81,26 @@ class public_model extends CI_Model {
 		return $query->result();
 	}
 
-	public function GetSanPhamTheoNhaCungCap($id,$lang = "")
+	public function GetSanPhamTheoNhaCungCap($id,$lang = "",$sort,$item)
 	{
+		switch ($sort) {
+			case 'price':
+				$sort = "DONGIA";
+				break;
+			case 'name':
+				$sort = "TENSANPHAM";
+				break;
+			
+			default: $sort = "ID";break;
+		}
+
+		if($item != 12)
+			$item = 24;
+		
 		if(isset($id[1]) && $id[1] != '')
-			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE NHACUNGCAP = '.$id[0].' AND LOAI = '.$id[1].' ORDER BY ID ');
+			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE NHACUNGCAP = '.$id[0].' AND LOAI = '.$id[1].' ORDER BY '.$sort.' LIMIT 0 , '.$item);
 		else
-			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE NHACUNGCAP = '.$id[0].' ORDER BY ID ');
+			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE NHACUNGCAP = '.$id[0].' ORDER BY '.$sort.' LIMIT 0 , '.$item);
 		return $query->result();
 	}
 
@@ -99,4 +128,21 @@ class public_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function TimKiem($key,$lang = "",$sort,$item)
+	{
+		switch ($sort) {
+			case 'price':
+				$sort = "DONGIA";
+				break;
+			case 'name':
+				$sort = "TENSANPHAM";
+				break;
+			
+			default: $sort = "ID";break;
+		}
+		if($item != 12)
+			$item = 24;		
+		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE TENSANPHAM LIKE "%'.$key.'%" ORDER BY '.$sort.' LIMIT 0 , '.$item);
+		return $query->result();
+	}
 }

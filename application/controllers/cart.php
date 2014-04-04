@@ -1,6 +1,6 @@
 <?php
  
-class Cart extends Public_Controller { 
+class cart extends Public_Controller { 
      
     public function __construct()
 	{
@@ -44,19 +44,15 @@ class Cart extends Public_Controller {
 	} 
 
 	function remove_cart_item(){
-    $id = $this->input->get('id',TRUE);    
-    if($this->cart_model->validate_remove_cart_item($id) == TRUE){         
-        // Check if user has javascript enabled
-        //if($this->input->post('ajax') != '1'){
-        redirect(base_url().'cart/giohang'); // If javascript is not enabled, reload the page with new data
-        }
-        else{
-            echo 'true'; // If javascript is enabled, return true, so the cart gets updated
-	        }
-	      
+	   
+		    if($this->cart_model->validate_remove_cart_item() == TRUE)
+			{         
+		    	echo "true";
+		    }		   		
 	} 
 
 	function show_cart(){
+		
     	$this->load->view('minicart');
 	}
 
@@ -67,6 +63,6 @@ class Cart extends Public_Controller {
 
 	function update_cart(){
 	    $this->cart_model->validate_update_cart();
-	    redirect(base_url().'cart/giohang');
-	}
+	    redirect(base_url().'cart/giohang?i=success');
+	}	
 }

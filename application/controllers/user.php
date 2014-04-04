@@ -5,8 +5,7 @@ Class user extends Public_Controller{
 	public $data;
 
 	function __construct(){
-		parent:: __construct();		
-		$this->data['page'] = 'user';				
+		parent:: __construct();	
 	}
 
 	function index(){

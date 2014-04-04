@@ -4,22 +4,16 @@
             <!--SIDE NAV STARTS-->
             <div id="side_nav">
                 <div class="sideNavCategories">
-                    <h1><?=$TenLoai->TEN?><h3 style="font-size:15pt; float:right"><?=$TenNhaCungCap?></h3></h1>
+                    <h1>Danh mục</h1>
                     <div class="clear"></div>
                     <ul class="category departments">
                         <li class="header"><?=lang('nhacungcap') ?></li>
-                       <?php foreach ($NhaCungCap as $item_ncc) {
+                       <?php foreach ($Loai as $item_loai) {
                           ?>
-                            <li><a href="<?=base_url()?>sanpham/nhacungcap/<?=$item_ncc->ID?>-<?=$idLoai?>"><?=$item_ncc->TENNCC?></a></li>
+                            <li><a href="<?=base_url()?>sanpham/loaisanpham/<?=$item_loai->ID?>"><?=$item_loai->TEN?></a></li>
                           <?php
                        } ?>                       
-                    </ul>
-                    <ul class="category price">
-                        <li class="header"><?=lang('menu_gia') ?></li>
-                        <li><a href="#">$50 to $100</a></li>
-                        <li><a href="#">$100 to $200</a></li>
-                        <li><a href="#">$200 to $500</a></li>
-                    </ul>
+                    </ul>                   
                 </div>
             </div>
             <!--SIDE NAV ENDS-->
@@ -28,14 +22,14 @@
                 <div class="category_banner"> <img src="<?=base_url()?>static/images/promo_cat_banner.jpg"/> </div>
                 <ul class="breadcrumb">
                     <li><a href="<?=base_url()?>"><?=lang('home')?></a></li> 
-                    <li><a href="<?=base_url()?>sanpham/loaisanpham/<?=$idLoai?>"><?=$TenLoai->TEN?></a></li>                
-                    <li class="active"><a href="#"><?=$TenNhaCungCap?></a></li> 
+                    <li><a href="#">Tìm kiếm</a></li>              
+                    
                 </ul>
                 <!--Toolbar-->               
                 <div class="toolbar">
                     <div class="sortby">
                         <label>Sort by :</label>
-                        <select name="sort" onchange="change_sort('<?=$link?>')">
+                        <select name="sort" onchange="change_sort('q=<?=$link?>')">
                             <option value="price" <?=(isset($_GET['sort']) && $_GET['sort']=='price')?"selected":''?>>PRICE</option>
                             <option value="name" <?=(isset($_GET['sort']) && $_GET['sort']=='name')?"selected":''?>>NAME</option>
                         </select>
@@ -51,6 +45,11 @@
                 <!--Toolbar-->
                 <!--Product List Starts-->
                 <div class="products_list products_slider">
+                    <?php if(empty($result)) {?>
+                        <ul>
+                            <li> Không tìm thấy từ khóa!</li>
+                        </ul>
+                     <?php } else {?>
                     <ul>
                         <?php
                     foreach ($result as $item) {
@@ -60,13 +59,14 @@
                             <h3><a href="leisure_detail.html"><?=$item->TENSANPHAM?></a></h3>
                             <small><?=substr($item->MOTA, 0 ,100)?>...</small> </div>
                         <div class="price_info">
-                            <button class="price_add" title="" type="button"><span class="pr_price"><?=number_format($item->DONGIA,"0",",",".")?></span><span class="pr_add"><?=lang('addcart')?></span></button>
+                            <button class="price_add" title="" type="button"><span class="pr_price"><?=number_format($item->DONGIA,"0",",",".")?></span><span class="pr_add" onclick="Submit_Form(<?=$item->ID?>,1)"><?=lang('addcart')?></span></button>
                         </div>
                     </li>   
                         <?php                       
                             }
                         ?>                                
                     </ul>
+                    <?php } ?>
                 </div>
                 <!--Product List Ends-->
                 <!--Toolbar-->
@@ -96,11 +96,11 @@
      var url = "http://localhost/SMobile/";
         function change_sort(link)        
         {
-            window.location.href = url + 'sanpham/loaisanpham/'+ link+'.html?sort=' + jQuery('select[name=sort]').val();
+            window.location.href = url + 'sanpham/timkiem/'+ link+'.html?sort=' + jQuery('select[name=sort]').val();
         }
 
         function change_item(link)
         {
-            window.location.href = url + 'sanpham/loaisanpham/'+ link+'.html?item=' + jQuery('select[name=item]').val();
+            window.location.href = url + 'sanpham/timkiem/'+ link+'.html?item=' + jQuery('select[name=item]').val();
         }
     </script>
