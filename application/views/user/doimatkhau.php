@@ -11,10 +11,10 @@
                                 <div class="col2-set">
                                     <div class="col-1">                                 
                                         <form method="post" id="doimatkhau" action="">
-                                            <fieldset>                                                
+                                                                                        
                                                 <ul class="form-list">
                                                     <li>
-                                                        <label class="required">Mật khẩu cũ:</label>
+                                                        <label>Mật khẩu cũ:</label>
                                                         <div class="input-box">
                                                             <input type="password" class="input-text" id="matkhaucu" name="matkhaucu">
                                                         </div>
@@ -38,7 +38,7 @@
                                                 </ul>
                                                 <br/>
                                                 <br/>
-                                            </fieldset>
+                                            
                                             <input type="submit" name="submit" class="button brown_btn" value="Thực hiện" />
                                         </form>
                                     </div>                                    
