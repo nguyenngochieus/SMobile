@@ -134,7 +134,13 @@ Class admin extends CI_Controller{
 					{									
 						$Tennguoidung = $this->input->post('hoten',TRUE);
 						$Tendangnhap = $this->input->post('tendangnhap',TRUE);
-						$Matkhau = $this->input->post('matkhau',TRUE);
+						$Matkhau_old = $this->input->post('matkhaucu',TRUE);
+						$Matkhau_new = $this->input->post('matkhaumoi',TRUE);
+						if ($Matkhau_new){
+							$Matkhau = $Matkhau_new;
+							$Matkhau = do_hash($Matkhau,'md5');
+						}
+						else $Matkhau = $Matkhau_old;												
 						$Email = $this->input->post('email',TRUE);						
 						$Namsinh = $this->input->post('namsinh',TRUE);
 						$Namsinh = date('Y-m-d', strtotime($Namsinh));
