@@ -145,4 +145,16 @@ class public_model extends CI_Model {
 		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE TENSANPHAM LIKE "%'.$key.'%" ORDER BY '.$sort.' LIMIT 0 , '.$item);
 		return $query->result();
 	}
+
+	public function cut($str, $len) {
+	    $str = trim($str);
+	    if (strlen($str) <= $len) return $str;
+	    $str = substr($str, 0, $len);
+	    if ($str != "") {
+	        if (!substr_count($str, " ")) return $str." ...";
+	        while (strlen($str) && ($str[strlen($str) - 1] != " ")) $str = substr($str, 0, -1);
+	        $str = substr($str, 0, -1)." ...";
+	    }
+	    return $str;
+	}
 }

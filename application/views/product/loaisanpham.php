@@ -34,17 +34,17 @@
                 <!--Toolbar-->               
                 <div class="toolbar">
                     <div class="sortby">
-                        <label>Sort by :</label>
+                        <label><?=lang('sort_by')?> :</label>
                         <select name="sort" onchange="change_sort('<?=$link?>')">
-                            <option value="price" <?=(isset($_GET['sort']) && $_GET['sort']=='price')?"selected":''?>>PRICE</option>
-                            <option value="name" <?=(isset($_GET['sort']) && $_GET['sort']=='name')?"selected":''?>>NAME</option>
+                            <option value="price" <?=(isset($_GET['sort']) && $_GET['sort']=='price')?"selected":''?>><?=lang('giatien')?></option>
+                            <option value="name" <?=(isset($_GET['sort']) && $_GET['sort']=='name')?"selected":''?>><?=lang('ten')?></option>
                         </select>
                     </div>
                     <div class="show_no">
-                        <label>Show :</label>
+                        <label><?=lang('show')?> :</label>
                         <select name="item" onchange="change_item('<?=$link?>')">
-                            <option value="12" <?=(isset($_GET['item']) && $_GET['item']=='12')?"selected":''?>>12 ITEMS</option>
-                            <option value="24" <?=(isset($_GET['item']) && $_GET['item']=='24')?"selected":''?>>24 ITEMS</option>
+                            <option value="12" <?=(isset($_GET['item']) && $_GET['item']=='12')?"selected":''?>>12 <?=lang('item')?></option>
+                            <option value="24" <?=(isset($_GET['item']) && $_GET['item']=='24')?"selected":''?>>24 <?=lang('item')?></option>
                         </select>
                     </div>
                 </div>
@@ -58,9 +58,9 @@
                     <li> <a class="product_image"><img src="<?= base_url()?>upload/images/<?=$item->HINH?>"/></a>
                         <div class="product_info">
                             <h3><a href="leisure_detail.html"><?=$item->TENSANPHAM?></a></h3>
-                            <small><?=substr($item->MOTA, 0 ,100)?>...</small> </div>
+                            <small><?=$this->public_model->cut($item->MOTA,100)?></small> </div>
                         <div class="price_info">
-                            <button class="price_add" title="" type="button"><span class="pr_price"><?=number_format($item->DONGIA,"0",",",".")?></span><span class="pr_add"><?=lang('addcart')?></span></button>
+                            <button class="price_add" title="" type="button"><span class="pr_price"><?=number_format($item->DONGIA,"0",",",".")?></span><span class="pr_add" onclick="Submit_Form(<?=$item->ID?>,1)"><?=lang('addcart')?></span></button>
                         </div>
                     </li>   
                         <?php                       
@@ -72,17 +72,17 @@
                 <!--Toolbar-->
                 <div class="toolbar">
                     <div class="sortby">
-                        <label>Sort by :</label>
+                        <label><?=lang('sort_by')?> :</label>
                         <select name="sort" onchange="change_sort('<?=$link?>')">
-                            <option value="price" <?=(isset($_GET['sort']) && $_GET['sort']=='price')?"selected":''?>>PRICE</option>
-                            <option value="name" <?=(isset($_GET['sort']) && $_GET['sort']=='name')?"selected":''?>>NAME</option>
+                            <option value="price" <?=(isset($_GET['sort']) && $_GET['sort']=='price')?"selected":''?>><?=lang('giatien')?></option>
+                            <option value="name" <?=(isset($_GET['sort']) && $_GET['sort']=='name')?"selected":''?>><?=lang('ten')?></option>
                         </select>
                     </div>
                     <div class="show_no">
-                        <label>Show :</label>
+                        <label><?=lang('show')?> :</label>
                         <select name="item" onchange="change_item('<?=$link?>')">
-                            <option value="12" <?=(isset($_GET['item']) && $_GET['item']=='12')?"selected":''?>>12 ITEMS</option>
-                            <option value="24" <?=(isset($_GET['item']) && $_GET['item']=='24')?"selected":''?>>24 ITEMS</option>
+                            <option value="12" <?=(isset($_GET['item']) && $_GET['item']=='12')?"selected":''?>>12 <?=lang('item')?></option>
+                            <option value="24" <?=(isset($_GET['item']) && $_GET['item']=='24')?"selected":''?>>24 <?=lang('item')?></option>
                         </select>
                     </div>
                 </div>

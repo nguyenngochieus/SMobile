@@ -57,7 +57,7 @@
             <?php endforeach; ?>   
           </table>
           <div class="totals">
-          <p><?php echo form_submit('', 'Update your Cart','class="continuee"'); echo anchor(base_url().'cart/empty_cart', 'Empty Cart', 'class="empty"');?></p>
+          <p><?php echo form_submit('', lang('update_cart'),'class="continuee"'); echo anchor(base_url().'cart/empty_cart', lang('empty_cart'));?></p>
             <table id="totals-table">
                 <tr>
                   <td width="60%" colspan="1" class="align_left" ><strong><?=lang('thanhtien')?></strong></td>
@@ -77,7 +77,7 @@
         <?php echo form_close();?>
         <div class="action_buttonbar">
           <button type="button" onClick="parent.location='<?=base_url()?>'" title="" class="continue"><?=lang('tieptucmuahang')?></button>
-          <button type="button" onClick="parent.location='leisure_checkout.html'" title="" class="checkout"><?=lang('thanhtoan')?></button>
+          <button type="button" onClick="parent.location='<?=base_url()?>thanhtoan'" title="" class="checkout"><?=lang('thanhtoan')?></button>
         </div>
       </div>
       <!--CART ENDS-->       

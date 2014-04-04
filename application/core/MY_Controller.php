@@ -9,8 +9,7 @@ class Public_Controller extends CI_Controller {
       $this->data['Name'] = $this->login->GetName();
       $this->data['UserID'] = $this->login->GetUserID();
       $this->data['Quyen'] = $this->login->GetUserRole();
-      
-  		session_start();    
+       
   		$this->data['title'] = "Trang chủ";
       $this->cart->product_name_rules .=  "\pL";  
       $this->load->model(array('public_model','bodem_model','cart_model')); 

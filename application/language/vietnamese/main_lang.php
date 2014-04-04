@@ -17,5 +17,17 @@ $Lang['soluong'] = "Số lượng";
 $lang['thanhtien'] = "Thành tiền";
 $lang['phivanchuyen'] = "Phí vận chuyển";
 $lang['tongcong'] = "Tổng cộng";
-$lang['no_product'] = "Bạn chưa chọn sản phẩm"
+$lang['no_product'] = "Bạn chưa chọn sản phẩm";
+$lang['update_cart'] = "Cập nhật giỏ hàng";
+$lang['empty_cart'] = "Xóa giỏ hàng";
+$lang['sort_by'] = "Sắp xếp theo";
+$lang['show'] = "Hiện";
+$lang['item'] = "SẢN PHẨM";
+$lang['ten'] = "Tên";
+$lang['search'] = "Tìm kiếm";
+$lang['dang_nhap'] = "Đăng nhập";
+$lang['dang_ky'] = "Đăng ký";
+$lang['tai_khoan'] = "Tài khoản";
+$lang['dang_xuat'] = "Đăng xuất";
+
 ?>

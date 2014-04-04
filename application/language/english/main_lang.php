@@ -18,4 +18,15 @@ $lang['thanhtien'] = "Subtotal";
 $lang['phivanchuyen'] = "Shipping cost";
 $lang['tongcong'] = "Grand Total";
 $lang['no_product'] = "You don\'t have any items yet.";
+$lang['update_cart'] = "Update Cart";
+$lang['empty_cart'] = "Empty Cart";
+$lang['sort_by'] = "Sort by";
+$lang['show'] = "Show";
+$lang['item'] = "PRODUCT";
+$lang['ten'] = "Name";
+$lang['search'] = "SEARCH";
+$lang['dang_nhap'] = "Sign in";
+$lang['dang_ky'] = "Sign up";
+$lang['tai_khoan'] = "Account";
+$lang['dang_xuat'] = "Sign out";
 ?>

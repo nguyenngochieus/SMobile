@@ -31,7 +31,7 @@
           <table class="table table-hover" id="table2">
               <thead>
                  <tr>
-                    <th>Hình ảnh</th>
+                    <th style="width:15%">Hình ảnh</th>
                     <th>Tên sản phẩm</th>
                     <th>Loại sản phẩm</th>
                     <th>Nhà cung cấp</th>
@@ -43,12 +43,12 @@
               <tbody>
               <?php foreach ($result as $item) { ?>              	              
                  <tr id="cate_<?=$item['ID'] ?>" class="odd gradeX">
-                    <td><?php echo $item['HINH'] ?></td>
+                    <td class="center" ><img style="width:25%;" src="<?= base_url()?>upload/images/<?=$item['HINH']?>"/></td>
                     <td><?php echo $item['TENSANPHAM'] ?></td>
                     <td><?php echo $item['LOAISANPHAM'] ?></td>
                     <td><?php echo $item['TENNHACUNGCAP'] ?></td>
                     <td class="center"><?php echo $item['SOLUONG'] ?></td>
-                    <td class="center"><?php echo $item['DONGIA'] ?></td>
+                    <td class="center"><?php echo number_format($item['DONGIA'],"0",",",".") ?></td>
                     <td class="table-action">
 	                  <a href="<?=base_url()?>admin/sanpham/edit?id=<?php echo $item['ID'] ?>"><i class="fa fa-pencil"></i></a>
 	                  <a href="#" onclick="DeleteCate(<?=$item['ID']?>,'<?=$page?>')" class="delete-row"><i class="fa fa-trash-o"></i></a>
@@ -139,7 +139,7 @@
                  <div class="form-group">
               <label class="col-sm-2 control-label">Hình đại diện</label>
                 <div class="col-sm-4">
-                  <span class="field"><img src="" id="ViewHinh" alt="" width="140px" height="181px" /><br />
+                  <span class="field"><img src="" id="ViewHinh" alt="" width="140px" /><br />
                   <input type="text" name="HinhDaiDien" class="form-control" id="HinhAnh" onchange="ChangeImage()"  value="" /> <!-- -->
                  </div>
                   <div class="col-sm-6">
