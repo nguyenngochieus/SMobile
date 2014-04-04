@@ -10,7 +10,12 @@
         function retrieve_products(){
             $query = $this->db->get('sanpham'); // Select the table products
             return $query->result_array(); // Return the results in a array.
-        }         
+        }       
+
+        function getproduct($id){
+            $query =  $this->db->query('SELECT B2.TENLOAI, TENSANPHAM, DONGIA, HINH FROM SANPHAM B1, LOAISANPHAM B2 WHERE B1.ID = '.$id.' AND B1.LOAI = B2.ID');
+            return $query->result();
+        }  
 
         function validate_add_cart_item(){
      
@@ -31,7 +36,7 @@
                         'id'      => $id,
                         'qty'     => $cty,
                         'price'   => $row->DONGIA,
-                        'name'    => $row->TENSANPHAM
+                        'name'    => 'sp'.$id
                     );
                     // Add the data to the cart using the insert function that is available because we loaded the cart library
                     $this->cart->insert($data); 
@@ -44,9 +49,10 @@
             }
         }    
 
-        function validate_remove_cart_item($id){            
+        function validate_remove_cart_item(){   
+            $id = $this->input->post('id');    
             $data = array(
-               'rowid' => '$id',
+               'rowid' => $id,
                'qty'   => 0
             );
 

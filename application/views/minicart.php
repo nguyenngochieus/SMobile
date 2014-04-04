@@ -4,11 +4,13 @@ if(!$this->cart->contents()):
 else:
 ?>   
     <ul>
-        <?php foreach ($this->cart->contents() as $items): ?>  
-        <li><img src="<?= base_url()?>static/images/mini_c_item1.png"><a href="#"> <?php echo $items['name']; ?></a> <span class="price"><?php echo $this->cart->format_number($items['price']); ?></span></li>                        
+        <?php foreach ($this->cart->contents() as $items): 
+        $product = $this->cart_model->getproduct($items['id']);
+        ?>  
+        <li><img style="width: 20%" src="<?= base_url()?>upload/images/<?=$product[0]->HINH?>"><a href="#"> <?=$product[0]->TENSANPHAM?></a> <span class="price"><?php echo $this->cart->format_number($items['price']); ?></span></li>                        
         <?php endforeach; ?>
         <div class="cart_bottom">
             <div class="subtotal_menu"><small>Subtotal:</small><big><?php echo $this->cart->format_number($this->cart->total()); ?></big></div>
-            <a href="leisure_cart.html">Checkout</a></div>
+            <a href="<?=base_url()?>cart/giohang">Checkout</a></div>
     </ul>
 <?php endif; ?>

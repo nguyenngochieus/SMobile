@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class home extends Public_Controller {
+class thanhtoan extends Public_Controller {
 
 	public function __construct(){
 		parent:: __construct();		
@@ -9,10 +9,8 @@ class home extends Public_Controller {
 
 	public function index()
 	{
-		$this->data['SanPhamMoi'] = $this->public_model->GetSanPhamMoi($this->data['lang_db']);
-		$this->data['SanPhamBanChay'] = $this->public_model->GetSanPhamBanChay($this->data['lang_db']);
 		$this->load->view('include/header',$this->data);
-		$this->load->view('home/index',$this->data);
+		$this->load->view('thanhtoan/index');
 		$this->load->view('include/footer',$this->data);
 	}
 }

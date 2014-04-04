@@ -5,12 +5,7 @@ Class user extends Public_Controller{
 	public $data;
 
 	function __construct(){
-		parent:: __construct();		
-		$this->data['page'] = '';				
-		$this->data['Username'] = $this->login->getLoginUsername();  
-		$this->data['Name'] = $this->login->GetName();
-		$this->data['UserID'] = $this->login->GetUserID();
-		$this->data['Quyen'] = $this->login->GetUserRole();
+		parent:: __construct();			
 	}
 
 	function index(){
