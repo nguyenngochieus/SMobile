@@ -19,7 +19,7 @@ Class Binhluan_model extends CI_Model{
 	}
 
 	function edit($id){
-		echo $id;
+		
 		$query = $this->db->query("SELECT B.ID, B.MASANPHAM, B.MAKHACHHANG, S.TENSANPHAM, N.TENNGUOIDUNG, B.NOIDUNG, B.THOIGIAN FROM sanpham S, nguoidung N, binhluan B WHERE S.ID = B.MASANPHAM AND N.ID = B.MAKHACHHANG AND B.ID = ".$id);
 		return $query->result_array();		
 	}

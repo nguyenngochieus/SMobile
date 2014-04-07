@@ -13,7 +13,7 @@ Class Loaisanpham_model extends CI_Model{
 	}
 
 	function edit($id){
-		echo $id;
+		
 		$query = $this->db->get_where($this->table,array('ID'=>$id));
 		return $query->result_array();
 	}

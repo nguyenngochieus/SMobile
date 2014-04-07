@@ -69,7 +69,12 @@
                     </div><!-- rdio -->                    
                   </div>
                   </div>
-
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Địa chỉ</label>
+                  <div class="col-sm-10">
+                    <input name="diachi" class="form-control" id="diachi" value="<?=$item['DIACHI']?>" placeholder="Điền địa chỉ ..."></input>
+                  </div>
+                </div>  
                 <div class="form-group">
                   <label class="col-sm-2 control-label">CMND</label>
                   <div class="col-sm-10">

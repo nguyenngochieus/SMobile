@@ -30,7 +30,7 @@ Class Danhgia_model extends CI_Model{
 
 
 	function edit($id){
-		echo $id;
+		
 		$query = $this->db->query("SELECT B.MASANPHAM, A.TENSANPHAM, B.LUOTXEM, B.LUOTMUA, B.LUOTDANHGIA, B.TONGDIEM, B.DIEMDANHGIA FROM SANPHAM A, danhgia B WHERE A.ID = B.MASANPHAM AND B.MASANPHAM = ".$id);
 		return $query->result_array();		
 	}

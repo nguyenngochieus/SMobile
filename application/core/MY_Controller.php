@@ -4,11 +4,6 @@ class Public_Controller extends CI_Controller {
     public function __construct()
     {       
       parent::__construct();
-
-      $this->data['Username'] = $this->login->getLoginUsername();  
-      $this->data['Name'] = $this->login->GetName();
-      $this->data['UserID'] = $this->login->GetUserID();
-      $this->data['Quyen'] = $this->login->GetUserRole();
        
   		$this->data['title'] = "Trang chủ";
       $this->cart->product_name_rules .=  "\pL";  
@@ -47,7 +42,7 @@ class Public_Controller extends CI_Controller {
       }
       $this->data['FMenu1'] = $this->public_model->FMenu1($this->data['lang_db']);
       $this->data['FMenu2'] = $this->public_model->FMenu2($this->data['lang_db']);
-      $this->data['FMenu3'] = $this->public_model->FMenu3($this->data['lang_db']);
+      $this->data['FMenu3'] = $this->public_model->FMenu3($this->data['lang_db']);      
     }
     public $data;
 }

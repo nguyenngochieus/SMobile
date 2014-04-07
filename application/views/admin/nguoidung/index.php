@@ -53,8 +53,18 @@
                     <td class="center"><?=$item['SDT'] ?></td>
                     <td class="center"><?php if($item['TRANGTHAI'] == 1) echo "Mở"; else echo "Đóng"; ?></td>
                     <td class="table-action">
-	                  <a href="<?=base_url()?>admin/nguoidung/edit?id=<?php echo $item['ID'] ?>"><i class="fa fa-pencil"></i></a>
-	                  <a href="#" onclick="DeleteCate(<?=$item['ID']?>,'<?=$page?>')" class="delete-row"><i class="fa fa-trash-o"></i></a>
+	                  <a href="<?=base_url()?>admin/nguoidung/edit?id=<?php echo $item['ID'] ?>"><i class="fa fa-pencil"></i></a>                                                          
+                    <?php if ($UserID!=$item['ID']) 
+                    {                                
+                        if ($Quyen==2)
+                        {
+                            if ($item['QUYEN']!=1)                                                                      
+                              echo '<a href="#" onclick="DeleteCate('.$item['ID'].','.$page.')" class="delete-row"><i class="fa fa-trash-o"></i></a>';
+                        }
+                        else
+                          echo '<a href="#" onclick="DeleteCate('.$item['ID'].',\''.$page.'\')" class="delete-row"><i class="fa fa-trash-o"></i></a>';
+                    }
+                    ?>
 	                </td>
                  </tr>     
                 <?php } ?>           
@@ -128,6 +138,13 @@
                     <label class="error" for="gioitinh"></label>
                   </div>
                   </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Địa chỉ</label>
+                  <div class="col-sm-6">
+                    <input name="diachi" title="Điền địa chỉ!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" id="diachi"></input>
+                  </div>
+                </div>   
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">CMND</label>

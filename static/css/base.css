@@ -31,9 +31,9 @@ header .top_links > li a{ display:block; padding:16px 20px; line-height:100%; co
 header .top_links > li.highlight a { color:#fff; text-shadow:none;}
 
 header h1.logo{ float:left; padding:10px 0px;}
-header .header_search{ height:23px; width:230px; float:right; padding:3px; margin:30px 0px;  border:solid 1px #e1e1e1;  cursor:pointer;}
+header .header_search{ height:30px; width:230px; float:right; padding:3px; margin:30px 0px;  border:solid 1px #e1e1e1;  cursor:pointer;}
 header .header_search input{ background:none; border:0px; padding:4px; width:82%; color:#b4b4b4;}
-header .header_search button{background:url(../images/search_btn.png) no-repeat center; border:0px; width:20px; height:20px; float:right; margin:2px;}
+header .header_search button{background:url(../images/search_btn.png) no-repeat center; border:0px; width:20px; height:22px; float:right; margin:5px;}
 
 /*-----------------------------------NAV*/
 .navigation_container{ border:solid #e5e3e1; border-width:1px 0px 3px 0px;}
@@ -234,7 +234,7 @@ ul.breadcrumb li a{ color:#bdbdbd; text-decoration:none;}
 .checkout_steps > ol > li:first-child{ border:none;}
 .checkout_steps > ol > li.active .step-title{ color:#fff; background:#544f4b;}
 .checkout_steps #checkout-step-login{ padding:17px; border:solid 1px #e7ded5; display:inline-block; width:95.2%;}
-#checkout-step-login label{ font-size:13px; display:inline-block; padding:10px 0px;}
+#checkout-step-login label{ font-size:17px; display:inline-block; padding:10px 0px;}
 #checkout-step-login .col-2 input{ border:1px solid #D7D7D7; padding:4px; width:230px;}
 .checkout_steps h3{ font-size:18px; padding-bottom:20px;}
 .checkout_steps h4{ color:#312e2b; font-size:13px; font-weight:bold;}
@@ -284,7 +284,7 @@ p.tick{ padding:10px 0px 10px 20px;background:url(../images/tick.png) no-repeat 
 .cart_drop .cart_bottom a{ float:right; margin:6px 0px; padding:7px; text-transform:uppercase; color:#fff; text-decoration:none; font-weight:bold; font-size:11px;}
 
 /*GENERAL*/
-input, select, textarea, button{ font-size:12px;}
+input, select, textarea, button{ font-size:22px;}
 .message{ padding:20px 85px; font-size:14px; line-height:100%; margin-bottom:15px;}
 .message.success{ color:#91a158; background:url(../images/message_cart.png) no-repeat 15px center #f9fff1; border:solid 1px #dcedbf;}
 .message.error{ color:#a94442; background:url(../images/message_cart.png) no-repeat 15px center #f2dede; border:solid 1px #ebccd1;}

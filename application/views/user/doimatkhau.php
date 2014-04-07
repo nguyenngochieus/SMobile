@@ -15,13 +15,13 @@
                                                 <ul class="form-list">
                                                     <li>
                                                         <label>Mật khẩu cũ:</label>
-                                                        <div class="input-box">
+                                                        <div class="input-box">                                                    
                                                             <input type="password" class="input-text" id="matkhaucu" name="matkhaucu">
                                                         </div>
                                                         <?php echo form_error('matkhaucu'); ?>
                                                     </li>
                                                     <li>
-                                                        <label class="required">Mật khẩu mới:</label>
+                                                        <label>Mật khẩu mới:</label>
                                                         <div class="input-box">
                                                             <input type="password"  class="input-text" id="matkhaumoi" name="matkhaumoi">
                                                         </div>
@@ -29,7 +29,7 @@
                                                     </li>
                                                     </li>
                                                     <li>
-                                                        <label class="required">Nhập lại khẩu mới:</label>
+                                                        <label>Nhập lại khẩu mới:</label>
                                                         <div class="input-box">
                                                             <input type="password"  class="input-text"  id="rematkhau" name="rematkhau">
                                                         </div>
