@@ -44,7 +44,7 @@
                     } 
                     else{ 
                         ?>
-                        <li><a href="<?=base_url()?>user/taikhoan"><?=lang('tai_khoan')?></a></li>
+                        <li><a href="<?=base_url()?>user"><?=lang('tai_khoan')?></a></li>
                         <li><a href="<?=base_url()?>dangxuat"><?=lang('dang_xuat')?></a></li>
                         <?php
                     } ?>

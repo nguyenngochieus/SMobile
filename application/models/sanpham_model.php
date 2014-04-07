@@ -7,19 +7,18 @@ Class Sanpham_model extends CI_Model{
 		parent:: __construct();
 	}
 
-	function get_sanpham(){				
+	function get_sanpham(){
 		$query = $this->db->query("SELECT B1.*, (SELECT B2.TENLOAI FROM loaisanpham B2 WHERE B1.LOAI = B2.ID ) LOAISANPHAM , (SELECT B3.TENNCC FROM nhacungcap B3 WHERE B1.NHACUNGCAP = B3.ID ) TENNHACUNGCAP FROM `".$this->table."` B1 ORDER BY `ID` DESC ");
 		return $query->result_array();
 	}
 
 	function edit($id){
-		echo $id;
+		
 		$query = $this->db->get_where($this->table,array('ID'=>$id));
 		return $query->result_array();
 	}
 
-	function insert($Tensanpham, $Loai, $Nhacungcap, $Soluong, $Hinh, $Mota, $Mota_en, $Dongia)
-	{
+	function insert($Tensanpham, $Loai, $Nhacungcap, $Soluong, $Hinh, $Mota, $Mota_en, $Dongia){
 		$data = array(
 			"Tensanpham" => $Tensanpham,
 			"Loai" => $Loai,
@@ -35,8 +34,7 @@ Class Sanpham_model extends CI_Model{
 		return FALSE;
 	}
 
-	function update($Id, $Tensanpham, $Loai, $Nhacungcap, $Soluong, $Hinh, $Mota, $Mota_en, $Dongia)
-	{
+	function update($Id, $Tensanpham, $Loai, $Nhacungcap, $Soluong, $Hinh, $Mota, $Mota_en, $Dongia){
 		$data = array(
 			"Tensanpham" => $Tensanpham,
 			"Loai" => $Loai,
@@ -58,10 +56,21 @@ Class Sanpham_model extends CI_Model{
 		else return TRUE;
 	}
 
-	function delete($id)
-	{
+	function delete($id){
 		$this->db->delete($this->table,array('id'=>$id));
 		if($this->db->affected_rows() > 0 ) return TRUE;
 		return FALSE;
+	}
+
+	function thongke_sanpham_top10sell()
+	{
+		$query = $this->db->query('SELECT S.TENSANPHAM, D.LUOTMUA FROM SANPHAM S, DANHGIA D WHERE S.ID = D.MASANPHAM ORDER BY D.LUOTMUA DESC LIMIT 10');
+		return $query->result();
+	}
+
+	function thongke_sanpham_top10rate()
+	{
+		$query = $this->db->query('SELECT S.TENSANPHAM, D.DIEMDANHGIA FROM SANPHAM S, DANHGIA D WHERE S.ID = D.MASANPHAM ORDER BY D.DIEMDANHGIA DESC LIMIT 10');
+		return $query->result();
 	}
 }

@@ -8,7 +8,7 @@ class sanpham extends Public_Controller {
 	}	
 
 	public function loaisanpham($url)
-	{		
+	{
 		$this->data['link'] = $url;	
 		$sort = '';
 		$item = '';
@@ -33,7 +33,7 @@ class sanpham extends Public_Controller {
 	}
 
 	public function nhacungcap($url)
-	{	
+	{
 		$this->data['link'] = $url;	
 		$sort = '';
 		$item = '';
@@ -60,25 +60,23 @@ class sanpham extends Public_Controller {
 		$this->load->view('include/footer',$this->data);
 	}
 
-		public function timkiem()
-		{	
-			$key = $this->input->get('q',true);
-			$this->data['link'] = $key;	
-			$sort = '';
-			$item = '';			
-			if(isset($_GET['sort']))
-				$sort = $this->input->get('sort',true);
-			if(isset($_GET['item']))
-				$sort = $this->input->get('item',true);
-			$this->data['result'] = $this->public_model->TimKiem($key,$this->data['lang_db'],$sort,$item);
-			$this->data['Loai'] = $this->public_model->GetMenu($this->data['lang_db']);
-			$this->data['page'] = 'timkiem';
-			$this->load->view('include/header',$this->data);
-			$this->load->view('product/timkiem',$this->data);
-			$this->load->view('include/footer',$this->data);
-		}
-	
-	
+	public function timkiem()
+	{
+		$key = $this->input->get('q',true);
+		$this->data['link'] = $key;	
+		$sort = '';
+		$item = '';			
+		if(isset($_GET['sort']))
+			$sort = $this->input->get('sort',true);
+		if(isset($_GET['item']))
+			$sort = $this->input->get('item',true);
+		$this->data['result'] = $this->public_model->TimKiem($key,$this->data['lang_db'],$sort,$item);
+		$this->data['Loai'] = $this->public_model->GetMenu($this->data['lang_db']);
+		$this->data['page'] = 'timkiem';
+		$this->load->view('include/header',$this->data);
+		$this->load->view('product/timkiem',$this->data);
+		$this->load->view('include/footer',$this->data);
+	}
 	
 	public function chitiet($ma)
 	{
@@ -90,5 +88,4 @@ class sanpham extends Public_Controller {
 		$this->load->view('product/chitiet',$this->data);
 		$this->load->view('include/footer',$this->data);
 	}
-
 }

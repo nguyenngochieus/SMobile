@@ -13,7 +13,7 @@ Class Tintuc_model extends CI_Model{
 	}
 
 	function edit($id){
-		echo $id;
+		
 		$query = $this->db->query("SELECT T.ID, T.TIEUDE, T.LOAITIN, T.MOTA, T.NOIDUNG, T.NGAYDANG, T.HINH, T.TACGIA, N.TENNGUOIDUNG, L.LOAITINTUC FROM tintuc T,nguoidung N, loaitintuc L WHERE T.TACGIA = N.ID AND T.LOAITIN = L.ID AND T.ID = ".$id);
 		return $query->result_array();
 	}

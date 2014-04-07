@@ -23,6 +23,11 @@ Class admin extends CI_Controller{
 			else{
 				$this->data['title'] = 'Trang chủ';
 				$this->data['page'] = 'trangchu';
+				$this->load->model(array('nguoidung_model','sanpham_model'));				 
+				$this->data['thongke_nguoidung'] = $this->nguoidung_model->thongke_nguoidung();
+				$this->data['thongke_sanpham_top10sell'] = $this->sanpham_model->thongke_sanpham_top10sell();
+				$this->data['thongke_sanpham_top10rate'] = $this->sanpham_model->thongke_sanpham_top10rate();
+
 				$this->load->view('admin/include/header',$this->data);
 				$this->load->view('admin/include/leftpanel',$this->data);
 				$this->load->view('admin/include/headerbar',$this->data);
@@ -98,6 +103,7 @@ Class admin extends CI_Controller{
 						$Namsinh = $this->input->post('namsinh',TRUE);
 						$Namsinh = date('Y-m-d', strtotime($Namsinh));
 						$Gioitinh = $this->input->post('gioitinh',TRUE);
+						$Diachi = $this->input->post('diachi',TRUE);
 						$CMND = $this->input->post('CMND',TRUE);
 						$SDT = $this->input->post('SDT',TRUE);
 						$Quyen = $this->input->post('quyen',TRUE);
@@ -105,7 +111,7 @@ Class admin extends CI_Controller{
 						$HinhDaiDien = $this->input->post('HinhDaiDien',TRUE);
 						$HinhDaiDien =  substr($HinhDaiDien,22);
 
-						$tmp = $this->nguoidung_model->insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
+						$tmp = $this->nguoidung_model->insert($Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $Diachi, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
 						if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
 						else echo redirect(base_url('admin/error/insert'));
 					}
@@ -145,6 +151,7 @@ Class admin extends CI_Controller{
 						$Namsinh = $this->input->post('namsinh',TRUE);
 						$Namsinh = date('Y-m-d', strtotime($Namsinh));
 						$Gioitinh = $this->input->post('gioitinh',TRUE);
+						$Diachi = $this->input->post('diachi',TRUE);
 						$CMND = $this->input->post('CMND',TRUE);
 						$SDT = $this->input->post('SDT',TRUE);
 						$Quyen = $this->input->post('quyen',TRUE);
@@ -152,7 +159,7 @@ Class admin extends CI_Controller{
 						$HinhDaiDien = $this->input->post('HinhDaiDien',TRUE);
 						$HinhDaiDien =  substr($HinhDaiDien,22);
 						
-						$tmp = $this->nguoidung_model->update($id, $Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
+						$tmp = $this->nguoidung_model->update($id, $Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $Diachi, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
 						if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
 						else echo redirect(base_url('admin/error/edit'));
 					}						

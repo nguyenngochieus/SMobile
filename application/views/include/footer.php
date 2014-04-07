@@ -54,6 +54,6 @@
         <!--Footer Ends-->
     </div>
 </div>
-
+<script src="<?=base_url()?>static/js/ckfinder/ckfinder_v1.js"></script>
 </body>
 </html>
