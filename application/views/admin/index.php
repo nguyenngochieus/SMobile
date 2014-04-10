@@ -80,7 +80,7 @@
                       <div class="loginmsg"  ><?=$loi?></div>
                     </div><!--nopassword-->                  
                 
-                    <input id="username" name="username" type="text" class="form-control uname" placeholder="Tài khoản" />
+                    <input id="username" name="username" type="text" class="form-control uname" placeholder="Tài khoản" autofocus />
                     <input id="password" name="password" type="password" class="form-control pword" placeholder="Mật khẩu" />
                     <div class="mb20"></div>
                     <div style="float:left"><input type="checkbox" name="remember" value="1" />   Lưu tài khoản</div>

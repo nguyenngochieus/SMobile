@@ -134,14 +134,12 @@
                 date: true,
                 ktngaysinh: true               
             },
-            CMND: {
-                required: true,
+            CMND: {                
                 number: true,
                 rangelength: [9, 9]
 
             },
-            SDT: {
-                required: true,
+            SDT: {                
                 rangelength: [10, 11]
             }, 
 
@@ -212,15 +210,11 @@
                 required: "Chưa chọn ngày sinh", 
                 date: "Vui lòng chọn một ngày sinh hợp lệ"            
             },
-            CMND: {
-                required: "Chưa nhập số CMND",
+            CMND: {                
                 number: "Vui lòng chỉ nhập chữ số. Ví dụ: 123456789",
                 rangelength: "Vui lòng chỉ nhập 9 chữ số. Ví dụ: 123456789"
             },
-            SDT: {
-                required: "Chưa nhập số điện thoại",
-                rangelength: "Vui lòng nhập 10 hoặc 11 chữ số"
-            },
+            SDT: "Vui lòng nhập 10 hoặc 11 chữ số",
 
             // Đánh giá
 

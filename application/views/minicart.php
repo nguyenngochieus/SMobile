@@ -10,7 +10,7 @@ else:
         <li><img style="width: 20%" src="<?= base_url()?>upload/images/<?=$product[0]->HINH?>"><a href="#"> <?=$product[0]->TENSANPHAM?></a> <span class="price"><?php echo $this->cart->format_number($items['price']); ?></span></li>                        
         <?php endforeach; ?>
         <div class="cart_bottom">
-            <div class="subtotal_menu"><small>Subtotal:</small><big><?php echo $this->cart->format_number($this->cart->total()); ?></big></div>
-            <a href="<?=base_url()?>cart/giohang">Checkout</a></div>
+            <div class="subtotal_menu"><small>Tổng tiền:</small><big><?php echo $this->cart->format_number($this->cart->total()); ?></big></div>
+            <a href="<?=base_url()?>cart/giohang">Thanh toán</a></div>
     </ul>
 <?php endif; ?>
