@@ -16,7 +16,7 @@
                                                     <li>
                                                         <label>Mật khẩu cũ:</label>
                                                         <div class="input-box">                                                    
-                                                            <input type="password" class="input-text" id="matkhaucu" name="matkhaucu">
+                                                            <input type="password" class="input-text" id="matkhaucu" name="matkhaucu" autofocus>
                                                         </div>
                                                         <?php echo form_error('matkhaucu'); ?>
                                                     </li>
