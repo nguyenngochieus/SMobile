@@ -1,27 +1,27 @@
 <div class="section_container">
         <!--Mid Section Starts-->
         <section>
-           <div id="content" class="full_page">  <h1>Checkout</h1>
+           <div id="content" class="full_page">  <h1>Thanh toán</h1>
   <div class="checkout_steps">
 	<ol id="checkoutSteps">
 		<li id="checkout" class="sct">
-		  <div class="step-title">Step 1: Checkout Options</div>
+		  <div class="step-title">Bước 1: Xác nhận tài khoản</div>
 		  <div class="checkout-content"></div>
 		</li>
 		<li id="payment-address" class="sct">
-		  <div class="step-title"><span>Step 2: Billing Details</span></div>
+		  <div class="step-title"><span>Bước 2: Thông tin khách hàng</span></div>
 		  <div class="checkout-content"></div>
 		</li>
 		<li id="shipping-address" class="sct">
-		  <div class="step-title">Step 3: Delivery Details</div>
+		  <div class="step-title">Bước 3: Thông tin giao hàng</div>
 		  <div class="checkout-content"></div>
 		</li>
 		<li id="shipping-method" class="sct">
-		  <div class="step-title">Step 4: Delivery Method</div>
+		  <div class="step-title">Bước 4: Cách thức giao hàng</div>
 		  <div class="checkout-content"></div>
 		</li>
 		<li id="confirm" class="sct">
-		  <div class="step-title">Step 6: Confirm Order</div>
+		  <div class="step-title">Bước 5: Xác nhận hóa đơn</div>
 		  <div class="checkout-content"></div>
 		</li>
 	</ol>
@@ -106,12 +106,13 @@ $(document).ready(function() {
 });
 
 // Login
-$('#button-login').live('click', function() {
+$('#button-login').live('click', function() {	
 	$.ajax({
 		url: url + 'thanhtoan/kiemtralogin',
 		type: 'post',
 		data: {username: $('#username').val(), password: $('#password').val()},
 		cache: false,
+		dataType : 'json',
 		beforeSend: function() {
 			$('#button-login').attr('disabled', true);
 			$('#button-login').after('<span class="wait">&nbsp;<img src="http://localhost/SMobile/static/images/loading.gif" alt="" /></span>');
@@ -120,8 +121,8 @@ $('#button-login').live('click', function() {
 			$('#button-login').attr('disabled', false);
 			$('.wait').remove();
 		},			
-		success: function(data) {
-			if(data == 'true')
+		success: function(json) {
+			if(json['error'] == 0)
 			{
 				$.ajax({
 				url: url + 'thanhtoan/address',
@@ -148,9 +149,12 @@ $('#button-login').live('click', function() {
 			}
 			else
 			{
-				$('#checkout .checkout-content').prepend('<div class="warning" style="display: none;">' + data + '</div>');
+				$('.warning, .error').fadeOut('slow');
+				$('.warning, .error').remove();
+				$('#checkout .checkout-content').prepend('<div class="warning" style="display: none;">' + json['msg'] + '</div>');
 				
 				$('.warning').fadeIn('slow');
+				//setTimeout(function(){$('.warning').fadeOut('slow');},3000);//3s
 			}
 			
 		},
@@ -162,8 +166,9 @@ $('#button-payment-address').live('click', function() {
 	$.ajax({
 		url: url + 'thanhtoan/kiemtradiachi',
 		type: 'post',
-		data: {id: $('#payment-address select').val()},
+		data: {id: $('input:radio[name=payment_address]:checked').val(),address: $('#payment-address #address').val(), country: $('#payment-address #country option:selected').val()},
 		cache: false,
+		dataType : 'json',
 		beforeSend: function() {
 			$('#button-payment-address').after('<span class="wait">&nbsp;<img src="http://localhost/SMobile/static/images/loading.gif" alt="" /></span>');
 		},	
@@ -171,35 +176,46 @@ $('#button-payment-address').live('click', function() {
 			$('#button-payment-address').attr('disabled', false);
 			$('.wait').remove();
 		},			
-		success: function(data) {
-			
-			if (data == 'true') {
-						$.ajax({
-						url: url + 'thanhtoan/shipping_address',
-						dataType: 'html',
-						success: function(html) {
-						$('#shipping-address .checkout-content').html(html);
+		success: function(json) {			
+			$('.warning, .error').remove();
+			if (json['error']['success'] == 0) {
+				if(json['error']['address'])
+				{
+					$('#payment-address #address').after('<span class="error">' + json['error']['address'] + '</span>');
+				}
+				if(json['error']['country'])
+				{
+					$('#payment-address #country').after('<span class="error">' + json['error']['country'] + '</span>');
+				}
+			}
+			else{
+				if(json['error']['success'] == 1)
+				{
+					$.ajax({
+					url: url + 'thanhtoan/shipping_address',
+					dataType: 'html',
+					success: function(html) {
+					$('#shipping-address .checkout-content').html(html);
+				
+					$('#payment-address .checkout-content').slideUp('slow');
 					
-						$('#payment-address .checkout-content').slideUp('slow');
-						
-						$('#shipping-address .checkout-content').slideDown('slow');
-						
-						$('.sct').removeClass('section allow active');
-						$('#shipping-address').addClass('section allow active');
-						
-						
-						$('#payment-address .step-title a').remove();
-						$('#shipping-address .step-title a').remove();
-						$('#shipping-method .step-title a').remove();
-						$('#payment-method .step-title a').remove();
-						
-						$('#payment-address .step-title').append('<a class="edit">Modify &raquo;</a>');	
-					},
-					error: function(xhr, ajaxOptions, thrownError) {
-						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+					$('#shipping-address .checkout-content').slideDown('slow');
+					
+					$('.sct').removeClass('section allow active');
+					$('#shipping-address').addClass('section allow active');
+					
+					
+					$('#payment-address .step-title a').remove();
+					$('#shipping-address .step-title a').remove();
+					$('#shipping-method .step-title a').remove();
+					$('#payment-method .step-title a').remove();
+					
+					$('#payment-address .step-title').append('<a class="edit">Chỉnh sửa &raquo;</a>');	
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 					}
-				});
-								
+				});								
 				$.ajax({
 					url: url + 'thanhtoan/address',
 					dataType: 'html',
@@ -210,7 +226,8 @@ $('#button-payment-address').live('click', function() {
 						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 					}
 				});	
-			}								
+				}
+			}							
 		} 		
 	});	
 });
@@ -220,8 +237,9 @@ $('#button-shipping-address').live('click', function() {
 	$.ajax({
 		url: url + 'thanhtoan/kiemtradiachigiaohang',
 		type: 'post',
-		data: {id: $('#shipping-address select').val()},
-		cache: false,
+		data: {id: $('input:radio[name=shipping_address]:checked').val(), name: $('#shipping-address #name').val(),	SDT: $('#shipping-address #SDT').val(), address: $('#shipping-address #address').val(), country: $('#shipping-address #country option:selected').val()},
+		cache: false,		
+		dataType : 'json',
 		beforeSend: function() {
 			$('#button-shipping-address').after('<span class="wait">&nbsp;<img src="http://localhost/SMobile/static/images/loading.gif" alt="" /></span>');
 		},	
@@ -229,44 +247,73 @@ $('#button-shipping-address').live('click', function() {
 			$('#button-shipping-address').attr('disabled', false);
 			$('.wait').remove();
 		},			
-		success: function(data) {
-			
-			if (data == 'true') {
-						$.ajax({
-					url: url + 'thanhtoan/shipping_option',
-					dataType: 'html',
-					success: function(html) {
-						$('#shipping-method .checkout-content').html(html);
-						
-						$('#shipping-address .checkout-content').slideUp('slow');
-						
-						$('#shipping-method .checkout-content').slideDown('slow');
-						
-						$('.sct').removeClass('section allow active');
-						$('#shipping-method').addClass('section allow active');
-						
-						$('#shipping-address .step-title a').remove();
-						$('#shipping-method .step-title a').remove();
-						$('#payment-method .step-title a').remove();
-						
-						$('#shipping-address .step-title').append('<a class="edit">Modify &raquo;</a>');
-					},
-					error: function(xhr, ajaxOptions, thrownError) {
-						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-					}
-				});
+		success: function(json) {			
+			$('.warning, .error').remove();
+			if (json['error']['success'] == 0) {
+				if(json['error']['name'])
+				{
+					$('#shipping-address #name').after('<span class="error">' + json['error']['name'] + '</span>');
+				}
+				if(json['error']['SDT'])
+				{
+					$('#shipping-address #SDT').after('<span class="error">' + json['error']['SDT'] + '</span>');
+				}
+				if(json['error']['SDT_n'])
+				{
+					$('#shipping-address #SDT').after('<span class="error">' + json['error']['SDT_n'] + '</span>');
+				}
+				if(json['error']['address'])
+				{
+					$('#shipping-address #address').after('<span class="error">' + json['error']['address'] + '</span>');
+				}
+				if(json['error']['country'])
+				{
+					$('#shipping-address #country').after('<span class="error">' + json['error']['country'] + '</span>');
+				}
+			}
+			else{
+				if(json['error']['success'] == 1)
+				{
+					$.ajax({
+						url: url + 'thanhtoan/shipping_option',
+						dataType: 'html',
+						success: function(html) {
+							$('#shipping-method .checkout-content').html(html);
+							
+							$('#shipping-address .checkout-content').slideUp('slow');							
+							if(json['error']['str'])
+							{
+								$( "#shipping-address #address_id option:selected" ).text(json['error']['str']);
+							}						
+							
+							$('#shipping-method .checkout-content').slideDown('slow');
+							
+							$('.sct').removeClass('section allow active');
+							$('#shipping-method').addClass('section allow active');
+							
+							$('#shipping-address .step-title a').remove();
+							$('#shipping-method .step-title a').remove();
+							$('#payment-method .step-title a').remove();
+							
+							$('#shipping-address .step-title').append('<a class="edit">Chỉnh sửa &raquo;</a>');
+						},
+						error: function(xhr, ajaxOptions, thrownError) {
+							alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+						}
+					});
 								
-				$.ajax({
-					url: url + 'thanhtoan/shipping_address',
-					dataType: 'html',
-					success: function(html) {
-						$('#shipping-address .checkout-content').html(html);
-					},
-					error: function(xhr, ajaxOptions, thrownError) {
-						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-					}
-				});	
-			}								
+					$.ajax({
+						url: url + 'thanhtoan/shipping_address',
+						dataType: 'html',
+						success: function(html) {
+							$('#shipping-address .checkout-content').html(html);
+						},
+						error: function(xhr, ajaxOptions, thrownError) {
+							alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+						}
+					});
+				}
+			}							
 		} 		
 	});	
 });
@@ -326,7 +373,7 @@ $('#button-shipping-method').live('click', function() {
 						
 						$('#shipping-method .step-title a').remove();
 						
-						$('#shipping-method .step-title').append('<a class="edit">Modify &raquo;</a>');	
+						$('#shipping-method .step-title').append('<a class="edit">Chỉnh sửa &raquo;</a>');	
 					},
 					error: function(xhr, ajaxOptions, thrownError) {
 						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

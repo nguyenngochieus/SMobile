@@ -3,6 +3,7 @@ class sanpham extends Public_Controller {
 
 	public function __construct(){
 		parent:: __construct();		
+		$this->load->model('binhluan_model');
 		$this->data['link'] = '';
 		$this->data['page'] = 'sanpham';
 	}	
@@ -80,12 +81,33 @@ class sanpham extends Public_Controller {
 	
 	public function chitiet($ma)
 	{
-		$this->data['result'] = $this->public_model->GetChiTietSP($ma,$this->data['lang_db']);
-		if(count($this->data['result']) == 0 ) echo redirect(base_url());
-		$this->data['SPCungLoai'] = $this->public_model->GetSanPhamCungLoai($ma,$this->data['result'][0]->LOAI,$this->data['lang_db']);
-		$this->data['page'] = 'loaisanpham'.$this->data['idLoai'];
-		$this->load->view('include/header',$this->data);
-		$this->load->view('product/chitiet',$this->data);
-		$this->load->view('include/footer',$this->data);
+		if(isset($ma) && $ma != "")
+		{
+			$this->data['result'] = $this->public_model->GetChiTietSP($ma,$this->data['lang_db']);
+			$this->data['result_cm'] = $this->binhluan_model->get_binhluan_sp($ma);
+			if(count($this->data['result']) == 0 ) echo redirect(base_url());
+			$this->data['SPCungLoai'] = $this->public_model->GetSanPhamCungLoai($ma,$this->data['result'][0]->LOAI,$this->data['lang_db']);
+			$this->data['page'] = 'loaisanpham';
+			$this->load->view('include/header',$this->data);
+			$this->load->view('product/chitiet',$this->data);
+			$this->load->view('include/footer',$this->data);
+		}
+		else
+			redirect(base_url());
+	}
+
+	public function comment($ma)
+	{		
+		if(isset($ma) && $ma != "")
+		{
+			$name = $this->input->post('name',TRUE);
+			$email = $this->input->post('email',TRUE);
+			$text = $this->input->post('text',TRUE);
+			$tmp = $this->binhluan_model->insert($ma,$name,$email,$text);
+			if($tmp) echo redirect(base_url('sanpham/chitiet/'.$ma));
+			else echo redirect(base_url('admin/error/insert'));
+		}
+		else
+			redirect(base_url());
 	}
 }

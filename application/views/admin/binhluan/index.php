@@ -32,6 +32,7 @@
                  <tr>
                     <th>Tên sản phẩm</th>
                     <th>Tên khách hàng</th>
+                    <th>Email</th>
                     <th>Nội dung</th>
                     <th>Thời gian</th> 
                     <th>Thao tác</th>                   
@@ -41,7 +42,8 @@
               <?php foreach ($result as $item) { ?>              	              
                  <tr id="cate_<?=$item['ID'] ?>" class="odd gradeX">
                     <td><?php echo $item['TENSANPHAM'] ?></td>
-                    <td><?php echo $item['TENNGUOIDUNG'] ?></td>
+                    <td><?php echo $item['TENKHACHHANG'] ?></td>
+                    <td><?php echo $item['EMAIL'] ?></td>
                     <td><?php echo $item['NOIDUNG'] ?></td>
                     <td><?php echo $item['THOIGIAN'] ?></td>
                     <td class="table-action">

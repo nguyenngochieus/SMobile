@@ -22,7 +22,13 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Tên khách hàng </span></label>
                   <div class="col-sm-10">
-                    <input type="text" name="Tenkhachhang" class="form-control" id="username" value="<?php echo $item['TENNGUOIDUNG']?>" required readonly />
+                    <input type="text" name="Tenkhachhang" class="form-control" id="username" value="<?php echo $item['TENKHACHHANG']?>" required readonly />
+                  </div>
+                </div>    
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Email </span></label>
+                  <div class="col-sm-10">
+                    <input type="email" name="email" class="form-control" id="email" value="<?php echo $item['EMAIL']?>" required readonly />
                   </div>
                 </div>    
 

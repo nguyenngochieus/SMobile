@@ -11,9 +11,11 @@
 <!--Javascript-->
 
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery-1.7.2.min.js" ></script>
+<script type="text/javascript" src="<?= base_url()?>static/admin/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.flexslider.js" ></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.easing.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.jcarousel.js"></script>
+<script type="text/javascript" src="<?= base_url()?>static/js/simpletabs.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/form_elements.js" ></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.stepy.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/custom.js"></script>

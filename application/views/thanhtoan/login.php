@@ -19,15 +19,17 @@
 	<div id="login" class="col-2">
 	  <h2>Returning Customer</h2>
 	  <p>I am a returning customer</p>
-	  <b>E-Mail:</b><br />
-	  <input type="text" name="username" id="username" value="" class="large-field" />
-	  <br />
-	  <br />
-	  <b>Password:</b><br />
-	  <input type="password" name="password" id="password" value="" class="large-field" />
-	  <br />
-	  <input type="button" value="Login" id="button-login" class="button" /><br />
-	  <br />
+	  <form id="login-form" action="">
+		  <b>E-Mail:</b><br />
+		  <input type="text" name="username" id="username" value="" class="large-field" required="" />
+		  <br />
+		  <br />
+		  <b>Password:</b><br />
+		  <input type="password" name="password" id="password" value="" class="large-field"  />
+		  <br />
+		  <input type="button" value="Login" id="button-login" class="button" /><br />
+		  <br />
+	  </form>
 	</div>
 </div>
 <div class="cf"></div>
