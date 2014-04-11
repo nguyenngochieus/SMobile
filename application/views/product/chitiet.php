@@ -50,7 +50,7 @@
           <p class="email"><?=$item_cm['EMAIL']?></p>
           <time class="date" datetime="<?=$item_cm['THOIGIAN']?>">(Ngày gửi: <?=date_format(date_create($item_cm['THOIGIAN']),"Y/m/d")?>)</time>
         </div>
-        <div class="content"> 
+        <div class="content_comment"> 
         <?=$item_cm['NOIDUNG']?> 
         </div>
       </div>

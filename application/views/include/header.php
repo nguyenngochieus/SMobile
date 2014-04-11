@@ -5,6 +5,7 @@
 <title><?=lang('title')?></title>
 <!--CSS-->
 <link rel="stylesheet" href="<?=base_url()?>static/css/styles.css">
+<link rel="stylesheet" href="<?=base_url()?>static/css/short_code.css">
 <link type="text/css" rel="stylesheet" href="<?=base_url()?>static/css/jquery.stepy.css" />
 <!--Google Webfont -->
 <link href='http://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'>

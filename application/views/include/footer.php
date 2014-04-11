@@ -10,7 +10,7 @@
                     } ?> 
                     </ul>
                 </li>
-                <li  class="seperator"> <span>MÁY TÍNH XÁC TAY</span>
+                <li  class="seperator"> <span>MÁY TÍNH XÁCH TAY</span>
                     <ul>
                     <?php foreach ($FMenu2 as $item) {
                         echo '<li><a href="'.base_url().'sanpham/nhacungcap/'.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';

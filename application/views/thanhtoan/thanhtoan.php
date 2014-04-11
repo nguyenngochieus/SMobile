@@ -334,32 +334,9 @@ $('#button-shipping-method').live('click', function() {
 			$('.wait').remove();
 		},			
 		success: function(data) {	
-			if (data == 2) {
+			if (data == 'true') {
 				$.ajax({
-					url: url + 'thanhtoan/confirm/2',
-					dataType: 'html',
-					success: function(html) {
-						$('#confirm .checkout-content').html(html);
-						
-						$('#shipping-method .checkout-content').slideUp('slow');
-						
-						$('#confirm .checkout-content').slideDown('slow');
-						
-						$('.sct').removeClass('section allow active');
-						$('#confirm').addClass('section allow active');
-						
-						$('#shipping-method .step-title a').remove();
-						
-						$('#shipping-method .step-title').append('<a class="edit">Modify &raquo;</a>');	
-					},
-					error: function(xhr, ajaxOptions, thrownError) {
-						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-					}
-				});
-				}
-			else{
-					$.ajax({
-					url: url + 'thanhtoan/confirm/1',
+					url: url + 'thanhtoan/confirm/',
 					dataType: 'html',
 					success: function(html) {
 						$('#confirm .checkout-content').html(html);
@@ -379,8 +356,8 @@ $('#button-shipping-method').live('click', function() {
 						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 					}
 				});
-
-				}			
+				}
+			
 			} ,
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

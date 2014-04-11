@@ -4,7 +4,7 @@
 <div id="shipping-existing">
     <select name="address_id" id="address_id" style="width: 100%; margin-bottom: 15px;" size="5">
             <option value="104" selected="selected">
-                <?=$address->DIACHI?>
+           <?=$address['name'].', '.$address['SDT'].', '.$address['diachi']?>         
             </option>
     </select>
 </div>

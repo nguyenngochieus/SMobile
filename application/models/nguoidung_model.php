@@ -87,6 +87,27 @@ Class Nguoidung_model extends CI_Model{
 		else return TRUE;		
 	}
 
+	function update_user($Id, $Tennguoidung, $Email, $Ngaysinh, $Gioitinh, $Diachi, $CMND, $SDT)
+	{		
+		$data = array(
+			"Tennguoidung" => $Tennguoidung,			
+			"Email" => $Email,
+			"Ngaysinh" => $Ngaysinh,
+			"Gioitinh" => $Gioitinh,
+			"Diachi" => $Diachi,
+			"CMND" => $CMND,
+			"SDT" => $SDT
+		);		
+		$this->db->trans_start();
+		$this->db->where("Id", $Id);
+		$query = $this->db->update($this->table, $data);							
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status() === FALSE)
+			return FALSE;
+		else return TRUE;		
+	}
+
 	function update_diachi($Id,$DiaChi)
 	{
 		$data = array("Diachi" => $DiaChi);		

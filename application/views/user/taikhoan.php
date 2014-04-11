@@ -1,36 +1,34 @@
-<div class="section_container">
-        <!--Mid Section Starts-->
-        <section>
-            <div class="full_page">    
-            	<div class="checkout_steps">
-                    <ol id="checkoutSteps">
-                    <h1></h1>
-                        <li class="section allow active" id="opc-login">
-                            <div class="step-title"><h2>Thông tin tài khoản</h2></div>
-                            <div id="checkout-step-login">
-                                <form method="post" id="doithongtintaikhoan" action="">
-                                    <table class="form">
-                                            <tr>                                              
-                                                <td><label><b>Họ tên: </b></label><br/><input type="text" id="hoten" name="hoten" value="<?=$UserInfo[0]->TENNGUOIDUNG?>"/>
-                                                <br/><?php echo form_error('hoten'); ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><b>Tên đăng nhập: </b></label><br/><input type="text" id="tendangnhap" name="tendangnhap" value="<?=$UserInfo[0]->TENDANGNHAP?>" readonly />
-                                                </td>                                            
-                                            </tr>
-                                            <tr>
-                                                <td><label><b>Email: </b></label><br/><input type="text" id="email" name="email" value="<?=$UserInfo[0]->EMAIL?>" readonly />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><b>Ngày sinh: </b></label><br/><input type="date" id="ngaysinh" name="ngaysinh" value="<?=$UserInfo[0]->NGAYSINH?>"/>                                                
-                                                <br/><?php echo form_error('ngaysinh'); ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                              <td><label><b>Giới tính: </b></label><br/>                                              
-                                                <input type="radio" id="male" value="1" name="gioitinh"
+<div id="content" class="full_page">  <ul class="breadcrumb">
+            <li><a href="http://themes.hsyn.org/leisure/fashion_shop/index.php?route=common/home">Home</a></li>
+                <li><a href="http://themes.hsyn.org/leisure/fashion_shop/index.php?route=account/account">Account</a></li>
+                <li class="active"><a href="http://themes.hsyn.org/leisure/fashion_shop/index.php?route=account/edit">Thay đổi thông tin cá nhân</a></li>
+          </ul>
+  <h1>Thông tin tài khoản của tôi</h1>
+  <form action="" method="post" id="doithongtintaikhoan">
+    <h2>Thông tin cá nhân của bạn</h2>
+    <div class="content">
+        <table class="form">
+        <tr>
+          <td>Họ tên:</td>
+          <td><input type="text" id="hoten" name="hoten" value="<?=$UserInfo[0]->TENNGUOIDUNG?>" /></td>
+          <td><?php echo form_error('hoten'); ?></td>
+        </tr>
+        <tr>
+          <td>Tên đăng nhập:</td>
+          <td><input type="text" id="tendangnhap" name="tendangnhap" value="<?=$UserInfo[0]->TENDANGNHAP?>" readonly /></td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td><input type="text" id="email" name="email" value="<?=$UserInfo[0]->EMAIL?>" readonly /></td>
+        </tr>
+        <tr>
+          <td>Ngày sinh:</td>
+          <td><input type="date" id="ngaysinh" name="ngaysinh" value="<?=$UserInfo[0]->NGAYSINH?>"/></td>
+          <td><?php echo form_error('ngaysinh'); ?></td>
+        </tr>
+        <tr>
+          <td>Giới tính: </td>
+          <td> <input type="radio" id="male" value="1" name="gioitinh"
                                                   <?php if ($UserInfo[0]->GIOITINH == 1) {
                                                           echo 'checked';
                                                   } ?>>
@@ -39,38 +37,33 @@
                                                           echo 'checked';
                                                   } ?>>
                                                   <label for="female">Nữ</label>
-                                              </td>
-                                            </tr>
-                                            <tr>
-                                              <td><label><b>Địa chỉ: </b></label><br/><input type="text" id="diachi" name="diachi" value="<?=$UserInfo[0]->DIACHI?>" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><b>CMND: </b></label><br/><input type="text" id="cmnd" name="cmnd" value="<?=$UserInfo[0]->CMND?>" />
-                                                <br/><?php echo form_error('cmnd'); ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><b>Số điện thoại: </b></label><br/><input type="text" id="sdt" name="sdt" value="<?=$UserInfo[0]->SDT?>" />
-                                                <br/><?php echo form_error('sdt'); ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                              <td>                                             
-                                              <input type="hidden" name="HinhDaiDien" id="HinhDaiDien" value="/SMobile/upload/files/<?php echo $UserInfo[0]->HINHANH;?>" />
-                                              <input type="hidden" name="matkhau" id="matkhau" value="<?php echo $UserInfo[0]->MATKHAU;?>" />
-                                              <input type="hidden" name="quyen" id="quyen" value="<?php echo $UserInfo[0]->QUYEN;?>" />
-                                              <input type="hidden" name="trangthai" id="trangthai" value="<?php echo $UserInfo[0]->TRANGTHAI;?>" />
-                                              </td>
-                                            </tr>
-                                    </table>  
-                                    <br/>                  
-                                    <div class="buttons">
-                                        <input type="submit" name="submit" class="button brown_btn" value="Thực hiện" />                             
-                                    </div>
-                                </form>                               
-                            </div>
-                        </li>
-                        
-                    </ol>
-                </div>
+                                                  </td>
+        </tr>
+         <tr>
+            <td>Địa chỉ:</td>
+            <td><input type="text" id="diachi" name="diachi" value="<?=$UserInfo[0]->DIACHI?>" /></td>
+            <td><?php echo form_error('diachi'); ?></td>
+          </tr>
+          <tr>
+            <td>CMND:</td>
+            <td><input type="text" id="cmnd" name="cmnd" value="<?=$UserInfo[0]->CMND?>" /></td>
+            <td><?php echo form_error('cmnd'); ?></td>
+          </tr>
+          <tr>
+            <td>SDT:</td>
+            <td><input type="text" id="sdt" name="sdt" value="<?=$UserInfo[0]->SDT?>" /></td>
+            <td><?php echo form_error('sdt'); ?></td>
+          </tr>
+      </table>
+    </div>
+    <div class="buttons">
+      <div class="center">
+        <input type="submit" name="submit" class="button brown_btn" value="Thực hiện" />
+      </div>
+    </div>
+  </form>
+  <br />
+  </div>      
+  </section>
+        <!--Mid Section Ends-->
+</div>

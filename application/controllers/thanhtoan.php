@@ -7,34 +7,20 @@ class thanhtoan extends Public_Controller {
 		$this->load->model(array('nguoidung_model','cart_model','thongtindonhang_model','hoadon_model'));
 		$this->data['page'] = 'thanhtoan';
 		$this->data['id'] = $this->login->GetUserID();	
-		$this->data['maxacnhan'] = '';	
-		$this->data['phivanchuyen'] = 0;	
-		$this->data['ptvc'] = 1;
-		$this->data['comment'] = NULL;	
-		$this->data['name'] = '';
-		$this->data['SDT'] = '';
-		$this->data['diachi'] = '';		
 	}
 
 	public function index()
 	{
-		$this->load->view('include/header',$this->data);
-		$this->load->view('thanhtoan/index');
-		$this->load->view('include/footer',$this->data);
-	}
-
-	public function test()
-	{
-		//if($this->cart->contents())
-		//{
+		if($this->cart->contents())
+		{
 			$this->load->view('include/header',$this->data);
 			$this->load->view('thanhtoan/thanhtoan');
 			$this->load->view('include/footer',$this->data);
-		//}
-		//else
-		//{
-		//	redirect(base_url());
-		//}
+		}
+		else
+		{
+			redirect(base_url());
+		}
 	}
 
 	public function login()
@@ -62,8 +48,18 @@ class thanhtoan extends Public_Controller {
 		$check = $this->login->checkLogin();
 		if($check == 1 || $check == 2)
 		{	
-			$this->data['id'] = $this->login->GetUserID();		
-			$this->data['address'] = $this->nguoidung_model->get_diachi($this->data['id']);						
+			if($this->session->userdata('nguoidung') != NULL)
+			{
+				$this->data['address'] = $this->session->userdata('nguoidung');
+			}
+			else
+			{
+				$user = $this->nguoidung_model->edit2($this->data['id']);
+				$userdata = array( 'name' => $user[0]->TENNGUOIDUNG, 'SDT' => $user[0]->SDT, 'diachi' => $user[0]->DIACHI); 
+				$this->session->set_userdata('nguoidung', $userdata);					
+				$this->data['address'] = $this->session->userdata('nguoidung');	
+			}
+			$this->data['id'] = $this->login->GetUserID();
 			$this->load->view('thanhtoan/shipping-address',$this->data);
 		}
 		else
@@ -74,18 +70,34 @@ class thanhtoan extends Public_Controller {
 
 	public function shipping_option()
 	{
-		$this->load->view('thanhtoan/shipping-option');		
+		if($this->session->userdata('ptvc') != NULL && $this->session->userdata('comment') != NULL)
+			{
+				$this->data['ptvc'] = $this->session->userdata('ptvc');
+				$this->data['comment'] = $this->session->userdata('comment');
+			}	
+			else{
+				$this->data['ptvc'] = 1;
+				$this->data['comment'] = '';
+			}		
+		$this->load->view('thanhtoan/shipping-option',$this->data);		
 	}
 
-	public function confirm($id = 1)
+	public function confirm()
 	{
 		if($this->cart->contents())
 		{
-			if($id == 2)
+			if($this->session->userdata('ptvc') != NULL)
 			{
-				$this->data['phivanchuyen'] = 50000;
-				$this->data['ptvc'] = 1;
-			}
+				if($this->session->userdata('ptvc') == 2)
+				{
+					$this->data['phivanchuyen'] = 50000;
+				}
+				else
+					$this->data['phivanchuyen'] = 0;
+			}	
+			else{
+				$this->data['phivanchuyen'] = 0;
+			}		
 			$this->load->view('thanhtoan/confirm',$this->data);		    
 		}
 		else
@@ -184,7 +196,7 @@ class thanhtoan extends Public_Controller {
 			{
 				$arr['id'] = 1;
 				$arr['success'] = 1;
-				$arr['str'] = '';
+				$arr['str'] = '';				
 			}
 			elseif ($id == 'new') {
 				$arr['id'] = 2;
@@ -206,10 +218,11 @@ class thanhtoan extends Public_Controller {
 					$arr['success'] = 0;}
 				if($arr['success'] == 1)
 				{
-					$this->data['name'] = $this->input->post('name',TRUE);
-					$this->data['SDT'] = $this->input->post('SDT',TRUE);
-					$this->data['diachi'] = $this->input->post('address',TRUE).', '.$this->input->post('country',TRUE);
-					$arr['str'] = $this->data['name'].', '.$this->data['SDT'].', '.$this->data['diachi'];
+					$userdata = array( 'name' => $this->input->post('name',TRUE), 
+										'SDT' => $this->input->post('SDT',TRUE), 
+										'diachi' =>  $this->input->post('address',TRUE).', '.$this->input->post('country',TRUE) ); 
+					$this->session->set_userdata('nguoidung', $userdata);
+					$arr['str'] = $this->input->post('name',TRUE).', '.$this->input->post('SDT',TRUE).', '.$this->input->post('address',TRUE).', '.$this->input->post('country',TRUE);
 				}
 			}			
 			echo json_encode(array('error'=>$arr));			
@@ -222,12 +235,12 @@ class thanhtoan extends Public_Controller {
 
 	public function kiemtrahinhthucgiaohang()
 	{
-		$id = $this->input->post('id',TRUE);
-		$this->data['comment'] = $this->input->post('comment',TRUE);
-		echo $id; 
+		$this->session->set_userdata('ptvc', $this->input->post('id',TRUE));
+		$this->session->set_userdata('comment', $this->input->post('comment',TRUE));
+		echo 'true'; 
 	}
 
-	public function success()
+	public function done()
 	{
 		$this->load->view('thanhtoan/invoice');
 		$check = $this->login->checkLogin();
@@ -235,16 +248,36 @@ class thanhtoan extends Public_Controller {
 		{	
 			if($this->cart->contents())
 			{
-				$Tongtienhang = $this->cart->total();
-				$Tennguoinhan = $this->data['name'];
-				$Diachi = $this->data['diachi'];
-				$SDT = $this->data['SDT'];
-				$Makhachhang = $this->data['id'];
-				$Phuongthucvanchuyen = $this->data['ptvc'];
-				$Ghichu = $this->data['comment'];
-				$this->data['maxacnhan'] = time();
-				$this->thongtindonhang_model->insert($Tongtienhang, $Tennguoinhan, $Diachi, $SDT, $Makhachhang, $Phuongthucvanchuyen, $Ghichu, $this->data['maxacnhan']);	    
-				$iddh = $this->thongtindonhang_model->get_id_thongtindonhang($this->data['maxacnhan']);
+				if($this->session->userdata('nguoidung') != NULL &&  $this->session->userdata('ptvc') != NULL)
+				{
+					$nguoidung = $this->session->userdata('nguoidung');
+					$Tongtienhang = $this->cart->total();
+					$Tennguoinhan = $nguoidung['name'];
+					$Diachi = $nguoidung['diachi'];
+					$SDT = $nguoidung['SDT'];
+					$Makhachhang = $this->data['id'];
+					$Phuongthucvanchuyen = $this->session->userdata('ptvc');
+					$Ghichu = $this->session->userdata('comment');
+					$this->data['maxacnhan'] = time();
+					$tmp = 	$this->thongtindonhang_model->insert($Tongtienhang, $Tennguoinhan, $Diachi, $SDT, $Makhachhang, $Phuongthucvanchuyen, $Ghichu, $this->data['maxacnhan']);
+					if($tmp)
+					{
+						$iddh= $this->thongtindonhang_model->get_id_thongtindathang($this->data['maxacnhan']);
+						foreach ($this->cart->contents() as $items){
+							$Madathang = $iddh->ID;
+							$Masanpham = $items['id'];
+							$Soluong = $items['qty'];
+							$tmp = $this->hoadon_model->insert($Madathang, $Masanpham, $Soluong);
+						}
+						echo redirect(base_url('thanhtoan/success/'.$iddh));
+					} 
+					else echo redirect(base_url('admin/error/insert'));					    
+					
+				}
+				else
+				{
+					redirect(base_url().'home/loi');
+				}				
 			}
 			else
 			{
@@ -256,5 +289,30 @@ class thanhtoan extends Public_Controller {
 			echo 'false';
 		}
 	}
-
+	public function success($id)
+	{
+		$check = $this->login->checkLogin();
+		if($check == 1 || $check == 2)
+		{
+			if($this->cart->contents())
+			{
+				$this->data['result'] = $this->thongtindonhang_model->get_thongtindathang_id($id);
+				if($this->data['result'])
+				{
+					$this->data['id'] = $id;
+					$this->load->view('include/header',$this->data);
+					$this->load->view('thanhtoan/success',$this->data);
+					$this->load->view('include/footer',$this->data);
+				}			
+			}
+			else
+			{
+				redirect(base_url());
+			}
+		}
+		else
+		{
+			redirect(base_url());
+		}
+	}
 }

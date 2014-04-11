@@ -11,6 +11,6 @@ else:
         <?php endforeach; ?>
         <div class="cart_bottom">
             <div class="subtotal_menu"><small>Tổng tiền:</small><big><?php echo $this->cart->format_number($this->cart->total()); ?></big></div>
-            <a href="<?=base_url()?>cart/giohang">Thanh toán</a></div>
+            <a href="<?=base_url()?>cart/giohang">Giỏ hàng</a></div>
     </ul>
 <?php endif; ?>

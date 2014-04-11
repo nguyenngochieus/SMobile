@@ -4,7 +4,7 @@ $(document).ready(function() {
     $(".empty").live("click", function(){
     $.get(link + "cart/empty_cart", function(){
         $.get(link + "cart/show_cart", function(cart){
-            alert("Product does not exist");
+            alert("Sản phẩm không tồn tại");
             $("#cart_content").html(cart);
             });
         });
@@ -19,9 +19,11 @@ function Submit_Form(id,qty){
                     alert('Đã thêm vào giỏ hàng!');
                    jQuery.get(link + "cart/show_cart", function(cart){ // Get the contents of the url cart/show_cart
                         jQuery(".cart_drop").html(cart); // Replace the information in the div #cart_content with the retrieved data
-                    });        
+                    });       
+
                 }else{
-                    alert("Product does not exist");
+                    alert("Sản phẩm không tồn tại");
                 }
+                location.reload();
          });        
 }

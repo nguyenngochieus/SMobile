@@ -12,14 +12,24 @@ Class thongtindonhang_model extends CI_Model{
 		return $query->result_array();
 	}
 
-	function get_id_thongtindathang($Maxacnhan){		
-		$query = $this->db->query('SELECT ID FROM THONGTINDATHANG WHERE MAXACNHAN ='.$Maxacnhan);
+	function get_lichsudathang($Id){
+		$query = $this->db->query('SELECT B1.*, B2.TENNGUOIDUNG,(SELECT SUM(SOLUONG) FROM DONHANG WHERE MADATHANG = B1.ID ) AS SOSANPHAM FROM THONGTINDATHANG B1, NGUOIDUNG B2 WHERE B1.MAKHACHHANG = B2.ID AND B1.MAKHACHHANG = '.$Id.' ORDER BY NGAYDATHANG');
 		return $query->result_array();
 	}
 
-	function get_thongtindathang_id($id){		
-		$query = $this->db->query('SELECT B1.*, B2.TENNGUOIDUNG FROM THONGTINDATHANG B1, NGUOIDUNG B2 WHERE B1.MAKHACHHANG = B2.ID AND B1.ID = '.$id.' ORDER BY NGAYDATHANG');
+	function get_id_thongtindathang($Maxacnhan){		
+		$query = $this->db->query('SELECT ID FROM THONGTINDATHANG WHERE MAXACNHAN ='.$Maxacnhan);
 		return $query->row();
+	}
+
+	function get_thongtindathang_id($id){		
+		$query = $this->db->query('SELECT B1.*, B2.TENNGUOIDUNG, B2.EMAIL, B2.SDT AS SDT_TT, B2.DIACHI AS DIACHI_TT FROM THONGTINDATHANG B1, NGUOIDUNG B2 WHERE B1.MAKHACHHANG = B2.ID AND B1.ID = '.$id.' ORDER BY NGAYDATHANG');
+		return $query->row();
+	}
+
+	function get_giohang_id($id){		
+		$query = $this->db->query('SELECT B1.*, (SELECT B2.TENLOAI FROM LOAISANPHAM B2 WHERE B1.LOAI = B2.ID ) AS LOAISANPHAM, B3.*  FROM SANPHAM B1, DONHANG B3 WHERE B3.MASANPHAM = B1.ID AND MADATHANG = '.$id);
+		return $query->result();
 	}
 
 	function insert($Tongtienhang, $Tennguoinhan, $Diachi, $SDT, $Makhachhang, $Phuongthucvanchuyen,$Ghichu, $Maxacnhan)
@@ -36,8 +46,8 @@ Class thongtindonhang_model extends CI_Model{
 			"Diachi" => $Diachi,
 			"SDT" => $SDT,
 			"Makhachhang" => $Makhachhang,
-			"Manvgiaohang" => null,
-			"Phuongthucthanhtoan" => 0,
+			"Manvgiaohang" => 1,
+			"Phuongthucthanhtoan" => 1,
 			"Phuongthucvanchuyen"	=>	$Phuongthucvanchuyen,
 			"Thanhtien" => $Thanhtien,
  			"Ghichu" => $Ghichu,

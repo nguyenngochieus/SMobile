@@ -42,7 +42,7 @@
 </div>
 <div class="payment"><div class="buttons">
   <div class="right">
-    <input type="button" value="Confirm Order" id="button-confirm" class="button" />
+    <input type="button" value="Xác nhận thanh toán" id="button-confirm" class="button" />
   </div>
 </div>
 <script type="text/javascript"><!--
@@ -52,7 +52,7 @@ $('#button-confirm').bind('click', function() {
 		type: 'get',
 		url: 'index.php?route=payment/cod/confirm',
 		success: function() {
-			location = url + 'thanhtoan/success';
+			location = url + 'thanhtoan/done';
 		}		
 	});
 });
