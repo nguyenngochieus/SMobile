@@ -21,7 +21,7 @@
     </tr>
       <tr>
       <td><span class="required">*</span> SĐT</td>
-      <td><input type="number" id="SDT" value="" class="large-field" /></td>
+      <td><input type="tel" id="SDT" value="" class="large-field" /></td>
     </tr>
     <tr>
       <td><span class="required">*</span> Địa chỉ</td>

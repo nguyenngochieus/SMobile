@@ -123,7 +123,12 @@
                         </div>
                         <div class="col-sm-6">
                             <select id="fruits" name="tinh_tp" class="form-control ">
-                                <option value="">Chọn tỉnh/thành</option>
+                                <option value="">Chọn tỉnh/thành</option>                                
+                                <option value="TP.Hồ Chí Minh">TP Hồ Chí Minh</option>
+                                <option value="Tp.Hà Nội">Tp.Hà Nội</option>
+                                <option value="Tp.Cần Thơ">Tp.Cần Thơ</option>
+                                <option value="Tp.Đà Nẵng">Tp.Đà Nẵng</option>
+                                <option value="Tp.Hải Phòng">Tp.Hải Phòng</option>                                
                                 <option value="An Giang">An Giang</option>
                                 <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
                                 <option value="Bắc Giang">Bắc Giang</option>
@@ -183,12 +188,7 @@
                                 <option value="Vĩnh Long">Vĩnh Long</option>
                                 <option value="Vĩnh Phúc">Vĩnh Phúc</option>
                                 <option value="Yên Bái">Yên Bái</option>
-                                <option value="Phú Yên">Phú Yên</option>
-                                <option value="Tp.Cần Thơ">Tp.Cần Thơ</option>
-                                <option value="Tp.Đà Nẵng">Tp.Đà Nẵng</option>
-                                <option value="Tp.Hải Phòng">Tp.Hải Phòng</option>
-                                <option value="Tp.Hà Nội">Tp.Hà Nội</option>
-                                <option value="TP  HCM">TP HCM</option>
+                                <option value="Phú Yên">Phú Yên</option>                                
                             </select>
                         </div>
                     </div>                    

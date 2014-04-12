@@ -12,7 +12,7 @@ class sanpham extends Public_Controller {
 	{
 		$this->data['link'] = $url;	
 		$sort = '';
-		$item = '';
+		$item = 12;
 		$arr = explode('-',$url);
 		$ma = current($arr);		
 		if(isset($arr[1]) && $arr[1] != '')		
@@ -22,10 +22,23 @@ class sanpham extends Public_Controller {
 		if(isset($_GET['sort']))
 			$sort = $this->input->get('sort',true);
 		if(isset($_GET['item']))
-			$sort = $this->input->get('item',true);
+			$item = $this->input->get('item',true);
 		$this->data['idLoai'] = $ma;		
 		$this->data['TenLoai'] = $this->public_model->GetTenLoai($ma,$this->data['lang_db']);
-		$this->data['result'] = $this->public_model->GetSanPhamTheoLoai($arr,$this->data['lang_db'],$sort,$item);
+		// pagination
+        $this->load->library('pagination');
+        // config pagination
+        $config['base_url'] = base_url('sanpham/loaisanpham/'.$url); // xác định trang phân trang 
+        $config['total_rows'] = $this->public_model->count_SanPhamTheoLoai($arr); // xác định tổng số record 
+        $config['per_page'] = $item; // xác định số record ở mỗi trang 
+        $config['uri_segment'] = 4; // xác định segment chứa page number    
+        $config['full_tag_open'] = '<div class="pagination"><div class="links">';
+        $config['full_tag_close'] = '</div></div>';         
+        $this->pagination->initialize($config); 
+        $page = $this->uri->segment(4);
+        if (!$this->uri->segment(4))
+       		$page = 0;    
+		$this->data['result'] = $this->public_model->GetSanPhamTheoLoai($arr,$this->data['lang_db'],$sort,$page,$config['per_page']);
 		$this->data['NhaCungCap'] = $this->public_model->GetNhaCungCapTheoLoai($arr);
 		$this->data['page'] = 'loaisanpham'.$ma; // dùng cho main menu		
 		$this->load->view('include/header',$this->data);
@@ -34,10 +47,10 @@ class sanpham extends Public_Controller {
 	}
 
 	public function nhacungcap($url)
-	{
+	{		
 		$this->data['link'] = $url;	
 		$sort = '';
-		$item = '';
+		$item = 12;
 		$arr = explode('-',$url);
 		$ma = current($arr);
 		if(isset($arr[1]) && $arr[1] != '')
@@ -51,10 +64,23 @@ class sanpham extends Public_Controller {
 		if(isset($_GET['sort']))
 			$sort = $this->input->get('sort',true);
 		if(isset($_GET['item']))
-			$sort = $this->input->get('item',true);
+			$item = $this->input->get('item',true);
 		$this->data['idNhaCungCap'] = $ma;	
 		$this->data['TenNhaCungCap'] = $this->public_model->GetTenNhaCungCap($ma,$this->data['lang_db']);
-		$this->data['result'] = $this->public_model->GetSanPhamTheoNhaCungCap($arr,$this->data['lang_db'],$sort,$item);
+		// pagination
+        $this->load->library('pagination');
+        // config pagination
+        $config['base_url'] = base_url('sanpham/loaisanpham/'.$url); // xác định trang phân trang 
+        $config['total_rows'] = $this->public_model->count_SanPhamTheoNCC($arr); // xác định tổng số record 
+        $config['per_page'] = $item; // xác định số record ở mỗi trang 
+        $config['uri_segment'] = 4; // xác định segment chứa page number    
+        $config['full_tag_open'] = '<div class="pagination"><div class="links">';
+        $config['full_tag_close'] = '</div></div>';         
+        $this->pagination->initialize($config); 
+        $page = $this->uri->segment(4);
+        if (!$this->uri->segment(4))
+       		$page = 0;    
+		$this->data['result'] = $this->public_model->GetSanPhamTheoNhaCungCap($arr,$this->data['lang_db'],$sort,$page,$config['per_page']);
 		$this->data['Loai'] = $this->public_model->GetLoaiTheoNhaCungCap($ma,$this->data['lang_db']);		
 		$this->load->view('include/header',$this->data);
 		$this->load->view('product/nhacungcap',$this->data);

@@ -60,7 +60,7 @@
             <!--Search Starts-->
             <form class="header_search" action="<?=base_url()?>sanpham/timkiem">
                 <div class="form-search">
-                    <input id="search" type="text" name="q" class="input-text" autocomplete="on" placeholder="<?=lang('search')?>...">
+                    <input id="search" type="search" name="q" class="input-text" autocomplete="on" placeholder="<?=lang('search')?>...">
                     <button type="submit" title="Tìm kiếm"></button>
                 </div>
             </form>

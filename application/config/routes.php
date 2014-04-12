@@ -40,7 +40,6 @@
 
 $route['default_controller'] = "home";
 $route['404_override'] = 'error404';
-
-
+$route['sanpham/loaisanpham/(:any)/(:num)'] = "sanpham/loaisanpham/$1/0";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

@@ -362,7 +362,8 @@ h2.sub_title{ font-size:18px; color:#312e2b; font-weight:normal; padding-bottom:
 .flex-caption h3{ text-transform:uppercase; font-size:22px; line-height:30px; font-weight:bold;}
 
 /*-----------------------------------COLOR THEME HERE*/
-.navigation_container, .products_list li .product_info, ul.sub_menu > li > ul > li:hover, #product_detail, .col_right .block-title{ border-bottom-color:#00bce4;}
+.navigation_container{border-bottom-color:#00bce4; height: 48px;}
+.products_list li .product_info, ul.sub_menu > li > ul > li:hover, #product_detail, .col_right .block-title{ border-bottom-color:#00bce4; height: 120px;}
 header .top_links > li.highlight a,
 nav .primary_nav li.active > a, .products_list .price_info button .pr_add, .sideNavCategories > ul.departments > li:hover, .cart_drop .cart_bottom a{ background:#00bce4;}
 nav .minicart span b,
@@ -898,3 +899,34 @@ table.form td input[type="text"], table.form td input[type="password"] {font-siz
 .block-progress ul li a {line-height: 1;color: black;font-family: Arial, Helvetica, sans-serif;font-size: 12px;text-decoration: none;}
 .block-progress ul li a:hover {text-decoration: underline;}
 .block-progress{ margin-bottom:15px;}
+
+.pagination {
+	border-top: 1px solid #DEDEDE;
+	padding-top: 8px;
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 10px;
+	font-size: 11px;
+}
+.pagination .links {
+	float: left;
+}
+.pagination .links a {
+	display: inline-block;
+	padding: 4px 10px;
+	text-decoration: none;
+	color: #A3A3A3;
+}
+.pagination .links strong {
+	background-color: #00bce4;
+	display: inline-block;
+	padding: 4px 10px;
+	font-weight: normal;
+	text-decoration: none;
+	color: #ffffff;
+}
+.pagination .results {
+	float: right;
+	padding-top: 3px;
+	color: #A2A2A2;
+}

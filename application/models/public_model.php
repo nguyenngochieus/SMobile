@@ -42,28 +42,38 @@ class public_model extends CI_Model {
 		return $query->row();
 	}
 
-	public function GetSanPhamTheoLoai($id,$lang = "",$sort='',$item='')
+	public function GetSanPhamTheoLoai($id,$lang = "",$sort='',$number, $offset)
 	{
 		switch ($sort) {
 			case 'price':
 				$sort = "DONGIA";
 				break;
+			case 'price_desc':
+				$sort = "DONGIA DESC";
+				break;
 			case 'name':
 				$sort = "TENSANPHAM";
 				break;
-			
+			case 'name_desc':
+				$sort = "TENSANPHAM DESC";
+				break;			
 			default: $sort = "ID";break;
 		}
-
-		if($item != '')
-			$item = 24;
-		else $item = 12;
 		
 		if(isset($id[1]) && $id[1] != '')
-			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE LOAI = '.$id[0].' AND NHACUNGCAP = '.$id[1].' ORDER BY '.$sort.' LIMIT 0 , '.$item);
+			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE LOAI = '.$id[0].' AND NHACUNGCAP = '.$id[1].' ORDER BY '.$sort.' LIMIT '.$number.' , '.$offset);
 		else
-			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE LOAI = '.$id[0].' ORDER BY '.$sort.' LIMIT 0 , '.$item);
+			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE LOAI = '.$id[0].' ORDER BY '.$sort.' LIMIT '.$number.' , '.$offset);
 		return $query->result();
+	}
+
+	public function count_SanPhamTheoLoai($id)
+	{		
+		if(isset($id[1]) && $id[1] != '')
+			$query =  $this->db->query('SELECT * FROM SANPHAM WHERE LOAI = '.$id[0].' AND NHACUNGCAP = '.$id[1]);	
+		else
+			$query =  $this->db->query('SELECT * FROM SANPHAM WHERE LOAI = '.$id[0]);
+		return $query->num_rows();
 	}
 
 	public function GetNhaCungCapTheoLoai($id)
@@ -81,27 +91,38 @@ class public_model extends CI_Model {
 		return $query->result();
 	}
 
-	public function GetSanPhamTheoNhaCungCap($id,$lang = "",$sort,$item)
+	public function GetSanPhamTheoNhaCungCap($id,$lang = "",$sort,$number, $offset)
 	{
 		switch ($sort) {
 			case 'price':
 				$sort = "DONGIA";
 				break;
+			case 'price_desc':
+				$sort = "DONGIA DESC";
+				break;
 			case 'name':
 				$sort = "TENSANPHAM";
 				break;
-			
+			case 'name_desc':
+				$sort = "TENSANPHAM DESC";
+				break;			
 			default: $sort = "ID";break;
 		}
-
-		if($item != 12)
-			$item = 24;
 		
 		if(isset($id[1]) && $id[1] != '')
-			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE NHACUNGCAP = '.$id[0].' AND LOAI = '.$id[1].' ORDER BY '.$sort.' LIMIT 0 , '.$item);
+			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE NHACUNGCAP = '.$id[0].' AND LOAI = '.$id[1].' ORDER BY '.$sort.' LIMIT '.$number.' , '.$offset);
 		else
-			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE NHACUNGCAP = '.$id[0].' ORDER BY '.$sort.' LIMIT 0 , '.$item);
+			$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE NHACUNGCAP = '.$id[0].' ORDER BY '.$sort.' LIMIT '.$number.' , '.$offset);
 		return $query->result();
+	}
+
+	public function count_SanPhamTheoNCC($id)
+	{		
+		if(isset($id[1]) && $id[1] != '')
+			$query =  $this->db->query('SELECT * FROM SANPHAM WHERE NHACUNGCAP = '.$id[0].' AND LOAI = '.$id[1]);	
+		else
+			$query =  $this->db->query('SELECT * FROM SANPHAM WHERE NHACUNGCAP = '.$id[0]);
+		return $query->num_rows();
 	}
 
 	public function GetSanPhamMoi($lang = "") 

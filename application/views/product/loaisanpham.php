@@ -36,8 +36,11 @@
                     <div class="sortby">
                         <label><?=lang('sort_by')?> :</label>
                         <select name="sort" onchange="change_sort('<?=$link?>')">
+                            <option value=""><?=lang('default')?></option>
                             <option value="price" <?=(isset($_GET['sort']) && $_GET['sort']=='price')?"selected":''?>><?=lang('giatien')?></option>
+                            <option value="price_desc" <?=(isset($_GET['sort']) && $_GET['sort']=='price_desc')?"selected":''?>><?=lang('giatien_desc')?></option>
                             <option value="name" <?=(isset($_GET['sort']) && $_GET['sort']=='name')?"selected":''?>><?=lang('ten')?></option>
+                            <option value="name_desc" <?=(isset($_GET['sort']) && $_GET['sort']=='name_desc')?"selected":''?>><?=lang('ten_desc')?></option>
                         </select>
                     </div>
                     <div class="show_no">
@@ -68,14 +71,17 @@
                         ?>                                
                     </ul>
                 </div>
+                        <?=$this->pagination->create_links()?>                               
                 <!--Product List Ends-->
-                <!--Toolbar-->
                 <div class="toolbar">
                     <div class="sortby">
                         <label><?=lang('sort_by')?> :</label>
                         <select name="sort" onchange="change_sort('<?=$link?>')">
+                            <option value=""><?=lang('default')?></option>
                             <option value="price" <?=(isset($_GET['sort']) && $_GET['sort']=='price')?"selected":''?>><?=lang('giatien')?></option>
+                            <option value="price_desc" <?=(isset($_GET['sort']) && $_GET['sort']=='price_desc')?"selected":''?>><?=lang('giatien_desc')?></option>
                             <option value="name" <?=(isset($_GET['sort']) && $_GET['sort']=='name')?"selected":''?>><?=lang('ten')?></option>
+                            <option value="name_desc" <?=(isset($_GET['sort']) && $_GET['sort']=='name_desc')?"selected":''?>><?=lang('ten_desc')?></option>
                         </select>
                     </div>
                     <div class="show_no">
@@ -86,7 +92,6 @@
                         </select>
                     </div>
                 </div>
-                <!--Toolbar-->
             </div>
             <!--MAIN CONTENT ENDS-->            
         </section>

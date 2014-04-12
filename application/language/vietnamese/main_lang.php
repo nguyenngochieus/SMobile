@@ -12,7 +12,8 @@ $lang['giohang'] = "Giỏ hàng";
 $lang['tieptucmuahang'] = "Tiếp tục mua hàng";
 $lang['thanhtoan'] = "Thanh toán";
 $lang['sanpham'] = "Tên sản phẩm";
-$lang['giatien'] = "Giá";
+$lang['giatien'] = "Giá tăng dần";
+$lang['giatien_desc'] = "Giá giảm dần";
 $Lang['soluong'] = "Số lượng";
 $lang['thanhtien'] = "Thành tiền";
 $lang['phivanchuyen'] = "Phí vận chuyển";
@@ -23,11 +24,12 @@ $lang['empty_cart'] = "Xóa giỏ hàng";
 $lang['sort_by'] = "Sắp xếp theo";
 $lang['show'] = "Hiện";
 $lang['item'] = "SẢN PHẨM";
-$lang['ten'] = "Tên";
+$lang['ten'] = "Tên (A-Z)";
+$lang['ten_desc'] = "Tên (Z-A)";
 $lang['search'] = "Tìm kiếm";
 $lang['dang_nhap'] = "Đăng nhập";
 $lang['dang_ky'] = "Đăng ký";
 $lang['tai_khoan'] = "Tài khoản";
 $lang['dang_xuat'] = "Đăng xuất";
-
+$lang['default'] = "Mặc định";
 ?>
