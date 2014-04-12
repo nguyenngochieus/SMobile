@@ -32,7 +32,7 @@
         <header>
             <div class="top_bar clear">
                 <!--Language Switcher Starts-->
-                <div class="language_switch"> <a href="?lang=english" title="ENGLISH">EN</a> <a class="active" href="?lang=vietnamese" title="VIETNAMESE">VI</a> </div>
+                <!--<div class="language_switch"> <a href="?lang=english" title="ENGLISH">EN</a> <a class="active" href="?lang=vietnamese" title="VIETNAMESE">VI</a> </div>-->
                 <!--Language Switcher Ends-->
                 <!--Top Links Starts-->
                 <ul class="top_links">

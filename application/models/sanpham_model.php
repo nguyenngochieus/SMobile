@@ -73,4 +73,16 @@ Class Sanpham_model extends CI_Model{
 		$query = $this->db->query('SELECT S.TENSANPHAM, D.DIEMDANHGIA FROM SANPHAM S, DANHGIA D WHERE S.ID = D.MASANPHAM ORDER BY D.DIEMDANHGIA DESC LIMIT 10');
 		return $query->result();
 	}
+
+	function thongke_sanpham_soluong()
+	{
+		$query = $this->db->query('SELECT COUNT(*) AS SOLUONG FROM sanpham');
+		return $query->result();		
+	}
+
+	function thongke_sanpham_tongmuaxem()
+	{
+		$query = $this->db->query('SELECT SUM(LUOTXEM) AS XEM, SUM(LUOTMUA) AS MUA FROM danhgia');
+		return $query->result();		
+	}
 }

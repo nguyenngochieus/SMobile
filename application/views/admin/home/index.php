@@ -59,15 +59,25 @@
                     <img src="<?=base_url()?>static/admin/images/is-document.png" alt="" />
                   </div>
                   <div class="col-xs-8">
-                    <small class="stat-label">% Unique Visitors</small>
-                    <h1>54.40%</h1>
+                    <small class="stat-label">Tổng sản phẩm</small>
+                    <h1><?=$thongke_sanpham_soluong[0]->SOLUONG?></h1>
                   </div>
+
                 </div><!-- row -->
                 
                 <div class="mb15"></div>
                 
-                <small class="stat-label">Avg. Visit Duration</small>
-                <h4>01:80:22</h4>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <small class="stat-label">Tổng lượt xem</small>
+                    <h4><?=$thongke_sanpham_tongmuaxem[0]->XEM?></h4>
+                  </div>
+                  
+                  <div class="col-xs-6">
+                    <small class="stat-label">Tổng lượt mua</small>
+                    <h4><?=$thongke_sanpham_tongmuaxem[0]->MUA?></h4>
+                  </div>
+                </div><!-- row -->
                   
               </div><!-- stat -->
               

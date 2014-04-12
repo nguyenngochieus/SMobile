@@ -39,10 +39,10 @@ Class dangnhap extends CI_Controller{
 			{
 				switch($tmp)
 				{
-					case -3 : $loi = 'Username hoặc Password không đúng! Vui lòng thử lại'; break;
+					case -3 : $loi = 'Tên đăng nhập hoặc mật khẩu chưa đúng! Vui lòng thử lại'; break;
 					case -7 : $loi = 'Tình trạng tài khoản không hoạt động'; break;
 					case -4 : $loi = 'Bạn không có quyền truy cập vào trang này'; break;
-					case -6 : $loi = 'Username hoặc Password không đúng! Vui lòng thử lại'; break;
+					case -6 : $loi = 'Tên đăng nhập hoặc mật khẩu chưa đúng! Vui lòng thử lại'; break;
 					default: $loi = ''; break;
 				}
 				$this->data['loi'] = 	$loi;
