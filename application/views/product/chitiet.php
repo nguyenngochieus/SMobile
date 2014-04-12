@@ -150,6 +150,7 @@
             <input name="star1" type="radio" class="star"/> 
             <input name="star1" type="radio" class="star"/> 
             <input name="star1" type="radio" class="star"/>
+
       </div>
   </div>
   <!--Product List Starts-->
@@ -178,6 +179,7 @@
       <?php
     } ?>
 </div>
+
 <script type="text/javascript">
 
   $.fn.tabs = function() {
