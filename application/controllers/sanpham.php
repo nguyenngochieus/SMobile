@@ -29,7 +29,7 @@ class sanpham extends Public_Controller {
         $this->load->library('pagination');
         $config['page_query_string'] = TRUE;
         $this->data['per_page'] = 0;
-        if($_GET['per_page'])
+        if(isset($_GET['per_page']))
         	$this->data['per_page'] = $this->input->get('per_page',TRUE);        
         // config pagination
         $config['base_url'] = base_url('sanpham/loaisanpham/'.$url.'?s=t'); // xác định trang phân trang 
