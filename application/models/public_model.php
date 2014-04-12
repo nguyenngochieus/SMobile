@@ -143,6 +143,24 @@ class public_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function GetChiTietDT($id)
+	{
+		$query =  $this->db->query('SELECT * FROM chitietdienthoai WHERE MASANPHAM ='.$id);
+		return $query->result();
+	}
+
+	public function GetChiTietLT($id)
+	{
+		$query =  $this->db->query('SELECT * FROM chitietlaptop WHERE MASANPHAM ='.$id);
+		return $query->result();
+	}
+
+	public function GetChiTietMTB($id)
+	{
+		$query =  $this->db->query('SELECT * FROM chitietmaytinhbang WHERE MASANPHAM ='.$id);
+		return $query->result();
+	}
+
 	public function GetSanPhamCungLoai($id, $idloai, $lang = "")
 	{
 		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM  WHERE LOAI = '.$idloai.' AND Id <> '.$id.' order by ID ');

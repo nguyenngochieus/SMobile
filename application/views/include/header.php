@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="<?=base_url()?>static/css/styles.css">
 <link rel="stylesheet" href="<?=base_url()?>static/css/short_code.css">
 <link type="text/css" rel="stylesheet" href="<?=base_url()?>static/css/jquery.stepy.css" />
+<link rel="stylesheet" href="<?=base_url()?>static/css/jquery.rating.css">
 <!--Google Webfont -->
 <link href='http://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'>
 <!--Javascript-->
@@ -20,6 +21,11 @@
 <script type="text/javascript" src="<?= base_url()?>static/js/form_elements.js" ></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.stepy.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/custom.js"></script>
+<script type="text/javascript" src="<?= base_url()?>static/js/jquery.form.js"></script>
+<script type="text/javascript" src="<?= base_url()?>static/js/jquery.js"></script>
+<script type="text/javascript" src="<?= base_url()?>static/js/jquery.MetaData.js"></script>
+<script type="text/javascript" src="<?= base_url()?>static/js/jquery.rating.js"></script>
+<script type="text/javascript" src="<?= base_url()?>static/js/jquery.rating.pack.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/core.js"></script>
 
 <!--[if lt IE 9]>

@@ -1,8 +1,9 @@
-<div id="content" class="full_page">  <ul class="breadcrumb">
-            <li><a href="http://themes.hsyn.org/leisure/fashion_shop/index.php?route=common/home">Home</a></li>
-                <li><a href="http://themes.hsyn.org/leisure/fashion_shop/index.php?route=account/account">Account</a></li>
-                <li class="active"><a href="http://themes.hsyn.org/leisure/fashion_shop/index.php?route=account/edit">Thay đổi thông tin cá nhân</a></li>
-          </ul>
+<div id="content" class="full_page">
+      <ul class="breadcrumb">
+        <li><a href="<?= base_url()?>">Trang chủ</a></li>
+        <li><a href="<?= base_url()?>user">Tài khoản</a></li>
+        <li class="active"><a href="<?= base_url()?>user/taikhoan">Thay đổi thông tin</a></li>        
+      </ul>
   <h1>Thông tin tài khoản của tôi</h1>
   <form action="" method="post" id="doithongtintaikhoan">
     <h2>Thông tin cá nhân của bạn</h2>

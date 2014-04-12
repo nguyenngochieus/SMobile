@@ -1,8 +1,6 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*
-Theme Name: Leisure Magento Theme
-Author: RohithPaul
-Version: 1.0.0
+SMobile - Website mua bán thiết bị di động
 */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -364,7 +362,8 @@ h2.sub_title{ font-size:18px; color:#312e2b; font-weight:normal; padding-bottom:
 
 /*-----------------------------------COLOR THEME HERE*/
 .navigation_container{border-bottom-color:#00bce4; height: 48px;}
-.products_list li .product_info, ul.sub_menu > li > ul > li:hover, #product_detail, .col_right .block-title{ border-bottom-color:#00bce4; height: 120px;}
+#product_detail{ border-bottom-color:#00bce4;}
+.products_list li .product_info, ul.sub_menu > li > ul > li:hover, .col_right .block-title{ border-bottom-color:#00bce4; height: 120px;}
 header .top_links > li.highlight a,
 nav .primary_nav li.active > a, .products_list .price_info button .pr_add, .sideNavCategories > ul.departments > li:hover, .cart_drop .cart_bottom a{ background:#00bce4;}
 nav .minicart span b,
@@ -952,25 +951,6 @@ table.form td input[type="text"], table.form td input[type="password"] {font-siz
 .products_grid .price_info a{cursor: pointer; color:#a2a2a2; text-decoration:none; font-size:11px; display:inline-block; padding-top:10px;}
 #column-left .products_grid .price_info a{display: none;}
 #column-left .products_grid button {float: left!important;width:200px!important;}
-
-/*PRODUCTS List - List*/
-.products_list{ margin-bottom:17px; display:inline-block; width:100%;}
-.products_list li{width:100%;padding-bottom:15px;padding-top:15px; clear:both; display:inline-block; border-top:solid 1px #dedede;}
-.products_list li:first-child{border:none; padding-top:0px;}
-.products_list a.product_image{float:left;}
-.products_list a.product_image img{ border:solid 2px #fff; height:200px;}
-.products_list li:hover img{-moz-transition:all 0.3s ease-out 0s; -webkit-transition: all 0.3s ease-out;}
-.products_list .product_info{margin-bottom:10px; padding-bottom:12px;border-bottom:solid 1px #EAEAEA;float:right; width:550px;}
-.products_list .price_info{float:right; width:550px;}
-.products_list .product_info h3{ font-size:14px; font-weight:normal; padding:12px 0px;}
-.products_list .product_info h3 a{color:#000000; text-decoration:none;}
-.products_list .product_info small{ color:#a2a2a2; font-size:13px; line-height:16px;}
-.products_list .price_info button{ float:right; background:none;border:0px; padding:0px; height:32px; line-height:100%; overflow:hidden; cursor:pointer;}
-.products_list .price_info button .pr_price{ background:#544f4b;  padding:10px; color:#fff; font-size:14px; font-weight:bold; float:left; clear:both; width:83%; text-transform:uppercase;}
-.products_list .price_info button .pr_add{ padding:10px; color:#fff; font-size:11px; font-weight:bold; text-transform:uppercase;  float:left; clear:both; width:83%; margin-top:0px;}
-.products_list li:hover .pr_add{ margin-top:-32px;-moz-transition:all 0.3s ease-out 0s; -webkit-transition: all 0.3s ease-out;}
-.products_list .price_info a{cursor: pointer; color:#a2a2a2; text-decoration:none; font-size:11px; display:inline-block; padding-top:10px;}
-.products_list a.black{ color:#544F4B; text-decoration:none; font-weight:bold; display:block; margin:10px 0px;}
 
 select {
 cursor: pointer;
