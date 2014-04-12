@@ -940,7 +940,7 @@ table.form td input[type="text"], table.form td input[type="password"] {font-siz
 .products_grid a.product_image{display:block;}
 .products_grid a.product_image img{ border:solid 2px #fff;}
 .products_grid li:hover img{-moz-transition:all 0.3s ease-out 0s; -webkit-transition: all 0.3s ease-out;}
-.products_grid .product_info{ margin-bottom:10px; padding-bottom:12px; border-bottom:solid 1px;}
+.products_grid .product_info{ margin-bottom:10px; padding-bottom:12px; border-bottom:solid 1px; height: 100px}
 .products_grid .product_info h3{ font-size:14px; font-weight:normal; padding:12px 0px;}
 .products_grid .product_info h3 a{color:#000000; text-decoration:none;}
 .products_grid .product_info small{ color:#a2a2a2; font-size:12px; line-height:16px;}

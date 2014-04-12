@@ -6,7 +6,7 @@ class public_model extends CI_Model {
 	{
 		parent::__construct();
 	}
-	public function GetMenu($lang = "") 
+	public function GetMenu($lang = "")
 	{
 		$query =  $this->db->query('SELECT ID, TENLOAI'.$lang.' AS TEN FROM LOAISANPHAM');
 		return $query->result();
@@ -167,21 +167,37 @@ class public_model extends CI_Model {
 		return $query->result();
 	}
 
-	public function TimKiem($key,$lang = "",$sort,$item)
+	public function TimKiem($filter_name,$lang = "",$sort, $number, $offset,$filter_price_from,$filter_price_to,$filter_category_id,$filter_description)
 	{
 		switch ($sort) {
 			case 'price':
 				$sort = "DONGIA";
 				break;
+			case 'price_desc':
+				$sort = "DONGIA DESC";
+				break;
 			case 'name':
 				$sort = "TENSANPHAM";
 				break;
-			
+			case 'name_desc':
+				$sort = "TENSANPHAM DESC";
+				break;			
 			default: $sort = "ID";break;
-		}
-		if($item != 12)
-			$item = 24;		
-		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE TENSANPHAM LIKE "%'.$key.'%" ORDER BY '.$sort.' LIMIT 0 , '.$item);
+		}	
+		if($filter_name != '')
+			if($filter_description == 'true')
+				$filter_name = ' AND TENSANPHAM LIKE "%'.$filter_name.'%"';
+			else
+				$filter_name = ' AND MOTA LIKE "%'.$filter_name.'%"';
+		if($filter_price_from != '')
+			$filter_price_from = " AND DONGIA > ".$filter_price_from;
+		if($filter_price_to != '')
+			$filter_price_to = " AND DONGIA < ".$filter_price_to;
+		if($filter_category_id > 0)
+			$filter_category_id = " AND LOAI = ".$filter_category_id;
+		else
+			$filter_category_id = '';
+		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE ID > 0 '.$filter_name.$filter_price_from.$filter_price_to.$filter_category_id.' ORDER BY '.$sort.' LIMIT '.$number.' , '.$offset);
 		return $query->result();
 	}
 
