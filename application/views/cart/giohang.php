@@ -48,10 +48,10 @@
 
                 <?php endif; ?>
               </a><span class="pr_info"><?=$product[0]->TENLOAI?> </span></td>
-              <td class="align_center"><a href="#" class="edit">Edit</a></td>
-              <td class="align_center vline"><span class="price"><?=$this->cart->format_number($items['price']);?></span></td>
+              <td class="align_center">
+              <td class="align_center vline"><span class="price"><?=number_format($items['price'],'0',',','.')?></span></td>
               <td class="align_center vline"><?php echo form_input(array('name' => 'qty[]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5', 'class' => 'qty_box')); ?></td>
-              <td class="align_center vline"><span class="price"><?=$this->cart->format_number($items['subtotal']); ?></span></td>
+              <td class="align_center vline"><span class="price"><?=number_format($items['subtotal'],'0',',','.')?></span></td>
               <td class="align_center vline"><a href="#" onclick="DeleteItem('<?=$items['rowid']?>')" class="remove"></a></td>
             </tr>   
             <?php endforeach; ?>   
@@ -61,15 +61,15 @@
             <table id="totals-table">
                 <tr>
                   <td width="60%" colspan="1" class="align_left" ><strong><?=lang('thanhtien')?></strong></td>
-                  <td class="align_right" style=""><strong><span class="price"><?=$this->cart->format_number($this->cart->total());?></span></strong></td>
+                  <td class="align_right" style=""><strong><span class="price"><?=number_format($this->cart->total(),'0',',','.')?></span></strong></td>
                 </tr>
                 <tr>
                   <td width="60%" colspan="1" class="align_left" ><?=lang('phivanchuyen')?></td>
-                  <td class="align_right" style=""><span class="price">$0.00</span></td>
+                  <td class="align_right" style=""><span class="price">0.00</span></td>
                 </tr>
                 <tr>
                   <td width="60%" colspan="1" class="align_left total" ><?=lang('tongcong')?></td>
-                  <td class="align_right" style=""><span class="total"><?=$this->cart->format_number($this->cart->total());?></span></td>
+                  <td class="align_right" style=""><span class="total"><?=number_format($this->cart->total(),'0',',','.')?> VNĐ</span></td>
                 </tr>                
             </table>
           </div>

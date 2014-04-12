@@ -155,7 +155,7 @@
               <tr>
                 <th>#</th>
                 <th>TÊN SẢN PHẨM</th>
-                <th>SỐ LƯỢT MUA</th>                
+                <th>LƯỢT MUA</th>                
               </tr>
             </thead>
             <tbody>              
@@ -164,7 +164,7 @@
               foreach ($thongke_sanpham_top10sell as $item) {
                   echo '<tr><td>'.++$i.'</td>';
                   echo '<td>'.$item->TENSANPHAM.'</td>';
-                  echo '<td>'.$item->LUOTMUA.'</td></tr>';                      
+                  echo '<td class="text-center">'.$item->LUOTMUA.'</td></tr>';                      
               } 
               ?>   
             </tbody>
@@ -173,14 +173,14 @@
         </div><!-- col-md-6 -->
         
         <div class="col-md-6">  
-          <p class="btn btn-black">Top 10 sản phẩm được đánh giá cao nhất</p><br/><br/>                  
+          <p class="btn btn-black">Top 10 sản phẩm được quan tâm</p><br/><br/>                  
           <div class="table-responsive">
           <table class="table table-hover mb30">
             <thead>
               <tr>
                 <th>#</th>
                 <th>TÊN SẢN PHẨM</th>
-                <th>ĐIỂM ĐÁNH GIÁ</th> 
+                <th>LƯỢT BÌNH LUẬN</th> 
               </tr>
             </thead>
             <tbody>
@@ -189,7 +189,7 @@
                 foreach ($thongke_sanpham_top10rate as $item) {
                     echo '<tr><td>'.++$i.'</td>';
                     echo '<td>'.$item->TENSANPHAM.'</td>';
-                    echo '<td>'.$item->DIEMDANHGIA.'</td></tr>';                      
+                    echo '<td class="text-center">'.$item->DIEMDANHGIA.'</td></tr>';                      
                 } 
               ?>  
             </tbody>

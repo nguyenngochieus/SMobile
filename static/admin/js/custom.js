@@ -73,32 +73,32 @@ jQuery(document).ready(function() {
    
    // Sparkline
    jQuery('#sidebar-chart').sparkline([4,3,3,1,4,3,2,2,3,10,9,6], {
-	  type: 'bar', 
-	  height:'30px',
+     type: 'bar', 
+     height:'30px',
       barColor: '#428BCA'
    });
    
    jQuery('#sidebar-chart2').sparkline([1,3,4,5,4,10,8,5,7,6,9,3], {
-	  type: 'bar', 
-	  height:'30px',
+     type: 'bar', 
+     height:'30px',
       barColor: '#D9534F'
    });
    
    jQuery('#sidebar-chart3').sparkline([5,9,3,8,4,10,8,5,7,6,9,3], {
-	  type: 'bar', 
-	  height:'30px',
+     type: 'bar', 
+     height:'30px',
       barColor: '#1CAF9A'
    });
    
    jQuery('#sidebar-chart4').sparkline([4,3,3,1,4,3,2,2,3,10,9,6], {
-	  type: 'bar', 
-	  height:'30px',
+     type: 'bar', 
+     height:'30px',
       barColor: '#428BCA'
    });
    
    jQuery('#sidebar-chart5').sparkline([1,3,4,5,4,10,8,5,7,6,9,3], {
-	  type: 'bar', 
-	  height:'30px',
+     type: 'bar', 
+     height:'30px',
       barColor: '#F0AD4E'
    });
    

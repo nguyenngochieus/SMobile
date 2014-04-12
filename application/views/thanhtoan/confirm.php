@@ -42,16 +42,17 @@
 </div>
 <div class="payment"><div class="buttons">
   <div class="right">
-    <input type="button" value="Confirm Order" id="button-confirm" class="button" />
+    <input type="button" value="Xác nhận thanh toán" id="button-confirm" class="button" />
   </div>
 </div>
 <script type="text/javascript"><!--
+var url = 'http://localhost/SMobile/';
 $('#button-confirm').bind('click', function() {
 	$.ajax({ 
 		type: 'get',
 		url: 'index.php?route=payment/cod/confirm',
 		success: function() {
-			location = 'http://themes.hsyn.org/leisure/fashion_shop/index.php?route=checkout/success';
+			location = url + 'thanhtoan/done';
 		}		
 	});
 });

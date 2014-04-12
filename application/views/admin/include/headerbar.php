@@ -23,5 +23,4 @@
           </li>          
         </ul>
       </div><!-- header-right -->
-      
     </div>

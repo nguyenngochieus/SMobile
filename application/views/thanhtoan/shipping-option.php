@@ -5,14 +5,14 @@
   </tr>
       <tr class="highlight">
     <td>           
-     <input type="radio" name="shipping_method" value="1" id="flat.flat" checked="checked" />
+     <input type="radio" name="shipping_method" value="1" id="flat.flat" <?php if($ptvc == 1) echo 'checked="checked"';?> />
       </td>
     <td><label for="flat.flat">Chuyển phát bình thường</label></td>
     <td style="text-align: right;"><label for="flat.flat">0.00 đ</label></td>
   </tr>
     <tr class="highlight">
     <td>           
-     <input type="radio" name="shipping_method" value="2" id="flat.2" />
+     <input type="radio" name="shipping_method" value="2" id="flat.2" <?php if($ptvc == 2) echo 'checked="checked"';?>/>
       </td>
     <td><label for="flat.2">Chuyển phát nhanh (Nhận được hàng trong vòng 24 tiếng)</label></td>
     <td style="text-align: right;"><label for="flat.2">50.000 đ</label></td>
@@ -20,7 +20,7 @@
       </table>
 <br />
 <b>Thêm chú thích cho đơn hàng của bạn</b>
-<textarea id='comment' name="comment" rows="8" style="width: 98%;"></textarea>
+<textarea id='comment' name="comment" rows="8" style="width: 98%;"><?=$comment?></textarea>
 <br />
 <br />
 <div class="buttons">

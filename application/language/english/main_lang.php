@@ -12,7 +12,8 @@ $lang['giohang'] = "Shopping Cart";
 $lang['tieptucmuahang'] = "Continue Shopping";
 $lang['thanhtoan'] = "Checkout";
 $lang['sanpham'] = "Product";
-$lang['giatien'] = "Price";
+$lang['giatien'] = "Price (Low -> High)";
+$lang['giatien'] = "Price (High -> Low)";
 $Lang['soluong'] = "Qty";
 $lang['thanhtien'] = "Subtotal";
 $lang['phivanchuyen'] = "Shipping cost";
@@ -29,4 +30,5 @@ $lang['dang_nhap'] = "Sign in";
 $lang['dang_ky'] = "Sign up";
 $lang['tai_khoan'] = "Account";
 $lang['dang_xuat'] = "Sign out";
+$lang['default'] = "Default";
 ?>

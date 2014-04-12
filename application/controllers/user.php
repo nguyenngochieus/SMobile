@@ -6,6 +6,8 @@ Class user extends Public_Controller{
 
 	function __construct(){
 		parent:: __construct();	
+		$this->load->model('thongtindonhang_model');
+		$this->data['id'] = $this->login->GetUserID();
 	}
 
 	function index(){
@@ -13,22 +15,17 @@ Class user extends Public_Controller{
 		$check = $this->login->checkLogin();
 		if($check == 1 || $check == 2 )
 		{
-			if($role == 3)				
-			{
+				$this->data['ten'] = $this->login->GetName();
 				$this->load->view('include/header',$this->data);
-				$this->load->view('user/index',$this->data);
 				$this->load->view('user/usermenu',$this->data);
+				$this->load->view('user/index',$this->data);				
 				$this->load->view('include/footer',$this->data);
-			}
-			else redirect(base_url('admin'));
 		}
 		else
 			return redirect(base_url('dangnhap'));
 	}
 
 	function taikhoan(){
-
-		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 		$this->load->model('nguoidung_model');
 
@@ -67,39 +64,30 @@ Class user extends Public_Controller{
 		$check = $this->login->checkLogin();
 		if($check == 1 || $check == 2 )
 		{
-			if($role == 3)				
-			{
 				if ($this->form_validation->run() == FALSE){	
 					$this->data['UserInfo'] = $this->nguoidung_model->edit2($this->data['UserID']);												
 					$this->load->view('include/header',$this->data);
-					$this->load->view('user/taikhoan',$this->data);
 					$this->load->view('user/usermenu',$this->data);
+					$this->load->view('user/taikhoan',$this->data);					
 					$this->load->view('include/footer',$this->data);
 				}
 				else{	
 					$Id = $this->data['UserID'];						
 					$Tennguoidung = $this->input->post('hoten',TRUE);
-					$Tendangnhap = $this->input->post('tendangnhap',TRUE);
-					$Matkhau = $this->input->post('matkhau',TRUE);
 					$Email = $this->input->post('email',TRUE);
-					$Namsinh = $this->input->post('ngaysinh',TRUE);
-					$Namsinh = date('Y-m-d', strtotime($Namsinh));
+					$Ngaysinh = $this->input->post('ngaysinh',TRUE);
+					$Ngaysinh = date('Y-m-d', strtotime($Ngaysinh));
 					$Gioitinh = $this->input->post('gioitinh',TRUE);
 					$Diachi = $this->input->post('diachi',TRUE);
 					$CMND = $this->input->post('cmnd',TRUE);
 					$SDT = $this->input->post('sdt',TRUE);
-					$Quyen =  $this->input->post('quyen',TRUE);
-					$Trangthai = $this->input->post('trangthai',TRUE);
-					$HinhDaiDien = $this->input->post('HinhDaiDien',TRUE);
 
-					$tmp = $this->nguoidung_model->update($Id, $Tennguoidung, $Tendangnhap, $Matkhau, $Email, $Namsinh, $Gioitinh, $Diachi, $CMND, $SDT, $Quyen, $Trangthai, $HinhDaiDien);
+					$tmp = $this->nguoidung_model->update_user($Id, $Tennguoidung, $Email, $Ngaysinh, $Gioitinh, $Diachi, $CMND, $SDT);
 					if($tmp){						
 						echo redirect(base_url('user'));
 					} 
 					else echo redirect(base_url('user/error/doimatkhau'));
 				}
-			}
-			else redirect(base_url('admin'));
 		}
 		else
 			return redirect(base_url('dangnhap'));
@@ -139,13 +127,11 @@ Class user extends Public_Controller{
 		$role = $this->data['Quyen'];
 		$check = $this->login->checkLogin();
 		if($check == 1 || $check == 2 )
-		{
-			if($role == 3)				
-			{						
+		{						
 				if ($this->form_validation->run() == FALSE){
 					$this->load->view('include/header',$this->data);
-					$this->load->view('user/doimatkhau',$this->data);
 					$this->load->view('user/usermenu',$this->data);
+					$this->load->view('user/doimatkhau',$this->data);					
 					$this->load->view('include/footer',$this->data);
 				}
 				else{										
@@ -158,8 +144,6 @@ Class user extends Public_Controller{
 					} 
 					else echo redirect(base_url('user/error/doimatkhau'));
 				}
-			}
-			else redirect(base_url('admin'));
 		}
 		else
 			return redirect(base_url('dangnhap'));
@@ -183,5 +167,75 @@ Class user extends Public_Controller{
 			$this->form_validation->set_message('ktmatkhaucu', 'Mật khẩu cũ không đúng');
     		return FALSE;
     	}		
-	}	
+	}
+
+	public function lichsudathang()
+	{
+		$check = $this->login->checkLogin();
+		if($check == 1 || $check == 2 )
+		{
+				$this->data['result'] = $this->thongtindonhang_model->get_lichsudathang($this->data['id']);
+				$this->load->view('include/header',$this->data);
+				$this->load->view('user/usermenu',$this->data);
+				$this->load->view('user/lichsudathang',$this->data);					
+				$this->load->view('include/footer',$this->data);
+		}
+		else
+			return redirect(base_url('dangnhap'));
+	}
+
+	public function donhang()
+	{		
+		$check = $this->login->checkLogin();
+		if($check == 1 || $check == 2 )
+		{
+			if(isset($_GET['id']) && $_GET['id'] != '')
+			{
+				$this->data['result'] = $this->thongtindonhang_model->get_thongtindathang_id($this->input->get('id',TRUE));
+				$this->data['giohang'] = $this->thongtindonhang_model->get_giohang_id($this->data['result']->ID);
+				$this->load->view('include/header',$this->data);
+				$this->load->view('user/usermenu',$this->data);
+				$this->load->view('user/donhang',$this->data);					
+				$this->load->view('include/footer',$this->data);
+			}
+			else return redirect(base_url('user'));
+
+		}
+		else
+			return redirect(base_url('dangnhap'));
+	}
+
+	public function dathanglai()
+	{		
+		$check = $this->login->checkLogin();
+		if($check == 1 || $check == 2 )
+		{
+			if(isset($_GET['id']) && $_GET['id'] != '')
+			{
+				$this->data['giohang'] = $this->thongtindonhang_model->get_giohang_id($this->input->get('id',TRUE));
+				if($this->cart->contents())
+				{
+					$this->cart->destroy();
+				}
+				foreach ($this->data['giohang'] as $item) {
+					$arr =	array(
+	                       'id'      => $item->MASANPHAM,
+	                       'qty'     => $item->SOLUONG,
+	                       'price'   => $item->DONGIA,
+	                       'name'    => 'SP'.$item->MASANPHAM
+	                    );
+					$this->cart->insert($arr);
+				}	
+				$this->data['result'] = $this->thongtindonhang_model->get_thongtindathang_id($this->input->get('id',TRUE));
+				$this->data['giohang'] = $this->thongtindonhang_model->get_giohang_id($this->data['result']->ID);
+				$this->load->view('include/header',$this->data);
+				$this->load->view('cart/giohang',$this->data);				
+				$this->load->view('include/footer',$this->data);
+			}
+			else return redirect(base_url('user'));
+
+		}
+		else
+			return redirect(base_url('dangnhap'));
+	}		
 }

@@ -5,15 +5,18 @@
 <title><?=lang('title')?></title>
 <!--CSS-->
 <link rel="stylesheet" href="<?=base_url()?>static/css/styles.css">
+<link rel="stylesheet" href="<?=base_url()?>static/css/short_code.css">
 <link type="text/css" rel="stylesheet" href="<?=base_url()?>static/css/jquery.stepy.css" />
 <!--Google Webfont -->
 <link href='http://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'>
 <!--Javascript-->
 
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery-1.7.2.min.js" ></script>
+<script type="text/javascript" src="<?= base_url()?>static/admin/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.flexslider.js" ></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.easing.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.jcarousel.js"></script>
+<script type="text/javascript" src="<?= base_url()?>static/js/simpletabs.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/form_elements.js" ></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.stepy.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/custom.js"></script>
@@ -57,7 +60,7 @@
             <!--Search Starts-->
             <form class="header_search" action="<?=base_url()?>sanpham/timkiem">
                 <div class="form-search">
-                    <input id="search" type="text" name="q" class="input-text" autocomplete="on" placeholder="<?=lang('search')?>...">
+                    <input id="search" type="search" name="q" class="input-text" autocomplete="on" placeholder="<?=lang('search')?>...">
                     <button type="submit" title="Tìm kiếm"></button>
                 </div>
             </form>

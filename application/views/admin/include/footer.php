@@ -17,13 +17,13 @@
 <script src="<?=base_url()?>static/admin/js/bootstrap-wysihtml5.js"></script>
 <script src="<?=base_url()?>static/admin/js/jquery.datatables.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/chosen.jquery.min.js"></script>
-<script src="<?=base_url()?>static/admin/js/custom.js"></script>
 <script src="<?=base_url()?>static/admin/js/admin.custom.js"></script>
 <script src="<?=base_url()?>static/admin/js/jquery.autogrow-textarea.js"></script>
 <script src="<?=base_url()?>static/admin/js/bootstrap-timepicker.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/jquery.maskedinput.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/chosen.jquery.min.js"></script>
 <script src="<?=base_url()?>static/admin/js/ckeditor/ckeditor.js"></script>
+<script src="<?=base_url()?>static/admin/js/custom.js"></script>
 <script>    
   jQuery(document).ready(function() {    
 
