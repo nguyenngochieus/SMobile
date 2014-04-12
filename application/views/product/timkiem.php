@@ -25,7 +25,7 @@
         đến : <input type="number" name="filter_price_to" value="<?=(isset($_GET['filter_price_to']) && $_GET['filter_price_to'] !='')?$_GET['filter_price_to']:''?>" />        
     </p>
     <br />
-        <input type="checkbox" name="filter_description" value="true" id="description" <?=(isset($_GET['filter_description']) && $_GET['filter_description']=='true')?" checked ":''?> />
+        <input type="checkbox" name="filter_description" value="" id="description" <?=(isset($_GET['filter_description']) && $_GET['filter_description']=='true')?" checked ":''?> />
         <label for="description">Tìm kiếm trong mô tả sản phẩm</label>
   </div>
   <div class="buttons">
@@ -128,7 +128,7 @@ $('#button-search').bind('click', function() {
      
     var filter_description = $('#content input[name=\'filter_description\']:checked').attr('value');
     
-    if (filter_description == 'true') {
+    if (filter_description) {
         url += '&filter_description=true';
     }
 
