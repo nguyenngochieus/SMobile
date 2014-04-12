@@ -96,7 +96,7 @@ function change_item(link)
 
 
 $('#button-search').bind('click', function() {
-    url = 'index.php?route=product/search';
+    url = 'http://localhost/SMobile/sanpham/timkiem.html?s=t';
     
     var filter_name = $('#content input[name=\'filter_name\']').attr('value');
     

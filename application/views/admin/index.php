@@ -73,14 +73,14 @@
                     <h4 class="nomargin">Đăng nhập</h4>
 
                     <div class="alert alert-danger nousername">
-                      <div class="loginmsg">Bạn chưa nhập username</div>
+                      <div class="loginmsg">Bạn chưa nhập tên đăng nhập</div>
                     </div><!--nousername-->
                         
                     <div class="alert alert-danger nopassword" <?=($loi=='')?'':'style="display:block;"'?>>
                       <div class="loginmsg"  ><?=$loi?></div>
                     </div><!--nopassword-->                  
                 
-                    <input id="username" name="username" type="text" class="form-control uname" placeholder="Tài khoản" autofocus />
+                    <input id="username" name="username" type="text" class="form-control uname" placeholder="Tên đăng nhập" autofocus />
                     <input id="password" name="password" type="password" class="form-control pword" placeholder="Mật khẩu" />
                     <div class="mb20"></div>
                     <div style="float:left"><input type="checkbox" name="remember" value="1" />   Lưu tài khoản</div>
