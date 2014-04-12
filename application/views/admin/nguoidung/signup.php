@@ -196,7 +196,7 @@
                     <div class="mb10">
                         <label class="control-label">Mã xác nhận <span class="asterisk">*</span></label>
                         <input type="text" id="captcha" name="captcha" title="Nhập mã xác nhận bên dưới" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" /><br/><br/>
-                        <center><?php echo $captcha['image']; ?><a href="#" id="new_captcha"><img src="<?=base_url()?>static/images/reload.png" height="32" width="32"></a></center>
+                        <center><?php echo $captcha['image']; ?><a href="#" title="Đổi dãy mã xác nhận khác" id="new_captcha"><img src="<?=base_url()?>static/images/reload.png" height="32" width="32"></a></center>
                         <center><?php echo form_error('captcha'); ?></center>
                     </div>                       
                                                                         
