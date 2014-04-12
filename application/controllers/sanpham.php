@@ -125,7 +125,6 @@ class sanpham extends Public_Controller {
 			$filter_category_id = $this->input->get('filter_category_id',true);
 		if(isset($_GET['filter_description']))
 			$filter_description = $this->input->get('filter_description',true);
-
 		// pagination
         $this->load->library('pagination');
         $config['page_query_string'] = TRUE;

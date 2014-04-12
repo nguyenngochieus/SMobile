@@ -185,7 +185,7 @@ class public_model extends CI_Model {
 			default: $sort = "ID";break;
 		}	
 		if($filter_name != '')
-			if($filter_description == 'true')
+			if($filter_description == 'false')
 				$filter_name = ' AND TENSANPHAM LIKE "%'.$filter_name.'%"';
 			else
 				$filter_name = ' AND MOTA LIKE "%'.$filter_name.'%"';
