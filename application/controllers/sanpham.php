@@ -153,13 +153,21 @@ class sanpham extends Public_Controller {
 	
 	public function chitiet($ma)
 	{
+
 		if(isset($ma) && $ma != "")
 		{
-			$this->data['result'] = $this->public_model->GetChiTietSP($ma,$this->data['lang_db']);
+			$this->data['result'] = $this->public_model->GetChiTietSP($ma,$this->data['lang_db']);			
+			if($this->data['result'][0]->LOAI==1)
+				$this->data['detail'] = $this->public_model->GetChiTietDT($this->data['result'][0]->ID);
+			elseif ($this->data['result'][0]->LOAI==2)
+				$this->data['detail'] = $this->public_model->GetChiTietLT($this->data['result'][0]->ID);
+			elseif ($this->data['result'][0]->LOAI==3)
+				$this->data['detail'] = $this->public_model->GetChiTietMTB($this->data['result'][0]->ID);								
 			$this->data['result_cm'] = $this->binhluan_model->get_binhluan_sp($ma);
 			if(count($this->data['result']) == 0 ) echo redirect(base_url());
 			$this->data['SPCungLoai'] = $this->public_model->GetSanPhamCungLoai($ma,$this->data['result'][0]->LOAI,$this->data['lang_db']);
 			$this->data['page'] = 'loaisanpham';
+			$this->load->helper('form');
 			$this->load->view('include/header',$this->data);
 			$this->load->view('product/chitiet',$this->data);
 			$this->load->view('include/footer',$this->data);
@@ -181,5 +189,10 @@ class sanpham extends Public_Controller {
 		}
 		else
 			redirect(base_url());
+	}
+
+	public function danhgia($id)
+	{
+		
 	}
 }

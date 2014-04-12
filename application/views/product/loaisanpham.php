@@ -1,6 +1,7 @@
     <div class="section_container">
         <!--Mid Section Starts-->
         <section>
+        
             <!--SIDE NAV STARTS-->
             <div id="side_nav">
                 <div class="sideNavCategories">
@@ -25,11 +26,10 @@
             <!--SIDE NAV ENDS-->
             <!--MAIN CONTENT STARTS-->
             <div id="main_content">
-                <div class="category_banner"> <img src="<?=base_url()?>static/images/promo_cat_banner.jpg"/> </div>
+                <div class="category_banner"> <img src="<?=base_url()?>static/images/promo_cat_banner.jpg"/> </div>                
                 <ul class="breadcrumb">
-                    <li><a href="<?=base_url()?>"><?=lang('home')?></a></li> 
-                    <li><a href="<?=base_url()?>sanpham/loaisanpham/<?=$idLoai?>"><?=$TenLoai->TEN?></a></li>                
-                    <li class="active"><a href="#"><?=$TenNhaCungCap?></a></li> 
+                    <li><a href="<?= base_url()?>">Trang chủ</a></li>
+                    <li class="active"><a href="<?=base_url()?>sanpham/loaisanpham/<?=$idLoai?>"><?=$TenLoai->TEN?></a></li>                
                 </ul>
                 <!--Toolbar-->               
                 <div class="toolbar">
@@ -60,7 +60,7 @@
                         ?>
                     <li> <a class="product_image"><img src="<?= base_url()?>upload/images/<?=$item->HINH?>"/></a>
                         <div class="product_info">
-                            <h3><a href="leisure_detail.html"><?=$item->TENSANPHAM?></a></h3>
+                            <h3><a href="<?= base_url()?>sanpham/chitiet/<?=$item->ID?>"><?=$item->TENSANPHAM?></a></h3>
                             <small><?=$this->public_model->cut($item->MOTA,100)?></small> </div>
                         <div class="price_info">
                             <button class="price_add" title="" type="button"><span class="pr_price"><?=number_format($item->DONGIA,"0",",",".")?></span><span class="pr_add" onclick="Submit_Form(<?=$item->ID?>,1)"><?=lang('addcart')?></span></button>

@@ -5,7 +5,7 @@
 	
 <div id="content" class="full_page">
 	<ul class="breadcrumb">
-		<li><a href="<?=base_url()?>">Home</a></li>
+		<li><a href="<?=base_url()?>">Trang chủ</a></li>
 		<li><a href="<?=base_url()?>cart/giohang.html">Giỏ hàng</a></li>
 		<li><a href="<?=base_url()?>cart/thanhtoan">Thanh toán</a></li>
 		<li class="active"><a href="<?=base_url()?>thantoan/success">Thành công</a></li>
