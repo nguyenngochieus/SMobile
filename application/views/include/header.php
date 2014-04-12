@@ -22,7 +22,7 @@
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.stepy.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/custom.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.form.js"></script>
-<script type="text/javascript" src="<?= base_url()?>static/js/jquery.js"></script>
+
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.MetaData.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.rating.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/jquery.rating.pack.js"></script>
