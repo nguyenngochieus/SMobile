@@ -14,13 +14,13 @@
               </div>
               <div class="panel-body">
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Họ và tên</label>
+                  <label class="col-sm-2 control-label">Họ và tên <span class="asterisk">*</span></label>
                   <div class="col-sm-10">
                     <input type="text" name="hoten" class="form-control" value="<?=$item['TENNGUOIDUNG']?>" id="hoten" placeholder="Điền tên..." />
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Tên đăng nhập</label>
+                  <label class="col-sm-2 control-label">Tên đăng nhập <span class="asterisk">*</span></label>
                   <div class="col-sm-10">
                     <input type="text" name="tendangnhap" class="form-control" value="<?=$item['TENDANGNHAP']?>" id="tendangnhap" placeholder="Điền tên đăng nhập..." readonly />
                   </div>
@@ -35,14 +35,14 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Email</label>
+                  <label class="col-sm-2 control-label">Email <span class="asterisk">*</span></label>
                   <div class="col-sm-10">
                     <input type="email" name="email" id="email" class="form-control" value="<?=$item['EMAIL']?>" placeholder="Điền email..." readonly />
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Ngày sinh</label>
+                  <label class="col-sm-2 control-label">Ngày sinh <span class="asterisk">*</span></label>
                   <div class="col-sm-6">
                      <div class="input-group">
                       <input name="namsinh" type="text" class="form-control" value="<?php $mysql_date = date('m/d/Y', strtotime($item['NGAYSINH'])); echo $mysql_date; ?>" placeholder="mm/dd/yyyy" id="datepicker">
@@ -106,7 +106,7 @@
                       <div class="rdio rdio-primary">
                         <input type="radio" id="on" value="1" name="trangthai" <?php if ($item['TRANGTHAI'] == 1) {
                               echo 'checked';
-                      } ?>>
+                      } ?> >
                         <label for="on">Đang hoạt động</label>
                       </div><!-- rdio -->
                     </div>
@@ -114,7 +114,7 @@
                       <div class="rdio rdio-primary">
                         <input type="radio" id="off" value="0" name="trangthai" <?php if ($item['TRANGTHAI'] == 0) {
                               echo 'checked';
-                      } ?>>
+                      } ?> <?php if ($Quyen==2) { if ($item['QUYEN'] == 1) echo "disabled";  } ?>>
                         <label for="off">Ngưng hoạt động</label>
                       </div><!-- rdio -->
                     </div>                           

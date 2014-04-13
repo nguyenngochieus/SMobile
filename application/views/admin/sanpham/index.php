@@ -135,14 +135,14 @@
                 </div>  
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Mô tả<span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Mô tả</label>
                   <div class="col-sm-10">
                     <textarea name="mota" id="mota" placeholder="Thêm mô tả..." class="form-control" rows="10"></textarea>
                   </div>
                 </div>  
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Mô tả tiếng anh<span class="asterisk">*</span></label>
+                  <label class="col-sm-2 control-label">Mô tả tiếng anh</label>
                   <div class="col-sm-10">
                     <textarea name="mota_en" id="mota_en" placeholder="Thêm mô tả..." class="form-control" rows="10"></textarea>
                   </div>

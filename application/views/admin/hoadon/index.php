@@ -49,18 +49,7 @@
                     <td><?=$item['SOSANPHAM'] ?></td> 
                     <td><?=number_format($item['THANHTIEN'],"0",",",".")?></td> 
                     <td><?=($item['TINHTRANG'] == 0)?'Chưa thanh toán' : 'Đã thanh toán';?></td>
-                    <td><a href="<?=base_url()?>admin/hoadon/edit?id=<?php echo $item['ID'] ?>"><i class="fa fa-pencil"></i></a>
-                     <?php if ($UserID!=$item['ID']) 
-                    {                                
-                        if ($Quyen==2)
-                        {
-                            if ($item['QUYEN']!=1)                                                                      
-                              echo '<a href="#" onclick="DeleteCate('.$item['ID'].','.$page.')" class="delete-row"><i class="fa fa-trash-o"></i></a>';
-                        }
-                        else
-                          echo '<a href="#" onclick="DeleteCate('.$item['ID'].',\''.$page.'\')" class="delete-row"><i class="fa fa-trash-o"></i></a>';
-                    }
-                    ?>              
+                    <td><a href="<?=base_url()?>admin/hoadon/edit?id=<?php echo $item['ID'] ?>"><i class="fa fa-pencil"></i></a>                    
 	                </td>
                  </tr>     
                 <?php } ?>           

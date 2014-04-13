@@ -14,13 +14,7 @@
                             <li><a href="<?=base_url()?>sanpham/nhacungcap.html?url=<?=$item_ncc->ID?>-<?=$idLoai?>"><?=$item_ncc->TENNCC?></a></li>
                           <?php
                        } ?>                       
-                    </ul>
-                    <ul class="category price">
-                        <li class="header"><?=lang('menu_gia') ?></li>
-                        <li><a href="#">$50 to $100</a></li>
-                        <li><a href="#">$100 to $200</a></li>
-                        <li><a href="#">$200 to $500</a></li>
-                    </ul>
+                    </ul>                    
                 </div>
             </div>
             <!--SIDE NAV ENDS-->

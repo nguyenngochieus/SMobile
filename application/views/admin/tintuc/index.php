@@ -66,8 +66,7 @@
                   <a href="#" class="panel-close">&times;</a>
                   <a href="#" class="minimize">&minus;</a>
                 </div>
-                <h4 class="panel-title">Thêm tin tức</h4>
-                <p>Xin hãy nhập đúng các thông tin sau đây.</p>
+                <h4 class="panel-title">Thêm tin tức</h4>                
               </div>
               <div class="panel-body">
                 <div class="form-group">
