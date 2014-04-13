@@ -6,35 +6,37 @@
                 <li> <span>ĐIỆN THOẠI</span>
                     <ul>
                     <?php foreach ($FMenu1 as $item) {
-                        echo '<li><a href="'.base_url().'sanpham/nhacungcap/'.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
+                        echo '<li><a href="'.base_url().'sanpham/nhacungcap.html?url='.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
                     } ?> 
                     </ul>
                 </li>
                 <li  class="seperator"> <span>MÁY TÍNH XÁCH TAY</span>
                     <ul>
                     <?php foreach ($FMenu2 as $item) {
-                        echo '<li><a href="'.base_url().'sanpham/nhacungcap/'.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
+                        echo '<li><a href="'.base_url().'sanpham/nhacungcap.html?url='.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
                     } ?>                         
                     </ul>
                 </li>
                 <li> <span>MÁY TÍNH BẢNG</span>
                     <ul>
                     <?php foreach ($FMenu3 as $item) {
-                        echo '<li><a href="'.base_url().'sanpham/nhacungcap/'.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
+                        echo '<li><a href="'.base_url().'sanpham/nhacungcap.html?url='.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
                     } ?>   
                     </ul>
                 </li>
-                <!--
-                <li> <span>My Account</span>
+                <?php $check = $this->login->checkLogin();
+                    if($check == 1 || $check == 2 )
+                    {?>
+                <li> <span>Tài khoản của tôi</span>
                     <ul>
-                        <li><a href="#">My Account Information</a></li>
-                        <li><a href="#">My Password</a></li>
-                        <li><a href="#">My Order History</a></li>
-                        <li><a href="#">Payment Options</a></li>
-                        <li><a href="#">My Address Book</a></li>
-                        <li><a href="#">My Updates & Alerts</a></li>
+                          <li><a href="<?=base_url()?>user.html">Tài khoản của tôi</a></li>
+                          <li><a href="<?=base_url()?>user/taikhoan.html">Thay đổi thông tin</a></li>
+                          <li><a href="<?=base_url()?>user/doimatkhau.html">Đổi mật khẩu</a></li>
+                          <li><a href="<?=base_url()?>user/lichsudathang.html">Lịch sử mua hàng</a></li>
+                          <li><a href="<?=base_url()?>dangxuat.html">Thoát</a></li>
                     </ul>
-                </li> -->
+                </li>
+                <?php } ?>
             </ul>
             <div class="footer_customblock">
                 <div class="shipping_info"> <span>GIAO HÀNG TẬN NƠI</span><br>

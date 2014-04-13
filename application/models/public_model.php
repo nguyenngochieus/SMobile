@@ -139,7 +139,7 @@ class public_model extends CI_Model {
 
 	public function GetChiTietSP($id, $lang = "")
 	{
-		$query =  $this->db->query('SELECT ID, TENSANPHAM,LOAI, DONGIA, HINH, MOTA'.$lang.' AS MOTA, (SELECT B2.TENLOAI'.$lang.' FROM LOAISANPHAM B2 WHERE B1.LOAI = B2.ID ) LOAISANPHAM , (SELECT B3.TENNCC FROM nhacungcap B3 WHERE B1.NHACUNGCAP = B3.ID ) TENNHACUNGCAP FROM SANPHAM B1 WHERE ID ='.$id);
+		$query =  $this->db->query('SELECT ID, TENSANPHAM,LOAI ,NHACUNGCAP, DONGIA, HINH, MOTA'.$lang.' AS MOTA, (SELECT B2.TENLOAI'.$lang.' FROM LOAISANPHAM B2 WHERE B1.LOAI = B2.ID ) LOAISANPHAM , (SELECT B3.TENNCC FROM nhacungcap B3 WHERE B1.NHACUNGCAP = B3.ID ) TENNHACUNGCAP FROM SANPHAM B1 WHERE ID ='.$id);
 		return $query->result();
 	}
 
@@ -161,9 +161,9 @@ class public_model extends CI_Model {
 		return $query->result();
 	}
 
-	public function GetSanPhamCungLoai($id, $idloai, $lang = "")
+	public function GetSanPhamCungLoai($id, $idloai, $idncc, $lang = "")
 	{
-		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM  WHERE LOAI = '.$idloai.' AND Id <> '.$id.' order by ID ');
+		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM  WHERE LOAI = '.$idloai.' AND NHACUNGCAP = '.$idncc.' AND Id <> '.$id.' order by ID ');
 		return $query->result();
 	}
 
@@ -200,6 +200,41 @@ class public_model extends CI_Model {
 		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE ID > 0 '.$filter_name.$filter_price_from.$filter_price_to.$filter_category_id.' ORDER BY '.$sort.' LIMIT '.$number.' , '.$offset);
 		return $query->result();
 	}
+
+		public function count_TimKiem($filter_name,$lang = "",$sort,$filter_price_from,$filter_price_to,$filter_category_id,$filter_description)
+	{
+		switch ($sort) {
+			case 'price':
+				$sort = "DONGIA";
+				break;
+			case 'price_desc':
+				$sort = "DONGIA DESC";
+				break;
+			case 'name':
+				$sort = "TENSANPHAM";
+				break;
+			case 'name_desc':
+				$sort = "TENSANPHAM DESC";
+				break;			
+			default: $sort = "ID";break;
+		}	
+		if($filter_name != '')
+			if($filter_description == 'false')
+				$filter_name = ' AND TENSANPHAM LIKE "%'.$filter_name.'%"';
+			else
+				$filter_name = ' AND MOTA LIKE "%'.$filter_name.'%"';
+		if($filter_price_from != '')
+			$filter_price_from = " AND DONGIA > ".$filter_price_from;
+		if($filter_price_to != '')
+			$filter_price_to = " AND DONGIA < ".$filter_price_to;
+		if($filter_category_id > 0)
+			$filter_category_id = " AND LOAI = ".$filter_category_id;
+		else
+			$filter_category_id = '';
+		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM WHERE ID > 0 '.$filter_name.$filter_price_from.$filter_price_to.$filter_category_id.' ORDER BY '.$sort);
+		return $query->result();
+	}
+
 
 	public function cut($str, $len) {
 	    $str = trim($str);

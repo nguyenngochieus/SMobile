@@ -7,8 +7,8 @@ Class thongtindonhang_model extends CI_Model{
 		parent:: __construct();
 	}
 
-	function get_thongtindathang(){		
-		$query = $this->db->query('SELECT B1.*, B2.TENNGUOIDUNG FROM THONGTINDATHANG B1, NGUOIDUNG B2 WHERE B1.MAKHACHHANG = B2.ID ORDER BY NGAYDATHANG');
+	function get_thongtindathang(){	
+		$query = $this->db->query('SELECT B1.*, (SELECT SUM(SOLUONG) FROM DONHANG WHERE MADATHANG = B1.ID ) AS SOSANPHAM, B2.TENNGUOIDUNG FROM THONGTINDATHANG B1, NGUOIDUNG B2 WHERE B1.MAKHACHHANG = B2.ID ORDER BY NGAYDATHANG');
 		return $query->result_array();
 	}
 
@@ -77,6 +77,20 @@ Class thongtindonhang_model extends CI_Model{
 		$query = $this->db->update($this->table, $data);							
 		$this->db->trans_complete();
 
+		if ($this->db->trans_status() === FALSE)
+			return FALSE;
+		else return TRUE;		
+	}
+
+	function update_admin($Id, $Tinhtrang)
+	{		
+		$data = array(
+			"Tinhtrang"	=>	$Tinhtrang
+		);		
+		$this->db->trans_start();
+		$this->db->where("Id", $Id);
+		$query = $this->db->update($this->table, $data);							
+		$this->db->trans_complete();
 		if ($this->db->trans_status() === FALSE)
 			return FALSE;
 		else return TRUE;		

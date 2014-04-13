@@ -12,6 +12,11 @@ Class Sanpham_model extends CI_Model{
 		return $query->result_array();
 	}
 
+	function get_sanpham_loai($id){
+		$query = $this->db->query("SELECT B1.*, (SELECT B2.TENLOAI FROM loaisanpham B2 WHERE B1.LOAI = B2.ID ) LOAISANPHAM , (SELECT B3.TENNCC FROM nhacungcap B3 WHERE B1.NHACUNGCAP = B3.ID ) TENNHACUNGCAP FROM `".$this->table."` B1 WHERE LOAI = ".$id." ORDER BY `ID` DESC ");
+		return $query->result_array();
+	}
+
 	function edit($id){
 		
 		$query = $this->db->get_where($this->table,array('ID'=>$id));

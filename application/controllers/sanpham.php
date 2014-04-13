@@ -4,38 +4,53 @@ class sanpham extends Public_Controller {
 	public function __construct(){
 		parent:: __construct();		
 		$this->load->model('binhluan_model');
+		$this->load->library('pagination');
 		$this->data['link'] = '';
 		$this->data['page'] = 'sanpham';
 	}	
 
-	public function loaisanpham($url)
+	public function loaisanpham()
 	{
-		$this->data['link'] = $url;	
+		$url = $this->input->get('url',true);
+		$this->data['link'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";		
+		$this->data['link_sort'] = $this->data['link'];
+		$this->data['link_item'] = $this->data['link'];
 		$sort = '';
-		$item = 12;
+		$item = 12;			
+		if(isset($_GET['sort']))
+		{
+			$sort = $this->input->get('sort',true);
+			$this->data['link_sort'] = str_replace( '&sort='.$sort, '', $this->data['link'] );
+		}
+		if(isset($_GET['item']))
+		{
+			$item = $this->input->get('item',true);
+			$this->data['link_item'] = str_replace( '&item='.$item, '', $this->data['link'] );
+		}
+
 		$arr = explode('-',$url);
 		$ma = current($arr);		
 		if(isset($arr[1]) && $arr[1] != '')		
 			$this->data['TenNhaCungCap'] = $this->public_model->GetTenNhaCungCap($arr[1],$this->data['lang_db'])->TEN;
 		else
 			$this->data['TenNhaCungCap'] = "";
-		if(isset($_GET['sort']))
-			$sort = $this->input->get('sort',true);
-		if(isset($_GET['item']))
-			$item = $this->input->get('item',true);
+
 		$this->data['idLoai'] = $ma;		
 		$this->data['TenLoai'] = $this->public_model->GetTenLoai($ma,$this->data['lang_db']);
-		// pagination
-        $this->load->library('pagination');
+
         $config['page_query_string'] = TRUE;
+        $config['per_page'] = $item; 
         $this->data['per_page'] = 0;
-        if(isset($_GET['per_page']))
-        	$this->data['per_page'] = $this->input->get('per_page',TRUE);        
-        // config pagination
-        $config['base_url'] = base_url('sanpham/loaisanpham/'.$url.'?s=t'); // xác định trang phân trang 
-        $config['total_rows'] = $this->public_model->count_SanPhamTheoLoai($arr); // xác định tổng số record 
-        $config['per_page'] = $item; // xác định số record ở mỗi trang 
-        $config['uri_segment'] = 4; // xác định segment chứa page number    
+
+        if(isset($_GET['per_page']) && $_GET['per_page'] != '')
+        {
+        	$this->data['per_page'] = $this->input->get('per_page',TRUE);
+        	$this->data['link'] = str_replace( '&per_page='.$this->data['per_page'], '', $this->data['link'] );
+        }        	
+     	 // config pagination
+        $config['base_url'] = $this->data['link']; 
+        $config['total_rows'] = $this->public_model->count_SanPhamTheoLoai($arr); 
+        $config['per_page'] = $item; 
         $config['full_tag_open'] = '<div class="pagination"><div class="links">';
         $config['full_tag_close'] = '</div></div>';         
         $this->pagination->initialize($config); 
@@ -48,14 +63,28 @@ class sanpham extends Public_Controller {
 		$this->load->view('include/footer',$this->data);
 	}
 
-	public function nhacungcap($url)
+	public function nhacungcap()
 	{		
-		$this->data['link'] = $url;	
+		$url = $this->input->get('url',true);
+		$this->data['link'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";		
+		$this->data['link_sort'] = $this->data['link'];
+		$this->data['link_item'] = $this->data['link'];
 		$sort = '';
-		$item = 12;
+		$item = 12;			
+		if(isset($_GET['sort']))
+		{
+			$sort = $this->input->get('sort',true);
+			$this->data['link_sort'] = str_replace( '&sort='.$sort, '', $this->data['link'] );
+		}
+		if(isset($_GET['item']))
+		{
+			$item = $this->input->get('item',true);
+			$this->data['link_item'] = str_replace( '&item='.$item, '', $this->data['link'] );
+		}
+
 		$arr = explode('-',$url);
-		$ma = current($arr);
-		if(isset($arr[1]) && $arr[1] != '')
+		$ma = current($arr);		
+		if(isset($arr[1]) && $arr[1] != '')		
 		{
 			$this->data['idLoai'] = $arr[1];
 			$this->data['TenLoai'] = $this->public_model->GetTenloai($arr[1],$this->data['lang_db'])->TEN;
@@ -63,27 +92,27 @@ class sanpham extends Public_Controller {
 		}		
 		else
 			$this->data['TenLoai'] = "";
-		if(isset($_GET['sort']))
-			$sort = $this->input->get('sort',true);
-		if(isset($_GET['item']))
-			$item = $this->input->get('item',true);
+
 		$this->data['idNhaCungCap'] = $ma;	
 		$this->data['TenNhaCungCap'] = $this->public_model->GetTenNhaCungCap($ma,$this->data['lang_db']);
-		// pagination
-        $this->load->library('pagination');
         $config['page_query_string'] = TRUE;
+        $config['per_page'] = $item; 
         $this->data['per_page'] = 0;
-        if(isset($_GET['per_page']))
+
+        if(isset($_GET['per_page']) && $_GET['per_page'] != '')
+        {
         	$this->data['per_page'] = $this->input->get('per_page',TRUE);
-        // config pagination
-        $config['base_url'] = base_url('sanpham/loaisanpham/'.$url.'?s=t'); // xác định trang phân trang 
-        $config['total_rows'] = $this->public_model->count_SanPhamTheoNCC($arr); // xác định tổng số record 
-        $config['per_page'] = $item; // xác định số record ở mỗi trang 
-        $config['uri_segment'] = 4; // xác định segment chứa page number    
+        	$this->data['link'] = str_replace( '&per_page='.$this->data['per_page'], '', $this->data['link'] );
+        }        	
+
+     	 // config pagination
+        $config['base_url'] = $this->data['link']; 
+        $config['total_rows'] = $this->public_model->count_SanPhamTheoNCC($arr); 
+        $config['per_page'] = $item; 
         $config['full_tag_open'] = '<div class="pagination"><div class="links">';
         $config['full_tag_close'] = '</div></div>';         
         $this->pagination->initialize($config); 
-          
+        
 		$this->data['result'] = $this->public_model->GetSanPhamTheoNhaCungCap($arr,$this->data['lang_db'],$sort,$this->data['per_page'],$config['per_page']);
 		$this->data['Loai'] = $this->public_model->GetLoaiTheoNhaCungCap($ma,$this->data['lang_db']);		
 		$this->load->view('include/header',$this->data);
@@ -105,7 +134,7 @@ class sanpham extends Public_Controller {
 		}
 		if(isset($_GET['item']))
 		{
-			$sort = $this->input->get('item',true);
+			$item = $this->input->get('item',true);
 			$this->data['link_item'] = str_replace( '&item='.$item, '', $this->data['link'] );
 		}
 
@@ -126,24 +155,29 @@ class sanpham extends Public_Controller {
 		if(isset($_GET['filter_description']))
 			$filter_description = $this->input->get('filter_description',true);
 		// pagination
-        $this->load->library('pagination');
         $config['page_query_string'] = TRUE;
         $config['per_page'] = $item; 
         $this->data['per_page'] = 0;
-        if(isset($_GET['per_page']))
+        if(isset($_GET['per_page']) && $_GET['per_page'] != '')
+        {
         	$this->data['per_page'] = $this->input->get('per_page',TRUE);
+        	$this->data['link'] = str_replace( '&per_page='.$this->data['per_page'], '', $this->data['link'] );
+        }        	
 
-		$this->data['result'] = $this->public_model->TimKiem($filter_name,$this->data['lang_db'],$sort,$this->data['per_page'],$config['per_page'],$filter_price_from,$filter_price_to,$filter_category_id,$filter_description);
-		$this->data['Loai'] = $this->public_model->GetMenu($this->data['lang_db']);
-		$this->data['page'] = 'timkiem';
-
-		 // config pagination
+     	 // config pagination
         $config['base_url'] = $this->data['link']; 
-        $config['total_rows'] = count($this->data['result']);         
+        $config['total_rows'] = count($this->public_model->count_TimKiem($filter_name,$this->data['lang_db'],$sort,$filter_price_from,$filter_price_to,$filter_category_id,$filter_description));
+        if(!isset($_GET['filter_name']) || $_GET['filter_name'] == '')
+        	 $config['total_rows'] = 0;
+        $config['per_page'] = $item; 
         $config['uri_segment'] = 4; 
         $config['full_tag_open'] = '<div class="pagination"><div class="links">';
         $config['full_tag_close'] = '</div></div>';         
         $this->pagination->initialize($config);   
+
+		$this->data['result'] = $this->public_model->TimKiem($filter_name,$this->data['lang_db'],$sort,$this->data['per_page'],$config['per_page'],$filter_price_from,$filter_price_to,$filter_category_id,$filter_description);
+		$this->data['Loai'] = $this->public_model->GetMenu($this->data['lang_db']);
+		$this->data['page'] = 'timkiem';
 
 		$this->load->view('include/header',$this->data);
 		$this->load->view('product/timkiem',$this->data);
@@ -164,7 +198,7 @@ class sanpham extends Public_Controller {
 				$this->data['detail'] = $this->public_model->GetChiTietMTB($this->data['result'][0]->ID);								
 			$this->data['result_cm'] = $this->binhluan_model->get_binhluan_sp($ma);
 			if(count($this->data['result']) == 0 ) echo redirect(base_url());
-			$this->data['SPCungLoai'] = $this->public_model->GetSanPhamCungLoai($ma,$this->data['result'][0]->LOAI,$this->data['lang_db']);
+			$this->data['SPCungLoai'] = $this->public_model->GetSanPhamCungLoai($ma,$this->data['result'][0]->LOAI,$this->data['result'][0]->NHACUNGCAP,$this->data['lang_db']);
 			$this->data['page'] = 'loaisanpham';
 			$this->load->helper('form');
 			$this->load->view('include/header',$this->data);

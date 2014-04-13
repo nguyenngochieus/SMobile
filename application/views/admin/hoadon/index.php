@@ -32,16 +32,35 @@
               <thead>
                  <tr>
                     <th>Mã hóa đơn</th>
-                    <th>Mã sản phẩm</th>
-                    <th>Số lượng</th>                    
+                    <th>Tên người dùng</th>
+                    <th>Ngày đặt hàng</th>
+                    <th>Số sản phẩm</th> 
+                    <th>Thành tiền</th> 
+                    <th>Tình trạng</th>     
+                    <th>Thao tác </th>              
                  </tr>
               </thead>
               <tbody>
               <?php foreach ($result as $item) { ?>              	              
                  <tr>
-                    <td><?php echo $item['MADATHANG'] ?></td>
-                    <td><?php echo $item['MASANPHAM'] ?></td>
-                    <td><?php echo $item['SOLUONG'] ?></td>                    
+                    <td><a href="<?=base_url()?>admin/hoadon/chitiet?id=<?=$item['ID'] ?>"><?=$item['ID'] ?></a></td>
+                    <td><?=$item['TENNGUOIDUNG'] ?></td>
+                    <td><?=date_format(date_create($item['NGAYDATHANG']),'d/m/Y');?></td>   
+                    <td><?=$item['SOSANPHAM'] ?></td> 
+                    <td><?=number_format($item['THANHTIEN'],"0",",",".")?></td> 
+                    <td><?=($item['TINHTRANG'] == 0)?'Chưa thanh toán' : 'Đã thanh toán';?></td>
+                    <td><a href="<?=base_url()?>admin/hoadon/edit?id=<?php echo $item['ID'] ?>"><i class="fa fa-pencil"></i></a>
+                     <?php if ($UserID!=$item['ID']) 
+                    {                                
+                        if ($Quyen==2)
+                        {
+                            if ($item['QUYEN']!=1)                                                                      
+                              echo '<a href="#" onclick="DeleteCate('.$item['ID'].','.$page.')" class="delete-row"><i class="fa fa-trash-o"></i></a>';
+                        }
+                        else
+                          echo '<a href="#" onclick="DeleteCate('.$item['ID'].',\''.$page.'\')" class="delete-row"><i class="fa fa-trash-o"></i></a>';
+                    }
+                    ?>              
 	                </td>
                  </tr>     
                 <?php } ?>           
@@ -84,19 +103,7 @@
                     <input type="text" name="Soluong" class="form-control" id="Soluong" placeholder="Điền số lượng..." required />
                   </div>
                 </div>    
-
-                
-
-              </div> --> 
-              <div class="panel-footer">
-                <div class="row">
-                  <div class="col-sm-5 col-sm-offset-4">
-                    <button class="btn btn-primary">Thêm mới</button>
-                    <button type="reset" class="btn btn-default">Làm lại</button>
-                  </div>
-                </div>
-              </div>
-            
+              </div> -->             
           </div><!-- panel -->
           </form>
             </div>

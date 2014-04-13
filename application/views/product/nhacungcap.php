@@ -9,7 +9,7 @@
                         <li class="header"><?=lang('cungncc') ?></li>
                        <?php foreach ($Loai as $item_loai) {
                           ?>
-                            <li><a href="<?=base_url()?>sanpham/loaisanpham/<?=$item_loai->ID?>-<?=$idNhaCungCap?>"><?=$item_loai->TENLOAI?></a></li>
+                            <li><a href="<?=base_url()?>sanpham/loaisanpham.html?url=<?=$item_loai->ID?>-<?=$idNhaCungCap?>"><?=$item_loai->TENLOAI?></a></li>
                           <?php
                        } ?>                       
                     </ul>
@@ -36,14 +36,14 @@
                 <div class="toolbar">
                     <div class="sortby">
                         <label><?=lang('sort_by')?> :</label>
-                        <select name="sort" onchange="change_sort('<?=$link?>')">
+                        <select name="sort" onchange="change_sort('<?=$link_sort?>')">
                             <option value="price" <?=(isset($_GET['sort']) && $_GET['sort']=='price')?"selected":''?>><?=lang('giatien')?></option>
                             <option value="name" <?=(isset($_GET['sort']) && $_GET['sort']=='name')?"selected":''?>><?=lang('ten')?></option>
                         </select>
                     </div>
                     <div class="show_no">
                         <label><?=lang('show')?> :</label>
-                        <select name="item" onchange="change_item('<?=$link?>')">
+                        <select name="item" onchange="change_item('<?=$link_item?>')">
                             <option value="12" <?=(isset($_GET['item']) && $_GET['item']=='12')?"selected":''?>>12 <?=lang('item')?></option>
                             <option value="24" <?=(isset($_GET['item']) && $_GET['item']=='24')?"selected":''?>>24 <?=lang('item')?></option>
                         </select>
@@ -73,14 +73,14 @@
                 <div class="toolbar">
                     <div class="sortby">
                         <label><?=lang('sort_by')?> :</label>
-                        <select name="sort" onchange="change_sort('<?=$link?>')">
+                        <select name="sort" onchange="change_sort('<?=$link_sort?>')">
                             <option value="price" <?=(isset($_GET['sort']) && $_GET['sort']=='price')?"selected":''?>><?=lang('giatien')?></option>
                             <option value="name" <?=(isset($_GET['sort']) && $_GET['sort']=='name')?"selected":''?>><?=lang('ten')?></option>
                         </select>
                     </div>
                     <div class="show_no">
                         <label><?=lang('show')?> :</label>
-                        <select name="item" onchange="change_item('<?=$link?>')">
+                        <select name="item" onchange="change_item('<?=$link_item?>')">
                             <option value="12" <?=(isset($_GET['item']) && $_GET['item']=='12')?"selected":''?>>12 <?=lang('item')?></option>
                             <option value="24" <?=(isset($_GET['item']) && $_GET['item']=='24')?"selected":''?>>24 <?=lang('item')?></option>
                         </select>
@@ -93,14 +93,13 @@
         <!--Mid Section Ends-->
     </div>
      <script type="text/javascript">
-     var url = "http://localhost/SMobile/";
         function change_sort(link)        
         {
-            window.location.href = url + 'sanpham/nhacungcap/'+ link+'.html?sort=' + jQuery('select[name=sort]').val();
+            window.location.href = link+'&sort=' + jQuery('select[name=sort]').val();
         }
 
         function change_item(link)
         {
-            window.location.href = url + 'sanpham/nhacungcap/'+ link+'.html?sort=' + jQuery('select[name=item]').val();
+            window.location.href = link+'&item=' + jQuery('select[name=item]').val();
         }
     </script>
