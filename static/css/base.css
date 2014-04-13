@@ -960,3 +960,8 @@ border: solid 1px #d7d7d7;
 padding: 3px;
 height: 24px;
 }
+
+.span6{
+	width: 49.9999%;
+	float: left;
+}

@@ -20,9 +20,9 @@
                     </ul>
                 </div>
                 <div class="promo_banner">
-                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham/1"><img src="<?= base_url()?>static/images/promo_hb_1.jpg"></a></div>
-                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham/2"><img src="<?= base_url()?>static/images/promo_hb_2.jpg"></a></div>
-                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham/3"><img src="<?= base_url()?>static/images/promo_hb_3.jpg"></a></div>
+                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?id=1"><img src="<?= base_url()?>static/images/promo_hb_1.jpg"></a></div>
+                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?id=2"><img src="<?= base_url()?>static/images/promo_hb_2.jpg"></a></div>
+                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?id=3"><img src="<?= base_url()?>static/images/promo_hb_3.jpg"></a></div>
                 </div>
             </div>
             <!--Banner Ends-->
@@ -71,6 +71,90 @@
                 </ul>
             </div>
             <!--Product List Ends-->
+<style type="text/css">
+    .unordered a{
+        text-decoration: none;
+        color: black;
+        font-size: 10pt;
+    }
+
+     .span6 label{
+        font-size: 8pt;
+    }
+
+    .span6 a:hover{
+        color: #adadad;
+    }
+
+</style>
+                <div class="products_list products_slider">        
+            <h2 class="sub_title">TIN TỨC</h2>
+        <br />
+        <div class="row-fluid">
+            <div class="span6">
+                <h4 class="widgettitle" style="font-size: 26px; font-weight: bold; line-height: 56px;">Tin khuyến mãi </></h4>
+                <div style="line-height: 20px">
+                    <div class="r" style="float: right; width: 55%;">
+                        <h4 style="font-size: 16px !important; color: #444444">
+                            <a><?=$TinKhuyenMai[0]->TIEUDE?></a>
+                        </h4>
+                        <label Text="Label"><?=$TinKhuyenMai[0]->MOTA?></label>
+                    </div>
+                    <img ID="imgKhuyenmai"  src="<?=base_url()?>upload/files/<?=$TinKhuyenMai[0]->HINH?>" Width="200px" />
+
+                </div>
+                <!--widgetcontent-->
+
+                <div>
+                    <br />
+                    <br />
+                    <h1 style="font-size: large">Tin cùng chuyên mục</h1>
+                    <ul class="unordered" style="margin-left: 10px !important; list-style-type: square; line-height: 25px !important; width: 370px !important">
+                        <li style="list-style: none"></li>
+                        <li style="width: 115%">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinKhuyenMai[1]->ID?>"><?=$TinKhuyenMai[1]->TIEUDE?></a>
+                        </li>
+                        <li style="width: 115%">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinKhuyenMai[2]->ID?>"><?=$TinKhuyenMai[2]->TIEUDE?></a>
+                        </li>
+                        <li style="width: 115%">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinKhuyenMai[3]->ID?>"><?=$TinKhuyenMai[3]->TIEUDE?></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--span6-->
+            <div class="span6">
+                <h4 class="widgettitle" style="font-size: 26px; font-weight: bold; line-height: 56px;">Tin công nghệ</h4>
+                <div style="line-height: 20px">
+                    <div class="r" style="float: right; width: 55%;">
+                        <h4 style="font-size: 16px !important; color: #444444">
+                            <a><?=$TinCongNghe[0]->TIEUDE?></a>
+                        </h4>
+                        <label Text="Label"><?=$TinCongNghe[0]->MOTA?></label>
+                    </div>
+                    <img ID="imgKhuyenmai"  src="<?=base_url()?>upload/files/<?=$TinCongNghe[0]->HINH?>" Width="200px" />
+                </div>
+                <!--widgetcontent-->
+                <div>
+                    <br />
+                    <br />
+                    <h1 style="font-size: large">Tin cùng chuyên mục</h1>
+                    <ul class="unordered" style="margin-left: 10px !important; list-style-type: square; line-height: 25px !important; width: 370px !important">
+                        <li style="list-style: none"></li>
+                        <li style="width: 115%">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinCongNghe[1]->ID?>"><?=$TinCongNghe[1]->TIEUDE?></a>
+                        </li>
+                        <li style="width: 115%">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinCongNghe[2]->ID?>"><?=$TinCongNghe[2]->TIEUDE?></a>
+                        </li>
+                        <li style="width: 115%">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinCongNghe[3]->ID?>"><?=$TinCongNghe[3]->TIEUDE?></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
             
         </section>
         <!--Mid Section Ends-->

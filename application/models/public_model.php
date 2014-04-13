@@ -259,6 +259,18 @@ class public_model extends CI_Model {
 		$query =  $this->db->query('UPDATE danhgia SET LUOTXEM = LUOTXEM + 1 WHERE MASANPHAM = '.$id);
 	}
 
+	public function GetTinKhuyenMai()
+	{
+		$query =  $this->db->query('SELECT * FROM TINTUC WHERE LOAITIN = 1 ORDER BY NGAYDANG DESC LIMIT 4');
+		return $query->result();
+	}
+
+	public function GetTinCongNghe()
+	{
+		$query =  $this->db->query('SELECT * FROM TINTUC WHERE LOAITIN = 2 ORDER BY NGAYDANG DESC LIMIT 4');
+		return $query->result();
+	}
+
 	function thongke_tintuc_binhluan_danhgia()
 	{
 		$query = $this->db->query('SELECT COUNT(*) AS TINTUC, (SELECT COUNT(*) FROM binhluan) AS BINHLUAN, (SELECT SUM(LUOTDANHGIA) FROM danhgia) AS DANHGIA  FROM tintuc');
