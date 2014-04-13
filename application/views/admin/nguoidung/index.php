@@ -62,14 +62,14 @@
                     <td class="center"><?php if($item['GIOITINH'] == 1) echo "Nam"; else echo "Nữ"; ?></td>
                     <td class="center"><?=$item['SDT'] ?></td>
                     <td class="center"><?php if($item['TRANGTHAI'] == 1) echo "Mở"; else echo "Đóng"; ?></td>
-                    <td class="table-action">
-	                  <a href="<?=base_url()?>admin/nguoidung/edit?id=<?php echo $item['ID'] ?>"><i class="fa fa-pencil"></i></a>                                                          
+                    <td class="table-action">                    
+	                  <a href="<?=base_url()?>admin/nguoidung/edit?id=<?php echo $item['ID'] ?>" ><i class="fa fa-pencil"></i></a>
                     <?php if ($UserID!=$item['ID']) 
                     {                                
                         if ($Quyen==2)
                         {
-                            if ($item['QUYEN']!=1)                                                                      
-                              echo '<a href="#" onclick="DeleteCate('.$item['ID'].','.$page.')" class="delete-row"><i class="fa fa-trash-o"></i></a>';
+                            if ($item['QUYEN']!=1) 
+                              echo '<a href="#" onclick="DeleteCate('.$item['ID'].',\''.$page.'\')" class="delete-row"><i class="fa fa-trash-o"></i></a>';                            
                         }
                         else
                           echo '<a href="#" onclick="DeleteCate('.$item['ID'].',\''.$page.'\')" class="delete-row"><i class="fa fa-trash-o"></i></a>';
@@ -98,34 +98,34 @@
               </div>
               <div class="panel-body">
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Họ tên</label>
+                  <label class="col-sm-2 control-label">Họ tên <span class="asterisk">*</span></label>
                   <div class="col-sm-6">                    
                     <input type="text" name="hoten" id="hoten" title="Điền họ tên đầu đủ!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" />
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Tên đăng nhập</label>
+                  <label class="col-sm-2 control-label">Tên đăng nhập <span class="asterisk">*</span></label>
                   <div class="col-sm-6">
                     <input type="text" name="tendangnhap" id="tendangnhap" title="Điền tên đăng nhập!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" />                    
                   </div>
                 </div>      
 
                  <div class="form-group">
-                  <label class="col-sm-2 control-label">Mật khẩu</label>
+                  <label class="col-sm-2 control-label">Mật khẩu <span class="asterisk">*</span></label>
                   <div class="col-sm-6">
                     <input type="password" name="matkhau" id="matkhau" title="Điền mật khẩu!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" />
                   </div>
                 </div>    
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Email</label>
+                  <label class="col-sm-2 control-label">Email <span class="asterisk">*</span></label>
                   <div class="col-sm-6">
                     <input type="email" name="email" id="email" title="Điền địa chỉ email!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" />
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Ngày sinh</label>
+                  <label class="col-sm-2 control-label">Ngày sinh <span class="asterisk">*</span></label>
                   <div class="col-sm-4">
                      <div class="input-group">
                       <input name="namsinh" type="text" title="Chọn ngày sinh!" data-toggle="tooltip" data-trigger="hover" class="form-control tooltips" placeholder="mm/dd/yyyy" id="datepicker">

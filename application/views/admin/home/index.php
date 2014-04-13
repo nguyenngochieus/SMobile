@@ -123,7 +123,7 @@
         <div class="col-sm-6 col-md-3">
           <div class="panel panel-dark panel-stat">
             <div class="panel-heading">
-              
+            <a href="<?=base_url()?>admin/hoadon">  
               <div class="stat">
                 <div class="row">
                   <div class="col-xs-4">
@@ -150,7 +150,7 @@
                 </div><!-- row -->
                   
               </div><!-- stat -->
-              
+            </a>  
             </div><!-- panel-heading -->
           </div><!-- panel -->
         </div><!-- col-sm-6 -->

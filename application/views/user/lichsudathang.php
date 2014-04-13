@@ -21,7 +21,7 @@
   <?php } ?>
 
     <div class="buttons">
-    <div class="right"><a href="<?=base_url()?>account" class="button">Trở lại</a></div>
+    <div class="right"><a href="<?=base_url()?>user" class="button">Trở lại</a></div>
   </div>
   </div>		
 	</section>

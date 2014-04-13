@@ -12,13 +12,7 @@
                             <li><a href="<?=base_url()?>sanpham/loaisanpham.html?url=<?=$item_loai->ID?>-<?=$idNhaCungCap?>"><?=$item_loai->TENLOAI?></a></li>
                           <?php
                        } ?>                       
-                    </ul>
-                    <ul class="category price">
-                        <li class="header"><?=lang('menu_gia') ?></li>
-                        <li><a href="#">0 - 1.000.000</a></li>
-                        <li><a href="#">1.000.000 - 5.000.000 </a></li>
-                        <li><a href="#">Trên 5.000.000</a></li>
-                    </ul>
+                    </ul>                    
                 </div>
             </div>
             <!--SIDE NAV ENDS-->
