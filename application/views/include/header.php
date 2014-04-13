@@ -75,40 +75,40 @@
         <nav>
             <ul class="primary_nav">
                 <li<?php if ($page=='trangchu') echo ' class="active"'; ?>><a href="<?=base_url()?>">Trang chủ</a></li>
-                <li<?php if ($page=='loaisanpham1') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/1">Điện thoại</a>
+                <li<?php if ($page=='loaisanpham1') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham.html?url=1">Điện thoại</a>
                     <ul class="sub_menu">
                         <li> <a href="#">Nhà cung cấp</a>
                             <ul>
                                 <?php foreach ($FMenu1 as $item) {
-                                    echo '<li><a href="'.base_url().'sanpham/nhacungcap/'.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
+                                    echo '<li><a href="'.base_url().'sanpham/nhacungcap.html?url='.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
                                 } ?>                                 
                             </ul>
                         </li>
                     </ul>
                 </li>
-                <li<?php if ($page=='loaisanpham2') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/2">Máy tính xách tay</a>
+                <li<?php if ($page=='loaisanpham2') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham.html?url=2">Máy tính xách tay</a>
                     <ul class="sub_menu">
                         <li> <a href="#">Nhà cung cấp</a>
                             <ul>
                                 <?php foreach ($FMenu2 as $item) {
-                                    echo '<li><a href="'.base_url().'sanpham/nhacungcap/'.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
+                                    echo '<li><a href="'.base_url().'sanpham/nhacungcap.html?url='.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
                                 } ?>  
                             </ul>
                         </li>
                     </ul>
                 </li>
-                <li<?php if ($page=='loaisanpham3') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/3">Máy tính bảng</a>
+                <li<?php if ($page=='loaisanpham3') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham.html?url=3">Máy tính bảng</a>
                     <ul class="sub_menu">
                         <li> <a href="#">Nhà cung cấp</a>
                             <ul>
                                 <?php foreach ($FMenu3 as $item) {
-                                    echo '<li><a href="'.base_url().'sanpham/nhacungcap/'.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
+                                    echo '<li><a href="'.base_url().'sanpham/nhacungcap.html?url='.$item->NHACUNGCAP.'-'.$item->LOAI.'">'.$item->TENNCC.'</a></li>';
                                 } ?>                                 
                             </ul>
                         </li>
                     </ul>
                 </li>
-                <li<?php if ($page=='loaisanpham4') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham/4">Phụ kiện</a></li>                    
+                <li<?php if ($page=='loaisanpham4') echo ' class="active"'; ?>><a href="<?=base_url()?>sanpham/loaisanpham.html?url=4">Phụ kiện</a></li>                    
             </ul>
             <div class="minicart" id="cart_content"> 
             <a href="#" class="minicart_link" >

@@ -27,6 +27,18 @@
             </div>
 
           <br />
+            <div class="col-sm-8"> 
+                <label>Phân sản phẩm theo loại:</label>
+                <select name="change_loai" onchange="change_loai()">
+                  <option value="0" <?=(isset($_GET['change_loai']) && $_GET['change_loai'] == 0)?"selected":''?>>--- Tất cả ---</option>
+                  <?php 
+                  foreach ($Loai as $item_loai) {?>
+                  <option value="<?=$item_loai->ID?>" <?=(isset($_GET['change_loai']) && $_GET['change_loai'] == $item_loai->ID)?"selected":''?>><?=$item_loai->TEN?></option>
+                  <?php    } ?>
+                </select>
+            </div>
+            <br/>
+            <br/>
           <div class="table-responsive">
           <table class="table table-hover" id="table2">
               <thead>
@@ -166,3 +178,10 @@
       </div>
 
     </div><!-- contentpanel -->
+<script type="text/javascript">
+ var link = "http://localhost/SMobile/admin/sanpham";
+  function change_loai()
+  {
+      window.location.href = link +'?loai=' + jQuery('select[name=change_loai]').val();
+  }  
+</script>

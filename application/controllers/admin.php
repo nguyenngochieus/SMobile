@@ -61,7 +61,10 @@ Class admin extends CI_Controller{
 				
 				if($chucnang == "view")
 				{
-					$this->data['result'] = $this->nguoidung_model->get_nguoidung();
+					if(isset($_GET['quyen']) && $_GET['quyen'] > 0)
+						$this->data['result'] = $this->nguoidung_model->get_nguoidung_quyen($_GET['quyen']);
+					else
+						$this->data['result'] = $this->nguoidung_model->get_nguoidung();		
 					$this->load->view('admin/include/header',$this->data);
 					$this->load->view('admin/include/leftpanel',$this->data);
 					$this->load->view('admin/include/headerbar');
@@ -192,13 +195,13 @@ Class admin extends CI_Controller{
 			else{
 				$this->data['title'] = 'Hóa đơn';
 				$this->data['page'] = 'hoadon';
-				$this->load->model('hoadon_model');		
+				$this->load->model('thongtindonhang_model');		
 				$this->load->helper(array('form', 'url')); 
 				$this->load->library('form_validation');
 				
 				if($chucnang == "view")
 				{			
-					$this->data['result'] = $this->hoadon_model->get_hoadon();
+					$this->data['result'] = $this->thongtindonhang_model->get_thongtindathang();
 					$this->load->view('admin/include/header',$this->data);
 					$this->load->view('admin/include/leftpanel',$this->data);
 					$this->load->view('admin/include/headerbar');
@@ -207,14 +210,51 @@ Class admin extends CI_Controller{
 					$this->load->view('admin/include/rightpanel');
 					$this->load->view('admin/include/footer');
 				}
-				elseif ($chucnang == "insert") {
-					$Madathang = $this->input->post('Madathang',TRUE);
-					$Masanpham = $this->input->post('Masanpham',TRUE);
-					$Soluong = $this->input->post('Soluong',TRUE);
-
-					$tmp = $this->hoadon_model->insert($Madathang, $Masanpham, $Soluong);			
-					if(!$tmp) echo redirect(base_url('admin/'.$this->data['page']));
-					else echo redirect(base_url('admin/error/insert'));
+				elseif ($chucnang == "edit") {
+					if(isset($_GET['id']) && $_GET['id'] >0)
+					{
+						$id = $this->input->get('id',TRUE);
+						$this->form_validation->set_rules('validate','','trim|required|max_length[255]|xss_clean');
+						if ($this->form_validation->run() == FALSE)
+						{
+							$this->data['result'] = $this->thongtindonhang_model->get_thongtindathang_id($id);
+							$this->data['giohang'] = $this->thongtindonhang_model->get_giohang_id($this->data['result']->ID);
+							$this->load->view('admin/include/header',$this->data);
+							$this->load->view('admin/include/leftpanel',$this->data);
+							$this->load->view('admin/include/headerbar');
+							$this->load->view('admin/include/breadcrumb',$this->data);
+							$this->load->view('admin/hoadon/edit',$this->data);
+							$this->load->view('admin/include/rightpanel');
+							$this->load->view('admin/include/footer');
+						}
+						else 
+						{						
+							$tinhtrang = $this->input->post('tinhtrang',TRUE);	
+							$tmp = $this->thongtindonhang_model->update_admin($id, $tinhtrang);			
+							if($tmp) echo redirect(base_url('admin/'.$this->data['page']));
+							else echo redirect(base_url('admin/error/insert'));
+						}
+					}
+					else
+						redirect(base_url('admin/hoadon'));
+				}
+				elseif ($chucnang == "chitiet") {
+					if(isset($_GET['id']) && $_GET['id'] >0)
+					{
+						$id = $this->input->get('id',TRUE);
+						$this->data['result'] = $this->thongtindonhang_model->get_thongtindathang_id($id);
+						$this->data['giohang'] = $this->thongtindonhang_model->get_giohang_id($this->data['result']->ID);
+						$this->load->view('admin/include/header',$this->data);
+						$this->load->view('admin/include/leftpanel',$this->data);
+						$this->load->view('admin/include/headerbar');
+						$this->load->view('admin/include/breadcrumb',$this->data);
+						$this->load->view('admin/hoadon/chitiet',$this->data);
+						$this->load->view('admin/include/rightpanel');
+						$this->load->view('admin/include/footer');
+					}
+					else
+						redirect(base_url('admin/hoadon'));
+					
 				}
 			}
 		}
@@ -233,12 +273,16 @@ Class admin extends CI_Controller{
 		  		$this->load->library('form_validation');
 		  		$this->data['title'] = 'Sản phẩm'; 				
 				$this->data['page'] = 'sanpham';
-				$this->load->model(array('sanpham_model','loaisanpham_model','nhacungcap_model'));//
+				$this->load->model(array('sanpham_model','loaisanpham_model','nhacungcap_model','public_model'));//
 				$this->data['loaisanpham'] = $this->loaisanpham_model->get_loaisanpham(); //
 				$this->data['nhacungcap'] = $this->nhacungcap_model->get_nhacungcap();		//
 				if($chucnang=="view")
 				{				 
-					$this->data['result'] = $this->sanpham_model->get_sanpham();
+					if(isset($_GET['loai']) && $_GET['loai'] > 0)
+						$this->data['result'] = $this->sanpham_model->get_sanpham_loai($_GET['loai']);
+					else
+						$this->data['result'] = $this->sanpham_model->get_sanpham();				
+					$this->data['Loai'] = $this->public_model->GetMenu();
 					$this->load->view('admin/include/header',$this->data);
 					$this->load->view('admin/include/leftpanel',$this->data);
 					$this->load->view('admin/include/headerbar');

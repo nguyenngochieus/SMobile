@@ -18,6 +18,11 @@ Class Nguoidung_model extends CI_Model{
 		return $query->result_array();
 	}
 
+	function get_nguoidung_quyen($id){		
+		$query = $this->db->get_where($this->table,array('QUYEN'=>$id));
+		return $query->result_array();
+	}
+
 	function get_diachi($id){
 		$query =  $this->db->query('SELECT DIACHI FROM NGUOIDUNG WHERE ID ='.$id);
 		return $query->row();

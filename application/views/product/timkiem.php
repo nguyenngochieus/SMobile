@@ -25,7 +25,7 @@
         đến : <input type="number" name="filter_price_to" value="<?=(isset($_GET['filter_price_to']) && $_GET['filter_price_to'] !='')?$_GET['filter_price_to']:''?>" />        
     </p>
     <br />
-        <input type="checkbox" name="filter_description" value="" id="description" <?=(isset($_GET['filter_description']) && $_GET['filter_description']=='true')?" checked ":''?> />
+        <input type="checkbox" name="filter_description" value="1" id="description" <?=(isset($_GET['filter_description']) && $_GET['filter_description']=='true')?" checked ":''?> />
         <label for="description">Tìm kiếm trong mô tả sản phẩm</label>
   </div>
   <div class="buttons">
@@ -57,7 +57,7 @@
     <div id="all-product" class="products_grid search">
     <ul>        
         <?php
-        if(count($result) == 0)
+        if(count($result) == 0 || $_GET['filter_name'] == '')
             echo '<p stype="font-size:13pt;">Không tìm thấy sản phẩm theo yêu cầu</p>';
         else
         {
@@ -87,7 +87,7 @@
     </ul>
     </div>
     <!--Product List Ends-->
-    <?=$this->pagination->create_links()?>
+   <?=$this->pagination->create_links()?> 
     </div>
 <script type="text/javascript"><!--
 $('#content input[name=\'filter_name\']').keydown(function(e) {

@@ -10,7 +10,6 @@
         <div class="tab-content mb30">
           <div class="tab-pane active" id="home">
             <div class="row">
-            
                <div class="clearfix mb30"></div>           
           <?php echo form_error('tendangnhap'); ?>
           <?php echo form_error('email'); ?>
@@ -30,6 +29,17 @@
             </div>
 
           <br />
+            <div class="col-sm-8"> 
+                <label>Phân người dùng theo loại:</label>
+                <select name="quyen" onchange="quyen()">
+                  <option value="0" <?=(isset($_GET['quyen']) && $_GET['quyen'] == 0)?"selected":''?>>--- Tất cả ---</option>
+                  <option value="1" <?=(isset($_GET['quyen']) && $_GET['quyen'] == 1)?"selected":''?>>Quản lý</option> 
+                  <option value="2" <?=(isset($_GET['quyen']) && $_GET['quyen'] == 2)?"selected":''?>>Nhân viên</option>
+                  <option value="3" <?=(isset($_GET['quyen']) && $_GET['quyen'] == 3)?"selected":''?>>Khách hàng</option>                
+                </select>
+            </div>
+            <br/>
+            <br/>
           <div class="table-responsive">
           <table class="table table-hover" id="table2">
               <thead>
@@ -225,3 +235,10 @@
       </div>
 
     </div><!-- contentpanel -->
+<script type="text/javascript">
+ var link = "http://localhost/SMobile/admin/nguoidung";
+  function quyen()
+  {
+      window.location.href = link +'?quyen=' + jQuery('select[name=quyen]').val();
+  }  
+</script>
