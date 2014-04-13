@@ -1,7 +1,7 @@
 <div id="content" class="full_page">  <ul class="breadcrumb">
 			    <li><a href="<?=base_url()?>">Trang chủ</a></li>
 					<li><a href="<?=base_url()?>user">Tài khoản</a></li>
-					<li><a href="<?=base_url()?>.user/lichsudathang">Lịch sử mua hàng</a></li>
+					<li><a href="<?=base_url()?>user/lichsudathang">Lịch sử mua hàng</a></li>
 					<li class="active"><a href="<?=base_url()?>user/donhang.html?id=<?=$result->ID?>">Thông tin đơn hàng</a></li>
 					</ul>
   <h1>Thông tin đơn hàng</h1> 
