@@ -269,7 +269,7 @@ class thanhtoan extends Public_Controller {
 							$Soluong = $items['qty'];
 							$tmp = $this->hoadon_model->insert($Madathang, $Masanpham, $Soluong);
 						}
-						echo redirect(base_url('thanhtoan/success/'.$iddh));
+						echo redirect(base_url('thanhtoan/success/'.$iddh->ID));
 					} 
 					else echo redirect(base_url('admin/error/insert'));					    
 					

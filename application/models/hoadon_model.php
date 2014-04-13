@@ -24,9 +24,10 @@ Class Hoadon_model extends CI_Model{
 		return FALSE;
 	}
 	
-	function thongke_tongthunhap()
+	function thongke_thunhap()
 	{
-		$query = $this->db->query('SELECT SUM(TONGTIENHANG) AS TONGTIEN FROM thongtindathang WHERE TINHTRANG = 1');
+		$query = $this->db->query('SELECT SUM(TONGTIENHANG) AS TONGTIEN, (SELECT SUM(TONGTIENHANG) FROM thongtindathang WHERE NGAYDATHANG > DATE_SUB(CURDATE(),INTERVAL 1 month)) AS TONGTIENTHANG, (SELECT SUM(TONGTIENHANG) FROM thongtindathang WHERE NGAYDATHANG > DATE_SUB(CURDATE(),INTERVAL 7 day)) AS TONGTIENTUAN FROM thongtindathang WHERE TINHTRANG = 1');
 		return $query->result();		
 	}
+
 }

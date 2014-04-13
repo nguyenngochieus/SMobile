@@ -96,7 +96,7 @@
                   </div>
                   <div class="col-xs-8">
                     <small class="stat-label">Tin tức</small>
-                    <h4><?=$thongke_tintuc_binhluan_danhgia[0]->TINTUC?></h4>
+                    <h1><?=$thongke_tintuc_binhluan_danhgia[0]->TINTUC?></h1>
                   </div>
                 </div><!-- row -->
                 
@@ -131,7 +131,7 @@
                   </div>
                   <div class="col-xs-8">
                     <small class="stat-label">Tổng thu nhập</small>
-                    <h1><?=$thongke_tongthunhap[0]->TONGTIEN?></h1>
+                    <h1><?=$thongke_thunhap[0]->TONGTIEN?></h1>
                   </div>
                 </div><!-- row -->
                 
@@ -139,13 +139,13 @@
                 
                 <div class="row">
                   <div class="col-xs-6">
-                    <small class="stat-label">Last Week</small>
-                    <h4>$32,322</h4>
+                    <small class="stat-label">Tuần trước</small>
+                    <h4><?=$thongke_thunhap[0]->TONGTIENTUAN?></h4>
                   </div>
                   
                   <div class="col-xs-6">
-                    <small class="stat-label">Last Month</small>
-                    <h4>$503,000</h4>
+                    <small class="stat-label">Tháng trước</small>
+                    <h4><?=$thongke_thunhap[0]->TONGTIENTHANG?></h4>
                   </div>
                 </div><!-- row -->
                   

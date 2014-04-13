@@ -30,8 +30,11 @@ Class admin extends CI_Controller{
 				$this->data['thongke_sanpham_soluong'] = $this->sanpham_model->thongke_sanpham_soluong();
 				$this->data['thongke_sanpham_tongmuaxem'] = $this->sanpham_model->thongke_sanpham_tongmuaxem();
 				$this->data['thongke_tintuc_binhluan_danhgia'] = $this->public_model->thongke_tintuc_binhluan_danhgia();
-				$this->data['thongke_tongthunhap'] = $this->hoadon_model->thongke_tongthunhap();			
-
+				$this->data['thongke_thunhap'] = $this->hoadon_model->thongke_thunhap();
+				$this->data['thongke_thunhap'][0]->TONGTIEN	= $this->format_num($this->data['thongke_thunhap'][0]->TONGTIEN);
+				$this->data['thongke_thunhap'][0]->TONGTIENTHANG = $this->format_num($this->data['thongke_thunhap'][0]->TONGTIENTHANG);
+				$this->data['thongke_thunhap'][0]->TONGTIENTUAN	= $this->format_num($this->data['thongke_thunhap'][0]->TONGTIENTUAN);
+				
 				$this->load->view('admin/include/header',$this->data);
 				$this->load->view('admin/include/leftpanel',$this->data);
 				$this->load->view('admin/include/headerbar',$this->data);
@@ -632,5 +635,20 @@ Class admin extends CI_Controller{
 					break;
 			}
 		}
+	}
+
+	function format_num($num)
+	{
+		if ($num >= 1000 && $num < 1000000) {
+			    	$n_format = number_format($num/1000,2).'K';
+			    } 
+			    elseif ($num >= 1000000 && $num < 1000000000) {
+			    	$n_format = number_format($num/1000000,2).'M';
+			   	} elseif ($num >= 1000000000) {
+			   		$n_format = number_format($num/1000000000,2).'B';
+			   	} else {
+			   		$n_format = $num;
+			   	}
+		return $n_format;
 	}
 }
