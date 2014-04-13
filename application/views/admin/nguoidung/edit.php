@@ -91,8 +91,8 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Quyền</label>
                   <div class="col-sm-3">
-                    <select id="fruits" name="quyen" class="form-control ">                        
-                      <option value="1" <?php if ($item['QUYEN'] == 1) { echo 'selected="selected"';} ?>>Quản lý</option> 
+                    <select id="fruits" name="quyen" class="form-control " <?php if ($Quyen==2) { if ($item['QUYEN'] == 1) echo "disabled";  } ?> >                        
+                      <option value="1" <?php if ($item['QUYEN'] == 1) { echo 'selected="selected"';} ?> <?php if ($Quyen==2) echo "disabled"; ?>>Quản lý</option> 
                       <option value="2" <?php if ($item['QUYEN'] == 2) { echo 'selected="selected"';} ?>>Nhân viên</option>
                       <option value="3" <?php if ($item['QUYEN'] == 3) { echo 'selected="selected"';} ?>>Khách hàng</option>                
                     </select>

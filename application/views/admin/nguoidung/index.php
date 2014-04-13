@@ -62,14 +62,14 @@
                     <td class="center"><?php if($item['GIOITINH'] == 1) echo "Nam"; else echo "Nữ"; ?></td>
                     <td class="center"><?=$item['SDT'] ?></td>
                     <td class="center"><?php if($item['TRANGTHAI'] == 1) echo "Mở"; else echo "Đóng"; ?></td>
-                    <td class="table-action">
-	                  <a href="<?=base_url()?>admin/nguoidung/edit?id=<?php echo $item['ID'] ?>"><i class="fa fa-pencil"></i></a>                                                          
+                    <td class="table-action">                    
+	                  <a href="<?=base_url()?>admin/nguoidung/edit?id=<?php echo $item['ID'] ?>" ><i class="fa fa-pencil"></i></a>
                     <?php if ($UserID!=$item['ID']) 
                     {                                
                         if ($Quyen==2)
                         {
-                            if ($item['QUYEN']!=1)                                                                      
-                              echo '<a href="#" onclick="DeleteCate('.$item['ID'].','.$page.')" class="delete-row"><i class="fa fa-trash-o"></i></a>';
+                            if ($item['QUYEN']!=1) 
+                              echo '<a href="#" onclick="DeleteCate('.$item['ID'].',\''.$page.'\')" class="delete-row"><i class="fa fa-trash-o"></i></a>';                            
                         }
                         else
                           echo '<a href="#" onclick="DeleteCate('.$item['ID'].',\''.$page.'\')" class="delete-row"><i class="fa fa-trash-o"></i></a>';

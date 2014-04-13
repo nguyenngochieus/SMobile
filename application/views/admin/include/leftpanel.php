@@ -34,7 +34,8 @@
         <li class="<?php if ($page=='hoadon') echo 'active'; else echo ''?>"><a href="<?=base_url()?>admin/hoadon"><i class="fa fa-file-text"></i> <span> Hóa đơn</span></a></li>
         <li class="<?php if ($page=='tintuc') echo 'active'; else echo ''?>"><a href="<?=base_url()?>admin/tintuc"><i class="fa fa-rss"></i> <span> Tin tức</span></a></li>
         <li class="<?php if ($page=='binhluan') echo 'active'; else echo ''?>"><a href="<?=base_url()?>admin/binhluan"><i class="fa fa-comment-o"></i> <span> Bình luận</span></a></li>
-        <li class="<?php if ($page=='danhgia') echo 'active'; else echo ''?>"><a href="<?=base_url()?>admin/danhgia"><i class="fa fa-check-square-o"></i> <span> Đánh giá</span></a></li>
+        <li class="<?php if ($page=='danhgia') echo 'active'; else echo ''?>"><a href="<?=base_url()?>admin/danhgia"><i class="fa fa-check-square-o"></i> <span> Đánh giá</span></a></li>        
+        <li><a href="<?=base_url()?>dangxuat"><i class="glyphicon glyphicon-log-out"></i> Đăng xuất</a></li>
       </ul>
       <!--
       <div class="infosummary">
