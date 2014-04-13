@@ -23,4 +23,10 @@ Class Hoadon_model extends CI_Model{
 		if($this->db->insert_id() > 0) return TRUE;
 		return FALSE;
 	}
+	
+	function thongke_tongthunhap()
+	{
+		$query = $this->db->query('SELECT SUM(TONGTIENHANG) AS TONGTIEN FROM thongtindathang WHERE TINHTRANG = 1');
+		return $query->result();		
+	}
 }

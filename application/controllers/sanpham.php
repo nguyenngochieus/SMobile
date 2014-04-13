@@ -191,15 +191,17 @@ class sanpham extends Public_Controller {
 		{
 			$this->data['result'] = $this->public_model->GetChiTietSP($ma,$this->data['lang_db']);			
 			if($this->data['result'][0]->LOAI==1)
-				$this->data['detail'] = $this->public_model->GetChiTietDT($this->data['result'][0]->ID);
+				$this->data['detail'] = $this->public_model->GetChiTietDT($ma);
 			elseif ($this->data['result'][0]->LOAI==2)
-				$this->data['detail'] = $this->public_model->GetChiTietLT($this->data['result'][0]->ID);
+				$this->data['detail'] = $this->public_model->GetChiTietLT($ma);
 			elseif ($this->data['result'][0]->LOAI==3)
-				$this->data['detail'] = $this->public_model->GetChiTietMTB($this->data['result'][0]->ID);								
+				$this->data['detail'] = $this->public_model->GetChiTietMTB($ma);								
 			$this->data['result_cm'] = $this->binhluan_model->get_binhluan_sp($ma);
+			$this->data['result_rv'] = $this->public_model->GetDanhGia($ma);			
 			if(count($this->data['result']) == 0 ) echo redirect(base_url());
 			$this->data['SPCungLoai'] = $this->public_model->GetSanPhamCungLoai($ma,$this->data['result'][0]->LOAI,$this->data['result'][0]->NHACUNGCAP,$this->data['lang_db']);
 			$this->data['page'] = 'loaisanpham';
+			$this->public_model->update_view($ma);
 			$this->load->helper('form');
 			$this->load->view('include/header',$this->data);
 			$this->load->view('product/chitiet',$this->data);
@@ -224,8 +226,19 @@ class sanpham extends Public_Controller {
 			redirect(base_url());
 	}
 
-	public function danhgia($id)
+	public function danhgia($ma)
 	{
-		
+		if(isset($ma) && $ma != "")
+		{
+			$diemdanhgia = $this->input->post('diemdanhgia',TRUE);
+			$getdanhgia = $this->public_model->GetDanhGia($ma);
+			$Tongdiem = $getdanhgia[0]->TONGDIEM + $diemdanhgia;
+			$Luotdanhgia = $getdanhgia[0]->LUOTDANHGIA + 1;			
+			$Diemdanhgia = round(($Tongdiem/$Luotdanhgia),2);			
+			$this->load->model('danhgia_model');
+			$tmp = $this->danhgia_model->update_rv($ma, $Luotdanhgia, $Tongdiem, $Diemdanhgia);
+			if($tmp) echo redirect(base_url('sanpham/chitiet/'.$ma));
+			else echo redirect(base_url('admin/error/insert'));
+		}
 	}
 }

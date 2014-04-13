@@ -161,6 +161,12 @@ class public_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function GetDanhGia($id)
+	{
+		$query =  $this->db->query('SELECT * FROM danhgia WHERE MASANPHAM ='.$id);
+		return $query->result();		
+	}
+
 	public function GetSanPhamCungLoai($id, $idloai, $idncc, $lang = "")
 	{
 		$query =  $this->db->query('SELECT ID, TENSANPHAM, DONGIA, HINH, MOTA'.$lang.' AS MOTA FROM SANPHAM  WHERE LOAI = '.$idloai.' AND NHACUNGCAP = '.$idncc.' AND Id <> '.$id.' order by ID ');
@@ -246,5 +252,16 @@ class public_model extends CI_Model {
 	        $str = substr($str, 0, -1)." ...";
 	    }
 	    return $str;
+	}
+
+	public function update_view($id)
+	{
+		$query =  $this->db->query('UPDATE danhgia SET LUOTXEM = LUOTXEM + 1 WHERE MASANPHAM = '.$id);
+	}
+
+	function thongke_tintuc_binhluan_danhgia()
+	{
+		$query = $this->db->query('SELECT COUNT(*) AS TINTUC, (SELECT COUNT(*) FROM binhluan) AS BINHLUAN, (SELECT SUM(LUOTDANHGIA) FROM danhgia) AS DANHGIA  FROM tintuc');
+		return $query->result();		
 	}
 }

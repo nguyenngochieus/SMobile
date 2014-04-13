@@ -52,7 +52,7 @@
         <div class="col-sm-6 col-md-3">
           <div class="panel panel-danger panel-stat">
             <div class="panel-heading">
-              
+            <a href="<?=base_url()?>admin/sanpham"> 
               <div class="stat">
                 <div class="row">
                   <div class="col-xs-4">
@@ -80,7 +80,7 @@
                 </div><!-- row -->
                   
               </div><!-- stat -->
-              
+            </a>  
             </div><!-- panel-heading -->
           </div><!-- panel -->
         </div><!-- col-sm-6 -->
@@ -95,15 +95,24 @@
                     <img src="<?=base_url()?>static/admin/images/is-document.png" alt="" />
                   </div>
                   <div class="col-xs-8">
-                    <small class="stat-label">Page Views</small>
-                    <h1>300k+</h1>
+                    <small class="stat-label">Tin tức</small>
+                    <h4><?=$thongke_tintuc_binhluan_danhgia[0]->TINTUC?></h4>
                   </div>
                 </div><!-- row -->
                 
                 <div class="mb15"></div>
                 
-                <small class="stat-label">% Bounce Rate</small>
-                <h4>34.23%</h4>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <small class="stat-label">Bình luận</small>
+                    <h4><?=$thongke_tintuc_binhluan_danhgia[0]->BINHLUAN?></h4>
+                  </div>
+                  
+                  <div class="col-xs-6">
+                    <small class="stat-label">Đánh giá</small>
+                    <h4><?=$thongke_tintuc_binhluan_danhgia[0]->DANHGIA?></h4>
+                  </div>
+                </div><!-- row -->
                   
               </div><!-- stat -->
               
@@ -121,8 +130,8 @@
                     <img src="<?=base_url()?>static/admin/images/is-money.png" alt="" />
                   </div>
                   <div class="col-xs-8">
-                    <small class="stat-label">Today's Earnings</small>
-                    <h1>$655</h1>
+                    <small class="stat-label">Tổng thu nhập</small>
+                    <h1><?=$thongke_tongthunhap[0]->TONGTIEN?></h1>
                   </div>
                 </div><!-- row -->
                 

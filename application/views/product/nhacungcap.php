@@ -28,7 +28,7 @@
                 <ul class="breadcrumb">
                     <li><a href="<?=base_url()?>">Trang chủ</a></li>
                     <?php if($TenLoai != "") {?>
-                        <li><a href="<?=base_url()?>sanpham/loaisanpham/<?=$idLoai?>"><?=$TenLoai?></a></li>
+                        <li><a href="<?=base_url()?>sanpham/loaisanpham.html?url=<?=$idLoai?>"><?=$TenLoai?></a></li>
                     <?php } ?>
                     <li class="active"><a href="#"><?=$TenNhaCungCap->TEN?></a></li>
                 </ul>

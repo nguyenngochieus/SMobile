@@ -29,7 +29,7 @@
                 <div class="category_banner"> <img src="<?=base_url()?>static/images/promo_cat_banner.jpg"/> </div>                
                 <ul class="breadcrumb">
                     <li><a href="<?= base_url()?>">Trang chủ</a></li>
-                    <li class="active"><a href="<?=base_url()?>sanpham/loaisanpham/<?=$idLoai?>"><?=$TenLoai->TEN?></a></li>                
+                    <li class="active"><a href="<?=base_url()?>sanpham/loaisanpham.html?url=<?=$idLoai?>"><?=$TenLoai->TEN?></a></li>                
                 </ul>
                 <!--Toolbar-->               
                 <div class="toolbar">

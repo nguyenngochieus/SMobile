@@ -23,14 +23,14 @@ Class admin extends CI_Controller{
 			else{
 				$this->data['title'] = 'Trang chủ';
 				$this->data['page'] = 'trangchu';
-				$this->load->model(array('nguoidung_model','sanpham_model'));				 
+				$this->load->model(array('nguoidung_model','sanpham_model','public_model','hoadon_model'));				 
 				$this->data['thongke_nguoidung'] = $this->nguoidung_model->thongke_nguoidung();
 				$this->data['thongke_sanpham_top10sell'] = $this->sanpham_model->thongke_sanpham_top10sell();
 				$this->data['thongke_sanpham_top10rate'] = $this->sanpham_model->thongke_sanpham_top10rate();
 				$this->data['thongke_sanpham_soluong'] = $this->sanpham_model->thongke_sanpham_soluong();
 				$this->data['thongke_sanpham_tongmuaxem'] = $this->sanpham_model->thongke_sanpham_tongmuaxem();
-				
-				//var_dump($this->data['thongke_sanpham_tongmuaxem']); exit();
+				$this->data['thongke_tintuc_binhluan_danhgia'] = $this->public_model->thongke_tintuc_binhluan_danhgia();
+				$this->data['thongke_tongthunhap'] = $this->hoadon_model->thongke_tongthunhap();			
 
 				$this->load->view('admin/include/header',$this->data);
 				$this->load->view('admin/include/leftpanel',$this->data);
