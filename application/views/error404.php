@@ -31,7 +31,7 @@
   <div class="notfoundpanel">
     <h1>404!</h1>
     <h3>Chức năng bạn yêu cầu đang trong quá trình nâng cấp!</h3>
-    <h4>Trang bạn yêu cầu đang trong quá trình nâng cấp, sửa chữa hoặc không tồn tại<br />Bạn vui lòng <a href="<?=base_url()?>admin">trở lại trang chủ</a> hoặc các trang khác! </h4>
+    <h4>Trang bạn yêu cầu đang trong quá trình nâng cấp, sửa chữa hoặc không tồn tại<br />Bạn vui lòng <a href="<?=base_url()?>">trở lại trang chủ</a> hoặc các trang khác! </h4>
    <!-- <form action="http://themepixels.com/demo/webpage/bracket/search-results.html">
         <input type="text" class="form-control" placeholder="Search for page" /> <button class="btn btn-success">Search</button>
     </form> --!>

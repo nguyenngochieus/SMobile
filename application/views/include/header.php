@@ -22,7 +22,6 @@
 <script type="text/javascript" src="<?= base_url()?>static/js/custom.js"></script>
 <script type="text/javascript" src="<?= base_url()?>static/js/core.js"></script>
 
-
 <!--[if lt IE 9]>
     <script src="<?= base_url()?>static/js/html5.js"></script>
 <![endif]-->

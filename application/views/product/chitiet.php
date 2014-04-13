@@ -1,11 +1,13 @@
  <div class="section_container"> 
-    <!--Mid Section Starts-->        
+    <!--Mid Section Starts-->  
+
     <?php foreach ($result as $item) {
     ?>
     <section>    
     <ul class="breadcrumb">
       <li><a href="<?=base_url()?>">Trang chủ</a></li>
-      <li><a href="<?=base_url()?>sanpham/loaisanpham/<?=$item->LOAI?>"><?=$item->LOAISANPHAM?></a></li>
+      <li><a href="<?=base_url()?>sanpham/loaisanpham.html?url=<?=$item->LOAI?>"><?=$item->LOAISANPHAM?></a></li>
+      <li><a href="<?=base_url()?>sanpham/nhacungcap.html?url=<?=$item->NHACUNGCAP?>-<?=$item->LOAI?>"><?=$item->TENNHACUNGCAP?></a></li>      
       <li class="active"><a href="#"><?=$item->TENSANPHAM?></a></li>
     </ul>
     <!--PRODUCT DETAIL STARTS-->
@@ -34,7 +36,7 @@
         <li><a href="#tab-mota">Mô tả</a></li>
         <li><a href="#tab-chitiet">Thông số kỹ thuật</a></li>        
         <li><a href="#tab-binhluan">Bình luận (<?=count($result_cm)?>)</a></li>
-        <li><a href="#tab-danhgia">Đánh giá</a></li>
+        <li><a href="#tab-danhgia">Đánh giá (<?php echo $result_rv[0]->LUOTDANHGIA ?>)</a></li>
       </ul>
 
       <div class="simpleTabsContent">
@@ -116,16 +118,17 @@
             <?php }
           }
           else
-            echo "<h2>Chưa có bình luận nào</h2>";
+            echo "<h2>Chưa có bình luận nào.</h2>";
         ?>
-
+        <br/>
+        <hr/>
         <form action="<?=base_url()?>sanpham/comment/<?=$item->ID?>" method="post">
             <div id="review"></div>   
             <br/>   
             <h2 id="review-title">Để lại bình luận về sản phẩm này:</h2><br/>   
-            <b>Tên của bạn:</b><br />
+            <b>Họ tên:</b><br />
             <input type="text" name="name" value="" required/>
-            <br />
+            <br /><br />
             <b>Email:</b><br />
             <input type="email" name="email" value="" required />
             <br /><br />
@@ -133,10 +136,9 @@
             <textarea name="text" cols="40" rows="8" style="width: 98%;" required></textarea>
             <span style="font-size: 11px;"><span style="color: #FF0000;">Chú ý:</span> Mã HTML sẽ không khả dụng</span><br />
             <br />
-            <b>Nhập các kí tự trong hình vào ô dưới đây để chắc rằng bạn không phải spam:</b><br />
-            <input type="text" name="captcha" value="" required/>
-            <br />
-            <img src="" alt="" id="captcha" />"Capcha"<br />
+            <b>Check vào ô bên dưới để chắc rằng bạn không phải spam:</b><br />
+            <input type="checkbox" name="captcha" value="" required/>Tôi không phải spam
+            <br />            
             <br />
             <div class="buttons">
               <div class="right"><input class="button" type="submit" value="Gửi bình luận" /></div>
@@ -145,12 +147,30 @@
       </div>
   
       <div class="simpleTabsContent">
-            <input name="star1" type="radio" class="star"/> 
-            <input name="star1" type="radio" class="star"/> 
-            <input name="star1" type="radio" class="star"/> 
-            <input name="star1" type="radio" class="star"/> 
-            <input name="star1" type="radio" class="star"/>
-
+            <ul>
+              <li>Lượt xem: <?php echo $result_rv[0]->LUOTXEM ?></li><br/>
+              <li>Lượt mua: <?php echo $result_rv[0]->LUOTMUA ?></li><br/>              
+              <li>Điểm đánh giá: <?php echo $result_rv[0]->DIEMDANHGIA ?></li><br/>
+            </ul>
+            <br/>
+            <h3><b>Đánh giá của bạn:</b></h3><br/>
+            <form action="<?=base_url()?>sanpham/danhgia/<?=$item->ID?>" method="post">
+              <select name="diemdanhgia" id="diemdanhgia" required> 
+                <option value="">Chọn điểm</option>                   
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>            
+              </select> <br/><br/><br/>
+              <input class="button" type="submit" value="Gửi đánh giá" />
+            </form>
+            <br/>
       </div>
   </div>
   <!--Product List Starts-->
@@ -179,7 +199,6 @@
       <?php
     } ?>
 </div>
-
 <script type="text/javascript">
 
   $.fn.tabs = function() {

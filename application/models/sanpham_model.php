@@ -69,7 +69,7 @@ Class Sanpham_model extends CI_Model{
 
 	function thongke_sanpham_top10sell()
 	{
-		$query =  $this->db->query('SELECT B1.ID, TENSANPHAM, COUNT(*) AS LUOTMUA FROM SANPHAM B1, DONHANG B2 WHERE B1.ID = B2.MASANPHAM GROUP BY MASANPHAM ORDER BY COUNT(*) DESC LIMIT 10');
+		$query =  $this->db->query('SELECT S.TENSANPHAM, D.LUOTMUA FROM danhgia D, sanpham S WHERE D.MASANPHAM = S.ID ORDER BY D.LUOTMUA DESC LIMIT 10');
 		return $query->result();
 	}
 

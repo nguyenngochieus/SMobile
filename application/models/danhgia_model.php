@@ -56,4 +56,14 @@ Class Danhgia_model extends CI_Model{
 		else return TRUE;
 	}
 
+	function update_rv($Masanpham, $Luotdanhgia, $Tongdiem, $Diemdanhgia)
+	{
+		$this->db->trans_start();
+		$query = $this->db->query('UPDATE danhgia SET LUOTDANHGIA = '.$Luotdanhgia.', TONGDIEM = '.$Tongdiem.', DIEMDANHGIA ='.$Diemdanhgia.' WHERE MASANPHAM ='.$Masanpham);		
+		$this->db->trans_complete();
+		if ($this->db->trans_status() === FALSE)
+			return FALSE;
+		else return TRUE;
+	}
+
 }
