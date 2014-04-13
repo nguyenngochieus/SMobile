@@ -20,9 +20,9 @@
                     </ul>
                 </div>
                 <div class="promo_banner">
-                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham/1"><img src="<?= base_url()?>static/images/promo_hb_1.jpg"></a></div>
-                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham/2"><img src="<?= base_url()?>static/images/promo_hb_2.jpg"></a></div>
-                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham/3"><img src="<?= base_url()?>static/images/promo_hb_3.jpg"></a></div>
+                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?id=1"><img src="<?= base_url()?>static/images/promo_hb_1.jpg"></a></div>
+                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?id=2"><img src="<?= base_url()?>static/images/promo_hb_2.jpg"></a></div>
+                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?id=3"><img src="<?= base_url()?>static/images/promo_hb_3.jpg"></a></div>
                 </div>
             </div>
             <!--Banner Ends-->
@@ -71,23 +71,36 @@
                 </ul>
             </div>
             <!--Product List Ends-->
+<style type="text/css">
+    .unordered a{
+        text-decoration: none;
+        color: black;
+        font-size: 10pt;
+    }
 
-                <div class="products_list products_slider">
-        <a href="TinTuc.aspx">
+     .span6 label{
+        font-size: 8pt;
+    }
+
+    .span6 a:hover{
+        color: #adadad;
+    }
+
+</style>
+                <div class="products_list products_slider">        
             <h2 class="sub_title">TIN TỨC</h2>
-        </a>
         <br />
         <div class="row-fluid">
             <div class="span6">
-                <h4 class="widgettitle" style="font-size: 28px; font-weight: bold; line-height: 56px;">Tin khuyến mãi </></h4>
+                <h4 class="widgettitle" style="font-size: 26px; font-weight: bold; line-height: 56px;">Tin khuyến mãi </></h4>
                 <div style="line-height: 20px">
                     <div class="r" style="float: right; width: 55%;">
                         <h4 style="font-size: 16px !important; color: #444444">
-                            <a ID="hblKhuyenmai"  Font-Size="Large" ForeColor="Black">HyperLink</a>
+                            <a><?=$TinKhuyenMai[0]->TIEUDE?></a>
                         </h4>
-                        <label ID="lblKhuyenmai"  Text="Label"></label>
+                        <label Text="Label"><?=$TinKhuyenMai[0]->MOTA?></label>
                     </div>
-                    <img ID="imgKhuyenmai"  src="~/Site-Admin/images/profilethumb.png" Width="200px" />
+                    <img ID="imgKhuyenmai"  src="<?=base_url()?>upload/files/<?=$TinKhuyenMai[0]->HINH?>" Width="200px" />
 
                 </div>
                 <!--widgetcontent-->
@@ -96,47 +109,47 @@
                     <br />
                     <br />
                     <h1 style="font-size: large">Tin cùng chuyên mục</h1>
-                    <ul class="unordered" style="margin-left: 10px !important; list-style-type: square; line-height: 27px !important; width: 370px !important">
+                    <ul class="unordered" style="margin-left: 10px !important; list-style-type: square; line-height: 25px !important; width: 370px !important">
                         <li style="list-style: none"></li>
-                        <li style="width: 370px">
-                            <a ID="hblKhuyenmai_link1" >HyperLink</a>
+                        <li style="width: 115%">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinKhuyenMai[1]->ID?>"><?=$TinKhuyenMai[1]->TIEUDE?></a>
                         </li>
-                        <li style="width: 370px">
-                            <a ID="hblKhuyenmai_link2" >HyperLink</a>
+                        <li style="width: 115%">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinKhuyenMai[2]->ID?>"><?=$TinKhuyenMai[2]->TIEUDE?></a>
                         </li>
-                        <li style="width: 370px">
-                            <a ID="hblKhuyenmai_link3" >HyperLink</a>
+                        <li style="width: 115%">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinKhuyenMai[3]->ID?>"><?=$TinKhuyenMai[3]->TIEUDE?></a>
                         </li>
                     </ul>
                 </div>
             </div>
             <!--span6-->
             <div class="span6">
-                <h4 class="widgettitle" style="font-size: 28px; font-weight: bold; line-height: 56px;">Tin công nghệ</h4>
+                <h4 class="widgettitle" style="font-size: 26px; font-weight: bold; line-height: 56px;">Tin công nghệ</h4>
                 <div style="line-height: 20px">
                     <div class="r" style="float: right; width: 55%;">
-                        <h4 style="font-size: 16px; color: #444444">
-                            <a ID="hblCongnghe"  Font-Size="Large" ForeColor="Black">HyperLink</a>
+                        <h4 style="font-size: 16px !important; color: #444444">
+                            <a><?=$TinCongNghe[0]->TIEUDE?></a>
                         </h4>
-                        <label ID="lblCongnghe"  Text="Label"></label>
+                        <label Text="Label"><?=$TinCongNghe[0]->MOTA?></label>
                     </div>
-                    <img ID="imgCongnghe"  src="~/Site-Admin/images/profilethumb.png" Width="200px" />
+                    <img ID="imgKhuyenmai"  src="<?=base_url()?>upload/files/<?=$TinCongNghe[0]->HINH?>" Width="200px" />
                 </div>
                 <!--widgetcontent-->
                 <div>
                     <br />
                     <br />
                     <h1 style="font-size: large">Tin cùng chuyên mục</h1>
-                    <ul class="unordered" style="margin-left: 10px !important; list-style-type: square; line-height: 27px !important; width: 370px !important">
+                    <ul class="unordered" style="margin-left: 10px !important; list-style-type: square; line-height: 25px !important; width: 370px !important">
                         <li style="list-style: none"></li>
-                        <li style="width: 370px">
-                            <a ID="hblCongnghe_link1" ForeColor="Black">HyperLink</a>
+                        <li style="width: 115%">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinCongNghe[1]->ID?>"><?=$TinCongNghe[1]->TIEUDE?></a>
                         </li>
-                        <li style="width: 370px">
-                            <a ID="hblCongnghe_link2" ForeColor="Black">HyperLink</a>
+                        <li style="width: 115%">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinCongNghe[2]->ID?>"><?=$TinCongNghe[2]->TIEUDE?></a>
                         </li>
-                        <li class="last" style="width: 370px">
-                            <a ID="hblCongnghe_link3" ForeColor="Black">HyperLink</a>
+                        <li style="width: 115%">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinCongNghe[3]->ID?>"><?=$TinCongNghe[3]->TIEUDE?></a>
                         </li>
                     </ul>
                 </div>

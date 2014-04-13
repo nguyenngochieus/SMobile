@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class home extends Public_Controller {
+class tintuc extends Public_Controller {
 
 	public function __construct(){
 		parent:: __construct();		
-		$this->data['page'] = 'trangchu';				
+		$this->data['page'] = 'tintuc';				
 	}
 
 	public function index()
