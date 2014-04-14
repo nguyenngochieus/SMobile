@@ -20,9 +20,9 @@
                     </ul>
                 </div>
                 <div class="promo_banner">
-                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?id=1"><img src="<?= base_url()?>static/images/promo_hb_1.jpg"></a></div>
-                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?id=2"><img src="<?= base_url()?>static/images/promo_hb_2.jpg"></a></div>
-                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?id=3"><img src="<?= base_url()?>static/images/promo_hb_3.jpg"></a></div>
+                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?url=1"><img src="<?= base_url()?>static/images/promo_hb_1.jpg"></a></div>
+                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?url=2"><img src="<?= base_url()?>static/images/promo_hb_2.jpg"></a></div>
+                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?url=3"><img src="<?= base_url()?>static/images/promo_hb_3.jpg"></a></div>
                 </div>
             </div>
             <!--Banner Ends-->
