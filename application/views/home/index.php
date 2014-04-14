@@ -20,9 +20,9 @@
                     </ul>
                 </div>
                 <div class="promo_banner">
-                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?id=1"><img src="<?= base_url()?>static/images/promo_hb_1.jpg"></a></div>
-                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?id=2"><img src="<?= base_url()?>static/images/promo_hb_2.jpg"></a></div>
-                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?id=3"><img src="<?= base_url()?>static/images/promo_hb_3.jpg"></a></div>
+                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?url=1"><img src="<?= base_url()?>static/images/promo_hb_1.jpg"></a></div>
+                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?url=2"><img src="<?= base_url()?>static/images/promo_hb_2.jpg"></a></div>
+                    <div class="home_banner"><a href="<?= base_url()?>sanpham/loaisanpham.html?url=3"><img src="<?= base_url()?>static/images/promo_hb_3.jpg"></a></div>
                 </div>
             </div>
             <!--Banner Ends-->
@@ -78,8 +78,13 @@
         font-size: 10pt;
     }
 
-     .span6 label{
+    .span6 label{
         font-size: 8pt;
+    }
+
+    .span6 a{
+        text-decoration: none;
+        color: black;
     }
 
     .span6 a:hover{
@@ -95,12 +100,12 @@
                 <h4 class="widgettitle" style="font-size: 26px; font-weight: bold; line-height: 56px;">Tin khuyến mãi </></h4>
                 <div style="line-height: 20px">
                     <div class="r" style="float: right; width: 55%;">
-                        <h4 style="font-size: 16px !important; color: #444444">
-                            <a><?=$TinKhuyenMai[0]->TIEUDE?></a>
+                        <h4 style="font-size: 16px !important; color: #444444; text-decoration: none;">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinKhuyenMai[0]->ID?>"><?=$TinKhuyenMai[0]->TIEUDE?></a>
                         </h4>
                         <label Text="Label"><?=$TinKhuyenMai[0]->MOTA?></label>
                     </div>
-                    <img ID="imgKhuyenmai"  src="<?=base_url()?>upload/files/<?=$TinKhuyenMai[0]->HINH?>" Width="200px" />
+                    <a href="<?=base_url()?>tintuc?id=<?=$TinKhuyenMai[0]->ID?>"><img ID="imgKhuyenmai"  src="<?=base_url()?>upload/files/<?=$TinKhuyenMai[0]->HINH?>" Width="200px" /></a>
 
                 </div>
                 <!--widgetcontent-->
@@ -128,12 +133,12 @@
                 <h4 class="widgettitle" style="font-size: 26px; font-weight: bold; line-height: 56px;">Tin công nghệ</h4>
                 <div style="line-height: 20px">
                     <div class="r" style="float: right; width: 55%;">
-                        <h4 style="font-size: 16px !important; color: #444444">
-                            <a><?=$TinCongNghe[0]->TIEUDE?></a>
+                        <h4 style="font-size: 16px !important; color: #444444; text-decoration: none;">
+                            <a href="<?=base_url()?>tintuc?id=<?=$TinCongNghe[0]->ID?>"><?=$TinCongNghe[0]->TIEUDE?></a>
                         </h4>
-                        <label Text="Label"><?=$TinCongNghe[0]->MOTA?></label>
+                        <label><?=$TinCongNghe[0]->MOTA?></label>
                     </div>
-                    <img ID="imgKhuyenmai"  src="<?=base_url()?>upload/files/<?=$TinCongNghe[0]->HINH?>" Width="200px" />
+                    <a href="<?=base_url()?>tintuc?id=<?=$TinCongNghe[0]->ID?>"><img ID="imgKhuyenmai"  src="<?=base_url()?>upload/files/<?=$TinCongNghe[0]->HINH?>" Width="200px" /></a>
                 </div>
                 <!--widgetcontent-->
                 <div>

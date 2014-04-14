@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title><?=lang('title')?></title>
+<link href="<?=base_url()?>static/images/cart.png" rel="icon" />
 <!--CSS-->
 <link rel="stylesheet" href="<?=base_url()?>static/css/styles.css">
 <link rel="stylesheet" href="<?=base_url()?>static/css/short_code.css">

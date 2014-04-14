@@ -12,6 +12,21 @@ Class Tintuc_model extends CI_Model{
 		return $query->result_array();
 	}
 
+	function get_chitiet_tintuc($id){		
+		$query = $this->db->query("SELECT T.*, N.TENNGUOIDUNG, L.LOAITINTUC FROM tintuc T,nguoidung N, loaitintuc L WHERE T.TACGIA = N.ID AND T.LOAITIN = L.ID AND T.ID = ".$id);
+		return $query->row();
+	}
+
+	function get_loaitin($id){
+		$query = $this->db->query("SELECT LOAITIN FROM tintuc WHERE ID = ".$id);	
+		return $query->row();
+	}
+
+	function get_tinlienquan($id,$loai){
+		$query = $this->db->query("SELECT TIEUDE, ID, MOTA FROM tintuc T WHERE T.ID <> ".$id." AND LOAITIN = ".$loai." ORDER BY T.NGAYDANG DESC LIMIT 4");
+		return $query->result();
+	}
+
 	function edit($id){
 		
 		$query = $this->db->query("SELECT T.ID, T.TIEUDE, T.LOAITIN, T.MOTA, T.NOIDUNG, T.NGAYDANG, T.HINH, T.TACGIA, N.TENNGUOIDUNG, L.LOAITINTUC FROM tintuc T,nguoidung N, loaitintuc L WHERE T.TACGIA = N.ID AND T.LOAITIN = L.ID AND T.ID = ".$id);

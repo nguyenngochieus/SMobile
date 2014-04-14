@@ -4,17 +4,24 @@ class tintuc extends Public_Controller {
 
 	public function __construct(){
 		parent:: __construct();		
-		$this->data['page'] = 'tintuc';				
+		$this->data['page'] = 'tintuc';	
+		$this->load->model('tintuc_model');			
 	}
 
 	public function index()
-	{
-		$this->data['TinKhuyenMai'] = $this->public_model->GetTinKhuyenMai($this->data['lang_db']);
-		$this->data['TinCongNghe'] = $this->public_model->GetTinCongNghe($this->data['lang_db']);
-		$this->data['SanPhamMoi'] = $this->public_model->GetSanPhamMoi($this->data['lang_db']);
-		$this->data['SanPhamBanChay'] = $this->public_model->GetSanPhamBanChay($this->data['lang_db']);		
-		$this->load->view('include/header',$this->data);
-		$this->load->view('home/index',$this->data);
-		$this->load->view('include/footer',$this->data);
+	{	
+		if(isset($_GET['id']) && $_GET['id'] != '')
+		{		
+			$id = $this->input->get('id',TRUE);
+			$this->data['result'] = $this->tintuc_model->get_chitiet_tintuc($id);
+			$loai = $this->tintuc_model->get_loaitin($id);
+			$this->data['tinlienquan'] = $this->tintuc_model->get_tinlienquan($id,$loai->LOAITIN);
+			$this->load->view('include/header',$this->data);
+			$this->load->view('tintuc/index',$this->data);
+			$this->load->view('include/footer',$this->data);
+		}
+		else
+			redirect(base_url());
+
 	}
 }

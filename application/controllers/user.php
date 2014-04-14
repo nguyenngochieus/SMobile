@@ -205,6 +205,25 @@ Class user extends Public_Controller{
 			return redirect(base_url('dangnhap'));
 	}
 
+	public function invoice()
+	{		
+		$check = $this->login->checkLogin();
+		if($check == 1 || $check == 2 )
+		{
+			if(isset($_GET['id']) && $_GET['id'] != '')
+			{
+				$this->data['result'] = $this->thongtindonhang_model->get_thongtindathang_id($this->input->get('id',TRUE));
+				$this->data['giohang'] = $this->thongtindonhang_model->get_giohang_id($this->data['result']->ID);
+				$this->load->view('user/invoice',$this->data);	
+			}
+			else return redirect(base_url('user'));
+
+		}
+		else
+			return redirect(base_url('dangnhap'));
+	}
+
+
 	public function dathanglai()
 	{		
 		$check = $this->login->checkLogin();
