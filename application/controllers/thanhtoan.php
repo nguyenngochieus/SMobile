@@ -269,6 +269,7 @@ class thanhtoan extends Public_Controller {
 							$Soluong = $items['qty'];
 							$tmp = $this->hoadon_model->insert($Madathang, $Masanpham, $Soluong);
 						}
+						$this->cart->destroy();
 						echo redirect(base_url('thanhtoan/success/'.$iddh->ID));
 					} 
 					else echo redirect(base_url('admin/error/insert'));					    
@@ -294,21 +295,14 @@ class thanhtoan extends Public_Controller {
 		$check = $this->login->checkLogin();
 		if($check == 1 || $check == 2)
 		{
-			if($this->cart->contents())
+			$this->data['result'] = $this->thongtindonhang_model->get_thongtindathang_id($id);
+			if($this->data['result'])
 			{
-				$this->data['result'] = $this->thongtindonhang_model->get_thongtindathang_id($id);
-				if($this->data['result'])
-				{
-					$this->data['id'] = $id;
-					$this->load->view('include/header',$this->data);
-					$this->load->view('thanhtoan/success',$this->data);
-					$this->load->view('include/footer',$this->data);
-				}			
-			}
-			else
-			{
-				redirect(base_url());
-			}
+				$this->data['id'] = $id;
+				$this->load->view('include/header',$this->data);
+				$this->load->view('thanhtoan/success',$this->data);
+				$this->load->view('include/footer',$this->data);
+			}						
 		}
 		else
 		{
