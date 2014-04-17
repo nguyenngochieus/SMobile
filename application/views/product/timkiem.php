@@ -57,7 +57,7 @@
     <div id="all-product" class="products_grid search">
     <ul>        
         <?php
-        if(count($result) == 0 || (!isset(var)))
+        if(count($result) == 0 || (!isset($_GET['filter_name']) && !isset($_GET['filter_price_from']) && !isset($_GET['filter_price_to']) && !isset($_GET['filter_category_id'])) || (isset($_GET['filter_name']) && $_GET['filter_name']=='' && !isset($_GET['filter_price_from']) && !isset($_GET['filter_price_to']) && !isset($_GET['filter_category_id'])))
             echo '<p stype="font-size:13pt;">Không tìm thấy sản phẩm theo yêu cầu</p>';
         else
         {
