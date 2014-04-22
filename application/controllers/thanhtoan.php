@@ -241,8 +241,7 @@ class thanhtoan extends Public_Controller {
 	}
 
 	public function done()
-	{
-		$this->load->view('thanhtoan/invoice');
+	{		
 		$check = $this->login->checkLogin();
 		if($check == 1 || $check == 2)
 		{	
